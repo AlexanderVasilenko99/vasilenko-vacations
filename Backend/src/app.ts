@@ -1,16 +1,16 @@
 import express from "express";
 import appConfig from "./2-utils/app-config";
-import catchAll from "./4-middleware/CatchAll";
-import routeNotFound from "./4-middleware/RouteNotFound";
+import catchAll from "./4-middlewares/CatchAll";
+import routeNotFound from "./4-middlewares/RouteNotFound";
 import productsController from "./6-controllers/products-controller"
-import employeesController from "./6-controllers/employees-controller";
+
 import { fileSaver } from "uploaded-file-saver";
 import path from "path"
 import authController from "./6-controllers/auth-controller";
 import expressFileUpload from "express-fileupload"
 import cors from "cors";
-import activities from "./4-middleware/activities";
-import sanitize from "./4-middleware/sanitize";
+import activities from "./4-middlewares/activities";
+import sanitize from "./4-middlewares/sanitize";
 
 
 // creating the server
@@ -34,7 +34,7 @@ server.use(sanitize);
 server.use(expressFileUpload());
 
 // connect our controllers
-server.use("/api", productsController, employeesController, authController)
+server.use("/api", productsController, authController)
 
 // Route not found 
 server.use(routeNotFound)
