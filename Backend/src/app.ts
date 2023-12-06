@@ -11,6 +11,7 @@ import expressFileUpload from "express-fileupload"
 import cors from "cors";
 import activities from "./4-middlewares/activities";
 import sanitize from "./4-middlewares/sanitize";
+import vacationsController from "./6-controllers/vacationsController";
 
 
 // creating the server
@@ -34,7 +35,7 @@ server.use(sanitize);
 server.use(expressFileUpload());
 
 // connect our controllers
-server.use("/api", productsController, authController)
+server.use("/api", productsController,vacationsController, authController)
 
 // Route not found 
 server.use(routeNotFound)

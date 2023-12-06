@@ -3,8 +3,8 @@ import productService from "../5-services/product-service";
 import ProductModel from "../3-models/product-model";
 import StatusCode from "../3-models/status-codes";
 import { fileSaver } from "uploaded-file-saver";
-import verifyToken from "../4-middleware/verifyToken";
-import verifyAdmin from "../4-middleware/verifyAdmin";
+import verifyToken from "../4-middlewares/verifyToken";
+import verifyAdmin from "../4-middlewares/verifyAdmin";
 const router = express.Router();
 
 
