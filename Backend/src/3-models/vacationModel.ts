@@ -10,6 +10,7 @@ class VacationModel {
     public vacationEndDate: Date;
     public vacationPrice: number;
     public vacationImageName: string;
+    public vacationImageUrl: string;
     public vacationUploadedImage: UploadedFile;
     constructor(vacation: VacationModel) {
         this.vacationId = vacation.vacationId;
@@ -20,6 +21,7 @@ class VacationModel {
         this.vacationEndDate = vacation.vacationEndDate;
         this.vacationPrice = vacation.vacationPrice;
         this.vacationImageName = vacation.vacationImageName;
+        this.vacationImageUrl = vacation.vacationImageUrl;
         this.vacationUploadedImage = vacation.vacationUploadedImage;
     }
     public static addVacationValidationSchema = Joi.object({
@@ -31,6 +33,7 @@ class VacationModel {
         vacationEndDate: Joi.date().required().greater('now'),
         vacationPrice: Joi.number().required().min(3).max(5).integer().positive(),
         vacationImageName: Joi.string().forbidden(),
+        vacationImageUrl: Joi.string().forbidden(),
         vacationUploadedImage: Joi.object().required()
     });
     public static editVacationValidationSchema = Joi.object({
@@ -42,6 +45,7 @@ class VacationModel {
         vacationEndDate: Joi.date().required(),
         vacationPrice: Joi.number().required().min(3).max(5).integer().positive(),
         vacationImageName: Joi.string().required().min(2).max(255),
+        // im not checking vacationimageurl - make sure later
         vacationUploadedImage: Joi.object().optional()
     });
     public addVacationValidate(): void {

@@ -8,8 +8,6 @@ import verifyAdmin from "../4-middlewares/verifyAdmin";
 import vacationServices from "../5-services/vacationServices";
 const router = express.Router();
 
-
-// GET https://localhost:4000/api/products
 router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const vacations = await vacationServices.getAllVacations();
@@ -17,7 +15,7 @@ router.get("/vacations", async (request: Request, response: Response, next: Next
     } catch (err: any) {
         next(err);
     }
-})
+});
 router.get("/get-vacations", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const vacations = await vacationServices.getVacations(3);
@@ -25,7 +23,27 @@ router.get("/get-vacations", async (request: Request, response: Response, next: 
     } catch (err: any) {
         next(err);
     }
+});
+router.delete("/vacations/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const id = +request.params.id;
+        await vacationServices.deleteVacation(id);
+        response.sendStatus(StatusCode.NoContent);
+    } catch (err: any) {
+        next(err);
+    }
 })
+// router.get("/image/:id", async (request: Request, response: Response, next: NextFunction) => {
+//     try {
+//         const id = +request.params.id;
+//         const vacation = await vacationServices.getExistingVacationImageName(id);
+//         console.log("vacation: " + vacation);
+
+//         response.send(vacation);
+//     } catch (err: any) {
+//         next(err);
+//     }
+// })
 // // GET https://localhost:4000/api/products/:id
 // router.get("/products/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
 //     try {
@@ -61,17 +79,6 @@ router.get("/get-vacations", async (request: Request, response: Response, next: 
 //     }
 // })
 // // DELETE  https://localhost:4000/api/products/:id
-// router.delete("/products/:id([0-9]+)",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const id = +request.params.id;
-//         await productService.deleteProduct(id);
-//         // response.json(`deleted item ${id}`)
-//         // or
-//         response.sendStatus(StatusCode.NoContent);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
 // // GET https://localhost:4000/api/products-by-price/:min/:max
 // router.get("/products-by-price/:min/:max", async (request: Request, response: Response, next: NextFunction) => {
 //     try {
@@ -115,15 +122,14 @@ router.get("/get-vacations", async (request: Request, response: Response, next: 
 //     }
 // })
 // // GET https://localhost:4000/api/products-by-category?id=
-// router.get("/products/:imageName", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const imageName = request.params.imageName;
-//         const absolutePath = fileSaver.getFilePath(imageName);
-//         response.sendFile(absolutePath);
-
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
+router.get("/vacations/:imageName", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const imageName = request.params.imageName;
+        const absolutePath = fileSaver.getFilePath(imageName);
+        response.sendFile(absolutePath);
+    } catch (err: any) {
+        next(err);
+    }
+})
 
 export default router;
