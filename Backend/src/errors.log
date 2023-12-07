@@ -97,3 +97,336 @@ Stack: Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'where clause'
     at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
     at VacationServices.getExistingVacationImageName (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:62:16)
 ----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:12:55 GMT
+"vacationId" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:13:23 GMT
+"vacationDescription" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:13:36 GMT
+"vacationStartDate" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:14:11 GMT
+"vacationEndDate" must be a valid date
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:19:51 GMT
+"vacationPrice" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:20:00 GMT
+"vacationPrice" must be less than or equal to 5
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:20:46 GMT
+"vacationPrice" must be a number
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:20:55 GMT
+"vacationPrice" must be less than or equal to 10000
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:20:59 GMT
+"vacationImageName" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:21:16 GMT
+"vacationImageUrl" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:23:51 GMT
+"vacationImageUrl" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:23:54 GMT
+"vacationImageUrl" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:24:12 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:26:32 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:30:22 GMT
+"vacationUploadedImage" must be of type object
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:30:27 GMT
+"vacationUploadedImage" must be of type object
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:30:36 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:31:48 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:32:01 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:32:37 GMT
+"vacationImageName" is required
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:32:43 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:33:20 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:33:23 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:34:06 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:34:15 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:34:55 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:34:58 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:35:00 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:35:46 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:35:57 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:36:06 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:37:17 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:37:32 GMT
+"vacationUploadedImage" is not allowed
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:38:00 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:38:21 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:38:25 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:40:40 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:40:42 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:41:30 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:41:48 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:41:50 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:42:07 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:42:18 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:43:41 GMT
+uploadedFile can't be empty.
+Stack: Error: uploadedFile can't be empty.
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:34:23)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:4:12)
+    at FileSaver.add (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:32:16)
+    at FileSaver.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:49:44)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\uploaded-file-saver\dist\file-saver.js:8:71
+    at new Promise (<anonymous>)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:44:06 GMT
+ER_BAD_FIELD_ERROR: Unknown column 'ProductId' in 'where clause'
+Stack: Error: ER_BAD_FIELD_ERROR: Unknown column 'ProductId' in 'where clause'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:125:42)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:44:23 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:45:34 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:45:38 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:46:08 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 08:53:00 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 09:09:24 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 09:49:21 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------
+Thu, 07 Dec 2023 09:49:55 GMT
+id 15 not found.
+----------------------------------------------------------------------------------------------------

@@ -91,6 +91,8 @@ class VacationServices {
         // create sql delete query
         const sql = `DELETE FROM vacations WHERE vacationId = ?;`
         const existingImageName = await this.getExistingVacationImageName(id);
+        console.log(existingImageName);
+        
 
         // delete in db
         const info: OkPacket = await dal.execute(sql, [id]);
@@ -100,6 +102,52 @@ class VacationServices {
         // if id is invalid:
         if (info.affectedRows === 0) throw new ResourceNotFound(id);
     }
+    public async editVacation(vacation: VacationModel): Promise<VacationModel> {
+        vacation.editVacationValidate();
+
+        const existingImageName = await this.getExistingVacationImageName(vacation.vacationId);
+
+        // update image if exists and get existing or updated imagename
+        const imageName = vacation.vacationUploadedImage ? await fileSaver.update(
+            existingImageName, vacation.vacationUploadedImage) : existingImageName;
+
+        const sql = `UPDATE vacations SET
+                    vacationCountry = ?,
+                    vacationCity = ?,
+                    vacationDescription = ?,
+                    vacationStartDate = ?,
+                    vacationEndDate = ?,
+                    vacationPrice = ?,
+                    vacationImageName = ?
+                    WHERE vacationId = ${vacation.vacationId};`
+
+        // update db with new product
+        const info: OkPacket = await dal.execute(sql, [
+            vacation.vacationCountry,
+            vacation.vacationCity,
+            vacation.vacationDescription,
+            vacation.vacationStartDate,
+            vacation.vacationEndDate,
+            vacation.vacationPrice,
+            imageName,
+            vacation.vacationId]);
+        console.log(info);
+
+        // if id is invalid:
+        if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationId);
+
+        // update image url
+        vacation.vacationImageUrl = appConfig.appHost + "/api/vacations/" + imageName;
+
+        // delete uploaded file from returned file
+        delete vacation.vacationUploadedImage;
+
+        return vacation;
+    }
+
+
+
+
 
 
 
@@ -110,40 +158,6 @@ class VacationServices {
     //     const product = products[0];
     //     if (!product) return "";
     //     return product.ImageName;
-    // }
-
-
-
-    // public async editProduct(product: ProductModel): Promise<ProductModel> {
-    //     // validate
-    //     product.putValidate();
-
-    //     // get existing image name
-    //     const existingImageName = await this.getExistingImageName(product.id);
-
-    //     // update image if exists and get existing or updated imagename
-    //     const imageName = product.image ? await fileSaver.update(existingImageName, product.image) : existingImageName;
-
-    //     // create sql update query
-    //     const sql = `UPDATE products SET
-    //                     ProductName = '${product.name}',
-    //                     UnitPrice = ${product.price},
-    //                     UnitsInStock = ${product.stock},
-    //                     ImageName = '${imageName}'
-    //                 WHERE ProductId = ${product.id};`
-
-    //     // update db with new product
-    //     const info: OkPacket = await dal.execute(sql);
-    //     // if id is invalid:
-    //     if (info.affectedRows === 0) throw new ResourceNotFound(product.id);
-
-    //     // update image url
-    //     product.imageUrl = appConfig.appHost + "/api/products/" + imageName;
-
-    //     // delete uploaded file from returned file
-    //     delete product.image;
-
-    //     return product;
     // }
 }
 const vacationServices = new VacationServices();

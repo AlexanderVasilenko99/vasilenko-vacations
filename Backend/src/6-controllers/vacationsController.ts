@@ -6,6 +6,7 @@ import { fileSaver } from "uploaded-file-saver";
 import verifyToken from "../4-middlewares/verifyToken";
 import verifyAdmin from "../4-middlewares/verifyAdmin";
 import vacationServices from "../5-services/vacationServices";
+import VacationModel from "../3-models/vacationModel";
 const router = express.Router();
 
 router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
@@ -32,7 +33,21 @@ router.delete("/vacations/:id([0-9]+)", async (request: Request, response: Respo
     } catch (err: any) {
         next(err);
     }
-})
+});
+router.put("/vacations/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        request.body.vacationId = +request.params.id;
+        request.body.vacationUploadedImage = request.files?.vacationUploadedImage;
+        
+        const vacation = new VacationModel(request.body);
+        const updatedVacation = await vacationServices.editVacation(vacation);
+        response.json(updatedVacation);
+
+    } catch (err: any) {
+        next(err);
+    }
+});
+
 // router.get("/image/:id", async (request: Request, response: Response, next: NextFunction) => {
 //     try {
 //         const id = +request.params.id;
@@ -66,18 +81,6 @@ router.delete("/vacations/:id([0-9]+)", async (request: Request, response: Respo
 //     }
 // })
 // // PUT https://localhost:4000/api/products/:id
-// router.put("/products/:id([0-9]+)",verifyToken, async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         request.body.id = +request.params.id
-//         request.body.image = request.files?.image
-//         const product = new ProductModel(request.body);
-//         const updatedProduct = await productService.editProduct(product);
-//         response.json(updatedProduct);
-
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
 // // DELETE  https://localhost:4000/api/products/:id
 // // GET https://localhost:4000/api/products-by-price/:min/:max
 // router.get("/products-by-price/:min/:max", async (request: Request, response: Response, next: NextFunction) => {

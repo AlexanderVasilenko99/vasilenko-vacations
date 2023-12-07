@@ -35,7 +35,7 @@ server.use(sanitize);
 server.use(expressFileUpload());
 
 // connect our controllers
-server.use("/api", productsController,vacationsController, authController)
+server.use("/api", vacationsController, authController)
 
 // Route not found 
 server.use(routeNotFound)
