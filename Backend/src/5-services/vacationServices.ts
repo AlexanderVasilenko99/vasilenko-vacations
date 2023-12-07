@@ -92,7 +92,7 @@ class VacationServices {
         const sql = `DELETE FROM vacations WHERE vacationId = ?;`
         const existingImageName = await this.getExistingVacationImageName(id);
         console.log(existingImageName);
-        
+
 
         // delete in db
         const info: OkPacket = await dal.execute(sql, [id]);
@@ -131,7 +131,6 @@ class VacationServices {
             vacation.vacationPrice,
             imageName,
             vacation.vacationId]);
-        console.log(info);
 
         // if id is invalid:
         if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationId);
