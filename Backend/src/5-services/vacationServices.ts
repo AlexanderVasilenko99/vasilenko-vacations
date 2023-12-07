@@ -47,7 +47,7 @@ class VacationServices {
     // }
 
     public async getExistingVacationImageName(id: number): Promise<string> {
-        const sql = 'SELECT VacationImageName from vacations WHERE vacationId = ?'
+        const sql = 'SELECT vacationImageName from vacations WHERE vacationId = ?'
         const info: OkPacket = await dal.execute(sql, [id]);
 
         const vacation = info[0];
@@ -143,21 +143,6 @@ class VacationServices {
 
         return vacation;
     }
-
-
-
-
-
-
-
-    // // get image name by product id
-    // private async getExistingImageName(id: number): Promise<string> {
-    //     const sql = `SELECT ImageName from products WHERE ProductID = ${id}`;
-    //     const products = await dal.execute(sql);
-    //     const product = products[0];
-    //     if (!product) return "";
-    //     return product.ImageName;
-    // }
 }
 const vacationServices = new VacationServices();
 export default vacationServices;
