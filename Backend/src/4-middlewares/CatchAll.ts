@@ -4,11 +4,8 @@ import logger from "../2-utils/logger";
 import appConfig from "../2-utils/app-config";
 
 function catchAll(err: any, req: Request, res: Response, next: NextFunction): void {
-    // console.log("ERROR " + err.message);
 
     console.log(err);
-
-
 
     // log the error
     logger.logError(err.message, err)
@@ -21,7 +18,7 @@ function catchAll(err: any, req: Request, res: Response, next: NextFunction): vo
     }
     if (err.errno === 1452) {
         message = "userId or vacationId is incorrect";
-        status = StatusCode.BadRequest;
+        status = StatusCode.NotFound;
     }
     res.status(status).send(message);
 }
