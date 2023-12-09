@@ -33,7 +33,7 @@ function Login(): JSX.Element {
                 Login
             </h2>
             <form onSubmit={handleSubmit(send)}>
-                <label>Username:</label><input type="text" {...register("username")} />
+                <label>Email:</label><input type="text" {...register("email")} />
                 <label>Password:</label><input type="password" {...register("password")} />
 
                 <button>Log in</button>
