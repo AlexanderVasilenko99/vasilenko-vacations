@@ -9,6 +9,7 @@ import EditProduct from "../../ProductsArea/EditProduct/EditProduct";
 import appConfig from "../../../Utils/AppConfig";
 import RegisterComponent from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
+import VacationsList from "../../VacationsArea/VacationsList/VacationsList";
 
 
 function Routing(): JSX.Element {
@@ -22,6 +23,9 @@ function Routing(): JSX.Element {
                 <Route path="/products/product/:productId/" element={<ProductDetails />} />
                 <Route path="/products/new/" element={<AddProduct />} />
                 <Route path="/products/edit/:prodId" element={<EditProduct />} />
+
+                <Route path="/vacations/" element={<VacationsList />} />
+                
                 <Route path="/register/" element={<RegisterComponent />} />
                 <Route path="/login/" element={<Login />} />
 
