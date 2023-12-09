@@ -1,15 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import EmployeesList from "../../EmployeesArea/EmployeesList/EmployeesList";
 import Home from "../../HomeArea/Home/Home";
 import ProductDetails from "../../ProductsArea/ProductDetails/ProductDetails";
 import ProductsArea from "../../ProductsArea/ProductsArea";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import AddProduct from "../../ProductsArea/AddProduct/AddProduct";
 import EditProduct from "../../ProductsArea/EditProduct/EditProduct";
-import AddEmployee from "../../EmployeesArea/AddEmployee/AddEmployee";
-import EditEmployee from "../../EmployeesArea/EditEmployee/EditEmployee";
-import EmployeeDetails from "../../EmployeesArea/EmployeeDetails/EmployeeDetails";
 import appConfig from "../../../Utils/AppConfig";
 import RegisterComponent from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
@@ -26,10 +22,6 @@ function Routing(): JSX.Element {
                 <Route path="/products/product/:productId/" element={<ProductDetails />} />
                 <Route path="/products/new/" element={<AddProduct />} />
                 <Route path="/products/edit/:prodId" element={<EditProduct />} />
-                <Route path="/employees/" element={<EmployeesList />} />
-                <Route path="/employees/employee/:eId" element={<EmployeeDetails />} />
-                <Route path="/employees/new/" element={<AddEmployee />} />
-                <Route path="/employees/edit/:eId" element={<EditEmployee />} />
                 <Route path="/register/" element={<RegisterComponent />} />
                 <Route path="/login/" element={<Login />} />
 
