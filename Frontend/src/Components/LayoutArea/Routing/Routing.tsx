@@ -13,10 +13,6 @@ import EmployeeDetails from "../../EmployeesArea/EmployeeDetails/EmployeeDetails
 import appConfig from "../../../Utils/AppConfig";
 import RegisterComponent from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
-import CategoriesList from "../../CategoriesArea/CategoriesList/CategoriesList";
-import AddCategory from "../../CategoriesArea/AddCategory/AddCategory";
-import CategoryDetails from "../../CategoriesArea/CategoryDetails/CategoryDetails";
-import ContactUs from "../../AboutArea/ContactUs/ContactUs";
 
 
 function Routing(): JSX.Element {
@@ -36,10 +32,7 @@ function Routing(): JSX.Element {
                 <Route path="/employees/edit/:eId" element={<EditEmployee />} />
                 <Route path="/register/" element={<RegisterComponent />} />
                 <Route path="/login/" element={<Login />} />
-                <Route path="/categories/" element={<CategoriesList />} />
-                <Route path="/categories/new/" element={< AddCategory />} />
-                <Route path="/categories/details/:eId" element={< CategoryDetails />} />
-                <Route path="/contactUs" element={< ContactUs />} />
+
 
                 <Route path="/*" element={<PageNotFound />}></Route>
 
