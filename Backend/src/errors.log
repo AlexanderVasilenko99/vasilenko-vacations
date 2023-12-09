@@ -430,3 +430,374 @@ id 15 not found.
 Thu, 07 Dec 2023 09:49:55 GMT
 id 15 not found.
 ----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 12:38:11 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:46)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 12:39:20 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:46)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:08:41 GMT
+Route /api/vacations/delete/3/3 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:08:51 GMT
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* from followers WHERE userId = 3 AND vacationId = 3' at line 1
+Stack: Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* from followers WHERE userId = 3 AND vacationId = 3' at line 1
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:132:32)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.unfollowVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:144:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:09:46 GMT
+userId 3 or vacationId 55 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:10:22 GMT
+ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+Stack: Error: ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:46)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:26:46 GMT
+ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+Stack: Error: ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:29:35 GMT
+ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+Stack: Error: ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:30:18 GMT
+ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+Stack: Error: ER_DUP_ENTRY: Duplicate entry '4-3' for key 'PRIMARY'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:30:37 GMT
+userId 3 or vacationId 5 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:31:02 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:31:57 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`vacationId`) REFERENCES `vacations` (`vacationId`))
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:32:01 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:32:06 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:32:09 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:32:41 GMT
+ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+Stack: Error: ER_NO_REFERENCED_ROW_2: Cannot add or update a child row: a foreign key constraint fails (`vacations`.`followers`, CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE)
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:32:46 GMT
+ER_DUP_ENTRY: Duplicate entry '4-4' for key 'PRIMARY'
+Stack: Error: ER_DUP_ENTRY: Duplicate entry '4-4' for key 'PRIMARY'
+    at Query.Sequence._packetToError (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:13:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\2-utils\dal.ts:12:12)
+    at VacationServices.<anonymous> (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:127:19)
+    at Generator.next (<anonymous>)
+    at C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:4:12)
+    at VacationServices.followVacation (C:\Users\alexs\OneDrive\Documents\Projects - JB\project 3 related stuff\Vasilenko_Vacations\Backend\src\5-services\vacationServices.ts:137:16)
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:33:05 GMT
+userId 3 or vacationId 5 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:33:09 GMT
+userId 3 or vacationId 55 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:33:14 GMT
+userId 4 or vacationId 5 not found.
+----------------------------------------------------------------------------------------------------
+Sat, 09 Dec 2023 13:33:21 GMT
+userId 4 or vacationId 4 not found.
+----------------------------------------------------------------------------------------------------

@@ -15,6 +15,11 @@ export class ResourceNotFound extends BaseError {
         super(StatusCode.NotFound, `id ${id} not found.`);
     }
 }
+export class FollowerNotFound extends BaseError {
+    public constructor(userId: number, vacationId: number) {
+        super(StatusCode.NotFound, `userId ${userId} or vacationId ${vacationId} not found.`);
+    }
+}
 
 export class Validation extends BaseError {
     public constructor(message: string) {

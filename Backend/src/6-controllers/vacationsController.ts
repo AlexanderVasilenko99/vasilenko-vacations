@@ -1,10 +1,8 @@
 import express, { Request, Response, NextFunction } from "express";
-import productService from "../5-services/product-service";
-import ProductModel from "../3-models/product-model";
 import StatusCode from "../3-models/status-codes";
 import { fileSaver } from "uploaded-file-saver";
-import verifyToken from "../4-middlewares/verifyToken";
-import verifyAdmin from "../4-middlewares/verifyAdmin";
+// import verifyToken from "../4-middlewares/verifyToken";
+// import verifyAdmin from "../4-middlewares/verifyAdmin";
 import vacationServices from "../5-services/vacationServices";
 import VacationModel from "../3-models/vacationModel";
 const router = express.Router();
@@ -38,7 +36,7 @@ router.put("/vacations/:id([0-9]+)", async (request: Request, response: Response
     try {
         request.body.vacationId = +request.params.id;
         request.body.vacationUploadedImage = request.files?.vacationUploadedImage;
-        
+
         const vacation = new VacationModel(request.body);
         const updatedVacation = await vacationServices.editVacation(vacation);
         response.json(updatedVacation);
@@ -47,84 +45,6 @@ router.put("/vacations/:id([0-9]+)", async (request: Request, response: Response
         next(err);
     }
 });
-
-// router.get("/image/:id", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const id = +request.params.id;
-//         const vacation = await vacationServices.getExistingVacationImageName(id);
-//         console.log("vacation: " + vacation);
-
-//         response.send(vacation);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // GET https://localhost:4000/api/products/:id
-// router.get("/products/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const id = +request.params.id;
-//         const product = await productService.getOneProduct(id);
-//         response.json(product);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // POST https://localhost:4000/api/products
-// router.post("/products",verifyToken, async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         request.body.image = request.files?.image;
-//         const product = new ProductModel(request.body);
-//         const addedProduct = await productService.addProduct(product);
-//         response.status(StatusCode.Created).json(addedProduct);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // PUT https://localhost:4000/api/products/:id
-// // DELETE  https://localhost:4000/api/products/:id
-// // GET https://localhost:4000/api/products-by-price/:min/:max
-// router.get("/products-by-price/:min/:max", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const min = +request.params.min;
-//         const max = +request.params.max;
-//         const products = await productService.getProductsByPrice(min, max);
-//         response.json(products);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // GET https://localhost:4000/api/products-by-price2/?min&?:max
-// router.get("/products-by-price2", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const min = +request.query.min;
-//         const max = +request.query.max;
-//         const products = await productService.getProductsByPrice(min, max);
-//         response.json(products);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // GET https://localhost:4000/api/products-by-category?id=
-// router.get("/products-by-category", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const id = +request.query.id;
-//         const products = await productService.getProductsByCategoryId(id);
-//         response.json(products);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // GET https://localhost:4000/api/add-product-by-procedure
-// router.post("/add-product-by-procedure",verifyToken, async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const product = new ProductModel(request.body);
-//         const addedProduct = await productService.addProductByProcedure(product);
-//         response.status(StatusCode.Created).json(addedProduct);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// })
-// // GET https://localhost:4000/api/products-by-category?id=
 router.get("/vacations/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const imageName = request.params.imageName;
@@ -133,6 +53,26 @@ router.get("/vacations/:imageName", async (request: Request, response: Response,
     } catch (err: any) {
         next(err);
     }
-})
+});
+router.post("/vacations/follow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const userId = +request.params.userId;
+        const vacationId = +request.params.vacationId;
+        await vacationServices.followVacation(userId, vacationId);
+        response.status(StatusCode.Created).json();
+    } catch (err: any) {
+        next(err);
+    }
+});
+router.delete("/vacations/unfollow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const userId = +request.params.userId;
+        const vacationId = +request.params.vacationId;
+        await vacationServices.unfollowVacation(userId, vacationId);
+        response.status(StatusCode.NoContent).json();
+    } catch (err: any) {
+        next(err);
+    }
+});
 
 export default router;

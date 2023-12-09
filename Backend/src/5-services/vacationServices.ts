@@ -1,9 +1,8 @@
 import { OkPacket } from "mysql";
-import dal from "../2-utils/dal";
-import { ResourceNotFound } from "../3-models/error-models";
-import ProductModel from "../3-models/product-model";
-import { fileSaver } from "uploaded-file-saver"
+import { fileSaver } from "uploaded-file-saver";
 import appConfig from "../2-utils/app-config";
+import dal from "../2-utils/dal";
+import { FollowerNotFound, ResourceNotFound } from "../3-models/error-models";
 import VacationModel from "../3-models/vacationModel";
 
 class VacationServices {
@@ -12,7 +11,7 @@ class VacationServices {
         const products = await dal.execute(sql);
         return products;
     }
-    public async getVacations(userId: number): Promise<VacationModel[]> {
+    public async getVacations(userId: number): Promise<VacationModel[]> { // USER.IS FOLLOWING DOESNT WORK
         const sql = `
             SELECT DISTINCT
                 V.*,
@@ -27,25 +26,6 @@ class VacationServices {
         const vacations = await dal.execute(sql, [userId]);
         return vacations;
     }
-    // public async getOneProduct(id: number): Promise<ProductModel> {
-    //     // create sql query
-    //     const sql = `SELECT
-    //                     ProductId AS id,
-    //                     ProductName AS name,
-    //                     UnitPrice AS price,
-    //                     UnitsInStock AS stock,
-    //                     CONCAT('${appConfig.appHost}','/api/products/',ImageName) AS imageUrl
-    //                 FROM products
-    //                 WHERE ProductId = ${id}`
-    //     // get products array containing one product from db
-    //     const products = await dal.execute(sql);
-    //     // extract that product to single object
-    //     const product = products[0];
-    //     // if id not found
-    //     if (!product) throw new ResourceNotFound(id);
-    //     return product;
-    // }
-
     public async getExistingVacationImageName(id: number): Promise<string> {
         const sql = 'SELECT vacationImageName from vacations WHERE vacationId = ?'
         const info: OkPacket = await dal.execute(sql, [id]);
@@ -64,14 +44,13 @@ class VacationServices {
         const existingImagePath = appConfig.appHost + "/api/image/" + vacation.VacationImageName;
         return existingImagePath;
     }
-
     public async addVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.addVacationValidate();
 
         const imageName = await fileSaver.add(vacation.vacationUploadedImage);
         vacation.vacationImageName = imageName;
 
-        const sql = `INSERT INTO vacations values(DEFAULT,?,?,?,?,?,?,?);`
+        const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?);`
 
         const info: OkPacket = await dal.execute(sql, [
             vacation.vacationCountry,
@@ -142,6 +121,15 @@ class VacationServices {
         delete vacation.vacationUploadedImage;
 
         return vacation;
+    }
+    public async followVacation(userId: number, vacationId: number): Promise<void> {
+        const sql = "INSERT INTO followers VALUES(?,?)";
+        await dal.execute(sql, [userId, vacationId])
+    }
+    public async unfollowVacation(userId: number, vacationId: number): Promise<void> {
+        const sql = "DELETE from followers WHERE userId = ? AND vacationId = ?";
+        const info = await dal.execute(sql, [userId, vacationId]);
+        if (info.affectedRows === 0) throw new FollowerNotFound(userId, vacationId);
     }
 }
 const vacationServices = new VacationServices();
