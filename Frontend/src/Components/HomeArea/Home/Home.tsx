@@ -2,7 +2,7 @@ import UseTitle from "../../../Utils/UseTitle";
 import "./Home.css";
 
 function Home(): JSX.Element {
-    UseTitle("NorthWind");
+    UseTitle("Vasilenko Vacations");
 
     return (
         <div className="Home">

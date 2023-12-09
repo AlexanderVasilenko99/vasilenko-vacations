@@ -5,7 +5,7 @@ import ProductsList from "./ProductsList/ProductsList";
 
 
 function ProductsArea(): JSX.Element {
-    UseTitle("NorthWind | Products");
+    UseTitle("Vasilenko Vacations | Products");
     
     return (
         <div className="ProductsArea">

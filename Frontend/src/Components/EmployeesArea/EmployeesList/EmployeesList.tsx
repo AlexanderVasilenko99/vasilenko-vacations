@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { EmployeeActionTypes, EmployeeActions, employeeStore } from "../../../Redux/EmployeesState";
 
 function EmployeesList(): JSX.Element {
-    UseTitle("NorthWind | Employees");
+    UseTitle("Vasilenko Vacations | Employees");
     // usestate
     const [feEmployees, setFeEmployees] = useState<EmployeeModel[]>();
     // useefect to fetch only once

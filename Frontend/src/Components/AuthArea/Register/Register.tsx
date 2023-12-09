@@ -5,9 +5,10 @@ import noti from "../../../Services/NotificationService";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import appConfig from "../../../Utils/AppConfig";
+import UseTitle from "../../../Utils/UseTitle";
 
 function Register(): JSX.Element {
-
+    UseTitle("Vasilenko Vacations | Register");
     const { register, handleSubmit } = useForm<UserModel>();
     const navigate = useNavigate();
 

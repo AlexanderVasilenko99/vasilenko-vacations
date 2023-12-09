@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
-import CredentialsModel from "../../../Models/CredentialsModel";
-import noti from "../../../Services/NotificationService";
-import "./Login.css";
-import authService from "../../../Services/AuthService";
 import { useNavigate } from "react-router-dom";
-import appConfig from "../../../Utils/AppConfig";
+import CredentialsModel from "../../../Models/CredentialsModel";
+import authService from "../../../Services/AuthService";
+import noti from "../../../Services/NotificationService";
+import UseTitle from "../../../Utils/UseTitle";
+import "./Login.css";
 
 
 function Login(): JSX.Element {
-
+    UseTitle("Vasilenko Vacations | Login");
     const { register, handleSubmit } = useForm<CredentialsModel>();
     const navigate = useNavigate();
 

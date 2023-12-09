@@ -11,12 +11,6 @@ function Menu(): JSX.Element {
             <NavLink to="/home/">Home</NavLink>
             <NavLink to="/products/">Products</NavLink>
             <NavLink to="/employees/">Employees</NavLink>
-            {
-
-                <NavLink to="/categories/">Categories</NavLink>
-            }
-
-            <NavLink to="/contactUs/">About</NavLink>
             <TotalProducts />
             <TotalEmployees />
 

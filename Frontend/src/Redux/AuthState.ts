@@ -32,17 +32,18 @@ export interface AuthAction {
 }
 function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthState {
     let newState = { ...currentState };
-    sessionStorage.setItem(`token`, newState.token);
+    if (newState.token) {
+        sessionStorage.setItem(`token`, newState.token);
+    }
 
     switch (action.type) {
         case AuthActionTypes.Register:
         case AuthActionTypes.Login:
-
             newState.user = jwtDecode<{ user: UserModel }>(action.payload).user
             newState.token = action.payload;
             sessionStorage.setItem(`token`, newState.token);
             break;
-            
+
         case AuthActionTypes.Logout:
             newState.user = null;
             newState.token = null;
