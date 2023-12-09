@@ -26,7 +26,7 @@ fileSaver.config(path.join(__dirname, "1-assets", "images"));
 server.use(express.json());
 
 // log every activity
-server.use(activities);
+// server.use(activities);
 
 // sanitize
 server.use(sanitize);

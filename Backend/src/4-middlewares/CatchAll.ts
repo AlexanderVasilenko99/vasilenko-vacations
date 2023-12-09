@@ -8,7 +8,7 @@ function catchAll(err: any, req: Request, res: Response, next: NextFunction): vo
     console.log(err);
 
     // log the error
-    logger.logError(err.message, err)
+    // logger.logError(err.message, err)
 
     let status = err.status || 500;
     let message = appConfig.isProduction && status >= 500 ? "something went wrong, try again later" : err.message;
