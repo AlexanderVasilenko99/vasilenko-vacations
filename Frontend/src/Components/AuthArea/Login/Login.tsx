@@ -18,7 +18,7 @@ function Login(): JSX.Element {
             console.log(credentials);
 
             noti.success(`Welcome back`);
-            navigate(-1);
+            navigate(-1); //CHANGE THIS TO NAVIGATE TO ALL VACATIONS
 
         } catch (err: any) {
             noti.error(err)
@@ -33,8 +33,8 @@ function Login(): JSX.Element {
                 Login
             </h2>
             <form onSubmit={handleSubmit(send)}>
-                <label>Email:</label><input type="text" {...register("email")} />
-                <label>Password:</label><input type="password" {...register("password")} />
+                <label>Email:</label><input type="email" {...register("email")} required />
+                <label>Password:</label><input type="password" {...register("password")} required minLength={4} />
 
                 <button>Log in</button>
             </form>

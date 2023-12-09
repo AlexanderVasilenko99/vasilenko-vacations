@@ -8,6 +8,10 @@ import noti from "./NotificationService";
 class AuthService {
     public async register(user: UserModel): Promise<void> {
         try {
+
+            {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */}
+
+            
             const response = await axios.post(appConfig.registerUrl, user);
 
             const token = response.data;

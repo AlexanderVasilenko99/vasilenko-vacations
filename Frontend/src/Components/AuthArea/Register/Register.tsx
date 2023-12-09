@@ -29,10 +29,11 @@ function Register(): JSX.Element {
                 Register
             </h2>
             <form onSubmit={handleSubmit(send)}>
-                <label>First name:</label><input type="text" {...register("firstName")} />
-                <label>Last name:</label><input type="text" {...register("lastName")} />
-                <label>Email:</label><input type="text" {...register("email")} />
-                <label>Password:</label><input type="password" {...register("password")} />
+                <label>First name:</label><input type="text" {...register("firstName")} required/>
+                <label>Last name:</label><input type="text" {...register("lastName")} required/>
+                <label>Email:</label><input type="email" {...register("email")} required/> 
+                {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */}
+                <label>Password:</label><input type="password" {...register("password")} required minLength={4}/>
 
                 <button>Register</button>
             </form>
