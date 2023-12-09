@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import ProductModel from "../../../Models/ProductModel";
+import NotificationService from "../../../Services/NotificationService";
 import productsService from "../../../Services/ProductsService";
-import Spinner from "../../Spinner/Spinner";
 import "../ProductCard/ProductCard.css";
 import "./ProductDetails.css";
-import NotificationService from "../../../Services/NotificationService";
-import appConfig from "../../../Utils/AppConfig";
 
 function ProductDetails(): JSX.Element {
 
@@ -42,7 +40,6 @@ function ProductDetails(): JSX.Element {
 
     }
 
-    if (!feProduct) return <Spinner />
     return (
 
         <div className="ProductCard">

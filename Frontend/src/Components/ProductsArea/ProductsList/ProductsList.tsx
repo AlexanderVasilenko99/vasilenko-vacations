@@ -4,9 +4,6 @@ import productsService from "../../../Services/ProductsService";
 import ProductCard from "../ProductCard/ProductCard";
 import "../ProductsList/ProductsList.css";
 import { NavLink } from "react-router-dom";
-import Spinner from "../../Spinner/Spinner";
-import DeleteAllProductsImg from "../../../Assets/Images/trashcan.png";
-import AddImg from "../../../Assets/Images/addIcon3.png";
 import { ProductsActionTypes, ProductsActions, productsStore } from "../../../Redux/ProductsState";
 
 function ProductsList(): JSX.Element {
@@ -24,12 +21,12 @@ function ProductsList(): JSX.Element {
         productsStore.dispatch(action)
     }
 
-    if (!feProducts || feProducts.length === 0) return <Spinner />
+    if (!feProducts || feProducts.length === 0) return <></>
     return (
         <div className="ProductsList">
             <div className="actions">
-                <NavLink to={"/products/new/"}><img src={AddImg} /></NavLink>
-                <NavLink to={"/home/"} onClick={clearAll}> <img src={DeleteAllProductsImg} /> </NavLink>
+                {/* <NavLink to={"/products/new/"}><img src={AddImg} /></NavLink>
+                <NavLink to={"/home/"} onClick={clearAll}> <img src={DeleteAllProductsImg} /> </NavLink> */}
             </div>
 
             {/* don't forget this fucker ---> `?` */}

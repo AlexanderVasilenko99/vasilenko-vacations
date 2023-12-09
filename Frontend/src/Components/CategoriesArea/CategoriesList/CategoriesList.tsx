@@ -5,8 +5,6 @@ import CategoriesModel from "../../../Models/CategoriesModel";
 import noti from "../../../Services/NotificationService";
 import appConfig from "../../../Utils/AppConfig";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
-import AddImg from "../../../Assets/Images/addIcon3.png"
-import DeleteAllCategoriesImg from "../../../Assets/Images/trashcan.png"
 import { CategoryAction, categoriesState, categoryActionTypes } from "../../../Redux/CategoriesState";
 
 function CategoriesList(): JSX.Element {
@@ -40,10 +38,6 @@ function CategoriesList(): JSX.Element {
 
     return (
         <div className="CategoriesList">
-            <div className="actions">
-                <NavLink to={"/categories/new/"}><img src={AddImg} /></NavLink>
-                <NavLink to={"/home/"} onClick={clearAll}> <img src={DeleteAllCategoriesImg} /> </NavLink>
-            </div>
             <table>
                 <thead>
                     <tr>
@@ -61,7 +55,7 @@ function CategoriesList(): JSX.Element {
                             <td>{c.name}</td>
                             <td>{c.description}</td>
                             <td><img src={appConfig.categoriesUrl + "/images/" + c.imageName} /></td>
-                            <td><NavLink to={appConfig.CategoriesDetailsRoute+c.id} >Actions</NavLink></td>
+                            <td><NavLink to={appConfig.CategoriesDetailsRoute + c.id} >Actions</NavLink></td>
                         </tr >
                         // </NavLink>
                     )}
