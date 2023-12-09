@@ -1,37 +1,18 @@
 import axios from "axios";
-import appConfig from "../Utils/AppConfig";
-import { ProductsActionTypes, ProductsActions, productsStore } from "../Redux/ProductsState";
 import VacationModel from "../Models/VacationModel";
+import { VacationsActionTypes, VacationsActions, vacationsStore } from "../Redux/VacationsState";
+import appConfig from "../Utils/AppConfig";
 
 class VacationService {
     public async getAllVacations(): Promise<VacationModel[]> {
-        // // Get all products into response obj
-        const response = await axios.get(appConfig.vacationsUrl);
-        const vacations = response.data;
+        let vacations = vacationsStore.getState().vacations;
+        if (vacations.length === 0) {
+            const response = await axios.get(appConfig.vacationsUrl);
+            vacations = response.data;
 
-        // // extract products from response
-        // const products = response.data;
-
-        // // return products
-        // return products;
-
-
-
-
-
-        // check if all products are in state
-        // if not get from server
-        // save to state
-        // return
-
-        // let products = productsStore.getState().products;
-        // if (products.length === 0) {
-        //     const response = await axios.get(appConfig.productsUrl);
-        //     products = response.data;
-
-        //     const action: ProductsActions = { type: ProductsActionTypes.SetProducts, payload: products }
-        //     productsStore.dispatch(action);
-        // }
+            const action: VacationsActions = { type: VacationsActionTypes.SetVacations, payload: vacations }
+            vacationsStore.dispatch(action);
+        }
         return vacations;
     }
 
