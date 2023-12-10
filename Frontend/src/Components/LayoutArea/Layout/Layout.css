@@ -3,6 +3,7 @@
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(6, 1fr);
+  background-color: #F6F1F1;
 }
 .Layout *{
   grid-column: span 6;

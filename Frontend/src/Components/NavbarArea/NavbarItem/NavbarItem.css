@@ -1,0 +1,73 @@
+.NavbarItem {
+    box-sizing: border-box;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    line-height: 100%;
+
+    border-radius: 4px;
+    background-color: #1a5785 ;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 0px;
+}
+
+.NavbarItem li:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+.NavbarItemDropdownContent {
+    box-sizing: border-box;
+    display: none;
+
+    position: absolute;
+    top: 75px;
+    background-color: #2e6ba0;
+    width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.NavbarItemDropdownContent a {
+    float: none;
+    padding: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    height: 40px;
+
+    text-align: left;
+    color: #F6F1F1;
+}
+
+.NavbarItemDropdownContent a:hover {
+    background-color: #F6F1F1;
+    border: 1px solid #1a5785;
+    border-top: none;
+    border-bottom: none;
+    color: #1a5785;
+}
+
+.NavbarItemDropdownContent a:nth-last-of-type(1) {
+    border-bottom: 1px solid #1a5785;
+}
+
+
+.NavbarItem:hover .NavbarItemDropdownContent {
+    display: block;
+}

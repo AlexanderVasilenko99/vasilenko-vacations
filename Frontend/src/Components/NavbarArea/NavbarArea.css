@@ -1,5 +1,6 @@
 .NavbarArea {
     height: 75px;
+    background-color: #1a5785;
 }
 
 .NavbarArea ul {
@@ -11,7 +12,7 @@
     list-style-type: none;
 }
 
-.NavbarArea ul li:nth-of-type(1) {
+.NavbarArea ul .site_logo {
     margin-right: auto;
 }
 

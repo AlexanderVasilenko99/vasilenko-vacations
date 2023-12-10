@@ -17,6 +17,10 @@ class AppConfig {
     public readonly vacationsUrl: string = 'http://localhost:4000/api/vacations/';
     public readonly registerUrl: string = 'http://localhost:4000/api/register/';
     public readonly loginUrl: string = 'http://localhost:4000/api/login/';
+
+    private readonly SITE_PRIMARY_COLOR:string = '#1a5785'
+    private readonly SITE_SECONDARY_COLOR:string = '#2e6ba0'
+    private readonly SITE_BACKGROUND_COLOR:string = '#F6F1F1'
 }
 const appConfig = new AppConfig();
 export default appConfig;
