@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import authService from "../../../Services/AuthService";
 import noti from "../../../Services/NotificationService";
 import UseTitle from "../../../Utils/UseTitle";
 import "./Login.css";
+import appConfig from "../../../Utils/AppConfig";
 
 
 function Login(): JSX.Element {
@@ -35,8 +36,8 @@ function Login(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
                 <label>Email:</label><input type="email" {...register("email")} required />
                 <label>Password:</label><input type="password" {...register("password")} required minLength={4} />
-
-                <button>Log in</button>
+                <label>Not a member? <NavLink to={appConfig.registerRoute}>register</NavLink></label>
+                <button type="submit">Log in</button>
             </form>
 
         </div>
