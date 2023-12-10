@@ -47,9 +47,10 @@ function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthSt
             break;
 
         case AuthActionTypes.Logout:
+            console.log("logging out");
             newState.user = null;
             newState.token = null;
-            sessionStorage.removeItem(`token`);
+            sessionStorage.removeItem("token");
             break;
     }
 
