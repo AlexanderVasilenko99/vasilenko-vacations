@@ -16,7 +16,7 @@ function Register(): JSX.Element {
         try {
             await authService.register(user);
             noti.success("You have successfully registered");
-            navigate(appConfig.homeRoute);
+            navigate(appConfig.vacationsRoute);
         } catch (err: any) {
             noti.error(err)
         }

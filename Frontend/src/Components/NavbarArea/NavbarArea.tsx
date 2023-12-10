@@ -9,7 +9,7 @@ function NavbarArea(): JSX.Element {
             <div className="list-container">
                 <ul>
                     <li>
-                        <NavLink to={"#"}>
+                        <NavLink to={appConfig.homeRoute}>
                             <img src={site_logo} />
                         </NavLink>
                     </li>

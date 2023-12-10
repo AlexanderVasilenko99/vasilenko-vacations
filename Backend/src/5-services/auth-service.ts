@@ -12,6 +12,7 @@ import CredentialsModel from '../3-models/credentials-model';
 import { Unauthorized } from '../3-models/error-models';
 import RoleModel from '../3-models/role-model';
 import UserModel from '../3-models/user-model';
+import { randomUUID } from 'crypto';
 class AuthService {
     public async register(user: UserModel): Promise<string> {
         // Validate:
@@ -22,16 +23,16 @@ class AuthService {
 
         // Declare user as regular user:
         user.roleId = RoleModel.User;
-
+        user.uuid = randomUUID();
 
         // hash user password
         user.password = cyber.hashPassword(user.password);
 
 
         // Create sql:
-        const sql = `INSERT INTO users(firstName, lastName, email, password, roleId) VALUES(?,?,?,?,?)`;
+        const sql = `INSERT INTO users VALUES(?,?,?,?,?,?,?)`;
         //save user:
-        const info: OkPacket = await dal.execute(sql, [user.firstName, user.lastName, user.email, user.password, user.roleId]);
+        const info: OkPacket = await dal.execute(sql, ['DEFAULT',user.uuid, user.firstName, user.lastName, user.email, user.password, user.roleId]);
 
         // Add id to user
         user.id = info.insertId
@@ -48,10 +49,10 @@ class AuthService {
         credentials.password = cyber.hashPassword(credentials.password);
 
         // Create sql:
-        const sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
+        const sql = `SELECT * FROM users WHERE userEmail = ? AND userPassword = ?`;
 
 
-        const users = await dal.execute(sql,[credentials.email,credentials.password]);
+        const users = await dal.execute(sql, [credentials.email, credentials.password]);
 
         // getSingleUser
         const user = users[0];

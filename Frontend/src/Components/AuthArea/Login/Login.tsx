@@ -19,7 +19,7 @@ function Login(): JSX.Element {
             console.log(credentials);
 
             noti.success(`Welcome back`);
-            navigate(-1); //CHANGE THIS TO NAVIGATE TO ALL VACATIONS
+            navigate(appConfig.vacationsRoute); //CHANGE THIS TO NAVIGATE TO ALL VACATIONS
 
         } catch (err: any) {
             noti.error(err)
@@ -29,7 +29,6 @@ function Login(): JSX.Element {
 
     return (
         <div className="Login">
-
             <h2>
                 Login
             </h2>

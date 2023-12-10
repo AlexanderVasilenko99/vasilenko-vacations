@@ -3,6 +3,7 @@ import RoleModel from "./role-model";
 
 class UserModel {
     public id: number;
+    public uuid: string;
     public firstName: string;
     public lastName: string;
     public email: string;
@@ -11,6 +12,7 @@ class UserModel {
 
     constructor(user: UserModel) {
         this.id = user.id;
+        this.uuid = user.uuid;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.email = user.email;
