@@ -14,7 +14,6 @@ function TotalProducts(): JSX.Element {
         const unsubscribe = productsStore.subscribe(() => {
             setCount(productsStore.getState().products.length)
         });
-
         return unsubscribe;
     }, []);
 
