@@ -9,6 +9,7 @@ class VacationService {
         if (vacations.length === 0) {
             const response = await axios.get(appConfig.vacationsUrl);
             vacations = response.data;
+            vacations.map((v)=>{v.vacationImageUrl = appConfig.vacationsUrl+v.vacationImageName})
 
             const action: VacationsActions = { type: VacationsActionTypes.SetVacations, payload: vacations }
             vacationsStore.dispatch(action);

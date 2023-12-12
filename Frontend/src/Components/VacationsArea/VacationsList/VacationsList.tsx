@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./VacationsList.css";
 import vacationService from "../../../Services/VacationService";
 import VacationModel from "../../../Models/VacationModel";
+import VacationCard from "../VacationCard/VacationCard";
 
 function VacationsList(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -12,7 +13,20 @@ function VacationsList(): JSX.Element {
     }, []);
     return (
         <div className="VacationsList">
-            {vacations.map(v=><div>{v.vacationCountry}</div>)}
+            <div className="vacations-container">
+                {vacations.map(v => <VacationCard
+                    vacationCity={v.vacationCity} 
+                    vacationCountry={v.vacationCountry} 
+                    vacationDescription={v.vacationDescription} 
+                    vacationId={v.vacationId} 
+                    vacationStartDate={v.vacationStartDate} 
+                    vacationEndDate={v.vacationEndDate} 
+                    vacationPrice={v.vacationPrice} 
+                    vacationImageName={v.vacationImageName} 
+                    vacationImageUrl={v.vacationImageUrl} 
+                    vacationUploadedImage={v.vacationUploadedImage} 
+                    />)}
+            </div>
         </div>
     );
 }

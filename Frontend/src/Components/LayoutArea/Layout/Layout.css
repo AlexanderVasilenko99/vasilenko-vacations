@@ -6,8 +6,12 @@
   background-color: #F6F1F1;
 }
 .Layout *{
-  grid-column: span 6;
   font-size: 22px;
+}
+.Layout nav,
+.Layout main,
+.Layout footer{
+  grid-column: span 6;
 }
 .Layout nav{
   /* height: 75px; */
