@@ -32,7 +32,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                 <div className="city-container">
                     <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}
                 </div>
-                <div>
+                <div className="description-container">
                     {vacation.vacationDescription}
                 </div>
             </div>
