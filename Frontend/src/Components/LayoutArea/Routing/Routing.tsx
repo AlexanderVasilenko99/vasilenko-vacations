@@ -10,6 +10,8 @@ import appConfig from "../../../Utils/AppConfig";
 import RegisterComponent from "../../AuthArea/Register/Register";
 import Login from "../../AuthArea/Login/Login";
 import VacationsList from "../../VacationsArea/VacationsList/VacationsList";
+import AboutArea from "../../AboutArea/AboutArea";
+import UserArea from "../../UserArea/UserArea";
 
 
 function Routing(): JSX.Element {
@@ -25,6 +27,10 @@ function Routing(): JSX.Element {
                 <Route path="/products/edit/:prodId" element={<EditProduct />} />
 
                 <Route path="/vacations/" element={<VacationsList />} />
+
+                <Route path="/about/" element={<AboutArea />} />
+
+                <Route path="/users/:uuid" element={<UserArea />} />
                 
                 <Route path="/register/" element={<RegisterComponent />} />
                 <Route path="/login/" element={<Login />} />

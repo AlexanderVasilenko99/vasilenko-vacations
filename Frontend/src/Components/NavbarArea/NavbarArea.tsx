@@ -18,7 +18,7 @@ function NavbarArea(): JSX.Element {
         new SubNavItem('Register', appConfig.registerRoute)
     ];
     const postIdentificationSubNavItems: SubNavItem[] = [
-        new SubNavItem(authStore.getState().user?.userFirstName, "#"),
+        new SubNavItem(authStore.getState().user?.userFirstName, appConfig.userRoute + authStore.getState().user?.userUUID),
         new SubNavItem('Logout', "#")
     ];
     const vacationsSubNavItems: SubNavItem[] = [
@@ -73,7 +73,7 @@ function NavbarArea(): JSX.Element {
                         itemSvgComponent={<BeachAccessOutlinedIcon />}
                     />}
                     <NavbarItem
-                        itemText='About' itemDestinationPagePath={"#"}
+                        itemText='About' itemDestinationPagePath={appConfig.aboutRoute}
                         itemSvgComponent={<InfoOutlinedIcon />}
                     />
                     <NavbarItem isDropdown
