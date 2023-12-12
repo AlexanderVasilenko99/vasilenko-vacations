@@ -1,7 +1,7 @@
 import "./NavbarArea.css";
 import site_logo from "../../Assets/Images/UtilityImages/vasilenko_vacations_logo.png"
 import person_logo from "../../Assets/Images/UtilityImages/person_logo.png"
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import appConfig from "../../Utils/AppConfig";
 import { AuthActionTypes, AuthState, authStore } from "../../Redux/AuthState";
 import NavbarItem from "./NavbarItem/NavbarItem";
@@ -12,8 +12,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useEffect, useState } from "react";
 function NavbarArea(): JSX.Element {
 
-    function myFunc(): void {console.log("click");}
-    
+    function myFunc(): void { console.log("click"); }
+
 
     const preIdentificationSubNavItems: SubNavItem[] = [
         new SubNavItem('Login', appConfig.loginRoute),
@@ -23,14 +23,32 @@ function NavbarArea(): JSX.Element {
         new SubNavItem('Logout', "#")
     ];
     const [identificationSubNavItems, setIdentificationSubNavItems] = useState<SubNavItem[]>(preIdentificationSubNavItems);
+    const navigate = useNavigate();
+
     useEffect(() => {
+        window.addEventListener('click', (event) => {
+            if (event.target instanceof HTMLAnchorElement) {
+                console.log(event.target);
+                const anchor: HTMLAnchorElement = event.target;
+                if (anchor.innerHTML === "Logout") {
+                    authService.logout();
+                    setIdentificationSubNavItems(preIdentificationSubNavItems);
+                    navigate("/home");
+                }
+            }
+        });
+
+
+
         if (authStore.getState().token) setIdentificationSubNavItems(postIdentificationSubNavItems);
         const unsubscribe = authStore.subscribe(() => {
             setIdentificationSubNavItems(postIdentificationSubNavItems);
         });
 
         return unsubscribe;
-    }, [])
+    }, []);
+
+
     return (
         <div className="NavbarArea">
             <div className="list-container">
@@ -48,7 +66,7 @@ function NavbarArea(): JSX.Element {
                         itemText='Identify' itemDestinationPagePath={"#"}
                         // subNavItems={authStore.getState().token ? postIdentificationSubNavItems : preIdentificationSubNavItems}
                         subNavItems={identificationSubNavItems}
-                        
+
                         itemSvgComponent={<VpnKeyOutlinedIcon />}
                     />
                 </ul>
