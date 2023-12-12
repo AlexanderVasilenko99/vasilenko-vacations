@@ -23,6 +23,9 @@
     align-items: center;
     justify-content: center;
 }
+.NavbarArea ul > a:hover {
+    background-color: #2e6ba0;
+}
 
 .NavbarArea ul li img {
     height: 65px;
