@@ -1,9 +1,10 @@
 class UserModel {
-    public id: number;
-    public firstName: string;
-    public lastName: string;
+    public userId: number;
+    public userUUID: string;
+    public userFirstName: string;
+    public userLastName: string;
     public username: string;
-    public email: string;
-    public password: string;
+    public userEmail: string;
+    public userPassword: string;
 }
 export default UserModel;
