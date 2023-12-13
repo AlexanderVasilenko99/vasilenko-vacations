@@ -9,6 +9,8 @@
 
     display: flex;
     flex-direction: column;
+
+    transition: all 0.2s;
 }
 
 .VacationCard img {
@@ -17,12 +19,17 @@
 }
 
 .VacationCard .card-text-container {
+    font-size: 10px;
     margin: 0px 15px;
     text-align: left;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.VacationCard .card-text-container * {
+    font-size: 22px;
 }
 
 .VacationCard .country-dates-container {
@@ -61,6 +68,8 @@
 
 .VacationCard .description-container {
     margin: 10px 0px;
+    height: 80px;
+    overflow: hidden;
 }
 
 .VacationCard .price-container {
@@ -72,10 +81,11 @@
 
 .VacationCard .price-container a {
     background-color: #2e6ba0;
+    border: 1px solid #1a5785;
     color: #F6F1F1;
     text-decoration: none;
     border: 0;
-    padding: 7px;
+    padding: 7px 14px;
     border-radius: 10px;
     font-weight: 600;
 }

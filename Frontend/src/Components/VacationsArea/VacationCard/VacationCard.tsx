@@ -23,8 +23,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
             <div className="card-text-container">
                 <div className="country-dates-container">
                     <div className="country-container">
-                        <img
-                            src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
+                        <img src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
                         {vacation.vacationCountry}
                     </div>
                     <div>
@@ -43,7 +42,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                     </NavLink>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

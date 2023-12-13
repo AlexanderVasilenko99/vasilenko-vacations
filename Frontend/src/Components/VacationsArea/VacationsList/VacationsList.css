@@ -8,3 +8,6 @@
     gap: 60px;
     margin: 100px 150px;
 }
+.VacationsList .VacationCard:hover{
+    scale: 1.03;
+}
