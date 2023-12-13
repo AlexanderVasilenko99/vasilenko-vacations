@@ -1,0 +1,46 @@
+.LikeButton {
+    width: 45px;
+    height: 45px;
+    border-radius: 00px 10px 10px 0px;
+    border: 2px solid #2e6ba0;
+    border-left: 0;
+    color: #2e6ba0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-animation: slideOut 150ms forwards;
+}
+
+.VacationCard .follow-container:hover button {
+    -webkit-animation: slideIn 200ms forwards;
+}
+
+.VacationCard .follow-container button svg {
+    width: 25px;
+    height: 25px;
+}
+
+@keyframes slideIn {
+    0% {
+        width: 45px;
+        justify-content: center;
+    }
+
+    100% {
+        width: 100px;
+        justify-content: flex-end;
+        padding-right: 10px;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        width: 100px;
+    }
+
+    100% {
+        width: 45px;
+    }
+}

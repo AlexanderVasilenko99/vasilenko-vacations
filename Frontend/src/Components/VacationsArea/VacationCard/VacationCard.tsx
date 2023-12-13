@@ -5,6 +5,7 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { NavLink, useNavigate } from "react-router-dom";
 import appConfig from "../../../Utils/AppConfig";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LikeButton from "./LikeButton/LikeButton";
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -23,7 +24,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
         >
             <div className="follow-container">
-                <button onClick={() => console.log("click")}><FavoriteBorderIcon /></button>
+                <LikeButton />
             </div>
             <div>
                 <img src={vacation.vacationImageUrl} />
