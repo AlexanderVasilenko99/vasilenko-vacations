@@ -13,22 +13,41 @@
 
 .VacationCard img {
     width: 100%;
+    height: 267px;
 }
 
 .VacationCard .card-text-container {
     margin: 0px 15px;
     text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.VacationCard .country-dates-container{
+
+.VacationCard .country-dates-container {
     display: flex;
     justify-content: space-between;
     color: gray;
     margin: 7px 0px;
 }
-.VacationCard .country-dates-container > *{
+
+.VacationCard .country-dates-container>* {
     display: flex;
 }
-.VacationCard .city-container{
+
+.VacationCard .country-container {
+    display: flex;
+    align-items: center;
+}
+
+.VacationCard .country-container img {
+    width: 20px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.VacationCard .city-container {
     height: 50px;
     background-color: #2e6ba0;
     color: #F6F1F1;
@@ -39,6 +58,24 @@
     display: flex;
     align-items: center;
 }
-.VacationCard .description-container{
+
+.VacationCard .description-container {
     margin: 10px 0px;
+}
+
+.VacationCard .price-container {
+    margin-bottom: 0;
+    height: fit-content;
+    text-align: center;
+    position: relative;
+}
+
+.VacationCard .price-container a {
+    background-color: #2e6ba0;
+    color: #F6F1F1;
+    text-decoration: none;
+    border: 0;
+    padding: 7px;
+    border-radius: 10px;
+    font-weight: 600;
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import "./VacationCard.css";
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import { NavLink } from "react-router-dom";
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -22,18 +23,24 @@ function VacationCard(vacation: VacationModel): JSX.Element {
             <div className="card-text-container">
                 <div className="country-dates-container">
                     <div className="country-container">
-                        <PublicOutlinedIcon />{vacation.vacationCountry}
+                        <img
+                            src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
+                        {vacation.vacationCountry}
                     </div>
                     <div>
                         {startDate} - {endDate}
                     </div>
-
                 </div>
                 <div className="city-container">
                     <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}
                 </div>
                 <div className="description-container">
                     {vacation.vacationDescription}
+                </div>
+                <div className="price-container">
+                    <NavLink to={"#"}>
+                        <span>{vacation.vacationPrice}$</span>
+                    </NavLink>
                 </div>
             </div>
         </div>
