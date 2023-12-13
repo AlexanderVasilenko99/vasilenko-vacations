@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import "./VacationsList.css";
-import vacationService from "../../../Services/VacationService";
 import VacationModel from "../../../Models/VacationModel";
+import vacationService from "../../../Services/VacationService";
 import VacationCard from "../VacationCard/VacationCard";
+import "./VacationsList.css";
 
 function VacationsList(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);

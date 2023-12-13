@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import VacationModel from "../../../Models/VacationModel";
-import "./VacationCard.css";
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import appConfig from "../../../Utils/AppConfig";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import VacationModel from "../../../Models/VacationModel";
 import LikeButton from "./LikeButton/LikeButton";
+import "./VacationCard.css";
+import { authStore } from '../../../Redux/AuthState';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
-        // console.log(console.log(vacation.vacationStartDate.toString().substring(0,10)));
         const startDate = new Date(vacation.vacationStartDate.toString().substring(0, 10));
         const endDate = new Date(vacation.vacationEndDate.toString().substring(0, 10));
-        // console.log(d.toLocaleDateString());
         setStartDate(startDate.toLocaleDateString('en-GB'));
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
@@ -24,7 +21,8 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
         >
             <div className="follow-container">
-                <LikeButton />
+                {authStore.getState().user.userRoleId === 2 && <LikeButton />}
+                {authStore.getState().user.userRoleId === 1 && <LikeButton />}
             </div>
             <div>
                 <img src={vacation.vacationImageUrl} />
