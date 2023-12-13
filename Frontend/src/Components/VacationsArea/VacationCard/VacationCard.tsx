@@ -5,6 +5,7 @@ import VacationModel from "../../../Models/VacationModel";
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
 import { authStore } from '../../../Redux/AuthState';
+import EditButton from './EditButton/EditButton';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -22,7 +23,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         >
             <div className="follow-container">
                 {authStore.getState().user.userRoleId === 2 && <LikeButton />}
-                {authStore.getState().user.userRoleId === 1 && <LikeButton />}
+                {authStore.getState().user.userRoleId === 1 && <EditButton />}
             </div>
             <div>
                 <img src={vacation.vacationImageUrl} />
