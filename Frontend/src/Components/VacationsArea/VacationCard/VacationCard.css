@@ -22,6 +22,11 @@
     display: flex;
     align-items: center;
     border-radius: 00px 10px 10px 0px;
+    opacity: 0;
+}
+.VacationCard:hover .follow-container {
+    transition: 200ms linear;
+    opacity: 1;
 }
 
 .VacationCard .follow-container button {
@@ -36,7 +41,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     -webkit-animation: slideOut 150ms forwards;
 }
 
