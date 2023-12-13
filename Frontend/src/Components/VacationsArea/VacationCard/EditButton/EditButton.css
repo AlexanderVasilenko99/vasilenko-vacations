@@ -12,9 +12,18 @@
     align-items: center;
     -webkit-animation: slideOut 150ms forwards;
 }
-
+.EditButton span{
+    width: 0;
+    overflow: hidden;
+}
 .VacationCard .follow-container:hover button {
     -webkit-animation: slideIn 200ms forwards;
+}
+.VacationCard .follow-container:hover span {
+    width: 100px;
+}
+.VacationCard .follow-container:hover svg {
+    animation: rotate 1500ms linear;
 }
 
 .VacationCard .follow-container button svg {

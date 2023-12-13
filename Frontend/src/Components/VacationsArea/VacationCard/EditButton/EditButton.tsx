@@ -5,7 +5,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 function EditButton(): JSX.Element {
     return (
-        <button className="EditButton" onClick={() => console.log("click")}><SettingsOutlinedIcon /></button>
+        <button className="EditButton" onClick={() => console.log("click")}><span>Edit</span><SettingsOutlinedIcon /></button>
     );
 }
 
