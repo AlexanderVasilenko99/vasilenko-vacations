@@ -14,5 +14,7 @@
   grid-column: span 6;
 }
 .Layout nav{
-  /* height: 75px; */
+  width: 100%;
+  position: fixed;
+  z-index: 1;
 }
