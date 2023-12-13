@@ -1,13 +1,13 @@
-.VacationsList {
-	
-}
-.VacationsList .vacations-container{
+.VacationsList {}
+
+.VacationsList .vacations-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 60px;
-    margin: 100px 150px;
+    margin: 60px 150px;
 }
-.VacationsList .VacationCard:hover{
+
+.VacationsList .VacationCard:hover {
     scale: 1.03;
 }
