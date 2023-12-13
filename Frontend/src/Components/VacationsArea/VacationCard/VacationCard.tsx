@@ -4,6 +4,7 @@ import "./VacationCard.css";
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { NavLink, useNavigate } from "react-router-dom";
 import appConfig from "../../../Utils/AppConfig";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -18,7 +19,12 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
     return (
-        <div className="VacationCard" key={vacation.vacationId} onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}>
+        <div className="VacationCard" key={vacation.vacationId}
+        // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
+        >
+            <div className="follow-container">
+                <button onClick={() => console.log("click")}><FavoriteBorderIcon /></button>
+            </div>
             <div>
                 <img src={vacation.vacationImageUrl} />
             </div>
@@ -28,7 +34,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                         <img src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
                         {vacation.vacationCountry}
                     </div>
-                    <div>
+                    <div className="dates-container">
                         {startDate} - {endDate}
                     </div>
                 </div>
