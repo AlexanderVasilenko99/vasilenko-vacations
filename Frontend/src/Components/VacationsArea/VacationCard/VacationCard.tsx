@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import "./VacationCard.css";
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import appConfig from "../../../Utils/AppConfig";
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
+    const navigate = useNavigate();
     useEffect(() => {
         // console.log(console.log(vacation.vacationStartDate.toString().substring(0,10)));
         const startDate = new Date(vacation.vacationStartDate.toString().substring(0, 10));
@@ -16,7 +18,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
     return (
-        <div className="VacationCard" key={vacation.vacationId}>
+        <div className="VacationCard" key={vacation.vacationId} onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}>
             <div>
                 <img src={vacation.vacationImageUrl} />
             </div>

@@ -15,17 +15,18 @@ function VacationsList(): JSX.Element {
         <div className="VacationsList">
             <div className="vacations-container">
                 {vacations.map(v => <VacationCard
-                    vacationCity={v.vacationCity} 
-                    vacationCountry={v.vacationCountry} 
-                    vacationDescription={v.vacationDescription} 
-                    vacationId={v.vacationId} 
-                    vacationStartDate={v.vacationStartDate} 
-                    vacationEndDate={v.vacationEndDate} 
-                    vacationPrice={v.vacationPrice} 
-                    vacationImageName={v.vacationImageName} 
-                    vacationImageUrl={v.vacationImageUrl} 
-                    vacationUploadedImage={v.vacationUploadedImage} 
-                    />)}
+                    vacationUUID={v.vacationUUID}
+                    vacationCity={v.vacationCity}
+                    vacationCountry={v.vacationCountry}
+                    vacationDescription={v.vacationDescription}
+                    vacationId={v.vacationId}
+                    vacationStartDate={v.vacationStartDate}
+                    vacationEndDate={v.vacationEndDate}
+                    vacationPrice={v.vacationPrice}
+                    vacationImageName={v.vacationImageName}
+                    vacationImageUrl={v.vacationImageUrl}
+                    vacationUploadedImage={v.vacationUploadedImage}
+                />)}
             </div>
         </div>
     );

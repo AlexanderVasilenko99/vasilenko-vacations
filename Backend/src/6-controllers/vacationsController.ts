@@ -45,6 +45,18 @@ router.put("/vacations/:id([0-9]+)", async (request: Request, response: Response
         next(err);
     }
 });
+router.post("/vacations", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        request.body.vacationUploadedImage = request.files?.vacationUploadedImage;
+        const vacation = new VacationModel(request.body);
+
+        const addedVacation = await vacationServices.addVacation(vacation);
+        response.json(addedVacation);
+
+    } catch (err: any) {
+        next(err);
+    }
+});
 router.get("/vacations/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const imageName = request.params.imageName;

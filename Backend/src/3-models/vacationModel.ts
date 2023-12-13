@@ -3,6 +3,7 @@ import { UploadedFile } from "express-fileupload"
 import { Validation } from "./error-models";
 class VacationModel {
     public vacationId: number;
+    public vacationUUID: string;
     public vacationCountry: string;
     public vacationCity: string;
     public vacationDescription: string;
@@ -14,6 +15,7 @@ class VacationModel {
     public vacationUploadedImage: UploadedFile;
     constructor(vacation: VacationModel) {
         this.vacationId = vacation.vacationId;
+        this.vacationUUID = vacation.vacationUUID;
         this.vacationCountry = vacation.vacationCountry;
         this.vacationCity = vacation.vacationCity;
         this.vacationDescription = vacation.vacationDescription;
@@ -26,6 +28,7 @@ class VacationModel {
     }
     public static addVacationValidationSchema = Joi.object({
         vacationId: Joi.number().forbidden(),
+        vacationUUID: Joi.string().forbidden(),
         vacationCountry: Joi.string().required().min(2).max(100),
         vacationCity: Joi.string().required().min(2).max(100),
         vacationDescription: Joi.string().required().min(2).max(1000),
@@ -38,6 +41,7 @@ class VacationModel {
     });
     public static editVacationValidationSchema = Joi.object({
         vacationId: Joi.number().required().integer().positive(),
+        vacationUUID: Joi.string().required().min(10).max(300),
         vacationCountry: Joi.string().required().min(2).max(100),
         vacationCity: Joi.string().required().min(2).max(100),
         vacationDescription: Joi.string().required().min(2).max(1000),

@@ -4,6 +4,7 @@ import appConfig from "../2-utils/app-config";
 import dal from "../2-utils/dal";
 import { FollowerNotFound, ResourceNotFound } from "../3-models/error-models";
 import VacationModel from "../3-models/vacationModel";
+import { UUID, randomUUID } from "crypto";
 
 class VacationServices {
     public async getAllVacations(): Promise<VacationModel[]> {
@@ -49,10 +50,14 @@ class VacationServices {
 
         const imageName = await fileSaver.add(vacation.vacationUploadedImage);
         vacation.vacationImageName = imageName;
+        vacation.vacationUUID = randomUUID();
+        console.log("generated uuid: " + vacation.vacationUUID);
+        
 
-        const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?);`
+        const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?,?);`
 
         const info: OkPacket = await dal.execute(sql, [
+            vacation.vacationUUID,
             vacation.vacationCountry,
             vacation.vacationCity,
             vacation.vacationDescription,

@@ -1,6 +1,7 @@
 // import { UploadedFile } from "express-fileupload"
 class VacationModel {
     public vacationId: number;
+    public vacationUUID: string;
     public vacationCountry: string;
     public vacationCity: string;
     public vacationDescription: string;

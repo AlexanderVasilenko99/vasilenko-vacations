@@ -12,6 +12,7 @@ import Login from "../../AuthArea/Login/Login";
 import VacationsList from "../../VacationsArea/VacationsList/VacationsList";
 import AboutArea from "../../AboutArea/AboutArea";
 import UserArea from "../../UserArea/UserArea";
+import VacationPage from "../../VacationsArea/VacationPage/VacationPage";
 
 
 function Routing(): JSX.Element {
@@ -27,6 +28,7 @@ function Routing(): JSX.Element {
                 <Route path="/products/edit/:prodId" element={<EditProduct />} />
 
                 <Route path="/vacations/" element={<VacationsList />} />
+                <Route path="/vacations/:uuid" element={<VacationPage />} />
 
                 <Route path="/about/" element={<AboutArea />} />
 
