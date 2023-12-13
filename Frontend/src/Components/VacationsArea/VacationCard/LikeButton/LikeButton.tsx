@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function LikeButton(): JSX.Element {
     return (
-        <button className="LikeButton" onClick={() => console.log("click")}><FavoriteBorderIcon /></button>
+        <button className="LikeButton" onClick={() => console.log("click")}><span>Like</span><FavoriteBorderIcon /></button>
     );
 }
 

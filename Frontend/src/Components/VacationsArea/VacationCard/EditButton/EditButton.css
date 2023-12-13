@@ -12,26 +12,30 @@
     align-items: center;
     -webkit-animation: slideOut 150ms forwards;
 }
-.EditButton span{
+
+.EditButton span {
     width: 0;
     overflow: hidden;
 }
-.VacationCard .follow-container:hover button {
+
+.VacationCard .follow-container:hover .EditButton {
     -webkit-animation: slideIn 200ms forwards;
 }
-.VacationCard .follow-container:hover span {
+
+.VacationCard .follow-container:hover .EditButton span {
     width: 100px;
 }
-.VacationCard .follow-container:hover svg {
+
+.VacationCard .follow-container:hover .EditButton svg {
     animation: rotate 1500ms linear;
 }
 
-.VacationCard .follow-container button svg {
+.VacationCard .follow-container .EditButton svg {
     width: 25px;
     height: 25px;
 }
 
-.VacationCard .follow-container button svg:hover {
+.VacationCard .follow-container .EditButton svg:hover {
     animation: rotate 1500ms linear infinite;
 }
 

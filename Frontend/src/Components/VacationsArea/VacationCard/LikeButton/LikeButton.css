@@ -13,13 +13,32 @@
     -webkit-animation: slideOut 150ms forwards;
 }
 
-.VacationCard .follow-container:hover button {
+.LikeButton span {
+    width: 0;
+    overflow: hidden;
+}
+
+.VacationCard .follow-container:hover .LikeButton {
     -webkit-animation: slideIn 200ms forwards;
 }
 
-.VacationCard .follow-container button svg {
+.VacationCard .follow-container:hover .LikeButton span {
+    width: 100px;
+    font-size: 20px;
+    margin-left: -3px;
+}
+
+.VacationCard .follow-container:hover .LikeButton svg {
+    animation: rotateY 1500ms linear;
+}
+
+.VacationCard .follow-container .LikeButton svg {
     width: 25px;
     height: 25px;
+}
+
+.VacationCard .follow-container .LikeButton svg:hover {
+    animation: rotateY 1500ms linear infinite;
 }
 
 @keyframes slideIn {
@@ -32,6 +51,14 @@
         width: 100px;
         justify-content: flex-end;
         padding-right: 10px;
+    }
+}
+
+@keyframes rotateY {
+    0% {}
+
+    100% {
+        transform: rotateY(360deg);
     }
 }
 
