@@ -9,12 +9,20 @@ class VacationService {
         if (vacations.length === 0) {
             const response = await axios.get(appConfig.vacationsUrl);
             vacations = response.data;
-            vacations.map((v)=>{v.vacationImageUrl = appConfig.vacationsUrl+v.vacationImageName})
+            vacations.map((v) => { v.vacationImageUrl = appConfig.vacationsUrl + v.vacationImageName })
 
             const action: VacationsActions = { type: VacationsActionTypes.SetVacations, payload: vacations }
             vacationsStore.dispatch(action);
         }
         return vacations;
+    }
+    public async getVacationByUUID(uuid: string): Promise<VacationModel> {
+        let vacations = vacationsStore.getState().vacations;
+        if (vacations.length === 0) {
+            vacations = await this.getAllVacations();
+        }
+        const vacation = vacations.find(v => v.vacationUUID === uuid);
+        return vacation;
     }
 
     // public async getOneProduct(prodId: number): Promise<ProductModel> {

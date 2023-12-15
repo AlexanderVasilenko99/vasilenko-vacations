@@ -7,6 +7,7 @@ import "./VacationCard.css";
 import { authStore } from '../../../Redux/AuthState';
 import EditButton from './EditButton/EditButton';
 import DeleteButton from './DeleteButton/DeleteButton';
+import appConfig from '../../../Utils/AppConfig';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -47,7 +48,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                     {vacation.vacationDescription}
                 </div>
                 <div className="price-container">
-                    <NavLink to={"#"}>
+                    <NavLink to={appConfig.vacationsRoute + vacation.vacationUUID} >
                         <span>{vacation.vacationPrice}$</span>
                     </NavLink>
                 </div>
