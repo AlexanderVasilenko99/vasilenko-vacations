@@ -1,6 +1,8 @@
+import UseTitle from "../../Utils/UseTitle";
 import "./AboutArea.css";
 
 function AboutArea(): JSX.Element {
+    UseTitle("Vasilenko Vacations | About");
     return (
         <div className="AboutArea">
             <h1>
