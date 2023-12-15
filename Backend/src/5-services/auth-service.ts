@@ -15,6 +15,8 @@ import UserModel from '../3-models/user-model';
 import { randomUUID } from 'crypto';
 class AuthService {
     public async register(user: UserModel): Promise<string> {
+        console.log(user);
+
         // Validate:
         // User.validate from model:
 
@@ -22,20 +24,29 @@ class AuthService {
         // if...
 
         // Declare user as regular user:
-        user.roleId = RoleModel.User;
-        user.uuid = randomUUID();
+        user.userRoleId = RoleModel.User;
+        user.userUUID = randomUUID();
 
         // hash user password
-        user.password = cyber.hashPassword(user.password);
+        user.userPassword = cyber.hashPassword(user.userPassword);
 
 
         // Create sql:
         const sql = `INSERT INTO users VALUES(?,?,?,?,?,?,?)`;
         //save user:
-        const info: OkPacket = await dal.execute(sql, ['DEFAULT',user.uuid, user.firstName, user.lastName, user.email, user.password, user.roleId]);
+        const info: OkPacket = await dal.execute(sql, ['DEFAULT',
+            user.userUUID,
+            user.userFirstName,
+            user.userLastName,
+            user.userEmail,
+            user.userPassword, user.userRoleId]);
 
         // Add id to user
-        user.id = info.insertId
+        // user.userId = info.insertId
+
+        delete user.userPassword;
+        delete user.userId;
+        
         // Create token for user:
         const token = cyber.getNewToken(user);
 
@@ -58,6 +69,9 @@ class AuthService {
         const user = users[0];
 
         if (!user) throw new Unauthorized("Incorrect email/password");
+
+        delete user.userPassword;
+        delete user.userId;
 
         // Create token for user:
         const token = cyber.getNewToken(user);

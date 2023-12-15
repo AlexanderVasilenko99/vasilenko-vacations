@@ -27,7 +27,7 @@ class Cyber {
         const token = jwt.sign(container, this.secretKey, options)
 
         // never return password to frontend
-        delete user.password;
+        delete user.userPassword;
 
         return token;
     }
@@ -46,7 +46,7 @@ class Cyber {
         const container = jwt.verify(token, this.secretKey) as { user: UserModel };
         // extract user from container
         const user = container.user;
-        if (user.roleId !== RoleModel.Admin) throw new Forbidden("You are not administrator")
+        if (user.userRoleId !== RoleModel.Admin) throw new Forbidden("You are not administrator")
     }
 
 

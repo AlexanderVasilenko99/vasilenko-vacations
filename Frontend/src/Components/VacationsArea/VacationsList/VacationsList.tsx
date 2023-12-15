@@ -3,10 +3,22 @@ import VacationModel from "../../../Models/VacationModel";
 import vacationService from "../../../Services/VacationService";
 import VacationCard from "../VacationCard/VacationCard";
 import "./VacationsList.css";
+import { authStore } from "../../../Redux/AuthState";
+import noti from "../../../Services/NotificationService";
+import { useNavigate } from "react-router-dom";
+import UseTitle from "../../../Utils/UseTitle";
 
 function VacationsList(): JSX.Element {
+    UseTitle("Vasilenko Vacations | Vacations");
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+    const navigate = useNavigate();
     useEffect(() => {
+        const token = authStore.getState().token;
+        if (!token) {
+            noti.error("Please login in to view vacations page");
+            navigate("/login");
+        }
+
         vacationService.getAllVacations()
             .then(vacations => setVacations(vacations))
             .catch(err => console.log(err));

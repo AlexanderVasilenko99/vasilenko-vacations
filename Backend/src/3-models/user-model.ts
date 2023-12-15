@@ -2,22 +2,22 @@ import Joi from "joi";
 import RoleModel from "./role-model";
 
 class UserModel {
-    public id: number;
-    public uuid: string;
-    public firstName: string;
-    public lastName: string;
-    public email: string;
-    public password: string;
-    public roleId: RoleModel;
+    public userId: number;
+    public userUUID: string;
+    public userFirstName: string;
+    public userLastName: string;
+    public userEmail: string;
+    public userPassword: string;
+    public userRoleId: RoleModel;
 
     constructor(user: UserModel) {
-        this.id = user.id;
-        this.uuid = user.uuid;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
-        this.password = user.password;
-        this.roleId = user.roleId;
+        this.userId = user.userId;
+        this.userUUID = user.userUUID;
+        this.userFirstName = user.userFirstName;
+        this.userLastName = user.userLastName;
+        this.userEmail = user.userEmail;
+        this.userPassword = user.userPassword;
+        this.userRoleId = user.userRoleId;
     }
     // add validation schema and validate function
     private static validationSchema = Joi.object({
