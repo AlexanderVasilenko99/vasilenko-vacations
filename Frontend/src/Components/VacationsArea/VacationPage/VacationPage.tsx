@@ -6,6 +6,7 @@ import VacationModel from "../../../Models/VacationModel";
 import vacationService from "../../../Services/VacationService";
 
 function VacationPage(): JSX.Element {
+    UseTitle(`Vasilenko Vacations | Vacations`);
     const [vacation, setVacation] = useState<VacationModel>();
     const params = useParams();
     const uuid = params.uuid;
@@ -16,7 +17,6 @@ function VacationPage(): JSX.Element {
             })
             .catch(err => console.log(err));
     }, []);
-    UseTitle(`Vasilenko Vacations | ${uuid}`);
     return (
         <div className="VacationPage">
             {vacation?.vacationCity} - {vacation?.vacationCountry}
