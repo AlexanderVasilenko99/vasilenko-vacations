@@ -18,26 +18,26 @@
     overflow: hidden;
 }
 
-.VacationCard .follow-container:hover .LikeButton {
+.VacationCard .LikeButton:hover {
     -webkit-animation: slideIn 200ms forwards;
 }
 
-.VacationCard .follow-container:hover .LikeButton span {
+.VacationCard .LikeButton:hover span {
     width: 100px;
     font-size: 20px;
     margin-left: -3px;
 }
 
-.VacationCard .follow-container:hover .LikeButton svg {
+.VacationCard .LikeButton:hover svg {
     animation: rotateY 1500ms linear;
 }
 
-.VacationCard .follow-container .LikeButton svg {
+.VacationCard .LikeButton svg {
     width: 25px;
     height: 25px;
 }
 
-.VacationCard .follow-container .LikeButton svg:hover {
+.VacationCard .LikeButton svg:hover {
     animation: rotateY 1500ms linear infinite;
 }
 

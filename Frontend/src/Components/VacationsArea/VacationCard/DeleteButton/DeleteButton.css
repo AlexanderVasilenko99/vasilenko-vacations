@@ -3,7 +3,7 @@
     height: 45px;
     border-radius: 10px 0px 0px 10px;
     border: 2px solid darkred;
-    border-left: 0;
+    border-right: 0;
     color: #F6F1F1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: red;
@@ -27,7 +27,7 @@
 }
 
 .VacationCard .DeleteButton:hover svg {
-    animation: rotate 1500ms linear;
+    animation: rotateY 1500ms linear;
 }
 
 .VacationCard .DeleteButton svg {
@@ -36,7 +36,7 @@
 }
 
 .VacationCard .DeleteButton svg:hover {
-    animation: rotate 1500ms linear infinite;
+    animation: rotateY 1500ms linear infinite;
 }
 
 @keyframes slideIn {
@@ -48,15 +48,15 @@
     100% {
         width: 100px;
         justify-content: flex-end;
-        padding-right: 10px;
+        padding-right: 4px;
     }
 }
 
-@keyframes rotate {
+@keyframes rotateY {
     0% {}
 
     100% {
-        transform: rotate(360deg);
+        transform: rotateY(360deg);
     }
 }
 
