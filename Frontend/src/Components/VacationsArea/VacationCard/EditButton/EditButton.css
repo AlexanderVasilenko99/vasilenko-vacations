@@ -6,7 +6,7 @@
     border-left: 0;
     color: #2e6ba0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: transparent;
+    background-color: #F6F1F1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,24 +18,24 @@
     overflow: hidden;
 }
 
-.VacationCard .follow-container:hover .EditButton {
+.VacationCard .EditButton:hover {
     -webkit-animation: slideIn 200ms forwards;
 }
 
-.VacationCard .follow-container:hover .EditButton span {
+.VacationCard .EditButton:hover span {
     width: 100px;
 }
 
-.VacationCard .follow-container:hover .EditButton svg {
+.VacationCard .EditButton:hover svg {
     animation: rotate 1500ms linear;
 }
 
-.VacationCard .follow-container .EditButton svg {
+.VacationCard .EditButton svg {
     width: 25px;
     height: 25px;
 }
 
-.VacationCard .follow-container .EditButton svg:hover {
+.VacationCard .EditButton svg:hover {
     animation: rotate 1500ms linear infinite;
 }
 

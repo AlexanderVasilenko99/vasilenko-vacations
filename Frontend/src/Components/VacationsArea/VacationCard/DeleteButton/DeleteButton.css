@@ -1,44 +1,42 @@
-.LikeButton {
+.DeleteButton {
     width: 45px;
     height: 45px;
-    border-radius: 00px 10px 10px 0px;
-    border: 2px solid #2e6ba0;
+    border-radius: 10px 0px 0px 10px;
+    border: 2px solid darkred;
     border-left: 0;
-    color: #2e6ba0;
+    color: #F6F1F1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #F6F1F1;
+    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
     -webkit-animation: slideOut 150ms forwards;
 }
 
-.LikeButton span {
+.DeleteButton span {
     width: 0;
     overflow: hidden;
 }
 
-.VacationCard .follow-container:hover .LikeButton {
+.VacationCard .DeleteButton:hover {
     -webkit-animation: slideIn 200ms forwards;
 }
 
-.VacationCard .follow-container:hover .LikeButton span {
+.VacationCard .DeleteButton:hover span {
     width: 100px;
-    font-size: 20px;
-    margin-left: -3px;
 }
 
-.VacationCard .follow-container:hover .LikeButton svg {
-    animation: rotateY 1500ms linear;
+.VacationCard .DeleteButton:hover svg {
+    animation: rotate 1500ms linear;
 }
 
-.VacationCard .follow-container .LikeButton svg {
+.VacationCard .DeleteButton svg {
     width: 25px;
     height: 25px;
 }
 
-.VacationCard .follow-container .LikeButton svg:hover {
-    animation: rotateY 1500ms linear infinite;
+.VacationCard .DeleteButton svg:hover {
+    animation: rotate 1500ms linear infinite;
 }
 
 @keyframes slideIn {
@@ -54,11 +52,11 @@
     }
 }
 
-@keyframes rotateY {
+@keyframes rotate {
     0% {}
 
     100% {
-        transform: rotateY(360deg);
+        transform: rotate(360deg);
     }
 }
 

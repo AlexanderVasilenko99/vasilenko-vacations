@@ -17,9 +17,11 @@
 
 .VacationCard .follow-container {
     position: absolute;
+    width: 100%;
     top: 10px;
-    background-color: #F6F1F1;
+    background-color: transparent;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-radius: 00px 10px 10px 0px;
     opacity: 0;
