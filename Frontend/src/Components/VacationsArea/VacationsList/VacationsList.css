@@ -11,3 +11,9 @@
 .VacationsList .VacationCard:hover {
     scale: 1.03;
 }
+.VacationsList h1{
+    text-align: left;
+    padding: 0px 180px;
+    margin: 30px 0px;
+    font-size: 32px;
+}
