@@ -26,6 +26,13 @@ function VacationsList(): JSX.Element {
     return (
         <div className="VacationsList">
             <h1>Browse All</h1>
+            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {vacations.length} results</span></h2>
+            <div className="filter-container">
+                <div className="filter-headers">
+                    <h2 className="filter">Filter</h2>
+                    <h2 className="reset">Reset</h2>
+                </div>
+            </div>
             <div className="vacations-container">
                 {vacations.map(v => <VacationCard
                     vacationUUID={v.vacationUUID}

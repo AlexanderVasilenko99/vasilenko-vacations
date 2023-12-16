@@ -16,4 +16,44 @@
     padding: 0px 180px;
     margin: 30px 0px;
     font-size: 32px;
+    margin-bottom: 0px;
+}
+.VacationsList .general-info{
+    text-align: left;
+    padding: 0px 180px;
+    display: flex;
+    justify-content: space-between;
+}
+.VacationsList .filter-headers{
+    display: flex;
+    justify-content: space-between;
+    height: 55px;
+    padding: 0px 10px;
+}
+.VacationsList h2{
+    font-size: 24px;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.VacationsList .filter{
+    width: 1300px;
+}
+.VacationsList .filter:hover,
+.VacationsList .reset:hover{
+    color: #F6F1F1;
+    cursor: pointer;
+}
+.VacationsList .results{
+    color: gray;
+    font-weight: 400;
+}
+
+.VacationsList .filter-container{
+    min-width: 410px;
+    background-color: #2e6ba0;
+    margin: 0px 180px;
+    height: 55px;
+    border: 2px solid #1a5785;
+    border-radius: 14px;
 }
