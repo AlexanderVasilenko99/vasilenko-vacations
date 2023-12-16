@@ -50,10 +50,39 @@
 }
 
 .VacationsList .filter-container{
+    overflow: hidden;
     min-width: 410px;
     background-color: #2e6ba0;
     margin: 0px 180px;
     height: 55px;
     border: 2px solid #1a5785;
     border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.VacationsList .filter-hidden-content{
+    height: 80%;
+    padding: 0px 10px;
+}
+.VacationsList .accordion-open{
+    animation: accordionOpen 200ms forwards;
+}
+.VacationsList .accordion-close{
+    animation: accordionClose 200ms forwards;
+}
+
+@keyframes accordionOpen {
+    0%{
+        height: 55px;
+    }
+    100%{
+        height: 300px;
+    }
+}
+@keyframes accordionClose {
+    0%{
+        height: 300px;
+    }
+    100%{
+        height: 55px;
+    }
 }
