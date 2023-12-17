@@ -7,10 +7,13 @@ import { authStore } from "../../../Redux/AuthState";
 import noti from "../../../Services/NotificationService";
 import { useNavigate } from "react-router-dom";
 import UseTitle from "../../../Utils/UseTitle";
+import { Autocomplete, Box, Slider, TextField } from '@mui/material';
 
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+    const [vacationCountries, setVacationCountries] = useState<string[]>([]);
+
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
     const navigate = useNavigate();
     useEffect(() => {
@@ -24,6 +27,11 @@ function VacationsList(): JSX.Element {
             .then(vacations => setVacations(vacations))
             .catch(err => console.log(err));
     }, []);
+    useEffect(() => {
+        const countries: string[] = [];
+        vacations.forEach(v => countries.push(v.vacationCountry));
+        setVacationCountries(countries);
+    }, [vacations])
     return (
         <div className="VacationsList">
             <h1>Browse All</h1>
@@ -33,7 +41,34 @@ function VacationsList(): JSX.Element {
                     <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
                     <h2 className="reset">Reset</h2>
                 </div>
-                <div className="filter-hidden-content">Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut exercitationem impedit molestias ipsum quasi corrupti possimus, deleniti, dolores, suscipit facilis tempora in aliquam veritatis quis voluptates provident illum laborum eos assumenda nesciunt cum sequi dolorem rem. Excepturi fugit dicta eveniet!</div>
+                <div className="filter-hidden-content">
+                    <div className="autocompletes">
+                        <Autocomplete
+                            onChange={(event, value) => {
+                                console.log(value);
+                                // const newSVals: searchValues = { ...searchValuesForm }
+                                // if (value == null) { newSVals.name = ""; }
+                                // else { newSVals.name = value; }
+                                // setSearchValuesForm(newSVals);
+                            }}
+                            disablePortal
+                            id="full-name-combo-box"
+                            options={["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations"]}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Dates" />} />
+
+
+                        <Autocomplete
+                            onChange={(event, value) => {
+                                console.log(value);
+                            }}
+                            disablePortal
+                            id="full-name-combo-box"
+                            options={vacationCountries}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Country" />} />
+                    </div>
+                </div>
             </div>
             <div className="vacations-container">
                 {vacations.map(v => <VacationCard

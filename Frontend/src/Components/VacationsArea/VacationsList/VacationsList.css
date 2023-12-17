@@ -11,45 +11,52 @@
 .VacationsList .VacationCard:hover {
     scale: 1.03;
 }
-.VacationsList h1{
+
+.VacationsList h1 {
     text-align: left;
     padding: 0px 180px;
     margin: 30px 0px;
     font-size: 32px;
     margin-bottom: 0px;
 }
-.VacationsList .general-info{
+
+.VacationsList .general-info {
     text-align: left;
     padding: 0px 180px;
     display: flex;
     justify-content: space-between;
 }
-.VacationsList .filter-headers{
+
+.VacationsList .filter-headers {
     display: flex;
     justify-content: space-between;
     height: 55px;
     padding: 0px 10px;
 }
-.VacationsList h2{
+
+.VacationsList h2 {
     font-size: 24px;
     margin: 10px 0px;
     display: flex;
     align-items: center;
 }
-.VacationsList .filter{
+
+.VacationsList .filter {
     width: 1300px;
 }
+
 .VacationsList .filter:hover,
-.VacationsList .reset:hover{
+.VacationsList .reset:hover {
     color: #F6F1F1;
     cursor: pointer;
 }
-.VacationsList .results{
+
+.VacationsList .results {
     color: gray;
     font-weight: 400;
 }
 
-.VacationsList .filter-container{
+.VacationsList .filter-container {
     overflow: hidden;
     min-width: 410px;
     background-color: #2e6ba0;
@@ -59,30 +66,55 @@
     border-radius: 14px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.VacationsList .filter-hidden-content{
+
+.VacationsList .filter-hidden-content {
     height: 80%;
     padding: 0px 10px;
+    margin-top: 12px;
 }
-.VacationsList .accordion-open{
+
+.VacationsList .autocompletes {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.VacationsList .MuiInputBase-root {
+    background-color: #F6F1F1 !important;
+}
+
+.VacationsList .MuiFormLabel-root,
+.VacationsList .MuiSvgIcon-root {
+    color: #1a5785 !important;
+}
+
+.MuiInputLabel-outlined {
+    background-color: #F6F1F1;
+}
+
+.VacationsList .accordion-open {
     animation: accordionOpen 200ms forwards;
 }
-.VacationsList .accordion-close{
+
+.VacationsList .accordion-close {
     animation: accordionClose 200ms forwards;
 }
 
 @keyframes accordionOpen {
-    0%{
+    0% {
         height: 55px;
     }
-    100%{
+
+    100% {
         height: 300px;
     }
 }
+
 @keyframes accordionClose {
-    0%{
+    0% {
         height: 300px;
     }
-    100%{
+
+    100% {
         height: 55px;
     }
 }
