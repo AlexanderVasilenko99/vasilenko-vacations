@@ -6,7 +6,7 @@ function Home(): JSX.Element {
 
     return (
         <div className="Home">
-            <h2>Welcome to NorthWind Traders Inc website</h2>
+            <h2>Vasilenko Vacations</h2>
         </div>
     );
 }

@@ -82,8 +82,8 @@
     background-color: #F6F1F1 !important;
 }
 
-.VacationsList .MuiFormLabel-root,
-.VacationsList .MuiSvgIcon-root {
+.VacationsList .filter-container .MuiFormLabel-root,
+.VacationsList .filter-container .MuiSvgIcon-root {
     color: #1a5785 !important;
 }
 

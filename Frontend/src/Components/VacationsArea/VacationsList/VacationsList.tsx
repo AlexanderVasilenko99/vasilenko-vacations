@@ -12,6 +12,8 @@ import { Autocomplete, Box, Slider, TextField } from '@mui/material';
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
+
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
 
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
@@ -24,43 +26,72 @@ function VacationsList(): JSX.Element {
         }
 
         vacationService.getAllVacations()
-            .then(vacations => setVacations(vacations))
+            .then(vacations => {
+                setVacations(vacations);
+                setDisplayedVacations(vacations);
+            })
             .catch(err => console.log(err));
     }, []);
     useEffect(() => {
         const countries: string[] = [];
         vacations.forEach(v => countries.push(v.vacationCountry));
         setVacationCountries(countries);
-    }, [vacations])
+    }, [vacations]);
+
     return (
         <div className="VacationsList">
             <h1>Browse All</h1>
-            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {vacations.length} results</span></h2>
+            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations.length} results</span></h2>
             <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
                     <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
-                    <h2 className="reset">Reset</h2>
+                    <h2 className="reset" onClick={() => setDisplayedVacations(vacations)}>Reset</h2>
                 </div>
                 <div className="filter-hidden-content">
                     <div className="autocompletes">
                         <Autocomplete
                             onChange={(event, value) => {
-                                console.log(value);
-                                // const newSVals: searchValues = { ...searchValuesForm }
-                                // if (value == null) { newSVals.name = ""; }
-                                // else { newSVals.name = value; }
-                                // setSearchValuesForm(newSVals);
+                                let v: VacationModel[] = [];
+                                const now = new Date().getTime();
+                                switch (value) {
+                                    case "Past Vacations":
+                                        v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
+                                            new Date(v.vacationEndDate).getTime() < now);
+                                        break;
+                                    case "Ongoing Vacations":
+                                        v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
+                                            new Date(v.vacationEndDate).getTime() > now);
+                                        break;
+                                    case "Future Vacations":
+                                        v = vacations.filter(v => new Date(v.vacationStartDate).getTime() > now &&
+                                            new Date(v.vacationEndDate).getTime() > now);
+                                        break;
+                                    case "Followed Vacations":
+                                        console.log("Displaying Followed Vacations");
+                                        break;
+                                    case "All Vacations":
+                                    case null:
+                                        v = vacations;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                setDisplayedVacations(v);
                             }}
                             disablePortal
                             id="full-name-combo-box"
-                            options={["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations"]}
+                            options={["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"]}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />} />
 
 
                         <Autocomplete
                             onChange={(event, value) => {
-                                console.log(value);
+                                console.log(event, value);
+                                // const newSVals: searchValues = { ...searchValuesForm }
+                                // if (value == null) { newSVals.name = ""; }
+                                // else { newSVals.name = value; }
+                                // setSearchValuesForm(newSVals);
                             }}
                             disablePortal
                             id="full-name-combo-box"
@@ -71,7 +102,7 @@ function VacationsList(): JSX.Element {
                 </div>
             </div>
             <div className="vacations-container">
-                {vacations.map(v => <VacationCard
+                {displayedVacations.map(v => <VacationCard key={v.vacationUUID}
                     vacationUUID={v.vacationUUID}
                     vacationCity={v.vacationCity}
                     vacationCountry={v.vacationCountry}
@@ -85,7 +116,7 @@ function VacationsList(): JSX.Element {
                     vacationUploadedImage={v.vacationUploadedImage}
                 />)}
             </div>
-        </div>
+        </div >
     );
 }
 
