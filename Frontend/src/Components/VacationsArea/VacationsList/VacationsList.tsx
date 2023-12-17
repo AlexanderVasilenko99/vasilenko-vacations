@@ -18,6 +18,7 @@ function VacationsList(): JSX.Element {
 
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+    const datesOptions: string[] = authStore.getState().user.userRoleId === 1 ? ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] : ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
     useEffect(() => {
         const token = authStore.getState().token;
         if (!token) {
@@ -80,7 +81,7 @@ function VacationsList(): JSX.Element {
                             }}
                             disablePortal
                             id="full-name-combo-box"
-                            options={["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"]}
+                            options={datesOptions}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />} />
 
