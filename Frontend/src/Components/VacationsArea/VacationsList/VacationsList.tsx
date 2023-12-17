@@ -15,10 +15,13 @@ function VacationsList(): JSX.Element {
     const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
 
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
+    const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
 
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
     const navigate = useNavigate();
-    const datesOptions: string[] = authStore.getState().user.userRoleId === 1 ? ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] : ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
+    const datesOptions: string[] = authStore.getState().user.userRoleId === 1 ?
+        ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
+        ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
     useEffect(() => {
         const token = authStore.getState().token;
         if (!token) {
@@ -30,6 +33,9 @@ function VacationsList(): JSX.Element {
             .then(vacations => {
                 setVacations(vacations);
                 setDisplayedVacations(vacations);
+                const countries: string[] = [];
+                vacations.forEach(v => countries.push(v.vacationCountry));
+                setDisplayedVacationCountries(countries);
             })
             .catch(err => console.log(err));
     }, []);
@@ -53,19 +59,25 @@ function VacationsList(): JSX.Element {
                         <Autocomplete
                             onChange={(event, value) => {
                                 let v: VacationModel[] = [];
+                                let v2: string[] = [];
                                 const now = new Date().getTime();
                                 switch (value) {
                                     case "Past Vacations":
                                         v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
                                             new Date(v.vacationEndDate).getTime() < now);
+                                        v.forEach(vacation => v2.push(vacation.vacationCountry));
+                                        console.log(v2);
+
                                         break;
                                     case "Ongoing Vacations":
                                         v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
                                             new Date(v.vacationEndDate).getTime() > now);
+                                        v.forEach(vacation => v2.push(vacation.vacationCountry));
                                         break;
                                     case "Future Vacations":
                                         v = vacations.filter(v => new Date(v.vacationStartDate).getTime() > now &&
                                             new Date(v.vacationEndDate).getTime() > now);
+                                        v.forEach(vacation => v2.push(vacation.vacationCountry));
                                         break;
                                     case "Followed Vacations":
                                         console.log("Displaying Followed Vacations");
@@ -73,11 +85,13 @@ function VacationsList(): JSX.Element {
                                     case "All Vacations":
                                     case null:
                                         v = vacations;
+                                        v.forEach(vacation => v2.push(vacation.vacationCountry));
                                         break;
                                     default:
                                         break;
                                 }
                                 setDisplayedVacations(v);
+                                setDisplayedVacationCountries(v2)
                             }}
                             disablePortal
                             id="full-name-combo-box"
@@ -96,7 +110,7 @@ function VacationsList(): JSX.Element {
                             }}
                             disablePortal
                             id="full-name-combo-box"
-                            options={vacationCountries}
+                            options={displayedVacationCountries}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Country" />} />
                     </div>
