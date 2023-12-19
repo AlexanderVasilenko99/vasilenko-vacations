@@ -19,7 +19,7 @@ function VacationsList(): JSX.Element {
 
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
     const navigate = useNavigate();
-    const datesOptions: string[] = authStore.getState().user.userRoleId === 1 ?
+    const datesOptions: string[] = authStore.getState().user?.userRoleId === 1 ?
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
     useEffect(() => {
