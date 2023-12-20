@@ -90,7 +90,8 @@ function VacationsList(): JSX.Element {
                                         v.forEach(vacation => v2.push(vacation.vacationCountry));
                                         break;
                                     case "Followed Vacations":
-                                        console.log("Displaying Followed Vacations");
+                                        v = vacations.filter(v => v.vacationIsFollowing === 1)
+                                        v.forEach(vacation => v2.push(vacation.vacationCountry));
                                         break;
                                     case "All Vacations":
                                     case null:
