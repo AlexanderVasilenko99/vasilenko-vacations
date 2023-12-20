@@ -13,6 +13,9 @@ class VacationModel {
     public vacationImageName: string;
     public vacationImageUrl: string;
     public vacationUploadedImage: UploadedFile;
+    public vacationIsFollowing: number;
+    public vacationFollowersCount: number;
+
     constructor(vacation: VacationModel) {
         this.vacationId = vacation.vacationId;
         this.vacationUUID = vacation.vacationUUID;
@@ -25,6 +28,8 @@ class VacationModel {
         this.vacationImageName = vacation.vacationImageName;
         this.vacationImageUrl = vacation.vacationImageUrl;
         this.vacationUploadedImage = vacation.vacationUploadedImage;
+        this.vacationIsFollowing = vacation.vacationIsFollowing;
+        this.vacationFollowersCount = vacation.vacationFollowersCount;
     }
     public static addVacationValidationSchema = Joi.object({
         vacationId: Joi.number().forbidden(),
@@ -37,7 +42,9 @@ class VacationModel {
         vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
         vacationImageName: Joi.string().forbidden(),
         vacationImageUrl: Joi.string().forbidden(),
-        vacationUploadedImage: Joi.object().required()
+        vacationUploadedImage: Joi.object().required(),
+        vacationIsFollowing: Joi.number().forbidden(),
+        vacationFollowersCount: Joi.number().forbidden()
     });
     public static editVacationValidationSchema = Joi.object({
         vacationId: Joi.number().required().integer().positive(),
@@ -50,7 +57,9 @@ class VacationModel {
         vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
         vacationImageName: Joi.string().required().min(2).max(255),
         vacationImageUrl: Joi.string().optional().max(260),// should i check vacationimageurl? - make sure later
-        vacationUploadedImage: Joi.object().optional()
+        vacationUploadedImage: Joi.object().optional(),
+        vacationIsFollowing: Joi.number().forbidden(),
+        vacationFollowersCount: Joi.number().forbidden()
     });
     public addVacationValidate(): void {
         const result = VacationModel.addVacationValidationSchema.validate(this);

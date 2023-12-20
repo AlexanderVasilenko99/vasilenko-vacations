@@ -7,24 +7,24 @@ import VacationModel from "../3-models/vacationModel";
 import { UUID, randomUUID } from "crypto";
 
 class VacationServices {
-    public async getAllVacations(): Promise<VacationModel[]> {
-        const sql = `SELECT * FROM vacations`;
-        const products = await dal.execute(sql);
-        return products;
-    }
-    public async getVacations(userId: number): Promise<VacationModel[]> { // USER.IS FOLLOWING DOESNT WORK
+    // public async getAllVacations(): Promise<VacationModel[]> {
+    //     const sql = `SELECT * FROM vacations`;
+    //     const products = await dal.execute(sql);
+    //     return products;
+    // }
+    public async getAllVacations(userUUID: string): Promise<VacationModel[]> { // USER.IS FOLLOWING DOESNT WORK
         const sql = `
             SELECT DISTINCT
                 V.*,
-                EXISTS(SELECT * FROM followers WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing,
-                COUNT(F.userId) AS followersCount
+                EXISTS(SELECT * FROM followers WHERE vacationUUID = F.vacationUUID AND userUUID = ?) AS vacationIsFollowing,
+                COUNT(F.userUUID) AS vacationFollowersCount
             FROM vacations as V LEFT JOIN followers as F
-            ON V.vacationId = F.vacationId
-            GROUP BY vacationId
+            ON V.vacationUUID = F.vacationUUID
+            GROUP BY vacationUUID
             ORDER BY vacationStartDate
             `;
 
-        const vacations = await dal.execute(sql, [userId]);
+        const vacations = await dal.execute(sql, [userUUID]);
         return vacations;
     }
     public async getExistingVacationImageName(id: number): Promise<string> {
@@ -67,7 +67,7 @@ class VacationServices {
             vacation.vacationImageName
         ]);
         vacation.vacationId = info.insertId;
-        vacation.vacationImageUrl = appConfig.appHost + "/api/vacations/" + imageName;
+        vacation.vacationImageUrl = appConfig.appHost + "/api/vacations-image/" + imageName;
         delete vacation.vacationUploadedImage;
         return vacation;
     }

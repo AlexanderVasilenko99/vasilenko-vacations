@@ -7,22 +7,24 @@ import vacationServices from "../5-services/vacationServices";
 import VacationModel from "../3-models/vacationModel";
 const router = express.Router();
 
-router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/vacations/:userUUID", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const vacations = await vacationServices.getAllVacations();
+        const userUUID = request.params.userUUID;
+        const vacations = await vacationServices.getAllVacations(userUUID);
         response.json(vacations);
     } catch (err: any) {
         next(err);
     }
 });
-router.get("/get-vacations", async (request: Request, response: Response, next: NextFunction) => {
-    try {
-        const vacations = await vacationServices.getVacations(3);
-        response.json(vacations);
-    } catch (err: any) {
-        next(err);
-    }
-});
+// router.get("/get-vacations/:userId", async (request: Request, response: Response, next: NextFunction) => {
+//     try {
+//         const userId = +request.params.userId;
+//         const vacations = await vacationServices.getAllVacations(userId);
+//         response.json(vacations);
+//     } catch (err: any) {
+//         next(err);
+//     }
+// });
 router.delete("/vacations/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const id = +request.params.id;
@@ -57,7 +59,7 @@ router.post("/vacations", async (request: Request, response: Response, next: Nex
         next(err);
     }
 });
-router.get("/vacations/:imageName", async (request: Request, response: Response, next: NextFunction) => {
+router.get("/vacations-image/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const imageName = request.params.imageName;
         const absolutePath = fileSaver.getFilePath(imageName);

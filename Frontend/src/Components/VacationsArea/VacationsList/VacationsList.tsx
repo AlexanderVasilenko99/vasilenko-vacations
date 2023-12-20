@@ -45,6 +45,16 @@ function VacationsList(): JSX.Element {
         setVacationCountries(countries);
     }, [vacations]);
 
+
+
+
+
+    function setVacationsForDisplay(timeFrame?: string, country?: string): void {
+        
+    }
+
+
+
     return (
         <div className="VacationsList">
             <h1>Browse All</h1>
@@ -102,10 +112,18 @@ function VacationsList(): JSX.Element {
 
                         <Autocomplete
                             onChange={(event, value) => {
-                                console.log(event, value);
-                                // const newSVals: searchValues = { ...searchValuesForm }
-                                // if (value == null) { newSVals.name = ""; }
-                                // else { newSVals.name = value; }
+                                if (!value) {
+                                    setDisplayedVacations(vacations);
+                                    return;
+                                };
+                                const country = value;
+                                const v = vacations.filter(v => v.vacationCountry === country)
+                                setDisplayedVacations(v)
+
+                                // setDisplayedVacationCountries(countries => [...countries.filter(vc => vc === value)])
+                                // const newSVals: searchValues = {...searchValuesForm}
+                                // if (value == null) {newSVals.name = ""; }
+                                // else {newSVals.name = value; }
                                 // setSearchValuesForm(newSVals);
                             }}
                             disablePortal
@@ -129,6 +147,8 @@ function VacationsList(): JSX.Element {
                     vacationImageName={v.vacationImageName}
                     vacationImageUrl={v.vacationImageUrl}
                     vacationUploadedImage={v.vacationUploadedImage}
+                    vacationIsFollowing={v.vacationIsFollowing}
+                    vacationFollowersCount={v.vacationFollowersCount}
                 />)}
             </div>
         </div >

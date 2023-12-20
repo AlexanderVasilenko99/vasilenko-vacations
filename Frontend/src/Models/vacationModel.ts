@@ -13,6 +13,9 @@ class VacationModel {
     // public vacationUploadedImage: UploadedFile;
     public vacationUploadedImage: File;
 
+    public vacationIsFollowing: number;
+    public vacationFollowersCount: number;
+
     // constructor(vacation: VacationModel) {
     //     this.vacationId = vacation.vacationId;
     //     this.vacationCountry = vacation.vacationCountry;

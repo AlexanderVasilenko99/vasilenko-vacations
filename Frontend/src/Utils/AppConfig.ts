@@ -17,6 +17,7 @@ class AppConfig {
 
     public readonly productsUrl: string = 'http://localhost:4000/api/products/';
     public readonly vacationsUrl: string = 'http://localhost:4000/api/vacations/';
+    public readonly vacationsImageUrl: string = 'http://localhost:4000/api/vacations-image/';
     public readonly registerUrl: string = 'http://localhost:4000/api/register/';
     public readonly loginUrl: string = 'http://localhost:4000/api/login/';
 

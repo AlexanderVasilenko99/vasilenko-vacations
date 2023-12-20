@@ -19,12 +19,16 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         setStartDate(startDate.toLocaleDateString('en-GB'));
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
+
+    console.log(vacation.vacationCountry, vacation.vacationIsFollowing);
+    
+
     return (
         <div className="VacationCard" key={vacation.vacationId}
         // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
         >
             <div className="follow-container">
-                {authStore.getState().user.userRoleId === 2 && <LikeButton />}
+                {authStore.getState().user.userRoleId === 2 && <LikeButton isFollowing={vacation.vacationIsFollowing} />}
                 {authStore.getState().user.userRoleId === 1 && <EditButton />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton />}
             </div>
