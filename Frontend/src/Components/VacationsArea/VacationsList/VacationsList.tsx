@@ -33,17 +33,20 @@ function VacationsList(): JSX.Element {
             .then(vacations => {
                 setVacations(vacations);
                 setDisplayedVacations(vacations);
+
                 const countries: string[] = [];
                 vacations.forEach(v => countries.push(v.vacationCountry));
+                setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
             })
             .catch(err => console.log(err));
     }, []);
-    useEffect(() => {
-        const countries: string[] = [];
-        vacations.forEach(v => countries.push(v.vacationCountry));
-        setVacationCountries(countries);
-    }, [vacations]);
+
+    // useEffect(() => {
+    //     const countries: string[] = [];
+    //     vacations.forEach(v => countries.push(v.vacationCountry));
+    //     setVacationCountries(countries);
+    // }, []);
 
 
 
