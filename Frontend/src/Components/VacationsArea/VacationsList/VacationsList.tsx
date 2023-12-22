@@ -51,7 +51,6 @@ function VacationsList(): JSX.Element {
 
 
 
-
     function setVacationsForDisplay(timeFrame?: string, country?: string): void {
         
     }
