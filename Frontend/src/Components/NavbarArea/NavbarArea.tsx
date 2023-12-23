@@ -20,10 +20,11 @@ function NavbarArea(): JSX.Element {
     const postIdentificationSubNavItems: SubNavItem[] = [
         new SubNavItem(authStore.getState().user?.userFirstName, appConfig.userRoute + authStore.getState().user?.userUUID),
         new SubNavItem('Logout', "#")
-    ];
-    const vacationsSubNavItems: SubNavItem[] = [
-        new SubNavItem('All Vacations', appConfig.vacationsRoute)
-    ];
+    ]
+    const vacationsSubNavItems: SubNavItem[] = authStore.getState().user?.userRoleId === 1 ? [
+        new SubNavItem('All Vacations', appConfig.vacationsRoute),
+        new SubNavItem('Add Vacation', appConfig.addVacationRoute)] : [new SubNavItem('All Vacations', appConfig.vacationsRoute)];
+        
     const [identificationSubNavItems, setIdentificationSubNavItems] = useState<SubNavItem[]>(preIdentificationSubNavItems);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 

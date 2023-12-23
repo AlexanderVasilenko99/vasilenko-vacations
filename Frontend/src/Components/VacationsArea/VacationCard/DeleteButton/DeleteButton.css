@@ -20,6 +20,7 @@
 
 .VacationCard .DeleteButton:hover {
     -webkit-animation: slideIn 200ms forwards;
+    cursor: pointer;
 }
 
 .VacationCard .DeleteButton:hover span {

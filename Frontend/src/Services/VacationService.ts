@@ -29,30 +29,27 @@ class VacationService {
         return vacation;
     }
 
+    public async addVacation(vacation: VacationModel): Promise<VacationModel> {
+        const options = {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+        const response = await axios.post<VacationModel>(appConfig.productsUrl, vacation, options);
+        const addedVacation = response.data;
+        const action: VacationsActions = { type: VacationsActionTypes.AddVacation, payload: addedVacation }
+        vacationsStore.dispatch(action);
+        return addedVacation;
+    }
+
+
     // public async getOneProduct(prodId: number): Promise<ProductModel> {
     //     const response = await axios.get(appConfig.productsUrl + prodId)
     //     const product = response.data;
     //     return product;
     // }
 
-    // public async addProduct(product: ProductModel): Promise<ProductModel> {
-    //     const options = {
-    //         headers: {
-    //             "Content-Type": "multipart/form-data"
-    //         }
-    //     }
 
-    //     // send product to backend via POST method
-    //     const response = await axios.post(appConfig.productsUrl, product, options);
-    //     // extract product from response
-    //     const beProduct = response.data;
-
-    //     const action: ProductsActions = { type: ProductsActionTypes.AddProduct, payload: beProduct }
-    //     productsStore.dispatch(action);
-
-    //     // return extracted product
-    //     return beProduct;
-    // }
 
     // public async updateProduct(product: ProductModel): Promise<ProductModel> {
 

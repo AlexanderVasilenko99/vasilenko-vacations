@@ -3,6 +3,7 @@ class AppConfig {
     public readonly loginRoute: string = "/login/";
     public readonly registerRoute: string = "/register/";
     public readonly vacationsRoute: string = "/vacations/";
+    public readonly addVacationRoute: string = "/vacations/new";
     public readonly aboutRoute: string = "/about/";
     public readonly userRoute: string = "/users/";
     

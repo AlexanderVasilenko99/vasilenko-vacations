@@ -20,6 +20,7 @@
 
 .VacationCard .EditButton:hover {
     -webkit-animation: slideIn 200ms forwards;
+    cursor: pointer;
 }
 
 .VacationCard .EditButton:hover span {
