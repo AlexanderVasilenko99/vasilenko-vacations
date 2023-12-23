@@ -20,9 +20,6 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
 
-    console.log(vacation.vacationCountry, vacation.vacationIsFollowing);
-    
-
     return (
         <div className="VacationCard" key={vacation.vacationId}
         // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}

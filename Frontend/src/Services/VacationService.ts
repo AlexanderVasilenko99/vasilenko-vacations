@@ -10,8 +10,8 @@ class VacationService {
         if (vacations.length === 0) {
             const userUUID = authStore.getState().user.userUUID;
             console.log(userUUID);
-            
-            const response = await axios.get(appConfig.vacationsUrl + userUUID);
+
+            const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl + userUUID);
             vacations = response.data;
             vacations.map((v) => { v.vacationImageUrl = appConfig.vacationsImageUrl + v.vacationImageName })
 
