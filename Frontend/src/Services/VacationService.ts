@@ -35,7 +35,7 @@ class VacationService {
                 "Content-Type": "multipart/form-data"
             }
         }
-        const response = await axios.post<VacationModel>(appConfig.productsUrl, vacation, options);
+        const response = await axios.post<VacationModel>(appConfig.vacationsUrl, vacation, options);
         const addedVacation = response.data;
         const action: VacationsActions = { type: VacationsActionTypes.AddVacation, payload: addedVacation }
         vacationsStore.dispatch(action);

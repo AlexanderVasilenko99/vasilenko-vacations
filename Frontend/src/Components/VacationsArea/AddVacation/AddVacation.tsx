@@ -11,7 +11,7 @@ import "./AddVacation.css";
 
 
 function AddProduct(): JSX.Element {
-    const { register, handleSubmit } = useForm<ProductModel>();
+    const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,9 +37,7 @@ function AddProduct(): JSX.Element {
     const imageSrc = useImagePreview(imageFile);
     function handleChange(event: any) {
         const files = event.target.files;
-        console.log(files);
         if (!files || !files.item(0)) return;
-
         setImageFile(files.item(0));
     }
 
@@ -49,15 +47,26 @@ function AddProduct(): JSX.Element {
                 Add Vacation
             </h2>
             <form onSubmit={handleSubmit(send)}>
-                <label>Product name: </label><input type="text" {...register("name")} required placeholder="Chef Alexander's Pineapple Pizza" />
-                <label>Product price: </label><input type="number" {...register("price")} required step="0.01" placeholder="69" />
-                <label>Product stock: </label><input type="number" {...register("stock")} required placeholder="420" />
+                <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
+                    required placeholder="Israel" minLength={2} maxLength={100} />
+                <label>Vacation City: </label><input type="text" {...register("vacationCity")}
+                    required placeholder="Ra'anana" minLength={2} maxLength={100} />
+                <label>Description: </label><input type="text" {...register("vacationDescription")}
+                    required minLength={2} maxLength={100} />
+                <label>Start Date: </label><input type="date" {...register("vacationStartDate")}
+                    required min={new Date().getTime()}/>
+                <label>End Date: </label><input type="date" {...register("vacationEndDate")}
+                    required min={new Date().getTime()}/>
 
-                <label>Product image: </label><input type="file" {...register("image")} accept="image/*" onChange={handleChange} />
+                <label>Price: </label><input type="number" {...register("vacationPrice")}
+                    required min={0} max={9999} />
+
+                <label>Vacation image: </label><input type="file" {...register("vacationUploadedImage")}
+                    accept="image/*" onChange={handleChange} required />
                 <div className="imageContainer">
                     <img src={imageSrc} />
                 </div>
-                <button>Add product</button>
+                <button>Add Vacation</button>
             </form>
         </div>
     );
