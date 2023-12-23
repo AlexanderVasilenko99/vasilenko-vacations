@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import VacationModel from "../../../Models/VacationModel";
 import vacationService from "../../../Services/VacationService";
 import VacationCard from "../VacationCard/VacationCard";
@@ -25,16 +25,6 @@ class SearchValues {
 
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
-    // const params = useParams();
-    const [searchParams, setSearchParams] = useSearchParams();//{ dates: "", country: "", minP: "", maxP: "" }
-    const [searchValuesForm, setSearchValuesForm] = useState<SearchValues>();
-    let dates: string = searchParams.get("dates");
-    let country: string = searchParams.get("country");
-    let minP: string = searchParams.get("minP");
-    let maxP: string = searchParams.get("maxP");
-
-    console.log(dates, country, minP, maxP);
-
     const navigate = useNavigate();
 
     const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -47,6 +37,12 @@ function VacationsList(): JSX.Element {
     const datesOptions: string[] = authStore.getState().user?.userRoleId === 1 ?
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
+
+    // const [datesOptions, setDatesOptions] = useState<string[]>(
+    //     authStore.getState().user?.userRoleId === 1 ?
+    //         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
+    //         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"]);
+
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -65,58 +61,15 @@ function VacationsList(): JSX.Element {
                 setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
 
-                // if (dates || country || minP || maxP) {
-                //     dates = dates.toLowerCase();
-                //     country = country.toLowerCase();
-                //     if (country) setDisplayedVacations(dv => dv.filter(v => (v.vacationCountry).toLowerCase() === country));
-                //     if (dates) {
-                //         let v: VacationModel[] = [];
-                //         let v2: string[] = [];
-                //         const now = new Date().getTime();
-                //         switch (dates) {
-                //             case "Past Vacations":
-                //                 v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
-                //                     new Date(v.vacationEndDate).getTime() < now);
-                //                 v.forEach(vacation => v2.push(vacation.vacationCountry));
-                //                 break;
-                //             case "Ongoing Vacations":
-                //                 v = vacations.filter(v => new Date(v.vacationStartDate).getTime() < now &&
-                //                     new Date(v.vacationEndDate).getTime() > now);
-                //                 v.forEach(vacation => v2.push(vacation.vacationCountry));
-                //                 break;
-                //             case "Future Vacations":
-                //                 v = vacations.filter(v => new Date(v.vacationStartDate).getTime() > now &&
-                //                     new Date(v.vacationEndDate).getTime() > now);
-                //                 v.forEach(vacation => v2.push(vacation.vacationCountry));
-                //                 break;
-                //             case "Followed Vacations":
-                //                 v = vacations.filter(v => v.vacationIsFollowing === 1)
-                //                 v.forEach(vacation => v2.push(vacation.vacationCountry));
-                //                 break;
-                //             case "All Vacations":
-                //             case null:
-                //                 v = vacations;
-                //                 v.forEach(vacation => v2.push(vacation.vacationCountry));
-                //                 break;
-                //             default:
-                //                 break;
-                //         }
-                //         setDisplayedVacations(v);
-                //         setDisplayedVacationCountries(v2)
-                // setDisplayedVacations(dv => dv.filter(v => (v.vacationCountry).toLowerCase() === country));
-                // }
-                // }
             })
             .catch(err => console.log(err));
     }, []);
 
-
-
-    function setVacationsAndVacationCountriesForDisplay(timeFrame?: string, country?: string): void {
+    function setVacationsAndVacationCountriesForDisplay(timeFrame: string, country: string): void {
         console.log("recieved timeframe: " + timeFrame + ". country: " + country);
-
         let newVacations: VacationModel[] = [];
         let newVacationCountries: string[] = [];
+
         if (timeFrame) {
             timeFrame = timeFrame.toLowerCase();
             const now = new Date().getTime();
@@ -137,8 +90,6 @@ function VacationsList(): JSX.Element {
                     newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
                     break;
                 case "followed vacations":
-                    console.log(vacations);
-
                     newVacations = vacations.filter(v => v.vacationIsFollowing === 1)
                     newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
                     break;
@@ -150,6 +101,8 @@ function VacationsList(): JSX.Element {
                 default:
                     break;
             }
+            setDisplayedVacations(newVacations);
+            setDisplayedVacationCountries(newVacationCountries)
         }
         if (country) {
             country = country.toLowerCase()
@@ -161,9 +114,9 @@ function VacationsList(): JSX.Element {
                     newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
                     break;
             }
+            setDisplayedVacations(newVacations);
+            setDisplayedVacationCountries(newVacationCountries)
         }
-        setDisplayedVacations(newVacations);
-        setDisplayedVacationCountries(newVacationCountries)
     }
 
 
@@ -179,24 +132,34 @@ function VacationsList(): JSX.Element {
                 </div>
                 <div className="filter-hidden-content">
                     <div className="autocompletes">
-                        <Autocomplete
+                        <Autocomplete id="datesAutocomplete"
                             onChange={(event, value) => {
-                                if (value === null) setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
-                                else setVacationsAndVacationCountriesForDisplay(value, "no country")
+                                const countryInput = document.getElementById("countryAutocomplete") as HTMLInputElement;
+                                const country = countryInput.value;
+                                const dates: string = value;
+
+                                if (dates && country) setVacationsAndVacationCountriesForDisplay(dates, country)
+                                if (dates && !country) setVacationsAndVacationCountriesForDisplay(dates, "no country")
+                                if (!dates && country) setVacationsAndVacationCountriesForDisplay("no timeframe", country)
+                                if (!dates && !country) setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
                             }}
                             disablePortal
-                            id="full-name-combo-box"
                             options={datesOptions}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />} />
 
-                        <Autocomplete
+                        <Autocomplete id="countryAutocomplete"
                             onChange={(event, value) => {
-                                if (value === null) setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
-                                else setVacationsAndVacationCountriesForDisplay("no timeframe", value)
+                                const datesInput = document.getElementById("datesAutocomplete") as HTMLInputElement;
+                                const dates = datesInput.value;
+                                const country: string = value;
+
+                                if (dates && country) setVacationsAndVacationCountriesForDisplay(dates, country)
+                                if (dates && !country) setVacationsAndVacationCountriesForDisplay(dates, "no country")
+                                if (!dates && country) setVacationsAndVacationCountriesForDisplay("no timeframe", country)
+                                if (!dates && !country) setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
                             }}
                             disablePortal
-                            id="full-name-combo-box"
                             options={displayedVacationCountries}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Country" />} />
