@@ -38,11 +38,6 @@ function VacationsList(): JSX.Element {
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
 
-    // const [datesOptions, setDatesOptions] = useState<string[]>(
-    //     authStore.getState().user?.userRoleId === 1 ?
-    //         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
-    //         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"]);
-
 
     useEffect(() => {
         const token = authStore.getState().token;
