@@ -9,19 +9,19 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import UseTitle from "../../../Utils/UseTitle";
 import { Autocomplete, Box, Slider, TextField } from '@mui/material';
 
-
-class SearchValues {
-    public dates: string;
-    public country: string;
-    public minP: number;
-    public maxP: number;
-    public constructor(values: SearchValues) {
-        this.dates = values.dates;
-        this.country = values.country;
-        this.minP = values.minP;
-        this.maxP = values.maxP;
-    }
-}
+// this is for useSearchParams to be added on later
+// class SearchValues {
+//     public dates: string;
+//     public country: string;
+//     public minP: number;
+//     public maxP: number;
+//     public constructor(values: SearchValues) {
+//         this.dates = values.dates;
+//         this.country = values.country;
+//         this.minP = values.minP;
+//         this.maxP = values.maxP;
+//     }
+// }
 
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
