@@ -30,8 +30,7 @@ function VacationsList(): JSX.Element {
     const navigate = useNavigate();
 
     const [vacations, setVacations] = useState<VacationModel[]>([]);
-    // const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
-    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>();
+    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
 
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
@@ -48,10 +47,17 @@ function VacationsList(): JSX.Element {
             noti.error("Please login in to view vacations page");
             navigate("/login");
         }
+
+
+        const unsubscribe = vacationsStore.subscribe(() => {
+            const arr: VacationModel[] = vacationsStore.getState().vacations;
+            setDisplayedVacations(arr);
+            setVacations(arr);
+        });
+
+
         vacationService.getAllVacations()
             .then(v => {
-                console.log("the vacations the front recieved: ");
-                console.log(v);
 
                 setVacations(v);
                 setDisplayedVacations(v);
@@ -60,41 +66,12 @@ function VacationsList(): JSX.Element {
                 v.forEach(v1 => countries.push(v1.vacationCountry));
                 setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
+
             })
             .catch(err => console.log(err));
 
-        // THIS SUBSCRIPTION DOESN'T FIRE!
-        const unsubscribe = vacationsStore.subscribe(() => {
-            console.log("triggered");
-
-            const v = vacationsStore.getState().vacations;
-            console.log(v);
-            setVacations(v);
-            setDisplayedVacations(v);
-
-            console.log("setting vacations: ");
-            console.log("done!");
-        });
-        return unsubscribe();
+        return unsubscribe;
     }, []);
-
-    // useEffect(() => {
-    //     console.log("VACATIONS OR DISPLAYEDVACATIONS CHANGED!");
-    //     const unsubscribe = vacationsStore.subscribe(() => {
-    //         console.log("triggered");
-
-    //         const v = vacationsStore.getState().vacations;
-    //         console.log(v);
-    //         setVacations(v);
-    //         setDisplayedVacations(v);
-
-    //         console.log("setting vacations: ");
-    //         console.log("done!");
-    //     });
-    //     return unsubscribe();
-    // }, [vacations, displayedVacations]);
-
-
 
     function setVacationsAndVacationCountriesForDisplay(timeFrame: string, country: string): void {
         console.log("recieved timeframe: " + timeFrame + ". country: " + country);
@@ -199,7 +176,6 @@ function VacationsList(): JSX.Element {
             </div>
             <div className="vacations-container">
                 {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
-                    /* {vacations.map(v => <VacationCard key={v.vacationUUID} */
                     vacationUUID={v.vacationUUID}
                     vacationCity={v.vacationCity}
                     vacationCountry={v.vacationCountry}

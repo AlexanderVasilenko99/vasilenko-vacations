@@ -7,12 +7,9 @@ import { authStore } from "../Redux/AuthState";
 class VacationService {
     public async getAllVacations(): Promise<VacationModel[]> {
         let vacations = vacationsStore.getState().vacations;
-        // console.log("stored vacations: ");
-        // console.log(vacations);
 
         if (vacations.length === 0) {
             const userUUID = authStore.getState().user.userUUID;
-            // console.log(userUUID);
 
             const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl + userUUID);
             vacations = response.data;
@@ -25,9 +22,8 @@ class VacationService {
     }
     public async getVacationByUUID(uuid: string): Promise<VacationModel> {
         let vacations = vacationsStore.getState().vacations;
-        if (vacations.length === 0) {
-            vacations = await this.getAllVacations();
-        }
+        if (vacations.length === 0) vacations = await this.getAllVacations();
+
         const vacation = vacations.find(v => v.vacationUUID === uuid);
         return vacation;
     }
@@ -51,28 +47,28 @@ class VacationService {
         vacationsStore.dispatch(action);
     }
 
-    // public async getOneProduct(prodId: number): Promise<ProductModel> {
-    //     const response = await axios.get(appConfig.productsUrl + prodId)
-    //     const product = response.data;
-    //     return product;
+    // public async getOneVacation(vacationUUID: string): Promise<VacationModel> {
+    //     const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
+    //     const vacation = response.data;
+    //     return vacation;
     // }
 
 
 
-    // public async updateProduct(product: ProductModel): Promise<ProductModel> {
+    // public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
 
     //     const options = {
     //         headers: {
     //             "Content-Type": "multipart/form-data"
     //         }
     //     }
-    //     const response = await axios.put(appConfig.productsUrl + product.id, product, options);
-    //     const updateProduct = response.data;
+    //     const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.vacationUUID, vacation, options);
+    //     const updatedVacation = response.data;
 
-    //     const action = {type: ProductsActionTypes.UpdateProduct, payload:updateProduct}
-    //     productsStore.dispatch(action);
+    //     const action = {type: VacationActionTypes.UpdateVacation, payload:updatedVacation}
+    //     vacationsStore.dispatch(action);
 
-    //     return updateProduct;
+    //     return updatedVacation;
     // }
 
 
