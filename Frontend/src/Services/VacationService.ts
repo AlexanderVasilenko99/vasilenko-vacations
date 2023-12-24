@@ -7,9 +7,12 @@ import { authStore } from "../Redux/AuthState";
 class VacationService {
     public async getAllVacations(): Promise<VacationModel[]> {
         let vacations = vacationsStore.getState().vacations;
+        // console.log("stored vacations: ");
+        // console.log(vacations);
+
         if (vacations.length === 0) {
             const userUUID = authStore.getState().user.userUUID;
-            console.log(userUUID);
+            // console.log(userUUID);
 
             const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl + userUUID);
             vacations = response.data;
@@ -42,6 +45,11 @@ class VacationService {
         return addedVacation;
     }
 
+    public async deleteVacation(vacationUUID: string): Promise<void> {
+        await axios.delete(appConfig.vacationsUrl + vacationUUID);
+        const action: VacationsActions = { type: VacationsActionTypes.DeleteVacation, payload: vacationUUID }
+        vacationsStore.dispatch(action);
+    }
 
     // public async getOneProduct(prodId: number): Promise<ProductModel> {
     //     const response = await axios.get(appConfig.productsUrl + prodId)
@@ -67,12 +75,6 @@ class VacationService {
     //     return updateProduct;
     // }
 
-    // public async deleteProduct(prodId: number): Promise<void> {
-    //     await axios.delete(appConfig.productsUrl + prodId);
-
-    //     const action: ProductsActions = { type: ProductsActionTypes.DeleteProduct, payload: prodId }
-    //     productsStore.dispatch(action);
-    // }
 
 
 }

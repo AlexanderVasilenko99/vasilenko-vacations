@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-import ProductModel from "../Models/ProductModel";
 import VacationModel from "../Models/VacationModel";
 
 // 1. Products state object -> class component
@@ -39,6 +38,9 @@ export interface VacationsActions {
 // 4.
 function vacationsReducer(currentState = new VacationState(), action: VacationsActions): VacationState {
     const newState = { ...currentState };
+    // console.log(currentState.vacations);
+    // console.log(action.payload);
+
     switch (action.type) {
         case VacationsActionTypes.SetVacations:
             newState.vacations = action.payload;
@@ -46,23 +48,27 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
         case VacationsActionTypes.AddVacation:
             newState.vacations.push(action.payload);
             break;
-        case VacationsActionTypes.UpdateVacation:
-            const idForDelete = newState.vacations.findIndex(v => v.vacationId === action.payload);
+        case VacationsActionTypes.DeleteVacation:
+            const idForDelete = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            // console.log("idForDelete: " + idForDelete);
             newState.vacations.splice(idForDelete, 1);
             break;
-        case VacationsActionTypes.DeleteVacation:
-            const idForUpdate = newState.vacations.findIndex(v => v.vacationId === action.payload.id);
+        case VacationsActionTypes.UpdateVacation:
+            const idForUpdate = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
             newState.vacations.splice(idForUpdate, 1, action.payload);
             break;
         case VacationsActionTypes.ClearAll:
             newState.vacations = [];
             break;
     }
+    console.log("vacations after state update:");
+    console.log(newState.vacations);
     return newState;
 }
 
 // 5.
 export const vacationsStore = createStore(vacationsReducer);
+// export const vehiclesState = createStore(vehicleReducer);
 
 // const productState = new ProductsState();
 // export default productState;

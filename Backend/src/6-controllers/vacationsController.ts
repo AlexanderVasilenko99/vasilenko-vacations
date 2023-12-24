@@ -25,10 +25,10 @@ router.get("/vacations/:userUUID", async (request: Request, response: Response, 
 //         next(err);
 //     }
 // });
-router.delete("/vacations/:id([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/vacations/:vacationUUID", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const id = +request.params.id;
-        await vacationServices.deleteVacation(id);
+        const vacationUUID = request.params.vacationUUID;
+        await vacationServices.deleteVacation(vacationUUID);
         response.sendStatus(StatusCode.NoContent);
     } catch (err: any) {
         next(err);

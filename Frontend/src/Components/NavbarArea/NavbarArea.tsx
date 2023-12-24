@@ -30,10 +30,9 @@ function NavbarArea(): JSX.Element {
 
 
     useEffect(() => {
-        console.log(authStore.getState().user)
+        // console.log(authStore.getState().user)
         window.addEventListener('click', (event) => {
             if (event.target instanceof HTMLAnchorElement) {
-                console.log(event.target);
                 const anchor: HTMLAnchorElement = event.target;
                 if (anchor.innerHTML === "Logout") {
                     authService.logout();

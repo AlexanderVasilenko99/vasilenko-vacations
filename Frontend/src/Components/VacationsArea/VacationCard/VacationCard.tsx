@@ -14,8 +14,8 @@ function VacationCard(vacation: VacationModel): JSX.Element {
     const [endDate, setEndDate] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
-        const startDate = new Date(vacation.vacationStartDate.toString().substring(0, 10));
-        const endDate = new Date(vacation.vacationEndDate.toString().substring(0, 10));
+        const startDate = new Date(vacation.vacationStartDate?.toString().substring(0, 10));
+        const endDate = new Date(vacation.vacationEndDate?.toString().substring(0, 10));
         setStartDate(startDate.toLocaleDateString('en-GB'));
         setEndDate(endDate.toLocaleDateString('en-GB'));
     }, []);
@@ -27,7 +27,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
             <div className="follow-container">
                 {authStore.getState().user.userRoleId === 2 && <LikeButton isFollowing={vacation.vacationIsFollowing} />}
                 {authStore.getState().user.userRoleId === 1 && <EditButton />}
-                {authStore.getState().user.userRoleId === 1 && <DeleteButton />}
+                {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>
             <div>
                 <img src={vacation.vacationImageUrl} />

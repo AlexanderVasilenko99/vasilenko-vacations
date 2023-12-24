@@ -8,6 +8,8 @@ import noti from "../../../Services/NotificationService";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import UseTitle from "../../../Utils/UseTitle";
 import { Autocomplete, Box, Slider, TextField } from '@mui/material';
+import { vacationsStore } from "../../../Redux/VacationsState";
+import { createStore } from "redux";
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -28,7 +30,8 @@ function VacationsList(): JSX.Element {
     const navigate = useNavigate();
 
     const [vacations, setVacations] = useState<VacationModel[]>([]);
-    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
+    // const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
+    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>();
 
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
@@ -45,20 +48,53 @@ function VacationsList(): JSX.Element {
             noti.error("Please login in to view vacations page");
             navigate("/login");
         }
-
         vacationService.getAllVacations()
-            .then(vacations => {
-                setVacations(vacations);
-                setDisplayedVacations(vacations);
+            .then(v => {
+                console.log("the vacations the front recieved: ");
+                console.log(v);
+
+                setVacations(v);
+                setDisplayedVacations(v);
 
                 const countries: string[] = [];
-                vacations.forEach(v => countries.push(v.vacationCountry));
+                v.forEach(v1 => countries.push(v1.vacationCountry));
                 setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
-
             })
             .catch(err => console.log(err));
+
+        // THIS SUBSCRIPTION DOESN'T FIRE!
+        const unsubscribe = vacationsStore.subscribe(() => {
+            console.log("triggered");
+
+            const v = vacationsStore.getState().vacations;
+            console.log(v);
+            setVacations(v);
+            setDisplayedVacations(v);
+
+            console.log("setting vacations: ");
+            console.log("done!");
+        });
+        return unsubscribe();
     }, []);
+
+    // useEffect(() => {
+    //     console.log("VACATIONS OR DISPLAYEDVACATIONS CHANGED!");
+    //     const unsubscribe = vacationsStore.subscribe(() => {
+    //         console.log("triggered");
+
+    //         const v = vacationsStore.getState().vacations;
+    //         console.log(v);
+    //         setVacations(v);
+    //         setDisplayedVacations(v);
+
+    //         console.log("setting vacations: ");
+    //         console.log("done!");
+    //     });
+    //     return unsubscribe();
+    // }, [vacations, displayedVacations]);
+
+
 
     function setVacationsAndVacationCountriesForDisplay(timeFrame: string, country: string): void {
         console.log("recieved timeframe: " + timeFrame + ". country: " + country);
@@ -114,16 +150,16 @@ function VacationsList(): JSX.Element {
         }
     }
 
-
-
     return (
         <div className="VacationsList">
             <h1>Browse All</h1>
-            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations.length} results</span></h2>
+            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations?.length} results</span></h2>
             <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
                     <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
-                    <h2 className="reset" onClick={() => setDisplayedVacations(vacations)}>Reset</h2>
+                    <h2 className="reset"
+                    // onClick={() =>setDisplayedVacations(vacations)}
+                    >Reset</h2>
                 </div>
                 <div className="filter-hidden-content">
                     <div className="autocompletes">
@@ -162,7 +198,8 @@ function VacationsList(): JSX.Element {
                 </div>
             </div>
             <div className="vacations-container">
-                {displayedVacations.map(v => <VacationCard key={v.vacationUUID}
+                {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
+                    /* {vacations.map(v => <VacationCard key={v.vacationUUID} */
                     vacationUUID={v.vacationUUID}
                     vacationCity={v.vacationCity}
                     vacationCountry={v.vacationCountry}

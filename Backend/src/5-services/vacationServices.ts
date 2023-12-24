@@ -27,18 +27,18 @@ class VacationServices {
         const vacations = await dal.execute(sql, [userUUID]);
         return vacations;
     }
-    public async getExistingVacationImageName(id: number): Promise<string> {
-        const sql = 'SELECT vacationImageName from vacations WHERE vacationId = ?'
-        const info: OkPacket = await dal.execute(sql, [id]);
+    public async getExistingVacationImageName(vacationUUID: string): Promise<string> {
+        const sql = 'SELECT vacationImageName from vacations WHERE vacationUUID = ?'
+        const info: OkPacket = await dal.execute(sql, [vacationUUID]);
 
         const vacation = info[0];
         if (!vacation) return "";
         const existingImageName = vacation.VacationImageName;
         return existingImageName;
     }
-    public async getExistingVacationImagePath(id: number): Promise<string> {
-        const sql = 'SELECT VacationImageName from vacations WHERE vacationId = ?'
-        const info: OkPacket = await dal.execute(sql, [id]);
+    public async getExistingVacationImagePath(vacationUUID: string): Promise<string> {
+        const sql = 'SELECT VacationImageName from vacations WHERE vacationUUID = ?'
+        const info: OkPacket = await dal.execute(sql, [vacationUUID]);
 
         const vacation = info[0];
         if (!vacation) return "";
@@ -71,25 +71,25 @@ class VacationServices {
         delete vacation.vacationUploadedImage;
         return vacation;
     }
-    public async deleteVacation(id: number): Promise<void> {
+    public async deleteVacation(vacationUUID: string): Promise<void> {
         // create sql delete query
-        const sql = `DELETE FROM vacations WHERE vacationId = ?;`
-        const existingImageName = await this.getExistingVacationImageName(id);
+        const sql = `DELETE FROM vacations WHERE vacationUUID = ?;`
+        const existingImageName = await this.getExistingVacationImageName(vacationUUID);
         console.log(existingImageName);
 
 
         // delete in db
-        const info: OkPacket = await dal.execute(sql, [id]);
+        const info: OkPacket = await dal.execute(sql, [vacationUUID]);
 
         fileSaver.delete(existingImageName)
 
         // if id is invalid:
-        if (info.affectedRows === 0) throw new ResourceNotFound(id);
+        if (info.affectedRows === 0) throw new ResourceNotFound(vacationUUID);
     }
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.editVacationValidate();
 
-        const existingImageName = await this.getExistingVacationImageName(vacation.vacationId);
+        const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
         // update image if exists and get existing or updated imagename
         const imageName = vacation.vacationUploadedImage ? await fileSaver.update(

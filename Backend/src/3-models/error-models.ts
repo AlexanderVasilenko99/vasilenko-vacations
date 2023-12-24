@@ -11,7 +11,7 @@ export class RouteNotFound extends BaseError {
 }
 
 export class ResourceNotFound extends BaseError {
-    public constructor(id: number) {
+    public constructor(id: number | string) {
         super(StatusCode.NotFound, `id ${id} not found.`);
     }
 }
