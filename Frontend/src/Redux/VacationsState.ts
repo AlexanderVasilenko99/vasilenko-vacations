@@ -10,6 +10,8 @@ export enum VacationsActionTypes {
     AddVacation = "AddVacation",
     UpdateVacation = "UpdateVacation",
     DeleteVacation = "DeleteVacation",
+    FollowVacation = "FollowVacation",
+    UnfollowVacation = "UnfollowVacation",
     ClearAll = "ClearAll"
 }
 
@@ -39,10 +41,25 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
             const idForUpdate = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
             newState.vacations.splice(idForUpdate, 1, action.payload);
             break;
+
+
+        case VacationsActionTypes.FollowVacation:
+            const idForFollow = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            newState.vacations[idForFollow].vacationIsFollowing = 1;
+            break;
+        case VacationsActionTypes.UnfollowVacation:
+            const idForUnfollow = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            newState.vacations[idForUnfollow].vacationIsFollowing = 0;
+            break;
+
+            
         case VacationsActionTypes.ClearAll:
             newState.vacations = [];
             break;
     }
+    console.log("new vacations:");
+    console.log(newState.vacations);
+
     return newState;
 }
 

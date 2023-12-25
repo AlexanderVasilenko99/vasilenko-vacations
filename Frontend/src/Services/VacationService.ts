@@ -54,6 +54,8 @@ class VacationService {
             const response = await axios.post(appConfig.vacationsFollowUrl + userUUID + "/" + vacationUUID);
             if (response.status === StatusCode.Created) {
                 noti.success("This vacation has been added to your followed vacations!");
+                const action: VacationsActions = { type: VacationsActionTypes.FollowVacation, payload: vacationUUID }
+                vacationsStore.dispatch(action);
             }
         } catch (err: any) {
             noti.error(err);
@@ -64,6 +66,8 @@ class VacationService {
             const response = await axios.delete(appConfig.vacationsUnfollowUrl + userUUID + "/" + vacationUUID);
             if (response.status === StatusCode.NoContent) {
                 noti.success("This vacation has been  successfully unfollowed");
+                const action: VacationsActions = { type: VacationsActionTypes.UnfollowVacation, payload: vacationUUID }
+                vacationsStore.dispatch(action);
             }
         } catch (err: any) {
             noti.error(err);
