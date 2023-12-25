@@ -1,16 +1,23 @@
-import "./LikeButton.css";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import vacationService from "../../../../Services/VacationService";
+import "./LikeButton.css";
 
-class LikeButtonModel {
+export class LikeButtonModel {
     public isFollowing: number;
-    public onClickFunction?: (userUUID: string, vacatoinUUID: string) => {};
+    public userUUID: string;
+    public vacationUUID: string;
+    // public onClickFunction?: (userUUID: string, vacatoinUUID: string) => {};
 }
 
-function LikeButton(btn: LikeButtonModel): JSX.Element {
+function LikeButton(props: LikeButtonModel): JSX.Element {
     return (
-        <button className="LikeButton" onClick={() => console.log("click")}>
-            {btn.isFollowing ? <><span>Unlike</span><FavoriteIcon /></> : <><span>Like</span><FavoriteBorderIcon /></>}
+        <button className="LikeButton" onClick={() => {
+            if (props.isFollowing) vacationService.unfollowVacation(props.userUUID, props.vacationUUID);
+            else vacationService.followVacation(props.userUUID, props.vacationUUID);
+        }}>
+            {props.isFollowing ? <><span>Unlike</span><FavoriteIcon /></> :
+                <><span>Like</span><FavoriteBorderIcon /></>}
         </button>
     );
 }

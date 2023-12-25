@@ -3,6 +3,8 @@ import VacationModel from "../Models/VacationModel";
 import { VacationsActionTypes, VacationsActions, vacationsStore } from "../Redux/VacationsState";
 import appConfig from "../Utils/AppConfig";
 import { authStore } from "../Redux/AuthState";
+import noti from "./NotificationService";
+import StatusCode from "../Models/status-codes";
 
 class VacationService {
     public async getAllVacations(): Promise<VacationModel[]> {
@@ -45,6 +47,27 @@ class VacationService {
         await axios.delete(appConfig.vacationsUrl + vacationUUID);
         const action: VacationsActions = { type: VacationsActionTypes.DeleteVacation, payload: vacationUUID }
         vacationsStore.dispatch(action);
+    }
+
+    public async followVacation(userUUID: string, vacationUUID: string): Promise<void> {
+        try {
+            const response = await axios.post(appConfig.vacationsFollowUrl + userUUID + "/" + vacationUUID);
+            if (response.status === StatusCode.Created) {
+                noti.success("This vacation has been added to your followed vacations!");
+            }
+        } catch (err: any) {
+            noti.error(err);
+        }
+    }
+    public async unfollowVacation(userUUID: string, vacationUUID: string): Promise<void> {
+        try {
+            const response = await axios.delete(appConfig.vacationsUnfollowUrl + userUUID + "/" + vacationUUID);
+            if (response.status === StatusCode.NoContent) {
+                noti.success("This vacation has been  successfully unfollowed");
+            }
+        } catch (err: any) {
+            noti.error(err);
+        }
     }
 
     // public async getOneVacation(vacationUUID: string): Promise<VacationModel> {

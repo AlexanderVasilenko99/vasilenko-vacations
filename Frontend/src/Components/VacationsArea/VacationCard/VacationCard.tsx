@@ -25,7 +25,10 @@ function VacationCard(vacation: VacationModel): JSX.Element {
         // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
         >
             <div className="follow-container">
-                {authStore.getState().user.userRoleId === 2 && <LikeButton isFollowing={vacation.vacationIsFollowing} />}
+                {authStore.getState().user.userRoleId === 2 && <LikeButton
+                    isFollowing={vacation.vacationIsFollowing}
+                    userUUID={authStore.getState().user?.userUUID}
+                    vacationUUID={vacation.vacationUUID} />}
                 {authStore.getState().user.userRoleId === 1 && <EditButton />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>

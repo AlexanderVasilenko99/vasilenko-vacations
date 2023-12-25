@@ -133,7 +133,7 @@ class VacationServices {
     }
     public async unfollowVacation(userUUID: string, vacationUUID: string): Promise<void> {
         const sql = "DELETE from followers WHERE userUUID = ? AND vacationUUID = ?";
-        const info = await dal.execute(sql, [userUUID, vacationUUID]);
+        const info:OkPacket = await dal.execute(sql, [userUUID, vacationUUID]);
         if (info.affectedRows === 0) throw new FollowerNotFound(userUUID, vacationUUID);
     }
 }
