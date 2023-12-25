@@ -52,7 +52,7 @@ class VacationServices {
         vacation.vacationImageName = imageName;
         vacation.vacationUUID = randomUUID();
         console.log("generated uuid: " + vacation.vacationUUID);
-        
+
 
         const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?,?);`
 
@@ -127,14 +127,14 @@ class VacationServices {
 
         return vacation;
     }
-    public async followVacation(userId: number, vacationId: number): Promise<void> {
+    public async followVacation(userUUID: string, vacationUUID: string): Promise<void> {
         const sql = "INSERT INTO followers VALUES(?,?)";
-        await dal.execute(sql, [userId, vacationId])
+        await dal.execute(sql, [userUUID, vacationUUID]);
     }
-    public async unfollowVacation(userId: number, vacationId: number): Promise<void> {
-        const sql = "DELETE from followers WHERE userId = ? AND vacationId = ?";
-        const info = await dal.execute(sql, [userId, vacationId]);
-        if (info.affectedRows === 0) throw new FollowerNotFound(userId, vacationId);
+    public async unfollowVacation(userUUID: string, vacationUUID: string): Promise<void> {
+        const sql = "DELETE from followers WHERE userUUID = ? AND vacationUUID = ?";
+        const info = await dal.execute(sql, [userUUID, vacationUUID]);
+        if (info.affectedRows === 0) throw new FollowerNotFound(userUUID, vacationUUID);
     }
 }
 const vacationServices = new VacationServices();

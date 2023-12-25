@@ -68,21 +68,21 @@ router.get("/vacations-image/:imageName", async (request: Request, response: Res
         next(err);
     }
 });
-router.post("/vacations/follow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+router.post("/vacations/follow/:userUUID/:vacationUUID", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const userId = +request.params.userId;
-        const vacationId = +request.params.vacationId;
-        await vacationServices.followVacation(userId, vacationId);
+        const userUUID = request.params.userUUID;
+        const vacationUUID = request.params.vacationUUID;
+        await vacationServices.followVacation(userUUID, vacationUUID);
         response.status(StatusCode.Created).json();
     } catch (err: any) {
         next(err);
     }
 });
-router.delete("/vacations/unfollow/:userId([0-9]+)/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/vacations/unfollow/:userUUID/:vacationUUID", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const userId = +request.params.userId;
-        const vacationId = +request.params.vacationId;
-        await vacationServices.unfollowVacation(userId, vacationId);
+        const userUUID = request.params.userUUID;
+        const vacationUUID = request.params.vacationUUID;
+        await vacationServices.unfollowVacation(userUUID, vacationUUID);
         response.status(StatusCode.NoContent).json();
     } catch (err: any) {
         next(err);
