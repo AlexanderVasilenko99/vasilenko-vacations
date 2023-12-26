@@ -50,12 +50,11 @@ function VacationsList(): JSX.Element {
 
 
         const unsubscribe = vacationsStore.subscribe(() => {
-            console.log("subscription triggered!");
-            
             const arr: VacationModel[] = vacationsStore.getState().vacations;
-            
+
             setVacations(arr);
             setDisplayedVacations(arr);
+            setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
         });
 
 

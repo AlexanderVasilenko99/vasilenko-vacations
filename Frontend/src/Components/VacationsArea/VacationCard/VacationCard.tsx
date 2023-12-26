@@ -8,12 +8,15 @@ import DeleteButton from './DeleteButton/DeleteButton';
 import EditButton from './EditButton/EditButton';
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
+import { vacationsStore } from '../../../Redux/VacationsState';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
+        console.log("rendering vacation" + vacation.vacationCity);
+        
         const startDate = new Date(vacation.vacationStartDate?.toString().substring(0, 10));
         const endDate = new Date(vacation.vacationEndDate?.toString().substring(0, 10));
         setStartDate(startDate.toLocaleDateString('en-GB'));

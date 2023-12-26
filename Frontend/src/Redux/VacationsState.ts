@@ -45,7 +45,7 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
 
         case VacationsActionTypes.FollowVacation:
 
-            const idForFollow = currentState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            const idForFollow = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
             newState.vacations[idForFollow].vacationFollowersCount += 1;
             newState.vacations[idForFollow].vacationIsFollowing = 1;
             break;
