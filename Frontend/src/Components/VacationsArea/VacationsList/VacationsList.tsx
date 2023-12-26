@@ -50,15 +50,17 @@ function VacationsList(): JSX.Element {
 
 
         const unsubscribe = vacationsStore.subscribe(() => {
+            console.log("subscription triggered!");
+            
             const arr: VacationModel[] = vacationsStore.getState().vacations;
-            setDisplayedVacations(arr);
+            
             setVacations(arr);
+            setDisplayedVacations(arr);
         });
 
 
         vacationService.getAllVacations()
             .then(v => {
-
                 setVacations(v);
                 setDisplayedVacations(v);
 

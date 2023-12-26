@@ -44,22 +44,26 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
 
 
         case VacationsActionTypes.FollowVacation:
-            const idForFollow = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
+
+            const idForFollow = currentState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            newState.vacations[idForFollow].vacationFollowersCount += 1;
             newState.vacations[idForFollow].vacationIsFollowing = 1;
             break;
+
         case VacationsActionTypes.UnfollowVacation:
             const idForUnfollow = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
+            const unfollowedVacation: VacationModel = newState.vacations[idForUnfollow];
+            unfollowedVacation.vacationFollowersCount -= 1;
             newState.vacations[idForUnfollow].vacationIsFollowing = 0;
             break;
 
-            
+
         case VacationsActionTypes.ClearAll:
             newState.vacations = [];
             break;
     }
-    console.log("new vacations:");
-    console.log(newState.vacations);
-
+    // console.log("new vacations:");
+    // console.log(newState.vacations);
     return newState;
 }
 

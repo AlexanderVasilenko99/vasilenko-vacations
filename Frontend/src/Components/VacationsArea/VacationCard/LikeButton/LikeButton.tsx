@@ -10,12 +10,14 @@ export class LikeButtonModel {
     // public onClickFunction?: (userUUID: string, vacatoinUUID: string) => {};
 }
 
+async function handleClick(props: LikeButtonModel): Promise<void> {
+    if (props.isFollowing) await vacationService.unfollowVacation(props.userUUID, props.vacationUUID);
+    else await vacationService.followVacation(props.userUUID, props.vacationUUID);
+}
+
 function LikeButton(props: LikeButtonModel): JSX.Element {
     return (
-        <button className="LikeButton" onClick={() => {
-            if (props.isFollowing) vacationService.unfollowVacation(props.userUUID, props.vacationUUID);
-            else vacationService.followVacation(props.userUUID, props.vacationUUID);
-        }}>
+        <button className="LikeButton" onClick={() => { handleClick(props) }}>
             {props.isFollowing ? <><span>Unlike</span><FavoriteIcon /></> :
                 <><span>Like</span><FavoriteBorderIcon /></>}
         </button>

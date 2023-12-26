@@ -2,12 +2,12 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
+import { authStore } from '../../../Redux/AuthState';
+import appConfig from '../../../Utils/AppConfig';
+import DeleteButton from './DeleteButton/DeleteButton';
+import EditButton from './EditButton/EditButton';
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
-import { authStore } from '../../../Redux/AuthState';
-import EditButton from './EditButton/EditButton';
-import DeleteButton from './DeleteButton/DeleteButton';
-import appConfig from '../../../Utils/AppConfig';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
@@ -28,7 +28,8 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                 {authStore.getState().user.userRoleId === 2 && <LikeButton
                     isFollowing={vacation.vacationIsFollowing}
                     userUUID={authStore.getState().user?.userUUID}
-                    vacationUUID={vacation.vacationUUID} />}
+                    vacationUUID={vacation.vacationUUID}
+                />}
                 {authStore.getState().user.userRoleId === 1 && <EditButton />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>

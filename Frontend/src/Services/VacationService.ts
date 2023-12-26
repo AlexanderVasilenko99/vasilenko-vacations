@@ -65,7 +65,7 @@ class VacationService {
         try {
             const response = await axios.delete(appConfig.vacationsUnfollowUrl + userUUID + "/" + vacationUUID);
             if (response.status === StatusCode.NoContent) {
-                noti.success("This vacation has been  successfully unfollowed");
+                noti.success("This vacation has been successfully unfollowed");
                 const action: VacationsActions = { type: VacationsActionTypes.UnfollowVacation, payload: vacationUUID }
                 vacationsStore.dispatch(action);
             }
@@ -75,9 +75,13 @@ class VacationService {
     }
 
     // public async getOneVacation(vacationUUID: string): Promise<VacationModel> {
-    //     const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
-    //     const vacation = response.data;
-    //     return vacation;
+    //     try {
+    //         const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
+    //         const vacation = response.data;
+    //         return vacation;
+    //     } catch (err: any) {
+    //         noti.error(err)
+    //     }
     // }
 
 
