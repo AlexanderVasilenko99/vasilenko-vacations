@@ -9,14 +9,13 @@ import EditButton from './EditButton/EditButton';
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
 import { vacationsStore } from '../../../Redux/VacationsState';
+import Followers from './Followers/Followers';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const navigate = useNavigate();
     useEffect(() => {
-        console.log("rendering vacation" + vacation.vacationCity);
-        
         const startDate = new Date(vacation.vacationStartDate?.toString().substring(0, 10));
         const endDate = new Date(vacation.vacationEndDate?.toString().substring(0, 10));
         setStartDate(startDate.toLocaleDateString('en-GB'));
@@ -33,11 +32,12 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                     userUUID={authStore.getState().user?.userUUID}
                     vacationUUID={vacation.vacationUUID}
                 />}
+                {authStore.getState().user.userRoleId === 2 && <Followers {...vacation} />}
                 {authStore.getState().user.userRoleId === 1 && <EditButton />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>
             <div>
-                <img src={vacation.vacationImageUrl} className='vacation-image'/>
+                <img src={vacation.vacationImageUrl} className='vacation-image' />
             </div>
             <div className="card-text-container">
                 <div className="country-dates-container">
