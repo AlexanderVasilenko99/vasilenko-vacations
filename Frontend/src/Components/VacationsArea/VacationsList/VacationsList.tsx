@@ -102,7 +102,8 @@ function VacationsList(): JSX.Element {
                     break;
                 case "all vacations":
                 case "no timeframe":
-                    newVacations = vacations;
+                    // newVacations = vacations;
+                    newVacations = vacationsStore.getState().vacations;
                     newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
                     break;
                 default:
