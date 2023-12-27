@@ -37,7 +37,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>
             <div>
-                <img src={vacation.vacationImageUrl} />
+                <img src={vacation.vacationImageUrl} className='vacation-image'/>
             </div>
             <div className="card-text-container">
                 <div className="country-dates-container">

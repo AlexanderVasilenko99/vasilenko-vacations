@@ -51,7 +51,6 @@ function VacationsList(): JSX.Element {
 
         const unsubscribe = vacationsStore.subscribe(() => {
             const arr: VacationModel[] = vacationsStore.getState().vacations;
-
             setVacations(arr);
             setDisplayedVacations(arr);
             setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
@@ -67,7 +66,6 @@ function VacationsList(): JSX.Element {
                 v.forEach(v1 => countries.push(v1.vacationCountry));
                 setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
-
             })
             .catch(err => console.log(err));
 
