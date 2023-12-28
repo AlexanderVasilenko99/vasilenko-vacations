@@ -1,11 +1,13 @@
-import "./EditButton.css";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { useNavigate } from "react-router-dom";
+import VacationModel from "../../../../Models/VacationModel";
+import appConfig from "../../../../Utils/AppConfig";
+import "./EditButton.css";
 
-function EditButton(): JSX.Element {
+function EditButton(vacation:VacationModel): JSX.Element {
+    const navigate = useNavigate();
     return (
-        <button className="EditButton" onClick={() => console.log("click")}><span>Edit</span><SettingsOutlinedIcon /></button>
+        <button className="EditButton" onClick={() => navigate(appConfig.vacationsRoute+vacation.vacationUUID)}><span>Edit</span><SettingsOutlinedIcon /></button>
     );
 }
 

@@ -33,7 +33,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                     vacationUUID={vacation.vacationUUID}
                 />}
                 {authStore.getState().user.userRoleId === 2 && <Followers {...vacation} />}
-                {authStore.getState().user.userRoleId === 1 && <EditButton />}
+                {authStore.getState().user.userRoleId === 1 && <EditButton {...vacation} />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>
             <div>

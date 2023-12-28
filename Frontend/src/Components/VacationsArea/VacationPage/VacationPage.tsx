@@ -1,17 +1,21 @@
-import { useParams } from "react-router-dom";
-import "./VacationPage.css";
 import { useEffect, useState } from "react";
-import UseTitle from "../../../Utils/UseTitle";
+import { useParams } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
+import { authStore } from "../../../Redux/AuthState";
 import vacationService from "../../../Services/VacationService";
+import UseTitle from "../../../Utils/UseTitle";
+import EditVacation from "../EditVacation/EditVacation";
+import "./VacationPage.css";
 
 function VacationPage(): JSX.Element {
     UseTitle(`Vasilenko Vacations | Vacations`);
     const [vacation, setVacation] = useState<VacationModel>();
     const params = useParams();
     const uuid = params.uuid;
+    console.log(uuid);
+    
     useEffect(() => {
-        vacationService.getVacationByUUID(uuid)
+        vacationService.getOneVacation(uuid)
             .then(vacation => {
                 setVacation(vacation);
             })
@@ -20,6 +24,9 @@ function VacationPage(): JSX.Element {
     return (
         <div className="VacationPage">
             {vacation?.vacationCity} - {vacation?.vacationCountry}
+
+            {authStore.getState().user?.userRoleId === 1 && <EditVacation />}
+
         </div>
     );
 }

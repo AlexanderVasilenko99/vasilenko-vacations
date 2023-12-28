@@ -22,13 +22,13 @@ class VacationService {
         }
         return vacations;
     }
-    public async getVacationByUUID(uuid: string): Promise<VacationModel> {
-        let vacations = vacationsStore.getState().vacations;
-        if (vacations.length === 0) vacations = await this.getAllVacations();
+    // public async getVacationByUUID(uuid: string): Promise<VacationModel> {
+    //     let vacations = vacationsStore.getState().vacations;
+    //     if (vacations.length === 0) vacations = await this.getAllVacations();
 
-        const vacation = vacations.find(v => v.vacationUUID === uuid);
-        return vacation;
-    }
+    //     const vacation = vacations.find(v => v.vacationUUID === uuid);
+    //     return vacation;
+    // }
 
     public async addVacation(vacation: VacationModel): Promise<VacationModel> {
         const options = {
@@ -74,15 +74,28 @@ class VacationService {
         }
     }
 
-    // public async getOneVacation(vacationUUID: string): Promise<VacationModel> {
-    //     try {
-    //         const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
-    //         const vacation = response.data;
-    //         return vacation;
-    //     } catch (err: any) {
-    //         noti.error(err)
-    //     }
-    // }
+    public async getOneVacation(vacationUUID: string): Promise<VacationModel> {
+        try {
+            let vacations = vacationsStore.getState().vacations;
+
+            if (vacations.length === 0) {
+                vacations = await this.getAllVacations();
+                const action: VacationsActions = { type: VacationsActionTypes.SetVacations, payload: vacations }
+                vacationsStore.dispatch(action);
+            }
+            console.log(vacations);
+            const index = vacations.findIndex(v => { v.vacationUUID == vacationUUID });
+            console.log(index);
+
+            // console.log(vacation);
+
+            return vacations[0];
+            // const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
+            // const vacation = response.data;
+        } catch (err: any) {
+            noti.error(err)
+        }
+    }
 
 
 
