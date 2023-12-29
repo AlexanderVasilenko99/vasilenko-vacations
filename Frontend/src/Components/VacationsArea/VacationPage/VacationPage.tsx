@@ -1,32 +1,81 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
 import vacationService from "../../../Services/VacationService";
 import UseTitle from "../../../Utils/UseTitle";
 import EditVacation from "../EditVacation/EditVacation";
 import "./VacationPage.css";
+import { useForm } from "react-hook-form";
+import noti from "../../../Services/NotificationService";
 
 function VacationPage(): JSX.Element {
     UseTitle(`Vasilenko Vacations | Vacations`);
-    const [vacation, setVacation] = useState<VacationModel>();
     const params = useParams();
     const uuid = params.uuid;
-    console.log(uuid);
-    
+
+    const { register, handleSubmit, setValue } = useForm<VacationModel>();
+    const navigate = useNavigate();
+
+
+
+    // const [imgSrc, setImgSrc] = useState<string>(`${appConfig.productsUrl}/images/${id}.jpg`);
     useEffect(() => {
         vacationService.getOneVacation(uuid)
             .then(vacation => {
-                setVacation(vacation);
+                // console.log(vacation);
+
+                setValue("vacationCity", vacation.vacationCity);
+                setValue("vacationCountry", vacation.vacationCountry);
+                setValue("vacationDescription", vacation.vacationDescription);
+                setValue("vacationPrice", vacation.vacationPrice);
+                // setValue("stock", product.stock);
+                // setValue("imageUrl", product.imageUrl);
+                // setImgSrc(appConfig.productsUrl + `images/${product.imageUrl}`)
+                // console.log(vacation);
+
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }, []);
+
+
+    function handleChange(e: any) {
+        if (e) {
+            const file = (e.target.files)[0];
+            const url = URL.createObjectURL(file);
+            // setImgSrc(url);
+        }
+    }
+
+    async function update(vacation: VacationModel): Promise<void> {
+        try {
+            vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
+            vacation.vacationUUID = uuid;
+            noti.success("The vacation has been updated successfully!");
+            await vacationService.updateVacation(vacation);
+
+        } catch (err: any) {
+            console.log(err);
+        }
+    }
+
+
     return (
         <div className="VacationPage">
-            {vacation?.vacationCity} - {vacation?.vacationCountry}
+            {/* <div className="EditVacation"> */}
 
-            {authStore.getState().user?.userRoleId === 1 && <EditVacation />}
+            <form onSubmit={handleSubmit(update)}>
+                <label>Vacation Country: </label><input type="text" {...register("vacationCountry")} required />
+                <label>Vacation City: </label><input type="text" {...register("vacationCity")} required />
+                <label>Vacation Description: </label><input type="text" {...register("vacationDescription")} required />
+                <label>Vacation Price: </label><input type="number" {...register("vacationPrice")} required />
 
+                {/* <label>Product image: </label><input type="file" {...register("image")} accept="image/*" onChange={handleChange} /> */}
+                <div className="imageContainer">
+                    {/* <img src={imgSrc} /> */}
+                </div>
+                <button>Update Vacation</button>
+            </form>
         </div>
     );
 }

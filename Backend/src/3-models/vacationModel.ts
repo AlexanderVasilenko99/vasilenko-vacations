@@ -47,7 +47,7 @@ class VacationModel {
         vacationFollowersCount: Joi.number().forbidden()
     });
     public static editVacationValidationSchema = Joi.object({
-        vacationId: Joi.number().required().integer().positive(),
+        vacationId: Joi.number().optional(),
         vacationUUID: Joi.string().required().min(10).max(300),
         vacationCountry: Joi.string().required().min(2).max(100),
         vacationCity: Joi.string().required().min(2).max(100),

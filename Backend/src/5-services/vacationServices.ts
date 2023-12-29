@@ -103,7 +103,7 @@ class VacationServices {
                     vacationEndDate = ?,
                     vacationPrice = ?,
                     vacationImageName = ?
-                    WHERE vacationId = ${vacation.vacationId};`
+                    WHERE vacationUUID = ?;`
 
         // update db with new product
         const info: OkPacket = await dal.execute(sql, [
@@ -114,7 +114,8 @@ class VacationServices {
             vacation.vacationEndDate,
             vacation.vacationPrice,
             imageName,
-            vacation.vacationId]);
+            vacation.vacationUUID,
+        ]);
 
         // if id is invalid:
         if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationId);
@@ -133,7 +134,7 @@ class VacationServices {
     }
     public async unfollowVacation(userUUID: string, vacationUUID: string): Promise<void> {
         const sql = "DELETE from followers WHERE userUUID = ? AND vacationUUID = ?";
-        const info:OkPacket = await dal.execute(sql, [userUUID, vacationUUID]);
+        const info: OkPacket = await dal.execute(sql, [userUUID, vacationUUID]);
         if (info.affectedRows === 0) throw new FollowerNotFound(userUUID, vacationUUID);
     }
 }

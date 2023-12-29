@@ -11,13 +11,14 @@ import useImagePreview from "../../../Utils/UseImagePreview";
 import appConfig from "../../../Utils/AppConfig";
 import VacationModel from "../../../Models/VacationModel";
 import vacationService from "../../../Services/VacationService";
+import UseTitle from "../../../Utils/UseTitle";
 
 
 
 function EditVacation(): JSX.Element {
-
+    UseTitle(`Vasilenko Vacations | Vacations`);
     const params = useParams();
-    const vacationUUID = params.vacationUUID;
+    const uuid = params.uuid;
 
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
@@ -26,10 +27,10 @@ function EditVacation(): JSX.Element {
 
     // const [imgSrc, setImgSrc] = useState<string>(`${appConfig.productsUrl}/images/${id}.jpg`);
     useEffect(() => {
-        vacationService.getOneVacation(vacationUUID)
+        vacationService.getOneVacation(uuid)
             .then(vacation => {
-                console.log(vacation);
-                
+                // console.log(vacation);
+
                 setValue("vacationCity", vacation.vacationCity);
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationDescription", vacation.vacationDescription);
@@ -37,7 +38,7 @@ function EditVacation(): JSX.Element {
                 // setValue("stock", product.stock);
                 // setValue("imageUrl", product.imageUrl);
                 // setImgSrc(appConfig.productsUrl + `images/${product.imageUrl}`)
-                console.log(vacation);
+                // console.log(vacation);
 
             })
             .catch((err) => console.log(err));

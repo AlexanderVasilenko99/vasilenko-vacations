@@ -76,6 +76,7 @@ class VacationService {
 
     public async getOneVacation(vacationUUID: string): Promise<VacationModel> {
         try {
+            console.log("function recieved uuid: " + vacationUUID);
             let vacations = vacationsStore.getState().vacations;
 
             if (vacations.length === 0) {
@@ -83,37 +84,28 @@ class VacationService {
                 const action: VacationsActions = { type: VacationsActionTypes.SetVacations, payload: vacations }
                 vacationsStore.dispatch(action);
             }
-            console.log(vacations);
-            const index = vacations.findIndex(v => { v.vacationUUID == vacationUUID });
-            console.log(index);
-
-            // console.log(vacation);
-
-            return vacations[0];
-            // const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationUUID)
-            // const vacation = response.data;
+            const index = vacations.findIndex(v => v.vacationUUID === vacationUUID);
+            return vacations[index];
         } catch (err: any) {
             noti.error(err)
         }
     }
 
+    public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
+        
+        const options = {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+        const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.vacationUUID, vacation, options);
+        const updatedVacation = response.data;
 
+        const action = {type: VacationsActionTypes.UpdateVacation, payload:updatedVacation}
+        vacationsStore.dispatch(action);
 
-    // public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
-
-    //     const options = {
-    //         headers: {
-    //             "Content-Type": "multipart/form-data"
-    //         }
-    //     }
-    //     const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.vacationUUID, vacation, options);
-    //     const updatedVacation = response.data;
-
-    //     const action = {type: VacationActionTypes.UpdateVacation, payload:updatedVacation}
-    //     vacationsStore.dispatch(action);
-
-    //     return updatedVacation;
-    // }
+        return updatedVacation;
+    }
 
 
 
