@@ -74,7 +74,7 @@ function VacationPage(): JSX.Element {
                 <div className="imageContainer">
                     {/* <img src={imgSrc} /> */}
                 </div>
-                <button>Update Vacation</button>
+                {authStore.getState().user?.userRoleId === 1 && <button>Update Vacation</button>}
             </form>
         </div>
     );

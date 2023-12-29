@@ -34,14 +34,14 @@ router.delete("/vacations/:vacationUUID", async (request: Request, response: Res
         next(err);
     }
 });
-router.put("/vacations/:vacationUUID)", async (request: Request, response: Response, next: NextFunction) => {
+router.put("/vacations/:vacationUUID", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        request.body.vacationUUID = +request.params.vacationUUID;
+        request.body.vacationUUID = request.params.vacationUUID;
         request.body.vacationUploadedImage = request.files?.vacationUploadedImage;
 
         const vacation = new VacationModel(request.body);
-        const updatedVacation = await vacationServices.editVacation(vacation);
-        response.json(updatedVacation);
+        await vacationServices.editVacation(vacation);
+        response.json([]);
 
     } catch (err: any) {
         next(err);

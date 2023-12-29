@@ -114,11 +114,12 @@ class VacationServices {
             vacation.vacationEndDate,
             vacation.vacationPrice,
             imageName,
-            vacation.vacationUUID,
+            vacation.vacationUUID
         ]);
+            
 
         // if id is invalid:
-        if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationId);
+        if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationUUID);
 
         // update image url
         vacation.vacationImageUrl = appConfig.appHost + "/api/vacations/" + imageName;
