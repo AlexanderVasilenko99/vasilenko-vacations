@@ -5,6 +5,7 @@ class AppConfig {
     public readonly vacationsRoute: string = "/vacations/";
     public readonly addVacationRoute: string = "/vacations/new";
     public readonly aboutRoute: string = "/about/";
+    public readonly reportsRoute: string = "/reports/";
     public readonly userRoute: string = "/users/";
 
     // public readonly addVacationRoute: string = this.vacationsRoute + "new/"

@@ -1,6 +1,7 @@
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import BeachAccessOutlinedIcon from '@mui/icons-material/BeachAccessOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
-import BeachAccessOutlinedIcon from '@mui/icons-material/BeachAccessOutlined';
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import site_logo from "../../Assets/Images/UtilityImages/vasilenko_vacations_logo.png";
@@ -24,9 +25,10 @@ function NavbarArea(): JSX.Element {
     const vacationsSubNavItems: SubNavItem[] = authStore.getState().user?.userRoleId === 1 ? [
         new SubNavItem('All Vacations', appConfig.vacationsRoute),
         new SubNavItem('Add Vacation', appConfig.addVacationRoute)] : [new SubNavItem('All Vacations', appConfig.vacationsRoute)];
-        
+
     const [identificationSubNavItems, setIdentificationSubNavItems] = useState<SubNavItem[]>(preIdentificationSubNavItems);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -47,11 +49,14 @@ function NavbarArea(): JSX.Element {
 
         if (authStore.getState().token) {
             setIsLoggedIn(true);
+            const roleId = authStore.getState().user?.userRoleId;
+            if (roleId === 1) setIsAdmin(true);
             setIdentificationSubNavItems(postIdentificationSubNavItems);
         }
         const unsubscribe = authStore.subscribe(() => {
             setIdentificationSubNavItems(postIdentificationSubNavItems);
             setIsLoggedIn(true);
+            setIsAdmin(false)
         });
 
         return unsubscribe;
@@ -71,6 +76,10 @@ function NavbarArea(): JSX.Element {
                         itemText='Vacations' itemDestinationPagePath={appConfig.vacationsRoute}
                         subNavItems={vacationsSubNavItems}
                         itemSvgComponent={<BeachAccessOutlinedIcon />}
+                    />}
+                    {isAdmin && <NavbarItem
+                        itemText='Reports' itemDestinationPagePath={appConfig.reportsRoute}
+                        itemSvgComponent={<AssessmentOutlinedIcon />}
                     />}
                     <NavbarItem
                         itemText='About' itemDestinationPagePath={appConfig.aboutRoute}
