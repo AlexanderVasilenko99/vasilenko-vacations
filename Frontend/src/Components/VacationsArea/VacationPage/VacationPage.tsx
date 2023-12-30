@@ -29,6 +29,9 @@ function VacationPage(): JSX.Element {
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
+                // setValue("vacationStartDate", sDay);
+                // setValue("vacationEndDate", vacation.vacationEndDate);
+
                 // setValue("stock", product.stock);
                 // setValue("imageUrl", product.imageUrl);
                 // setImgSrc(appConfig.productsUrl + `images/${product.imageUrl}`)
@@ -69,6 +72,8 @@ function VacationPage(): JSX.Element {
                 <label>Vacation City: </label><input type="text" {...register("vacationCity")} required />
                 <label>Vacation Description: </label><input type="text" {...register("vacationDescription")} required />
                 <label>Vacation Price: </label><input type="number" {...register("vacationPrice")} required />
+                <label>Vacation Start Date: </label><input type="date" {...register("vacationStartDate")} required />
+                <label>Vacation End Date: </label><input type="date" {...register("vacationEndDate")} required />
 
                 {/* <label>Product image: </label><input type="file" {...register("image")} accept="image/*" onChange={handleChange} /> */}
                 <div className="imageContainer">
