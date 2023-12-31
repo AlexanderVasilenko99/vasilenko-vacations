@@ -19,7 +19,8 @@ function NavbarArea(): JSX.Element {
         new SubNavItem('Register', appConfig.registerRoute)
     ];
     const postIdentificationSubNavItems: SubNavItem[] = [
-        new SubNavItem(authStore.getState().user?.userFirstName, appConfig.userRoute + authStore.getState().user?.userUUID),
+        new SubNavItem(authStore.getState().user?.userFirstName + " " + authStore.getState().user?.userLastName,
+            appConfig.userRoute + authStore.getState().user?.userUUID),
         new SubNavItem('Logout', "#")
     ]
     const vacationsSubNavItems: SubNavItem[] = authStore.getState().user?.userRoleId === 1 ? [
