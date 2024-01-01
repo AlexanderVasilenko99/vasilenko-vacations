@@ -126,6 +126,9 @@ function VacationsList(): JSX.Element {
             setDisplayedVacationCountries(newVacationCountries)
         }
     }
+    function resetSearchForm(): void {
+        setDisplayedVacations(vacations);
+    }
 
     return (
         <div className="VacationsList">
@@ -135,8 +138,7 @@ function VacationsList(): JSX.Element {
                 <div className="filter-headers">
                     <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
                     <h2 className="reset"
-                    // onClick={() =>setDisplayedVacations(vacations)}
-                    >Reset</h2>
+                        onClick={() => resetSearchForm()}>Reset</h2>
                 </div>
                 <div className="filter-hidden-content">
                     <div className="autocompletes">
