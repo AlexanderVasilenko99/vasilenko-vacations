@@ -1,5 +1,5 @@
 .AddVacation {
-	width: 250px;
+    width: 274px;
     border: 1px solid;
     text-align: left;
     margin: 20px auto;
@@ -7,12 +7,18 @@
     box-shadow: 3px 3px 3px black;
     border-radius: 10px;
 }
+
 .AddVacation input,
-.AddVacation button{
+.AddVacation button {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
-.AddVacation img{
+
+.AddVacation img {
     width: 100%;
+}
+
+.AddVacation textarea {
+    resize: none;
 }

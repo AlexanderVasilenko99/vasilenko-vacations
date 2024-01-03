@@ -51,12 +51,12 @@ function AddProduct(): JSX.Element {
                     required placeholder="Israel" minLength={2} maxLength={100} />
                 <label>Vacation City: </label><input type="text" {...register("vacationCity")}
                     required placeholder="Ra'anana" minLength={2} maxLength={100} />
-                <label>Description: </label><input type="text" {...register("vacationDescription")}
+                <textarea {...register("vacationDescription")} cols={20} rows={7}
                     required minLength={2} maxLength={100} />
                 <label>Start Date: </label><input type="date" {...register("vacationStartDate")}
-                    required min={new Date().getTime()}/>
+                    required min={new Date().getTime()} />
                 <label>End Date: </label><input type="date" {...register("vacationEndDate")}
-                    required min={new Date().getTime()}/>
+                    required min={new Date().getTime()} />
 
                 <label>Price: </label><input type="number" {...register("vacationPrice")}
                     required min={0} max={9999} />
