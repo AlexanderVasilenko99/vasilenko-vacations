@@ -7,7 +7,10 @@
     box-shadow: 3px 3px 3px black;
     border-radius: 10px;
 }
-
+.Admin h1{
+    text-align: left;
+    margin: 20px 0px 20px 175px;
+}
 .Admin input,
 .Admin button {
     width: 100%;
@@ -32,4 +35,26 @@
 
 .Admin h1 a:hover {
     color: #2e6ba0;
+}
+
+.Admin .grid-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    margin: 0px 175px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+    /* border: 1px solid gray; */
+}
+
+.Admin .right,
+.Admin .left {
+    padding: 10px 20px;
+}
+
+.Admin .right {
+    border: 1px solid gray;
+}
+
+.Admin .left {
+    background-color: #1a5785;
+    color: #F6F1F1;
 }

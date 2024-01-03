@@ -65,26 +65,36 @@ function Admin(): JSX.Element {
     return (
         <div className="Admin">
             <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
-            <form onSubmit={handleSubmit(update)}>
-                <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
-                    required minLength={2} maxLength={100} />
-                <label>Vacation City: </label><input type="text" {...register("vacationCity")}
-                    required minLength={2} maxLength={100} />
-                <textarea {...register("vacationDescription")} cols={20} rows={7}
-                    required minLength={2} maxLength={100} />
-                <label>Vacation Price: </label><input type="number" {...register("vacationPrice")}
-                    required min={0} max={9999} />
+            <div className="grid-container">
 
-                <label>Vacation Start Date: </label><input type="date" {...register("vacationStartDate")} required />
-                <label>Vacation End Date: </label><input type="date" {...register("vacationEndDate")} required />
-
-                <label>Vacation image: </label><input type="file" {...register("vacationUploadedImage")}
-                    accept="image/*" onChange={handleImageChange} />
-                <div className="imageContainer">
-                    <img src={imgSrc} />
+                <div className="left">
+                    <h3>Summary</h3>
                 </div>
-                <button>Update Vacation</button>
-            </form>
+
+
+                <div className="right">
+                    <form onSubmit={handleSubmit(update)}>
+                        <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
+                            required minLength={2} maxLength={100} />
+                        <label>Vacation City: </label><input type="text" {...register("vacationCity")}
+                            required minLength={2} maxLength={100} />
+                        <textarea {...register("vacationDescription")} cols={20} rows={7}
+                            required minLength={2} maxLength={100} />
+                        <label>Vacation Price: </label><input type="number" {...register("vacationPrice")}
+                            required min={0} max={9999} />
+
+                        <label>Vacation Start Date: </label><input type="date" {...register("vacationStartDate")} required />
+                        <label>Vacation End Date: </label><input type="date" {...register("vacationEndDate")} required />
+
+                        <label>Vacation image: </label><input type="file" {...register("vacationUploadedImage")}
+                            accept="image/*" onChange={handleImageChange} />
+                        <div className="imageContainer">
+                            <img src={imgSrc} />
+                        </div>
+                        <button>Update Vacation</button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }
