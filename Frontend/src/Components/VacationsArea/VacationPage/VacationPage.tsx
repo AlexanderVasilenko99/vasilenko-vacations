@@ -13,6 +13,14 @@ import Admin from "./Admin/Admin";
 
 function VacationPage(): JSX.Element {
     UseTitle(`Vasilenko Vacations | Vacations`);
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = authStore.getState().token;
+        if (!token) {
+            noti.error("Please login in to view this page");
+            navigate("/login");
+        }
+    }, [])
     // const params = useParams();
     // const uuid = params.uuid;
 

@@ -1,4 +1,4 @@
-.Admin form{
+.Admin form {
     width: 274px;
     border: 1px solid;
     text-align: left;
@@ -15,10 +15,21 @@
     margin-bottom: 20px;
 }
 
-.Admin img {
+.Admin form img {
     width: 100%;
 }
 
 .Admin textarea {
     resize: none;
+}
+
+.Admin h1 a {
+    font-size: 32px;
+    text-decoration: none;
+    color: black;
+    transition: 200ms;
+}
+
+.Admin h1 a:hover {
+    color: #2e6ba0;
 }

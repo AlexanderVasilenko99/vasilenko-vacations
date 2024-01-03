@@ -6,6 +6,8 @@ import noti from "../../../../Services/NotificationService";
 import vacationService from "../../../../Services/VacationService";
 import { useEffect, useState } from "react";
 import appConfig from "../../../../Utils/AppConfig";
+import { NavLink } from "react-router-dom";
+import { authStore } from "../../../../Redux/AuthState";
 
 function Admin(): JSX.Element {
     const params = useParams();
@@ -14,6 +16,15 @@ function Admin(): JSX.Element {
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
     useEffect(() => {
+        const token = authStore.getState().token;
+        if (!token) {
+            noti.error("Please login in to view this page");
+            navigate("/login");
+        }
+        if (authStore.getState().user?.userRoleId === 2) {
+            noti.error("You must be administrator to view this page")
+            navigate(appConfig.loginRoute)
+        }
         vacationService.getOneVacation(uuid)
             .then(vacation => {
                 setValue("vacationCity", vacation.vacationCity);
@@ -53,7 +64,7 @@ function Admin(): JSX.Element {
 
     return (
         <div className="Admin">
-            admin
+            <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
             <form onSubmit={handleSubmit(update)}>
                 <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
                     required minLength={2} maxLength={100} />
