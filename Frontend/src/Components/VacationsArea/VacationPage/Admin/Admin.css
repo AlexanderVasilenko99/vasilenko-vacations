@@ -1,10 +1,5 @@
 .Admin form {
-    width: 274px;
-    border: 1px solid;
     text-align: left;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 3px 3px 3px black;
     border-radius: 10px;
 }
 .Admin h1{

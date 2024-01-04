@@ -74,19 +74,19 @@ function Admin(): JSX.Element {
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
-                        <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
+                        <h3>Vacation Country: </h3><input type="text" {...register("vacationCountry")}
                             required minLength={2} maxLength={100} />
-                        <label>Vacation City: </label><input type="text" {...register("vacationCity")}
+                        <h3>Vacation City: </h3><input type="text" {...register("vacationCity")}
                             required minLength={2} maxLength={100} />
                         <textarea {...register("vacationDescription")} cols={20} rows={7}
                             required minLength={2} maxLength={100} />
-                        <label>Vacation Price: </label><input type="number" {...register("vacationPrice")}
+                        <h3>Vacation Price: </h3><input type="number" {...register("vacationPrice")}
                             required min={0} max={9999} />
 
-                        <label>Vacation Start Date: </label><input type="date" {...register("vacationStartDate")} required />
-                        <label>Vacation End Date: </label><input type="date" {...register("vacationEndDate")} required />
+                        <h3>Vacation Start Date: </h3><input type="date" {...register("vacationStartDate")} required />
+                        <h3>Vacation End Date: </h3><input type="date" {...register("vacationEndDate")} required />
 
-                        <label>Vacation image: </label><input type="file" {...register("vacationUploadedImage")}
+                        <h3>Vacation image: </h3><input type="file" {...register("vacationUploadedImage")}
                             accept="image/*" onChange={handleImageChange} />
                         <div className="imageContainer">
                             <img src={imgSrc} />
