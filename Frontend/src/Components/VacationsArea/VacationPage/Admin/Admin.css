@@ -49,7 +49,11 @@
     border: 1px solid gray;
 }
 
-.Admin .left {
+.Admin .left{
     background-color: #1a5785;
     color: #F6F1F1;
+}
+.Admin .left div{
+    position: sticky;
+    top: 85px;
 }

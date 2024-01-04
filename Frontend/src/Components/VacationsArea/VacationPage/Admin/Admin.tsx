@@ -68,7 +68,9 @@ function Admin(): JSX.Element {
             <div className="grid-container">
 
                 <div className="left">
-                    <h3>Summary</h3>
+                    <div>
+                        <h3>Summary</h3>
+                    </div>
                 </div>
 
 
