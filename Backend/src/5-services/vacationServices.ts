@@ -29,12 +29,11 @@ class VacationServices {
     }
     public async getExistingVacationImageName(vacationUUID: string): Promise<string> {
         const sql = 'SELECT vacationImageName from vacations WHERE vacationUUID = ?'
-        const info: OkPacket = await dal.execute(sql, [vacationUUID]);
-
-        const vacation = info[0];
-        if (!vacation) return "";
-        const existingImageName = vacation.VacationImageName;
-        return existingImageName;
+        const info = await dal.execute(sql, [vacationUUID]);
+        console.log(info);
+        const imageName = info[0].vacationImageName;
+        if (!imageName) return "";
+        return imageName;
     }
     public async getExistingVacationImagePath(vacationUUID: string): Promise<string> {
         const sql = 'SELECT VacationImageName from vacations WHERE vacationUUID = ?'
@@ -88,7 +87,7 @@ class VacationServices {
     }
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.editVacationValidate();
-
+        
         const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
         // update image if exists and get existing or updated imagename
@@ -116,7 +115,7 @@ class VacationServices {
             imageName,
             vacation.vacationUUID
         ]);
-            
+
 
         // if id is invalid:
         if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationUUID);
@@ -127,6 +126,8 @@ class VacationServices {
         // delete uploaded file from returned file
         delete vacation.vacationUploadedImage;
 
+        console.log("vacation after backend service update: " + vacation);
+        
         return vacation;
     }
     public async followVacation(userUUID: string, vacationUUID: string): Promise<void> {

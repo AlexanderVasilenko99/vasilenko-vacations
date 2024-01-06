@@ -99,11 +99,13 @@ class VacationService {
             }
         }
         const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.vacationUUID, vacation, options);
-        const updatedVacation = response.data;
-
+        
+        const updatedVacation:VacationModel = response.data;
+        
         const action = {type: VacationsActionTypes.UpdateVacation, payload:updatedVacation}
         vacationsStore.dispatch(action);
-
+        
+        console.log("response data: " + updatedVacation);
         return updatedVacation;
     }
 

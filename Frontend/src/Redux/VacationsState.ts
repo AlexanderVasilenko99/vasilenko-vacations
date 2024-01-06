@@ -38,8 +38,13 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
             newState.vacations = newState.vacations.filter(v => v.vacationUUID !== action.payload); // works like a charm 
             break;
         case VacationsActionTypes.UpdateVacation:
-            const idForUpdate = newState.vacations.findIndex(v => v.vacationUUID === action.payload);
-            newState.vacations.splice(idForUpdate, 1, action.payload);
+            const vacation: VacationModel = action.payload;
+            console.log("VACATION: " + vacation);
+
+            console.log("actionPayload: " + vacation);
+            const idForUpdate = newState.vacations.findIndex(v => v.vacationUUID === vacation.vacationUUID);
+            console.log("idForUpdate: " + idForUpdate);
+            newState.vacations.splice(idForUpdate, 1, vacation);
             break;
 
 

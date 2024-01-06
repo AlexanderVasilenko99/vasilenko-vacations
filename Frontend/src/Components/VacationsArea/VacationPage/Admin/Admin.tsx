@@ -15,6 +15,18 @@ function Admin(): JSX.Element {
     const [imgSrc, setImgSrc] = useState<string>("");
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
+
+
+    // const dateParser = (date: Date | string): string => {
+    //     const initialDate = new Date(date);
+    //     const day = initialDate.getDate();
+    //     const month = initialDate.getMonth() + 1;
+    //     const year = initialDate.getFullYear();
+    //     return `${year}-${month < 9 ? '0' : ''}${month}-${day < 9 ? '0' : ''
+    //         }${day}`;
+    // };
+    const [imageName, setImageName] = useState<string>("");
+
     useEffect(() => {
         const token = authStore.getState().token;
         if (!token) {
@@ -31,14 +43,15 @@ function Admin(): JSX.Element {
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
-                // setValue("vacationStartDate", sDay);
+                setImgSrc(vacation.vacationImageUrl)
+                setImageName(vacation.vacationImageName)
+                // setValue("vacationStartDate", new Date(vacation.vacationStartDate).toISOString().substring(0, 10));
                 // setValue("vacationEndDate", vacation.vacationEndDate);
 
-                // setValue("stock", product.stock);
-                // setValue("imageUrl", product.imageUrl);
-                setImgSrc(vacation.vacationImageUrl)
-                // console.log(vacation);
+                // setValue('vacationStartDate', vacation.vacationStartDate);
+                // setValue('vacationEndDate', vacation.vacationEndDate);
 
+                // setValue("imageUrl", product.imageUrl);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -52,13 +65,16 @@ function Admin(): JSX.Element {
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
+            vacation.vacationImageName = imageName;
+
             vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
             vacation.vacationUUID = uuid;
-            noti.success("The vacation has been updated successfully!");
             await vacationService.updateVacation(vacation);
+            noti.success("The vacation has been updated successfully!");
+            navigate(appConfig.vacationsRoute)
 
         } catch (err: any) {
-            console.log(err);
+            noti.error(err);
         }
     }
 
@@ -76,22 +92,33 @@ function Admin(): JSX.Element {
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
-                        <h3>Vacation Country: </h3><input type="text" {...register("vacationCountry")}
+                        <h3>Vacation Country: </h3>
+                        <input type="text" {...register("vacationCountry")}
                             required minLength={2} maxLength={100} />
-                        <h3>Vacation City: </h3><input type="text" {...register("vacationCity")}
+
+                        <h3>Vacation City: </h3>
+                        <input type="text" {...register("vacationCity")}
                             required minLength={2} maxLength={100} />
 
                         <h3>Vacation Description: </h3>
                         <textarea {...register("vacationDescription")} rows={7}
                             required minLength={2} maxLength={100} />
-                        <h3>Vacation Price: </h3><input type="number" {...register("vacationPrice")}
-                            required min={0} max={9999} />
+
+                        <h3>Vacation Price: </h3><input type="number"
+                            {...register("vacationPrice")} required min={0} max={9999} />
+
                         <div className="dates-container">
                             <div className="startDate">
-                                <h3>Vacation Start Date: </h3><input type="date" {...register("vacationStartDate")} required />
+                                <h3>Vacation Start Date: </h3>
+                                <input type="date"
+                                    {...register("vacationStartDate", { valueAsDate: true })}
+                                    required />
                             </div>
                             <div className="endDate">
-                                <h3>Vacation End Date: </h3><input type="date" {...register("vacationEndDate")} required />
+                                <h3>Vacation End Date: </h3>
+                                <input type="date"
+                                    {...register("vacationEndDate", { valueAsDate: true })}
+                                    required />
                             </div>
                         </div>
                         <div className="image-section-container">

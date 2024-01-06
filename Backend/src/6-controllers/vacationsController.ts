@@ -40,8 +40,10 @@ router.put("/vacations/:vacationUUID", async (request: Request, response: Respon
         request.body.vacationUploadedImage = request.files?.vacationUploadedImage;
 
         const vacation = new VacationModel(request.body);
-        await vacationServices.editVacation(vacation);
-        response.json([]);
+        const updatedVacation:VacationModel = await vacationServices.editVacation(vacation);
+        console.log("updated vacation: " + updatedVacation);
+        
+        response.json(updatedVacation);
 
     } catch (err: any) {
         next(err);
