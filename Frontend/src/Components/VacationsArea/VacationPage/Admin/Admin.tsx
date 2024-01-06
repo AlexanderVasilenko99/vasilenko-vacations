@@ -80,20 +80,30 @@ function Admin(): JSX.Element {
                             required minLength={2} maxLength={100} />
                         <h3>Vacation City: </h3><input type="text" {...register("vacationCity")}
                             required minLength={2} maxLength={100} />
-                        <textarea {...register("vacationDescription")} cols={20} rows={7}
+
+                        <h3>Vacation Description: </h3>
+                        <textarea {...register("vacationDescription")} rows={7}
                             required minLength={2} maxLength={100} />
                         <h3>Vacation Price: </h3><input type="number" {...register("vacationPrice")}
                             required min={0} max={9999} />
-
-                        <h3>Vacation Start Date: </h3><input type="date" {...register("vacationStartDate")} required />
-                        <h3>Vacation End Date: </h3><input type="date" {...register("vacationEndDate")} required />
-
-                        <h3>Vacation image: </h3><input type="file" {...register("vacationUploadedImage")}
-                            accept="image/*" onChange={handleImageChange} />
+                        <div className="dates-container">
+                            <div className="startDate">
+                                <h3>Vacation Start Date: </h3><input type="date" {...register("vacationStartDate")} required />
+                            </div>
+                            <div className="endDate">
+                                <h3>Vacation End Date: </h3><input type="date" {...register("vacationEndDate")} required />
+                            </div>
+                        </div>
+                        <div className="image-section-container">
+                            <h3>Vacation image: </h3><input className="imageInput" type="file" {...register("vacationUploadedImage")}
+                                accept="image/*" onChange={handleImageChange} />
+                        </div>
                         <div className="imageContainer">
                             <img src={imgSrc} />
                         </div>
-                        <button>Update Vacation</button>
+                        <div className="button-container">
+                            <button>Update Vacation</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -2,24 +2,56 @@
     text-align: left;
     border-radius: 10px;
 }
-.Admin h1{
+
+.Admin h1 {
     text-align: left;
     margin: 20px 0px 20px 175px;
 }
+
 .Admin input,
 .Admin button {
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px;
+}
+
+.Admin .button-container {
+    margin: 30px;
+    text-align: center;
+}
+
+.Admin button {
+    width: 400px;
+    height: 50px;
+    border-radius: 12px;
+}
+
+.Admin .imageInput {
+    width: 280px;
+}
+.Admin .image-section-container h3{
+    margin: 0;
+}
+.Admin .image-section-container {
+    margin-top: 20px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.Admin .imageContainer {
+    display: flex;
+    justify-content: center;
 }
 
 .Admin form img {
-    width: 100%;
+    width: 50%;
+    margin-top: 20px;
+    border: 2px solid #1a5785;
+    border-radius: 12px;
 }
 
-.Admin textarea {
-    resize: none;
-}
 
 .Admin h1 a {
     font-size: 32px;
@@ -49,14 +81,40 @@
     border: 1px solid gray;
 }
 
-.Admin .left{
+.Admin .left {
     background-color: #1a5785;
     color: #F6F1F1;
 }
-.Admin .left div{
+
+.Admin .left div {
     position: sticky;
     top: 85px;
 }
+
+.Admin textarea {
+    resize: none;
+    width: 100%;
+    height: fit-content;
+}
+
+.Admin .dates-container {
+    display: flex;
+    justify-content: center;
+}
+
+.Admin .startDate,
+.Admin .endDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 30px;
+    width: 300px;
+}
+
+.Admin h3 {
+    margin-bottom: 5px;
+}
+
 /* .Admin input,
 .Admin textarea{
     background-color: transparent;
