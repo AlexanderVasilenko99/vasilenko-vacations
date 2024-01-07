@@ -92,20 +92,15 @@ class VacationService {
     }
 
     public async updateVacation(vacation: VacationModel): Promise<VacationModel> {
-        
-        const options = {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        }
+
+        const options = { headers: { "Content-Type": "multipart/form-data" } }
         const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.vacationUUID, vacation, options);
-        
-        const updatedVacation:VacationModel = response.data;
-        
-        const action = {type: VacationsActionTypes.UpdateVacation, payload:updatedVacation}
+
+        const updatedVacation: VacationModel = response.data;
+
+        const action = { type: VacationsActionTypes.UpdateVacation, payload: updatedVacation }
         vacationsStore.dispatch(action);
-        
-        console.log("response data: " + updatedVacation);
+
         return updatedVacation;
     }
 

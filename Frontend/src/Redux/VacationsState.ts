@@ -39,14 +39,9 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
             break;
         case VacationsActionTypes.UpdateVacation:
             const vacation: VacationModel = action.payload;
-            console.log("VACATION: " + vacation);
-
-            console.log("actionPayload: " + vacation);
             const idForUpdate = newState.vacations.findIndex(v => v.vacationUUID === vacation.vacationUUID);
-            console.log("idForUpdate: " + idForUpdate);
             newState.vacations.splice(idForUpdate, 1, vacation);
             break;
-
 
         case VacationsActionTypes.FollowVacation:
 
@@ -61,7 +56,6 @@ function vacationsReducer(currentState = new VacationState(), action: VacationsA
             unfollowedVacation.vacationFollowersCount -= 1;
             newState.vacations[idForUnfollow].vacationIsFollowing = 0;
             break;
-
 
         case VacationsActionTypes.ClearAll:
             newState.vacations = [];

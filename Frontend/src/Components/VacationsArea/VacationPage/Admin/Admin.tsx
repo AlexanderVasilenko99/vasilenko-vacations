@@ -25,7 +25,8 @@ function Admin(): JSX.Element {
     //     return `${year}-${month < 9 ? '0' : ''}${month}-${day < 9 ? '0' : ''
     //         }${day}`;
     // };
-    const [imageName, setImageName] = useState<string>("");
+    // const [imageName, setImageName] = useState<string>("");
+    const [v, setV] = useState<VacationModel>();
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -39,12 +40,13 @@ function Admin(): JSX.Element {
         }
         vacationService.getOneVacation(uuid)
             .then(vacation => {
+                setV(vacation);
                 setValue("vacationCity", vacation.vacationCity);
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
                 setImgSrc(vacation.vacationImageUrl)
-                setImageName(vacation.vacationImageName)
+                // setImageName(vacation.vacationImageName)
                 // setValue("vacationStartDate", new Date(vacation.vacationStartDate).toISOString().substring(0, 10));
                 // setValue("vacationEndDate", vacation.vacationEndDate);
 
@@ -65,13 +67,14 @@ function Admin(): JSX.Element {
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
-            vacation.vacationImageName = imageName;
+            vacation.vacationImageName = v.vacationImageName;
+            vacation.vacationImageUrl = v.vacationImageUrl;
 
             vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
             vacation.vacationUUID = uuid;
             await vacationService.updateVacation(vacation);
             noti.success("The vacation has been updated successfully!");
-            navigate(appConfig.vacationsRoute)
+            navigate(appConfig.vacationsRoute);
 
         } catch (err: any) {
             noti.error(err);
@@ -122,8 +125,9 @@ function Admin(): JSX.Element {
                             </div>
                         </div>
                         <div className="image-section-container">
-                            <h3>Vacation image: </h3><input className="imageInput" type="file" {...register("vacationUploadedImage")}
-                                accept="image/*" onChange={handleImageChange} />
+                            <h3>Vacation image: </h3>
+                            <input className="imageInput" type="file" accept="image/*"
+                                {...register("vacationUploadedImage")} onChange={handleImageChange} />
                         </div>
                         <div className="imageContainer">
                             <img src={imgSrc} />

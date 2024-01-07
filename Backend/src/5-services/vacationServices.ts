@@ -90,7 +90,6 @@ class VacationServices {
         
         const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
-        // update image if exists and get existing or updated imagename
         const imageName = vacation.vacationUploadedImage ? await fileSaver.update(
             existingImageName, vacation.vacationUploadedImage) : existingImageName;
 
@@ -104,7 +103,6 @@ class VacationServices {
                     vacationImageName = ?
                     WHERE vacationUUID = ?;`
 
-        // update db with new product
         const info: OkPacket = await dal.execute(sql, [
             vacation.vacationCountry,
             vacation.vacationCity,
@@ -116,17 +114,11 @@ class VacationServices {
             vacation.vacationUUID
         ]);
 
-
-        // if id is invalid:
         if (info.affectedRows === 0) throw new ResourceNotFound(vacation.vacationUUID);
 
-        // update image url
-        vacation.vacationImageUrl = appConfig.appHost + "/api/vacations/" + imageName;
+        vacation.vacationImageUrl = appConfig.appHost + "/api/vacations-image/" + imageName;
 
-        // delete uploaded file from returned file
         delete vacation.vacationUploadedImage;
-
-        console.log("vacation after backend service update: " + vacation);
         
         return vacation;
     }
