@@ -9,31 +9,32 @@ import { OkPacket } from 'mysql';
 import cyber from '../2-utils/cyber';
 import dal from '../2-utils/dal';
 import CredentialsModel from '../3-models/credentials-model';
-import { Unauthorized } from '../3-models/error-models';
+import { EmailTaken, Unauthorized } from '../3-models/error-models';
 import RoleModel from '../3-models/role-model';
 import UserModel from '../3-models/user-model';
 import { randomUUID } from 'crypto';
 class AuthService {
+    private async isEmailTaken(email: string): Promise<boolean> {
+        const sql = "SELECT userUUID,userFirstName,userLastName,userEmail FROM users WHERE userEmail = ?"
+        const info: OkPacket = await dal.execute(sql, [email]);
+
+        if (info[0]) return true;
+        return false;
+    }
+
     public async register(user: UserModel): Promise<string> {
-        console.log(user);
 
-        // Validate:
-        // User.validate from model:
+        user.addUserValidate();
 
-        // Is UserName taken:
-        // if...
+        if (await this.isEmailTaken(user.userEmail)) throw new EmailTaken("This email is taken!");
 
-        // Declare user as regular user:
         user.userRoleId = RoleModel.User;
         user.userUUID = randomUUID();
 
-        // hash user password
         user.userPassword = cyber.hashPassword(user.userPassword);
 
-
-        // Create sql:
         const sql = `INSERT INTO users VALUES(?,?,?,?,?,?,?)`;
-        //save user:
+
         const info: OkPacket = await dal.execute(sql, ['DEFAULT',
             user.userUUID,
             user.userFirstName,
@@ -41,13 +42,9 @@ class AuthService {
             user.userEmail,
             user.userPassword, user.userRoleId]);
 
-        // Add id to user
-        // user.userId = info.insertId
-
         delete user.userPassword;
         delete user.userId;
-        
-        // Create token for user:
+
         const token = cyber.getNewToken(user);
 
         return token;

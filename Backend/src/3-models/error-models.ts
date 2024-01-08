@@ -28,6 +28,11 @@ export class Validation extends BaseError {
     }
 }
 
+export class EmailTaken extends BaseError {
+    public constructor(message: string) {
+        super(StatusCode.Conflict, message);
+    }
+}
 export class Unauthorized extends BaseError {
     public constructor(message: string) {
         super(StatusCode.Unauthorized, message);
