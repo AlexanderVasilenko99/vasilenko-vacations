@@ -13,6 +13,7 @@ import "./AddVacation.css";
 function AddProduct(): JSX.Element {
     const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
+    const [minDate, setMinDate] = useState<string>('');
 
     useEffect(() => {
         if (authStore.getState().user?.userRoleId !== 1) {
@@ -49,14 +50,19 @@ function AddProduct(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
                 <label>Vacation Country: </label><input type="text" {...register("vacationCountry")}
                     required placeholder="Israel" minLength={2} maxLength={100} />
+
                 <label>Vacation City: </label><input type="text" {...register("vacationCity")}
                     required placeholder="Ra'anana" minLength={2} maxLength={100} />
+
                 <textarea {...register("vacationDescription")} cols={20} rows={7}
                     required minLength={2} maxLength={100} />
+
                 <label>Start Date: </label><input type="date" {...register("vacationStartDate")}
-                    required min={new Date().getTime()} />
+                    required min={new Date().toJSON().slice(0, 10)}
+                    onChange={(e) => { setMinDate(e.target.value) }} />
+
                 <label>End Date: </label><input type="date" {...register("vacationEndDate")}
-                    required min={new Date().getTime()} />
+                    required min={minDate} />
 
                 <label>Price: </label><input type="number" {...register("vacationPrice")}
                     required min={0} max={9999} />
