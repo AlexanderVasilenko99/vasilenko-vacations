@@ -14,9 +14,11 @@
     border: 1px solid #1a5785;
     border-radius: 4px;
 }
-.Admin input:focus {
-     background-color: #2e6ba0;
-     color: #F6F1F1;
+
+.Admin input:focus,
+.Admin textarea:focus {
+    background-color: #2e6ba0;
+    color: #F6F1F1;
 }
 
 .Admin .button-container {

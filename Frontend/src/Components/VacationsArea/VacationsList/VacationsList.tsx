@@ -53,12 +53,14 @@ function VacationsList(): JSX.Element {
             const arr: VacationModel[] = vacationsStore.getState().vacations;
             setVacations(arr);
             setDisplayedVacations(arr);
-            setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
+            setVacationsAndVacationCountriesForDisplay("no timeframe", "no country");
         });
+
 
 
         vacationService.getAllVacations()
             .then(v => {
+
                 setVacations(v);
                 setDisplayedVacations(v);
 
