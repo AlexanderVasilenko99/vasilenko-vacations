@@ -1,3 +1,9 @@
 .ReportsArea {
 	
 }
+.ReportsArea canvas{
+}
+.ReportsArea .canvas-container{
+    width: 70%;
+    margin: auto;
+}

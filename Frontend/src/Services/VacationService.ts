@@ -11,7 +11,8 @@ class VacationService {
         let vacations = vacationsStore.getState().vacations;
 
         if (vacations.length === 0) {
-            const userUUID = authStore.getState().user.userUUID;
+            const userUUID = authStore.getState().user?.userUUID;
+            if (!userUUID) throw new Error("No user uuid was provided");
 
             const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl + userUUID);
             vacations = response.data;
