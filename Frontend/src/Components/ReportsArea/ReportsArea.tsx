@@ -16,6 +16,7 @@ import noti from "../../Services/NotificationService";
 import vacationService from "../../Services/VacationService";
 import UseTitle from "../../Utils/UseTitle";
 import "./ReportsArea.css";
+import { CSVLink, CSVDownload } from "react-csv";
 
 ChartJS.register(
     CategoryScale,
@@ -29,6 +30,7 @@ ChartJS.register(
 let labels: string[] = [];
 let followersCount: string[] = [];
 let x: VacationModel[] = [];
+let csvData = [["vacation destination", "number of followers"]];
 
 function ReportsArea(): JSX.Element {
     const navigate = useNavigate();
@@ -54,6 +56,8 @@ function ReportsArea(): JSX.Element {
                     v.forEach(vacation => {
                         labels.push(`${vacation.vacationCountry} - ${vacation.vacationCity}`);
                         followersCount.push(vacation.vacationFollowersCount.toString());
+                        csvData.push([`${vacation.vacationCountry} - ${vacation.vacationCity}`,
+                        vacation.vacationFollowersCount.toString()])
                         setVacations(v);
                     });
                 })
@@ -78,6 +82,9 @@ function ReportsArea(): JSX.Element {
                     }],
                 }} />
             </div>
+
+
+            <CSVLink data={csvData}>Download csv</CSVLink>
         </div>
     );
 }
