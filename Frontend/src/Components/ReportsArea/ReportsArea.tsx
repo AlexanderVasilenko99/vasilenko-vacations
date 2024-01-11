@@ -17,6 +17,7 @@ import vacationService from "../../Services/VacationService";
 import UseTitle from "../../Utils/UseTitle";
 import "./ReportsArea.css";
 import { CSVLink, CSVDownload } from "react-csv";
+import Header from '../Common/header/header';
 
 ChartJS.register(
     CategoryScale,
@@ -67,6 +68,7 @@ function ReportsArea(): JSX.Element {
 
     return (
         <div className="ReportsArea">
+            <Header {...{title: "Browse Reports"}} />
             <div className="canvas-container">
                 <Bar options={{
                     responsive: true,

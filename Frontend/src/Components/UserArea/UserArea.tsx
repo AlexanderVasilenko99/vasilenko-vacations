@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import "./UserArea.css";
 import { useEffect } from "react";
 import UseTitle from "../../Utils/UseTitle";
+import Header from "../Common/header/header";
 
 function UserArea(): JSX.Element {
     const params = useParams();
@@ -14,7 +15,7 @@ function UserArea(): JSX.Element {
 
     return (
         <div className="UserArea">
-            <h1>User Area of user: {params.uuid}</h1>
+            <Header {...{ title: `Hi ${params.uuid}!` }} />
         </div>
     );
 }

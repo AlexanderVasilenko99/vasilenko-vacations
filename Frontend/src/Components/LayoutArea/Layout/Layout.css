@@ -8,6 +8,9 @@
 .Layout *{
   font-size: 22px;
 }
+.Layout h1{
+  font-size: 32px;
+}
 .Layout nav,
 .Layout main,
 .Layout footer{

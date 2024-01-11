@@ -10,6 +10,7 @@ import UseTitle from "../../../Utils/UseTitle";
 import { Autocomplete, Box, Slider, TextField } from '@mui/material';
 import { vacationsStore } from "../../../Redux/VacationsState";
 import { createStore } from "redux";
+import Header from "../../Common/header/header";
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -134,7 +135,7 @@ function VacationsList(): JSX.Element {
 
     return (
         <div className="VacationsList">
-            <h1>Browse All</h1>
+            <Header {...{title: "Browse Vacations"}} />
             <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations?.length} results</span></h2>
             <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
