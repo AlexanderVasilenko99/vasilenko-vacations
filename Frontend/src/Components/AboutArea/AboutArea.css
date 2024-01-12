@@ -25,7 +25,7 @@
 .AboutArea .profile-pic {
     width: 400px;
     border-radius: 50%;
-    /* border: 2px solid #952323; */
+    /* border: 2px solid #1a5785; */
     margin: 25px 0px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -42,12 +42,13 @@
 }
 
 .AboutArea h3 span {
-    color: #952323;
+    color: #1a5785;
+    font-size: 36px;
 }
 
 .AboutArea h4 {
     letter-spacing: 2px;
-    color: #952323;
+    color: #1a5785;
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 40px;
@@ -110,8 +111,8 @@
     text-shadow: 0;
     width: 13px;
     height: 13px;
-    border-bottom: 3px solid #952323;
-    border-right: 3px solid #952323;
+    border-bottom: 3px solid #1a5785;
+    border-right: 3px solid #1a5785;
     z-index: 9;
     left: 50%;
     -webkit-transform: translate(-50%, 0%) rotate(45deg);
