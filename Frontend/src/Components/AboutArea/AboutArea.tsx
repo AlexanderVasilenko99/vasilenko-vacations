@@ -68,7 +68,7 @@ function AboutArea(): JSX.Element {
                     )}
                     <Tooltip title="My CV" arrow>
                         <NavLink to="#"// download={myCV}
-                         target="_blank">
+                            target="_blank">
                             <img className="icon" src={require(`../../Assets/Images/UtilityImages/cv.png`)} />
                         </NavLink>
                     </Tooltip>
@@ -99,15 +99,26 @@ function AboutArea(): JSX.Element {
                     </p>
                 </div>
                 <div>
-                    <h1>About This Project</h1>
-                    <p><span>Vasilenko Car Rental</span> is my first original project I wrote for fun and in order to practice recently
-                        learned skills and wishfully learn new ones in the process - which I successfully have.<br /><br />
-                        This website vas written in <span>ReactTS</span> with great emphasis on self written code. One can very rarely
-                        see the use of external libraries in this project, especially regarding the styling and behavior of components.
-                        I have however used very popular libraries such as <span>Redux, React-Router, and Axios</span> to achieve it's
-                        functionality.<br /><br />In this project I put effort into 'clean' coding without repetition of code, object
-                        oriented programming, correct file structuring and responsiveness.<br /><br />As of December 2023, the website
-                        is still work in progress🙂</p>
+                    <h1>About This Project</h1><p>
+
+                        <span>Vasilenko Vacations</span> is my first full-scale full stack project and my third and final project as part
+                        of my studies at John Bryce to become a full stack web developer.<br />The project
+
+                        <br /><br /><span>Frontend - </span>
+                        the client side was written in <span>ReactTS</span> with great emphasis on self written code. One can very rarely
+                        see the use of external UI/UX libraries in this project. I have however used very popular frontend libraries such
+                        as <span> Redux, React-Router, and Axios</span> to achieve it's functionality.<br />In this project I put much
+                        effort into 'clean' coding aiming to avoid unnecessary repetition of code and put emphasis on object oriented
+                        programming, correct file structuring and responsiveness to name a few.
+                        <br /><br /><span>Backend - </span>the server side was written in <span>NodeJS</span> with the use of <span>express
+                        </span>
+
+
+
+                        <br /><br /><span>Database - </span> the DB is relational and managed via <span>MySQL.</span> It contains multiple
+                        tables that are interconnected in one-one, one-many, and many-many relationships.
+
+                        <br /><br />As of January 2024, the website is still work in progress🙂</p>
                 </div>
             </div>
             {/* <a href="This is my CV" download={cvFile}>CV</a> */}
