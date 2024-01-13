@@ -111,7 +111,7 @@ function AboutArea(): JSX.Element {
                         effort into 'clean' coding aiming to avoid unnecessary repetition of code and put emphasis on object oriented
                         programming, correct file structuring and responsiveness to name a few.
                         <br /><br /><span>Backend - </span>the server side was written in <span>NodeJS</span> with the use of <span>express
-                        </span>
+                        </span> and structured according to best practice  
 
 
 
