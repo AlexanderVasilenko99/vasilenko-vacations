@@ -1,3 +1,9 @@
+@font-face {
+  font-family: GlacialIndifference;
+  /* src: url(glacial-indifference.regular.otf); */
+  src: url("../../../Assets/Fonts/glacial-indifference.regular.otf") format("opentype");
+}
+
 .Layout {
   height: fit-content;
   display: grid;
@@ -5,22 +11,28 @@
   grid-template-columns: repeat(6, 1fr);
   background-color: #F6F1F1;
 }
-.Layout *{
+
+.Layout * {
   font-size: 22px;
+  font-family: GlacialIndifference;
 }
-.Layout h1{
+
+.Layout h1 {
   font-size: 32px;
 }
+
 .Layout nav,
 .Layout main,
-.Layout footer{
+.Layout footer {
   grid-column: span 6;
 }
-.Layout nav{
+
+.Layout nav {
   width: 100%;
   position: fixed;
   z-index: 9;
 }
-.Layout main{
+
+.Layout main {
   margin-top: 75px;
 }
