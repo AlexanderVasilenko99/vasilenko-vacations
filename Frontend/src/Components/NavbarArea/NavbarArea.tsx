@@ -4,7 +4,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import site_logo from "../../Assets/Images/UtilityImages/vasilenko_vacations_logo.png";
+import site_logo from "../../Assets/Images/UtilityImages/project-logo.png";
 import { SubNavItem } from "../../Models/SubNavItem";
 import { authStore } from "../../Redux/AuthState";
 import authService from "../../Services/AuthService";
