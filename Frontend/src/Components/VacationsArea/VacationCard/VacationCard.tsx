@@ -8,7 +8,6 @@ import DeleteButton from './DeleteButton/DeleteButton';
 import EditButton from './EditButton/EditButton';
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
-import { vacationsStore } from '../../../Redux/VacationsState';
 import Followers from './Followers/Followers';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
@@ -36,18 +35,21 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                 {authStore.getState().user.userRoleId === 1 && <EditButton {...vacation} />}
                 {authStore.getState().user.userRoleId === 1 && <DeleteButton {...vacation} />}
             </div>
-            <div>
+            <div className='image-container'>
                 <img src={vacation.vacationImageUrl} className='vacation-image' />
             </div>
             <div className="card-text-container">
                 <div className="country-dates-container">
                     <div className="country-container">
                         <img src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
-                        {vacation.vacationCountry}
+                        <span>{vacation.vacationCountry}</span>
                     </div>
+                    {/* <div> */}
+
                     <div className="dates-container">
                         {startDate} - {endDate}
                     </div>
+                    {/* </div> */}
                 </div>
                 <div className="city-container">
                     <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}

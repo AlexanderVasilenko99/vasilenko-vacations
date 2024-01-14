@@ -66,19 +66,39 @@
 .VacationCard .country-dates-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: gray;
-    padding: 7px 0px;
-    height: 25px;
+    margin: 0px -2px;
+    padding: 7.5px 0px;
+    /* height: 25px; */
+    height: 30px;
     overflow: hidden;
 }
 
 .VacationCard .country-dates-container>* {
     display: flex;
+    letter-spacing: -1px;
 }
 
 .VacationCard .country-container {
     display: flex;
     align-items: center;
+    letter-spacing: -1px;
+    width: fit-content;
+    max-width: 129px;
+}
+
+.VacationCard .country-container span {
+    width: fit-content;
+}
+
+.VacationCard .dates-container {
+    margin: 0;
+    padding-right: 1.5px;
+}
+
+.VacationCard .image-container {
+    height: 267px;
 }
 
 .VacationCard .country-container img {
