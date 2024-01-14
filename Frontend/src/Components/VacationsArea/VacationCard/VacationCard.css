@@ -85,11 +85,13 @@
     align-items: center;
     letter-spacing: -1px;
     width: fit-content;
+    padding-left: 2px;
     max-width: 129px;
 }
 
 .VacationCard .country-container span {
     width: fit-content;
+    line-height: 100%;
 }
 
 .VacationCard .dates-container {
@@ -117,6 +119,11 @@
     padding: 0px 15px;
     display: flex;
     align-items: center;
+    line-height: 85%;
+}
+
+.VacationCard .small-text {
+    font-size: 27px;
 }
 
 .VacationCard .description-container {

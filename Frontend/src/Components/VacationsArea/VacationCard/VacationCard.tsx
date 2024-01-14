@@ -44,14 +44,15 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                         <img src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
                         <span>{vacation.vacationCountry}</span>
                     </div>
-                    {/* <div> */}
-
                     <div className="dates-container">
                         {startDate} - {endDate}
                     </div>
-                    {/* </div> */}
                 </div>
-                <div className="city-container">
+                {/* <div className="city-container">
+                    <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}
+                </div> */}
+                <div className={vacation.vacationCity.length + vacation.vacationCountry.length >= 24 ?
+                    "city-container small-text" : "city-container"}>
                     <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}
                 </div>
                 <div className="description-container">
