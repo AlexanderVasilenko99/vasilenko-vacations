@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
 import UserModel from "../../../Models/UserModel";
 import authService from "../../../Services/AuthService";
 import noti from "../../../Services/NotificationService";
-import "./Register.css";
-import { NavLink, useNavigate } from "react-router-dom";
 import appConfig from "../../../Utils/AppConfig";
+import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
+import "./Register.css";
 
 function Register(): JSX.Element {
+    UseIsLoggedIn('Why would you like to register if you are already logged in?🥴');
     UseTitle("Vasilenko Vacations | Register");
     const { register, handleSubmit } = useForm<UserModel>();
     const navigate = useNavigate();
+
 
     async function send(user: UserModel) {
         try {

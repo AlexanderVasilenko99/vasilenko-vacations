@@ -3,15 +3,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import authService from "../../../Services/AuthService";
 import noti from "../../../Services/NotificationService";
+import appConfig from "../../../Utils/AppConfig";
+import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
 import "./Login.css";
-import appConfig from "../../../Utils/AppConfig";
 
 
 function Login(): JSX.Element {
+    UseIsLoggedIn("You are already logged in!🥴");
     UseTitle("Vasilenko Vacations | Login");
     const { register, handleSubmit } = useForm<CredentialsModel>();
     const navigate = useNavigate();
+
 
     async function send(credentials: CredentialsModel) {
         try {
