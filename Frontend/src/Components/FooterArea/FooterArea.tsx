@@ -1,9 +1,10 @@
 import "./FooterArea.css";
+import Rights from "./Rights/Rights";
 
 function FooterArea(): JSX.Element {
     return (
         <div className="FooterArea">
-			this is footer
+            <Rights />
         </div>
     );
 }
