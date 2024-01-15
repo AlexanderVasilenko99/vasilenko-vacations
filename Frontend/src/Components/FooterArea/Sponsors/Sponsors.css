@@ -1,0 +1,17 @@
+.Sponsors {
+    background-color: #2e6ba0;
+    display: flex;
+    flex-direction: column;
+    height: 140px;
+    padding: 0 175px;
+}
+.Sponsors p{
+    color: #faf6e9;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+}
+.Sponsors .sponsors-container{
+    display: flex;
+    justify-content: space-evenly;
+}
