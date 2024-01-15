@@ -4,13 +4,13 @@ import "./Sponsors.css";
 
 function Sponsors(): JSX.Element {
     const sponsors: SponsorModel[] = [
-        new SponsorModel("sparlogo.png", "#"),
+        new SponsorModel("sparlogo.png", "https://spar-international.com/"),
         new SponsorModel("keshetlogo.png", "https://www.keshet-teamim.co.il/"),
-        // new SponsorModel("vasilenkocarrentallogo.png", "alexandervasilenko99.github.io/car-rental/"),
-        new SponsorModel("vasilenkocarrentallogo2.png", "alexandervasilenko99.github.io/car-rental/"),
-        new SponsorModel("tevalogo.png", "#"),
-        new SponsorModel("msclogo.png", "#"),
-        new SponsorModel("enilogo.png", "#"),
+        // new SponsorModel("vasilenkocarrentallogo.png", "https://alexandervasilenko99.github.io/car-rental/"),
+        new SponsorModel("vasilenkocarrentallogo2.png", "https://alexandervasilenko99.github.io/car-rental/"),
+        new SponsorModel("tevalogo.png", "https://www.tevapharm.com/"),
+        new SponsorModel("msclogo.png", "https://msccruises.co.il/en/"),
+        new SponsorModel("enilogo.png", "https://www.eni.com/en-IT/home.html"),
     ]
     return (
         <div className="Sponsors">
