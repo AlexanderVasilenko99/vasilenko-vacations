@@ -34,4 +34,5 @@
 
 .Layout main {
   margin-top: 75px;
+  min-height: 69vh;
 }
