@@ -1,15 +1,28 @@
 .Login {
-	width: 250px;
-    border: 1px solid;
-    text-align: left;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 3px 3px 3px black;
-    border-radius: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.Login>.form-container {
+    text-align: left;
+    width: 250px;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 3px 3px 3px black;
+}
+
 .Login input,
-.Login button{
+.Login button {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
+}
+
+.Login h2 {
+    margin-top: 0;
 }

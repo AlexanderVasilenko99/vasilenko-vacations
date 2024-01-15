@@ -16,6 +16,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import AddVacation from "../../VacationsArea/AddVacation/AddVacation";
 import EditVacation from "../../VacationsArea/EditVacation/EditVacation";
 import ReportsArea from "../../ReportsArea/ReportsArea";
+import "./Routing.css"
 
 
 function Routing(): JSX.Element {

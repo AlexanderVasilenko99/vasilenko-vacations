@@ -29,16 +29,17 @@ function Login(): JSX.Element {
 
     return (
         <div className="Login">
-            <h2>
-                Login
-            </h2>
-            <form onSubmit={handleSubmit(send)}>
-                <label>Email:</label><input type="email" {...register("email")} required />
-                <label>Password:</label><input type="password" {...register("password")} required minLength={4} />
-                <label>Not a member? <NavLink to={appConfig.registerRoute}>register</NavLink></label>
-                <button type="submit">Log in</button>
-            </form>
-
+            <div className="form-container">
+                <h2>
+                    Login
+                </h2>
+                <form onSubmit={handleSubmit(send)}>
+                    <label>Email:</label><input type="email" {...register("email")} required />
+                    <label>Password:</label><input type="password" {...register("password")} required minLength={4} />
+                    <label>Not a member? <NavLink to={appConfig.registerRoute}>register</NavLink></label>
+                    <button type="submit">Log in</button>
+                </form>
+            </div>
         </div>
     );
 }
