@@ -26,28 +26,30 @@ function Register(): JSX.Element {
 
     return (
         <div className="Register">
-            <h2>
-                Register
-            </h2>
-            <form onSubmit={handleSubmit(send)}>
-                <label>First name:</label>
-                <input type="text"{...register("userFirstName")} required />
+            <div className="form-container">
+                <h2>
+                    Register
+                </h2>
+                <form onSubmit={handleSubmit(send)}>
+                    <label>First name:</label>
+                    <input type="text"{...register("userFirstName")} required />
 
-                <label>Last name:</label>
-                <input type="text" {...register("userLastName")} required />
+                    <label>Last name:</label>
+                    <input type="text" {...register("userLastName")} required />
 
-                <label>Email:</label>
-                <input type="email" {...register("userEmail")} required />
-                
-                {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */}
-                <label>Password:</label>
-                <input type="password" {...register("userPassword")}
-                    required minLength={4} />
+                    <label>Email:</label>
+                    <input type="email" {...register("userEmail")} required />
 
-                <label>Already a member?
-                    <NavLink to={appConfig.loginRoute}>login</NavLink></label>
-                <button type="submit">Register</button>
-            </form>
+                    {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */}
+                    <label>Password:</label>
+                    <input type="password" {...register("userPassword")}
+                        required minLength={4} />
+
+                    <label>Already a member?
+                        <NavLink to={appConfig.loginRoute}>login</NavLink></label>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
         </div>
     );
 }
