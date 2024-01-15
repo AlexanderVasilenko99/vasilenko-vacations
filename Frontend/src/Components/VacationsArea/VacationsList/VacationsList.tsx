@@ -12,6 +12,7 @@ import { vacationsStore } from "../../../Redux/VacationsState";
 import { createStore } from "redux";
 import Header from "../../Common/header/header";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
+import MoonLoader from "react-spinners/MoonLoader";
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -55,7 +56,6 @@ function VacationsList(): JSX.Element {
 
         vacationService.getAllVacations()
             .then(v => {
-
                 setVacations(v);
                 setDisplayedVacations(v);
 
@@ -65,7 +65,6 @@ function VacationsList(): JSX.Element {
                 setDisplayedVacationCountries(countries);
             })
             .catch(err => console.log(err));
-
         return unsubscribe;
     }, []);
 
@@ -174,6 +173,11 @@ function VacationsList(): JSX.Element {
                 </div>
             </div>
             <div className="vacations-container">
+                {vacations.length === 0 &&
+                    <MoonLoader
+                        color="#1a5785"
+                        loading />
+                }
                 {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
                     vacationUUID={v.vacationUUID}
                     vacationCity={v.vacationCity}

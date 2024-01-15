@@ -87,7 +87,7 @@ class VacationServices {
     }
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.editVacationValidate();
-        
+
         const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
         const imageName = vacation.vacationUploadedImage ? await fileSaver.update(
@@ -119,7 +119,7 @@ class VacationServices {
         vacation.vacationImageUrl = appConfig.appHost + "/api/vacations-image/" + imageName;
 
         delete vacation.vacationUploadedImage;
-        
+
         return vacation;
     }
     public async followVacation(userUUID: string, vacationUUID: string): Promise<void> {
