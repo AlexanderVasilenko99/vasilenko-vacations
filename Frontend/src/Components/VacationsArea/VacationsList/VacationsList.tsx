@@ -11,6 +11,7 @@ import { Autocomplete, Box, Slider, TextField } from '@mui/material';
 import { vacationsStore } from "../../../Redux/VacationsState";
 import { createStore } from "redux";
 import Header from "../../Common/header/header";
+import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -28,6 +29,8 @@ import Header from "../../Common/header/header";
 
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
+    UseIsLoggedIn(true, "You must be logged in to view our vacations!🥴");
+
     const navigate = useNavigate();
 
     const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -43,21 +46,12 @@ function VacationsList(): JSX.Element {
 
 
     useEffect(() => {
-        const token = authStore.getState().token;
-        if (!token) {
-            noti.error("Please login in to view vacations page");
-            navigate("/login");
-        }
-
-
         const unsubscribe = vacationsStore.subscribe(() => {
             const arr: VacationModel[] = vacationsStore.getState().vacations;
             setVacations(arr);
             setDisplayedVacations(arr);
             setVacationsAndVacationCountriesForDisplay("no timeframe", "no country");
         });
-
-
 
         vacationService.getAllVacations()
             .then(v => {
@@ -135,7 +129,7 @@ function VacationsList(): JSX.Element {
 
     return (
         <div className="VacationsList">
-            <Header {...{title: "Browse Vacations"}} />
+            <Header {...{ title: "Browse Vacations" }} />
             <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations?.length} results</span></h2>
             <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">

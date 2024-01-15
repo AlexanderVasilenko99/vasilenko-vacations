@@ -10,7 +10,7 @@ import "./Login.css";
 
 
 function Login(): JSX.Element {
-    UseIsLoggedIn("You are already logged in!🥴");
+    UseIsLoggedIn(false, "You are already logged in!🥴");
     UseTitle("Vasilenko Vacations | Login");
     const { register, handleSubmit } = useForm<CredentialsModel>();
     const navigate = useNavigate();

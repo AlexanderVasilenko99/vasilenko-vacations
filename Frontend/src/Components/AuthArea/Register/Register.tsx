@@ -9,7 +9,7 @@ import UseTitle from "../../../Utils/UseTitle";
 import "./Register.css";
 
 function Register(): JSX.Element {
-    UseIsLoggedIn('Why would you like to register if you are already logged in?🥴');
+    UseIsLoggedIn(false, 'Why would you like to register if you are already logged in?🥴');
     UseTitle("Vasilenko Vacations | Register");
     const { register, handleSubmit } = useForm<UserModel>();
     const navigate = useNavigate();

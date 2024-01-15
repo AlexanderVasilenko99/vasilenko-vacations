@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import ProductModel from "../../../Models/ProductModel";
 import VacationModel from "../../../Models/VacationModel";
-import { authStore } from "../../../Redux/AuthState";
 import noti from "../../../Services/NotificationService";
 import vacationService from "../../../Services/VacationService";
 import useImagePreview from "../../../Utils/UseImagePreview";
+import UseIsAdmin from "../../../Utils/UseIsAdmin";
 import "./AddVacation.css";
 
 
-function AddProduct(): JSX.Element {
+function AddVacation(): JSX.Element {
+    UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
     const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
     const [minDate, setMinDate] = useState<string>('');
-
-    useEffect(() => {
-        if (authStore.getState().user?.userRoleId !== 1) {
-            noti.error("You cant view this page!");
-            navigate("/vacations");
-        }
-    }, []);
 
     async function send(vacation: VacationModel): Promise<void> {
         try {
@@ -78,4 +71,4 @@ function AddProduct(): JSX.Element {
     );
 }
 
-export default AddProduct;
+export default AddVacation;
