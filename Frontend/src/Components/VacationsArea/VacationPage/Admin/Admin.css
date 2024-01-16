@@ -1,11 +1,27 @@
+.Admin .toggle-edit-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 32px;
+    font-weight: 600;
+    transition: 200ms;
+}
+
+.Admin .toggle-edit-button:hover {
+    cursor: pointer;
+    color: #2e6ba0;
+}
+
 .Admin form {
     text-align: left;
     border-radius: 10px;
 }
 
 .Admin h1 {
-    text-align: left;
-    margin: 20px 0px 20px 175px;
+    /* text-align: left; */
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 175px 20px 175px;
 }
 
 .Admin h3 {
@@ -30,7 +46,7 @@
     text-align: center;
 }
 
-.Admin button {
+.Admin form button {
     width: 400px;
     height: 50px;
     border-radius: 12px;
@@ -41,7 +57,18 @@
     transition: 200ms;
 }
 
-.Admin button:hover {
+.Admin form button[disabled] {
+    color: gray;
+    background-color: #F6F1F1;
+    border: 2px solid #2e6ba0;
+}
+
+.Admin form button[disabled]:hover {
+    background-color: #F6F1F1;
+    cursor: auto;
+}
+
+.Admin form button:hover {
     cursor: pointer;
     background-color: #1a5785;
 }
@@ -78,10 +105,12 @@
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.Admin ul{
+
+.Admin ul {
     list-style-type: none;
     padding: 0;
 }
+
 .Admin ul li {
     text-align: left;
 }
@@ -94,6 +123,7 @@
     display: flex;
     align-items: center;
 }
+
 .Admin ul li a:hover {
     background-color: #2e6ba0;
     transition: 200ms all;

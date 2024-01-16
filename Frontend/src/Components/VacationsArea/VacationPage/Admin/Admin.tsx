@@ -14,6 +14,7 @@ function Admin(): JSX.Element {
     const params = useParams();
     const uuid = params.uuid;
     const [imgSrc, setImgSrc] = useState<string>("");
+    const [isDisabled, setIsDisabled] = useState<boolean>(true);
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
 
@@ -65,6 +66,9 @@ function Admin(): JSX.Element {
             setImgSrc(url);
         }
     }
+    function toggleEdit(): void {
+        setIsDisabled(!isDisabled);
+    }
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
@@ -84,7 +88,10 @@ function Admin(): JSX.Element {
 
     return (
         <div className="Admin">
-            <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
+            <h1>
+                <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
+                <button className="toggle-edit-button" onClick={toggleEdit}>{isDisabled ? "Enable" : "Disable"} Editing</button>
+            </h1>
             <div className="grid-container">
 
                 <div className="left">
@@ -106,43 +113,44 @@ function Admin(): JSX.Element {
                     <form onSubmit={handleSubmit(update)}>
                         <h3 id="vacation-country">Vacation Country: </h3>
                         <input type="text" {...register("vacationCountry")}
-                            required minLength={2} maxLength={100} />
+                            required minLength={2} maxLength={100} disabled={isDisabled} />
 
                         <h3 id="vacation-city">Vacation City: </h3>
                         <input type="text" {...register("vacationCity")}
-                            required minLength={2} maxLength={100} />
+                            required minLength={2} maxLength={100} disabled={isDisabled} />
 
                         <h3 id="vacation-description">Vacation Description: </h3>
-                        <textarea {...register("vacationDescription")} rows={7}
-                            required minLength={2} maxLength={100} />
+                        <textarea {...register("vacationDescription")} rows={3}
+                            required minLength={2} maxLength={100} disabled={isDisabled} />
 
-                        <h3 id="vacation-price">Vacation Price: </h3><input type="number"
-                            {...register("vacationPrice")} required min={0} max={9999} />
+                        <h3 id="vacation-price">Vacation Price: </h3>
+                        <input type="number"{...register("vacationPrice")}
+                            required min={0} max={9999} disabled={isDisabled} />
 
                         <div className="dates-container">
                             <div className="startDate">
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input type="date"
                                     {...register("vacationStartDate", { valueAsDate: true })}
-                                    required />
+                                    required disabled={isDisabled} />
                             </div>
                             <div className="endDate">
                                 <h3>Vacation End Date: </h3>
                                 <input type="date"
                                     {...register("vacationEndDate", { valueAsDate: true })}
-                                    required />
+                                    required disabled={isDisabled} />
                             </div>
                         </div>
                         <div className="image-section-container">
                             <h3 id="vacation-image">Vacation image: </h3>
-                            <input className="imageInput" type="file" accept="image/*"
+                            <input className="imageInput" type="file" accept="image/*" disabled={isDisabled}
                                 {...register("vacationUploadedImage")} onChange={handleImageChange} />
                         </div>
                         <div className="imageContainer">
                             <img src={imgSrc} />
                         </div>
                         <div className="button-container">
-                            <button>Update Vacation</button>
+                            <button disabled={isDisabled}>Update Vacation</button>
                         </div>
                     </form>
                 </div>
