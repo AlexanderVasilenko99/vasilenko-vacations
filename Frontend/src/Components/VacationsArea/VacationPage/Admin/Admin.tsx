@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import appConfig from "../../../../Utils/AppConfig";
 import { NavLink } from "react-router-dom";
 import { authStore } from "../../../../Redux/AuthState";
+import { HashLink } from "react-router-hash-link";
 
 function Admin(): JSX.Element {
     const params = useParams();
@@ -89,30 +90,38 @@ function Admin(): JSX.Element {
                 <div className="left">
                     <div>
                         <h3>Summary</h3>
+                        <ul>
+                            <li><HashLink smooth to="#vacation-country">Vacation Country</HashLink></li>
+                            <li><HashLink smooth to="#vacation-city">Vacation City</HashLink></li>
+                            <li><HashLink smooth to="#vacation-description">Vacation Description</HashLink></li>
+                            <li><HashLink smooth to="#vacation-price">Vacation Price</HashLink></li>
+                            <li><HashLink smooth to="#vacation-start">Vacation Dates</HashLink></li>
+                            <li><HashLink smooth to="#vacation-image">Vacation Image</HashLink></li>
+                        </ul>
                     </div>
                 </div>
 
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
-                        <h3>Vacation Country: </h3>
+                        <h3 id="vacation-country">Vacation Country: </h3>
                         <input type="text" {...register("vacationCountry")}
                             required minLength={2} maxLength={100} />
 
-                        <h3>Vacation City: </h3>
+                        <h3 id="vacation-city">Vacation City: </h3>
                         <input type="text" {...register("vacationCity")}
                             required minLength={2} maxLength={100} />
 
-                        <h3>Vacation Description: </h3>
+                        <h3 id="vacation-description">Vacation Description: </h3>
                         <textarea {...register("vacationDescription")} rows={7}
                             required minLength={2} maxLength={100} />
 
-                        <h3>Vacation Price: </h3><input type="number"
+                        <h3 id="vacation-price">Vacation Price: </h3><input type="number"
                             {...register("vacationPrice")} required min={0} max={9999} />
 
                         <div className="dates-container">
                             <div className="startDate">
-                                <h3>Vacation Start Date: </h3>
+                                <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input type="date"
                                     {...register("vacationStartDate", { valueAsDate: true })}
                                     required />
@@ -125,7 +134,7 @@ function Admin(): JSX.Element {
                             </div>
                         </div>
                         <div className="image-section-container">
-                            <h3>Vacation image: </h3>
+                            <h3 id="vacation-image">Vacation image: </h3>
                             <input className="imageInput" type="file" accept="image/*"
                                 {...register("vacationUploadedImage")} onChange={handleImageChange} />
                         </div>
@@ -138,7 +147,7 @@ function Admin(): JSX.Element {
                     </form>
                 </div>
             </div>
-                    <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
+            <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
         </div>
     );
 }

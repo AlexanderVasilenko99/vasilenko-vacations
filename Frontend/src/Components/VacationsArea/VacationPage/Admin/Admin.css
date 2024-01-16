@@ -8,6 +8,10 @@
     margin: 20px 0px 20px 175px;
 }
 
+.Admin h3 {
+    scroll-margin-top: 80px;
+}
+
 .Admin input {
     width: 100%;
     box-sizing: border-box;
@@ -74,7 +78,26 @@
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.Admin ul{
+    list-style-type: none;
+    padding: 0;
+}
+.Admin ul li {
+    text-align: left;
+}
 
+.Admin ul li a {
+    text-decoration: none;
+    color: #F6F1F1;
+    display: block;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.Admin ul li a:hover {
+    background-color: #2e6ba0;
+    transition: 200ms all;
+}
 
 .Admin h1 a {
     font-size: 32px;
@@ -115,9 +138,11 @@
 }
 
 .Admin textarea {
+    box-sizing: border-box;
     resize: none;
     width: 100%;
     height: fit-content;
+    border-radius: 4px;
 }
 
 .Admin .dates-container {
