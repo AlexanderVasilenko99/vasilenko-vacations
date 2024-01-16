@@ -99,6 +99,10 @@
     animation: accordionClose 200ms forwards;
 }
 
+.VacationsList .vacations-container>span {
+    margin-top: 120px;
+}
+
 @keyframes accordionOpen {
     0% {
         height: 55px;

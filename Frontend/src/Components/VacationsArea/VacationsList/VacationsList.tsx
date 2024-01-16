@@ -130,7 +130,8 @@ function VacationsList(): JSX.Element {
         <div className="VacationsList">
             <Header {...{ title: "Browse Vacations" }} />
             <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations?.length} results</span></h2>
-            <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
+
+            {vacations.length !== 0 && <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
                     <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
                     <h2 className="reset"
@@ -171,12 +172,14 @@ function VacationsList(): JSX.Element {
                             renderInput={(params) => <TextField {...params} label="Country" />} />
                     </div>
                 </div>
-            </div>
+            </div>}
             <div className="vacations-container">
                 {vacations.length === 0 &&
+                    // <div className="spinner-container">
                     <MoonLoader
                         color="#1a5785"
                         loading />
+                    // </div>
                 }
                 {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
                     vacationUUID={v.vacationUUID}

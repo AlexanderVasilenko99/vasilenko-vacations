@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
@@ -7,6 +7,7 @@ import vacationService from "../../../Services/VacationService";
 import useImagePreview from "../../../Utils/UseImagePreview";
 import UseIsAdmin from "../../../Utils/UseIsAdmin";
 import "./AddVacation.css";
+import { iso31661 } from "iso-3166";
 
 
 function AddVacation(): JSX.Element {
@@ -14,7 +15,9 @@ function AddVacation(): JSX.Element {
     const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
     const [minDate, setMinDate] = useState<string>('');
-
+    useEffect(() => {
+        console.log(iso31661);
+    }, [])
     async function send(vacation: VacationModel): Promise<void> {
         try {
             vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
