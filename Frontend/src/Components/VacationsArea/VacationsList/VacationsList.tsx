@@ -175,11 +175,9 @@ function VacationsList(): JSX.Element {
             </div>}
             <div className="vacations-container">
                 {vacations.length === 0 &&
-                    // <div className="spinner-container">
                     <MoonLoader
                         color="#1a5785"
                         loading />
-                    // </div>
                 }
                 {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
                     vacationUUID={v.vacationUUID}

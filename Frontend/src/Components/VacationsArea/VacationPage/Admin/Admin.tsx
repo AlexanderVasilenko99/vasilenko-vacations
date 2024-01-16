@@ -138,6 +138,7 @@ function Admin(): JSX.Element {
                     </form>
                 </div>
             </div>
+                    <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
         </div>
     );
 }
