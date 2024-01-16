@@ -72,11 +72,13 @@ function Admin(): JSX.Element {
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
+
+            vacation.vacationUUID = uuid;
             vacation.vacationImageName = v.vacationImageName;
             vacation.vacationImageUrl = v.vacationImageUrl;
+            if (vacation.vacationUploadedImage)
+                vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
 
-            vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
-            vacation.vacationUUID = uuid;
             await vacationService.updateVacation(vacation);
             noti.success("The vacation has been updated successfully!");
             navigate(appConfig.vacationsRoute);

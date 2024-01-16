@@ -87,7 +87,7 @@ class VacationServices {
     }
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.editVacationValidate();
-
+        
         const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
         const imageName = vacation.vacationUploadedImage ? await fileSaver.update(

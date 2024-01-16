@@ -33,7 +33,7 @@ class Cyber {
     }
 
     public verifyToken(token: string): void {
-        if (!token) throw new Unauthorized("You are not logged in");
+        if (!token) throw new Unauthorized("You are not logged in!");
         try {
             jwt.verify(token, this.secretKey);
         } catch (err: any) {
