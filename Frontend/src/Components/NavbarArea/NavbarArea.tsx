@@ -1,6 +1,7 @@
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import BeachAccessOutlinedIcon from '@mui/icons-material/BeachAccessOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -13,49 +14,42 @@ import "./NavbarArea.css";
 import NavbarItem from "./NavbarItem/NavbarItem";
 function NavbarArea(): JSX.Element {
 
+    const userFullName = authStore.getState().user?.userFirstName + " " + authStore.getState().user?.userLastName;
+    const userProfileRoute = appConfig.userRoute + authStore.getState().user?.userUUID;
+
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const navigate = useNavigate();
-    const preIdentificationSubNavItems: SubNavItem[] = [
-        new SubNavItem('Login', appConfig.loginRoute),
-        new SubNavItem('Register', appConfig.registerRoute)
-    ];
-    const postIdentificationSubNavItems: SubNavItem[] = [
-        new SubNavItem(authStore.getState().user?.userFirstName + " " + authStore.getState().user?.userLastName,
-            appConfig.userRoute + authStore.getState().user?.userUUID),
+
+    const profileSubNavItems: SubNavItem[] = [
+        new SubNavItem(userFullName, userProfileRoute),
         new SubNavItem('Logout', "#")
     ]
     const vacationsSubNavItems: SubNavItem[] = authStore.getState().user?.userRoleId === 1 ? [
         new SubNavItem('All Vacations', appConfig.vacationsRoute),
         new SubNavItem('Add Vacation', appConfig.addVacationRoute)] : [new SubNavItem('All Vacations', appConfig.vacationsRoute)];
 
-    const [identificationSubNavItems, setIdentificationSubNavItems] = useState<SubNavItem[]>(preIdentificationSubNavItems);
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
 
     useEffect(() => {
-        // console.log(authStore.getState().user)
         window.addEventListener('click', (event) => {
             if (event.target instanceof HTMLAnchorElement) {
                 const anchor: HTMLAnchorElement = event.target;
                 if (anchor.innerHTML === "Logout") {
                     authService.logout();
                     setIsLoggedIn(false);
-                    setIdentificationSubNavItems(preIdentificationSubNavItems);
                     navigate(appConfig.homeRoute);
                 }
             }
         });
 
-
-
         if (authStore.getState().token) {
             setIsLoggedIn(true);
             const roleId = authStore.getState().user?.userRoleId;
             if (roleId === 1) setIsAdmin(true);
-            setIdentificationSubNavItems(postIdentificationSubNavItems);
         }
+
         const unsubscribe = authStore.subscribe(() => {
-            setIdentificationSubNavItems(postIdentificationSubNavItems);
             setIsLoggedIn(true);
             setIsAdmin(false)
         });
@@ -73,24 +67,35 @@ function NavbarArea(): JSX.Element {
                             <img src={site_logo} />
                         </NavLink>
                     </li>
-                    {isLoggedIn && <NavbarItem isDropdown
-                        itemText='Vacations' itemDestinationPagePath={appConfig.vacationsRoute}
+                    {isLoggedIn && <NavbarItem
+                        isDropdown
+                        itemText='Vacations'
                         subNavItems={vacationsSubNavItems}
                         itemSvgComponent={<BeachAccessOutlinedIcon />}
+                        itemDestinationPagePath={appConfig.vacationsRoute}
                     />}
                     {isAdmin && <NavbarItem
-                        itemText='Reports' itemDestinationPagePath={appConfig.reportsRoute}
+                        itemText='Reports'
                         itemSvgComponent={<AssessmentOutlinedIcon />}
+                        itemDestinationPagePath={appConfig.reportsRoute}
                     />}
                     <NavbarItem
-                        itemText='About' itemDestinationPagePath={appConfig.aboutRoute}
+                        itemText='About'
                         itemSvgComponent={<InfoOutlinedIcon />}
+                        itemDestinationPagePath={appConfig.aboutRoute}
                     />
-                    <NavbarItem isDropdown
-                        itemText='Identify' itemDestinationPagePath={"#"}
-                        subNavItems={identificationSubNavItems}
+                    {!isLoggedIn && <NavbarItem
+                        itemText='Login'
                         itemSvgComponent={<VpnKeyOutlinedIcon />}
-                    />
+                        itemDestinationPagePath={appConfig.loginRoute}
+                    />}
+                    {isLoggedIn && <NavbarItem
+                        isDropdown
+                        itemText='Profile'
+                        itemDestinationPagePath={"#"}
+                        subNavItems={profileSubNavItems}
+                        itemSvgComponent={<AccountCircleOutlinedIcon />}
+                    />}
                 </ul>
             </div>
         </div >
