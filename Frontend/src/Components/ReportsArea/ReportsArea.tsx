@@ -18,6 +18,8 @@ import UseTitle from "../../Utils/UseTitle";
 import "./ReportsArea.css";
 import { CSVLink, CSVDownload } from "react-csv";
 import Header from '../Common/header/header';
+import UseIsAdmin from '../../Utils/UseIsAdmin';
+import { vacationsStore } from '../../Redux/VacationsState';
 
 ChartJS.register(
     CategoryScale,
@@ -34,24 +36,12 @@ let x: VacationModel[] = [];
 let csvData = [["vacation destination", "number of followers"]];
 
 function ReportsArea(): JSX.Element {
-    const navigate = useNavigate();
-    let [vacations, setVacations] = useState<VacationModel[]>([]);
+    UseIsAdmin(true, "You must be administrator to view this page!🥴");
     UseTitle("Vasilenko Vacations | Reports");
+    let [vacations, setVacations] = useState<VacationModel[]>([]);
 
     useEffect(() => {
-        const token = authStore.getState().token;
-        const roleId = authStore.getState().user?.userRoleId;
-        if (!token || !roleId) {
-            noti.error("Please login in to view this page");
-            navigate("/login");
-            return;
-        }
-        if (roleId === 2) {
-            noti.error("You are unauthorized to view this page");
-            navigate("/home");
-            return;
-        }
-        else if (labels.length === 0) {
+        if (labels.length === 0) {
             vacationService.getAllVacations()
                 .then(v => {
                     v.forEach(vacation => {
@@ -59,16 +49,33 @@ function ReportsArea(): JSX.Element {
                         followersCount.push(vacation.vacationFollowersCount.toString());
                         csvData.push([`${vacation.vacationCountry} - ${vacation.vacationCity}`,
                         vacation.vacationFollowersCount.toString()])
-                        setVacations(v);
                     });
+                    setVacations(v);
                 })
                 .catch((err: any) => console.log(err.message));
         }
+
+        // const unsubscribe = vacationsStore.subscribe(() => {
+        //     const arr: VacationModel[] = vacationsStore.getState().vacations;
+        //     labels = [];
+        //     followersCount = [];
+        //     csvData = [["vacation destination", "number of followers"]];
+        //     arr.forEach(vacation => {
+        //         labels.push(`${vacation.vacationCountry} - ${vacation.vacationCity}`);
+        //         followersCount.push(vacation.vacationFollowersCount.toString());
+        //         csvData.push([`${vacation.vacationCountry} - ${vacation.vacationCity}`,
+        //         vacation.vacationFollowersCount.toString()])
+        //     })
+        //     setVacations(arr);
+
+        // });
+        // return unsubscribe;
+
     }, [vacations]);
 
     return (
         <div className="ReportsArea">
-            <Header {...{title: "Browse Reports"}} />
+            <Header {...{ title: "Browse Reports" }} />
             <div className="canvas-container">
                 <Bar options={{
                     responsive: true,
