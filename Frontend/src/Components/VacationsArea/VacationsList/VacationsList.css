@@ -1,5 +1,3 @@
-.VacationsList {}
-
 .VacationsList .vacations-container {
     display: flex;
     justify-content: center;
@@ -37,8 +35,14 @@
 .VacationsList h2 {
     font-size: 24px;
     margin: 10px 0px;
+    color: #F6F1F1;
     display: flex;
     align-items: center;
+}
+
+.VacationsList h2 svg {
+    color: #F6F1F1;
+    padding-right: 3px;
 }
 
 .VacationsList .filter {
@@ -47,7 +51,6 @@
 
 .VacationsList .filter:hover,
 .VacationsList .reset:hover {
-    color: #F6F1F1;
     cursor: pointer;
 }
 
@@ -82,8 +85,8 @@
     background-color: #F6F1F1 !important;
 }
 
-.VacationsList .filter-container .MuiFormLabel-root,
-.VacationsList .filter-container .MuiSvgIcon-root {
+.VacationsList .filter-container .autocompletes .MuiFormLabel-root,
+.VacationsList .filter-container .autocompletes .MuiSvgIcon-root {
     color: #1a5785 !important;
 }
 

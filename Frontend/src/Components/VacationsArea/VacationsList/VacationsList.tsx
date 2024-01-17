@@ -13,6 +13,8 @@ import { createStore } from "redux";
 import Header from "../../Common/header/header";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import MoonLoader from "react-spinners/MoonLoader";
+import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
+import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -133,9 +135,12 @@ function VacationsList(): JSX.Element {
 
             {vacations.length !== 0 && <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
-                    <h2 className="filter" onClick={() => setAccordionOpen(!accordionOpen)}>Filter</h2>
+                    <h2 className="filter"
+                        onClick={() => setAccordionOpen(!accordionOpen)}>
+                        <TuneOutlinedIcon />Filter</h2>
                     <h2 className="reset"
-                        onClick={() => resetSearchForm()}>Reset</h2>
+                        onClick={() => resetSearchForm()}>
+                        <RefreshOutlinedIcon />Reset</h2>
                 </div>
                 <div className="filter-hidden-content">
                     <div className="autocompletes">
