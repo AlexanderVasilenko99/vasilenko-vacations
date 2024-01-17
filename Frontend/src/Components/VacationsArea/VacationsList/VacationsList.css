@@ -106,6 +106,42 @@
     margin-top: 120px;
 }
 
+.vacations-container ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -30px;
+}
+
+.vacations-container ul li {
+    box-sizing: border-box;
+    line-height: 30px;
+    margin: 5px;
+    background-color: #2e6ba0;
+    border: 2px solid #2e6ba0;
+    color: #F6F1F1;
+    cursor: pointer;
+    border-radius: 50%;
+    border-radius: 14px;
+}
+
+.vacations-container ul li a {
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    padding: 3px;
+}
+
+.vacations-container ul li[class="selected"] {
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
+}
+
 @keyframes accordionOpen {
     0% {
         height: 55px;

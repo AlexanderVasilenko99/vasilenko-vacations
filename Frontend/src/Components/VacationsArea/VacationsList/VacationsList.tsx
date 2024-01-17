@@ -15,6 +15,7 @@ import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import MoonLoader from "react-spinners/MoonLoader";
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
+import ReactPaginate from 'react-paginate';
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -47,28 +48,80 @@ function VacationsList(): JSX.Element {
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
 
+    interface ItemsProps {
+        currentItems: VacationModel[];
+    }
+    interface PaginatedItemsProps {
+        itemsPerPage: number;
+    }
 
-    useEffect(() => {
-        const unsubscribe = vacationsStore.subscribe(() => {
-            const arr: VacationModel[] = vacationsStore.getState().vacations;
-            setVacations(arr);
-            setDisplayedVacations(arr);
-            setVacationsAndVacationCountriesForDisplay("no timeframe", "no country");
-        });
+    function Items({ currentItems }: ItemsProps): JSX.Element {
+        return (
+            <>
+                {currentItems &&
+                    currentItems.map(v => <VacationCard key={v.vacationUUID}
+                        vacationUUID={v.vacationUUID}
+                        vacationCity={v.vacationCity}
+                        vacationCountry={v.vacationCountry}
+                        vacationDescription={v.vacationDescription}
+                        vacationId={v.vacationId}
+                        vacationStartDate={v.vacationStartDate}
+                        vacationEndDate={v.vacationEndDate}
+                        vacationPrice={v.vacationPrice}
+                        vacationImageName={v.vacationImageName}
+                        vacationImageUrl={v.vacationImageUrl}
+                        vacationUploadedImage={v.vacationUploadedImage}
+                        vacationIsFollowing={v.vacationIsFollowing}
+                        vacationFollowersCount={v.vacationFollowersCount} />
+                    )}
+            </>
+        );
+    }
 
-        vacationService.getAllVacations()
-            .then(v => {
-                setVacations(v);
-                setDisplayedVacations(v);
+    function PaginatedItems({ itemsPerPage }: PaginatedItemsProps): JSX.Element {
+        const [itemOffset, setItemOffset] = useState(0);
+        const [selectedPage, setSelectedPage] = useState(0);
 
-                const countries: string[] = [];
-                v.forEach(v1 => countries.push(v1.vacationCountry));
-                setVacationCountries(countries);
-                setDisplayedVacationCountries(countries);
-            })
-            .catch(err => console.log(err));
-        return unsubscribe;
-    }, []);
+        const endOffset = itemOffset + itemsPerPage;
+        const currentItems = displayedVacations.slice(itemOffset, endOffset);
+        const pageCount = Math.ceil(displayedVacations.length / itemsPerPage);
+        // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
+        const handlePageClick = (event: { selected: number }) => {
+            const newOffset = (event.selected * itemsPerPage) % displayedVacations.length;
+            setSelectedPage(event.selected);
+            setItemOffset(newOffset);
+            // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+        };
+
+        return (
+            <>
+                <ReactPaginate
+                    pageCount={pageCount}
+                    pageRangeDisplayed={0}
+                    marginPagesDisplayed={2}
+                    breakLabel="..."
+                    nextLabel=">"
+                    previousLabel="<"
+                    onPageChange={handlePageClick}
+                    renderOnZeroPageCount={null}
+                    forcePage={selectedPage}
+                />
+                <Items currentItems={currentItems} />
+                <ReactPaginate
+                    pageCount={pageCount}
+                    pageRangeDisplayed={0}
+                    marginPagesDisplayed={2}
+                    breakLabel="..."
+                    nextLabel=">"
+                    previousLabel="<"
+                    onPageChange={handlePageClick}
+                    renderOnZeroPageCount={null}
+                    forcePage={selectedPage}
+                />
+            </>
+        );
+    }
 
     function setVacationsAndVacationCountriesForDisplay(timeFrame: string, country: string): void {
         console.log("recieved timeframe: " + timeFrame + ". country: " + country);
@@ -124,14 +177,40 @@ function VacationsList(): JSX.Element {
             setDisplayedVacationCountries(newVacationCountries)
         }
     }
+    
     function resetSearchForm(): void {
         setDisplayedVacations(vacations);
     }
 
+    useEffect(() => {
+        const unsubscribe = vacationsStore.subscribe(() => {
+            const arr: VacationModel[] = vacationsStore.getState().vacations;
+            setVacations(arr);
+            setDisplayedVacations(arr);
+            setVacationsAndVacationCountriesForDisplay("no timeframe", "no country");
+        });
+
+        vacationService.getAllVacations()
+            .then(v => {
+                setVacations(v);
+                setDisplayedVacations(v);
+
+                const countries: string[] = [];
+                v.forEach(v1 => countries.push(v1.vacationCountry));
+                setVacationCountries(countries);
+                setDisplayedVacationCountries(countries);
+            })
+            .catch(err => console.log(err));
+        return unsubscribe;
+    }, []);
+
+
     return (
         <div className="VacationsList">
             <Header {...{ title: "Browse Vacations" }} />
-            <h2 className="general-info"><span>Or search a vacation:</span><span className="results">Showing {displayedVacations?.length} results</span></h2>
+            <h2 className="general-info">
+                <span>Or search a vacation:</span>
+                <span className="results">Showing {displayedVacations?.length} results</span></h2>
 
             {vacations.length !== 0 && <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
@@ -184,7 +263,9 @@ function VacationsList(): JSX.Element {
                         color="#1a5785"
                         loading />
                 }
-                {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
+                <PaginatedItems itemsPerPage={9} />
+
+                {/* {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
                     vacationUUID={v.vacationUUID}
                     vacationCity={v.vacationCity}
                     vacationCountry={v.vacationCountry}
@@ -198,7 +279,7 @@ function VacationsList(): JSX.Element {
                     vacationUploadedImage={v.vacationUploadedImage}
                     vacationIsFollowing={v.vacationIsFollowing}
                     vacationFollowersCount={v.vacationFollowersCount}
-                />)}
+                />)} */}
             </div>
         </div >
     );
