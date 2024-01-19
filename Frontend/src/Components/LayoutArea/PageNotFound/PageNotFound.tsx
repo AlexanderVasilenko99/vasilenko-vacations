@@ -10,7 +10,7 @@ function PageNotFound(): JSX.Element {
             <img src={backgroundImage} alt="" />
             <div>
                 <p>Looks like you are looking for<br /> a page that doesn't exists!</p>
-                <p>Maybe you would like to try our <NavLink to="/vacations">vacations</NavLink> page!</p>
+                <p>Maybe you would like to try our <NavLink to="/vacations">vacations</NavLink> page instead?</p>
             </div>
 
         </div >
