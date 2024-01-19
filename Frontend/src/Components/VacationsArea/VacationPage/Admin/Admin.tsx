@@ -18,16 +18,6 @@ function Admin(): JSX.Element {
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
 
-
-    // const dateParser = (date: Date | string): string => {
-    //     const initialDate = new Date(date);
-    //     const day = initialDate.getDate();
-    //     const month = initialDate.getMonth() + 1;
-    //     const year = initialDate.getFullYear();
-    //     return `${year}-${month < 9 ? '0' : ''}${month}-${day < 9 ? '0' : ''
-    //         }${day}`;
-    // };
-    // const [imageName, setImageName] = useState<string>("");
     const [v, setV] = useState<VacationModel>();
 
     useEffect(() => {
@@ -47,14 +37,18 @@ function Admin(): JSX.Element {
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
-                setImgSrc(vacation.vacationImageUrl)
-                // setImageName(vacation.vacationImageName)
-                // setValue("vacationStartDate", new Date(vacation.vacationStartDate).toISOString().substring(0, 10));
+                setImgSrc(vacation.vacationImageUrl);
+                
+                setValue("vacationStartDate", vacation.vacationStartDate);
                 // setValue("vacationEndDate", vacation.vacationEndDate);
+                
 
-                // setValue('vacationStartDate', vacation.vacationStartDate);
-                // setValue('vacationEndDate', vacation.vacationEndDate);
 
+                // setValue("vacationStartDate", new Date(vacation.vacationStartDate).toISOString().substring(0, 10));
+                
+
+
+                // setImageName(vacation.vacationImageName)
                 // setValue("imageUrl", product.imageUrl);
             })
             .catch((err) => console.log(err));
@@ -134,19 +128,23 @@ function Admin(): JSX.Element {
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input type="date"
                                     {...register("vacationStartDate", { valueAsDate: true })}
+                                    // {...register("vacationStartDate")}
                                     required disabled={isDisabled} />
                             </div>
                             <div className="endDate">
                                 <h3>Vacation End Date: </h3>
                                 <input type="date"
-                                    {...register("vacationEndDate", { valueAsDate: true })}
+                                    // {...register("vacationEndDate", { valueAsDate: true })}
+                                    {...register("vacationEndDate")}
                                     required disabled={isDisabled} />
                             </div>
                         </div>
                         <div className="image-section-container">
                             <h3 id="vacation-image">Vacation image: </h3>
-                            <input className="imageInput" type="file" accept="image/*" disabled={isDisabled}
-                                {...register("vacationUploadedImage")} onChange={handleImageChange} />
+                            <input type="file" accept="image/*"
+                                className="imageInput" disabled={isDisabled}
+                                onChange={handleImageChange}
+                                {...register("vacationUploadedImage")} />
                         </div>
                         <div className="imageContainer">
                             <img src={imgSrc} />
