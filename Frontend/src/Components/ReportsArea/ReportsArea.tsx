@@ -41,36 +41,23 @@ function ReportsArea(): JSX.Element {
     let [vacations, setVacations] = useState<VacationModel[]>([]);
 
     useEffect(() => {
-        if (labels.length === 0) {
+        if (labels.length === 0 || vacationsStore.getState().vacations.length !== labels.length) {
+            labels = [];
+            followersCount = []
+            csvData = [["vacation destination", "number of followers"]];
+
             vacationService.getAllVacations()
                 .then(v => {
                     v.forEach(vacation => {
                         labels.push(`${vacation.vacationCountry} - ${vacation.vacationCity}`);
-                        followersCount.push(vacation.vacationFollowersCount.toString());
+                        followersCount.push(vacation.vacationFollowersCount?.toString());
                         csvData.push([`${vacation.vacationCountry} - ${vacation.vacationCity}`,
-                        vacation.vacationFollowersCount.toString()])
+                        vacation.vacationFollowersCount?.toString()])
                     });
                     setVacations(v);
                 })
                 .catch((err: any) => console.log(err.message));
         }
-
-        // const unsubscribe = vacationsStore.subscribe(() => {
-        //     const arr: VacationModel[] = vacationsStore.getState().vacations;
-        //     labels = [];
-        //     followersCount = [];
-        //     csvData = [["vacation destination", "number of followers"]];
-        //     arr.forEach(vacation => {
-        //         labels.push(`${vacation.vacationCountry} - ${vacation.vacationCity}`);
-        //         followersCount.push(vacation.vacationFollowersCount.toString());
-        //         csvData.push([`${vacation.vacationCountry} - ${vacation.vacationCity}`,
-        //         vacation.vacationFollowersCount.toString()])
-        //     })
-        //     setVacations(arr);
-
-        // });
-        // return unsubscribe;
-
     }, [vacations]);
 
     return (
