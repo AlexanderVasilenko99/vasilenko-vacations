@@ -1,4 +1,4 @@
-.Admin .toggle-edit-button {
+/* .Admin .toggle-edit-button {
     padding: 0;
     margin: 0;
     border: 0;
@@ -6,10 +6,28 @@
     font-weight: 600;
     transition: 200ms;
 }
-
 .Admin .toggle-edit-button:hover {
     cursor: pointer;
     color: #2e6ba0;
+} */
+
+.Admin .toggle-edit-button {
+    padding: 4px 8px;
+    margin: 0;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-size: 32px;
+    font-weight: 500;
+    transition: 200ms;
+}
+.Admin .toggle-edit-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
 }
 
 .Admin form {
@@ -134,6 +152,8 @@
     text-decoration: none;
     color: black;
     transition: 200ms;
+    display: flex;
+    align-items: center;
 }
 
 .Admin h1 a:hover {
