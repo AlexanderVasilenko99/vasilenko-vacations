@@ -54,9 +54,16 @@ function AboutArea(): JSX.Element {
         <div className="AboutArea">
             <div className="first-section">
                 <h1 className="h1">About Me & This Project</h1>
-                <div><img className="profile-pic" src={require('../../Assets/Images/UtilityImages/me_square.jpeg')} /></div>
+                <div>
+                    <NavLink to="https://www.linkedin.com/in/alexander-vasilenko-323a21299/" target="_blank">
+                        <img className="profile-pic" src={require('../../Assets/Images/UtilityImages/me_square.jpeg')} />
+                    </NavLink>
+                </div>
                 <h2>👋🏻Hi There! I'm</h2>
-                <h3>Alexander <span>JR</span> Vasilenko</h3>
+                <h3>
+                    Alexander
+                    <span> JR </span>
+                    Vasilenko</h3>
                 <h4>Full Stack Developer</h4>
                 <h5>
                     {myContacts.map(c =>
@@ -111,7 +118,7 @@ function AboutArea(): JSX.Element {
                         effort into 'clean' coding aiming to avoid unnecessary repetition of code and put emphasis on object oriented
                         programming, correct file structuring and responsiveness to name a few.
                         <br /><br /><span>Backend - </span>the server side was written in <span>NodeJS</span> with the use of <span>express
-                        </span> and structured according to best practice  
+                        </span> and structured according to best practice
 
 
 
@@ -122,7 +129,7 @@ function AboutArea(): JSX.Element {
                 </div>
             </div>
             {/* <a href="This is my CV" download={cvFile}>CV</a> */}
-        </div>
+        </div >
     );
 }
 
