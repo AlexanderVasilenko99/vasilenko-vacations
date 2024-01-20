@@ -10,6 +10,7 @@ class VacationModel {
     public vacationStartDate: Date;
     public vacationEndDate: Date;
     public vacationPrice: number;
+    public vacationCountryISO: string;
     public vacationImageName: string;
     public vacationImageUrl: string;
     public vacationUploadedImage: UploadedFile;
@@ -25,6 +26,7 @@ class VacationModel {
         this.vacationStartDate = vacation.vacationStartDate;
         this.vacationEndDate = vacation.vacationEndDate;
         this.vacationPrice = vacation.vacationPrice;
+        this.vacationCountryISO = vacation.vacationCountryISO;
         this.vacationImageName = vacation.vacationImageName;
         this.vacationImageUrl = vacation.vacationImageUrl;
         this.vacationUploadedImage = vacation.vacationUploadedImage;
@@ -40,6 +42,7 @@ class VacationModel {
         vacationStartDate: Joi.date().required().greater('now'),
         vacationEndDate: Joi.date().required().greater('now'),
         vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
+        vacationCountryISO: Joi.string().required().min(2).max(2),
         vacationImageName: Joi.string().forbidden(),
         vacationImageUrl: Joi.string().forbidden(),
         vacationUploadedImage: Joi.object().required(),
@@ -55,6 +58,7 @@ class VacationModel {
         vacationStartDate: Joi.date().required(),
         vacationEndDate: Joi.date().required(),
         vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
+        vacationCountryISO: Joi.string().required().min(2).max(2),
         vacationImageName: Joi.string().required().min(2).max(255),
         vacationImageUrl: Joi.string().optional().max(260),// should i check vacationimageurl? - make sure later
         vacationUploadedImage: Joi.object().optional(),

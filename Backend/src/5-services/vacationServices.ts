@@ -23,6 +23,7 @@ class VacationServices {
             DATE_FORMAT(V.vacationStartDate,"%Y-%m-%d") AS vacationStartDate,
             DATE_FORMAT(V.vacationEndDate,"%Y-%m-%d") AS vacationEndDate,
             V.vacationPrice,
+            V.vacationCountryISO,
             V.vacationImageName,
                 EXISTS(SELECT * FROM followers WHERE vacationUUID = F.vacationUUID AND userUUID = ?) AS vacationIsFollowing,
                 COUNT(F.userUUID) AS vacationFollowersCount
