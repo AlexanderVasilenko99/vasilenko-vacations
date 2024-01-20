@@ -8,6 +8,7 @@ class VacationModel {
     public vacationStartDate: Date;
     public vacationEndDate: Date;
     public vacationPrice: number;
+    public vacationCountryISO: string;
     public vacationImageName: string;
     public vacationImageUrl: string;
     // public vacationUploadedImage: UploadedFile;

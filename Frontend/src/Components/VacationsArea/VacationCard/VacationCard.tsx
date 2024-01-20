@@ -41,7 +41,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
             <div className="card-text-container">
                 <div className="country-dates-container">
                     <div className="country-container">
-                        <img src="https://flagcdn.com/w20/ua.png" alt={vacation.vacationCountry}></img>
+                        <img src={`https://flagcdn.com/w20/${vacation.vacationCountryISO}.png`} alt={vacation.vacationCountry}></img>
                         <span>{vacation.vacationCountry}</span>
                     </div>
                     <div className="dates-container">

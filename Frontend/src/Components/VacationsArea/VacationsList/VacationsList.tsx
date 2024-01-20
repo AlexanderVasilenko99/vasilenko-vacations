@@ -68,6 +68,7 @@ function VacationsList(): JSX.Element {
                         vacationStartDate={v.vacationStartDate}
                         vacationEndDate={v.vacationEndDate}
                         vacationPrice={v.vacationPrice}
+                        vacationCountryISO={v.vacationCountryISO}
                         vacationImageName={v.vacationImageName}
                         vacationImageUrl={v.vacationImageUrl}
                         vacationUploadedImage={v.vacationUploadedImage}
@@ -177,7 +178,7 @@ function VacationsList(): JSX.Element {
             setDisplayedVacationCountries(newVacationCountries)
         }
     }
-    
+
     function resetSearchForm(): void {
         setDisplayedVacations(vacations);
     }
