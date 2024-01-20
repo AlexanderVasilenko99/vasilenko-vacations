@@ -38,15 +38,8 @@ function Admin(): JSX.Element {
                 setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
                 setImgSrc(vacation.vacationImageUrl);
-                
                 setValue("vacationStartDate", vacation.vacationStartDate);
-                // setValue("vacationEndDate", vacation.vacationEndDate);
-                
-
-
-                // setValue("vacationStartDate", new Date(vacation.vacationStartDate).toISOString().substring(0, 10));
-                
-
+                setValue("vacationEndDate", vacation.vacationEndDate);
 
                 // setImageName(vacation.vacationImageName)
                 // setValue("imageUrl", product.imageUrl);
@@ -86,7 +79,9 @@ function Admin(): JSX.Element {
         <div className="Admin">
             <h1>
                 <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
-                <button className="toggle-edit-button" onClick={toggleEdit}>{isDisabled ? "Enable" : "Disable"} Editing</button>
+                <button className="toggle-edit-button" onClick={toggleEdit}>
+                    {isDisabled ? "Enable" : "Disable"} Editing
+                </button>
             </h1>
             <div className="grid-container">
 
@@ -127,14 +122,12 @@ function Admin(): JSX.Element {
                             <div className="startDate">
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input type="date"
-                                    {...register("vacationStartDate", { valueAsDate: true })}
-                                    // {...register("vacationStartDate")}
+                                    {...register("vacationStartDate")}
                                     required disabled={isDisabled} />
                             </div>
                             <div className="endDate">
                                 <h3>Vacation End Date: </h3>
                                 <input type="date"
-                                    // {...register("vacationEndDate", { valueAsDate: true })}
                                     {...register("vacationEndDate")}
                                     required disabled={isDisabled} />
                             </div>

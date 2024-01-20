@@ -15,7 +15,15 @@ class VacationServices {
     public async getAllVacations(userUUID: string): Promise<VacationModel[]> { // USER.IS FOLLOWING DOESNT WORK
         const sql = `
             SELECT DISTINCT
-                V.*,
+            V.vacationId,
+            V.vacationUUID,
+            V.vacationCountry,
+            V.vacationCity,
+            V.vacationDescription,
+            DATE_FORMAT(V.vacationStartDate,"%Y-%m-%d") AS vacationStartDate,
+            DATE_FORMAT(V.vacationEndDate,"%Y-%m-%d") AS vacationEndDate,
+            V.vacationPrice,
+            V.vacationImageName,
                 EXISTS(SELECT * FROM followers WHERE vacationUUID = F.vacationUUID AND userUUID = ?) AS vacationIsFollowing,
                 COUNT(F.userUUID) AS vacationFollowersCount
             FROM vacations as V LEFT JOIN followers as F
@@ -87,7 +95,7 @@ class VacationServices {
     }
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         vacation.editVacationValidate();
-        
+
         const existingImageName = await this.getExistingVacationImageName(vacation.vacationUUID);
 
         const imageName = vacation.vacationUploadedImage ? await fileSaver.update(
