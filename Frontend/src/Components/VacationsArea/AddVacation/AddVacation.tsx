@@ -8,15 +8,20 @@ import useImagePreview from "../../../Utils/UseImagePreview";
 import UseIsAdmin from "../../../Utils/UseIsAdmin";
 import "./AddVacation.css";
 import { iso31661 } from "iso-3166";
-
+import { Autocomplete } from '@mui/material';
 
 function AddVacation(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
     const { register, handleSubmit } = useForm<VacationModel>();
     const navigate = useNavigate();
     const [minDate, setMinDate] = useState<string>('');
+    const [countries, setCountries] = useState<string[]>([]);
+    const [selectedCountryISO, setSelectedCountryISO] = useState<string>('il');
+
     useEffect(() => {
-        console.log(iso31661);
+        const dummyCountries: string[] = [];
+        iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
+        setCountries(dummyCountries)
     }, [])
     async function send(vacation: VacationModel): Promise<void> {
         try {
@@ -44,9 +49,27 @@ function AddVacation(): JSX.Element {
                 Add Vacation
             </h2>
             <form onSubmit={handleSubmit(send)}>
-                <label>Vacation Country: </label>
-                <input type="text" {...register("vacationCountry")}
-                    required placeholder="Israel" minLength={2} maxLength={100} />
+                <div className="country-container">
+                    <img src={`https://flagcdn.com/w20/${selectedCountryISO}.png`} className="countryImage"></img>
+                    <label>Vacation Country: </label>
+                </div>
+                <input type="text"
+                    {...register("vacationCountry")}
+                    required
+                    placeholder="Israel" minLength={2} maxLength={100} />
+
+
+                {/* <Autocomplete
+                    {...register("vacationCountry")}
+                    onChange={(event, value) => {
+                        if (value) setSelectedCountryISO(value.substring(value.length - 2, value.length).toLowerCase())
+                        else setSelectedCountryISO("il")
+                    }}
+                    disablePortal
+                    options={countries}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="Dates" />} /> */}
+
 
                 <label>Vacation City: </label>
                 <input type="text" {...register("vacationCity")}

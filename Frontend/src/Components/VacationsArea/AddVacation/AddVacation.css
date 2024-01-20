@@ -14,7 +14,14 @@
     box-sizing: border-box;
     margin-bottom: 20px;
 }
-
+.AddVacation .country-container{
+    display: flex;
+    align-items: center;
+}
+.AddVacation .countryImage{
+    width: 30px;
+    padding-right: 5px;
+}
 .AddVacation img {
     width: 100%;
 }
