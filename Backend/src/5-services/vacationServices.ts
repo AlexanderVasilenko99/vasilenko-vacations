@@ -62,7 +62,7 @@ class VacationServices {
         console.log("generated uuid: " + vacation.vacationUUID);
 
 
-        const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?,?);`
+        const sql = `INSERT INTO vacations VALUES(DEFAULT,?,?,?,?,?,?,?,?,?);`
 
         const info: OkPacket = await dal.execute(sql, [
             vacation.vacationUUID,
@@ -72,6 +72,7 @@ class VacationServices {
             vacation.vacationStartDate,
             vacation.vacationEndDate,
             vacation.vacationPrice,
+            vacation.vacationCountryISO,
             vacation.vacationImageName
         ]);
         vacation.vacationId = info.insertId;
@@ -109,6 +110,7 @@ class VacationServices {
                     vacationStartDate = ?,
                     vacationEndDate = ?,
                     vacationPrice = ?,
+                    vacationCountryISO = ?,
                     vacationImageName = ?
                     WHERE vacationUUID = ?;`
 
@@ -119,6 +121,7 @@ class VacationServices {
             vacation.vacationStartDate,
             vacation.vacationEndDate,
             vacation.vacationPrice,
+            vacation.vacationCountryISO,
             imageName,
             vacation.vacationUUID
         ]);

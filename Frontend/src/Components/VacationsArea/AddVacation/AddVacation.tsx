@@ -8,7 +8,7 @@ import useImagePreview from "../../../Utils/UseImagePreview";
 import UseIsAdmin from "../../../Utils/UseIsAdmin";
 import "./AddVacation.css";
 import { iso31661 } from "iso-3166";
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 
 function AddVacation(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
@@ -25,7 +25,21 @@ function AddVacation(): JSX.Element {
     }, [])
     async function send(vacation: VacationModel): Promise<void> {
         try {
+
+            const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
+            const fullCountry: string = countryInput.value;
+            if (fullCountry.length <= 2) {
+                throw new Error("Please select a country!")
+            }
+            const country = fullCountry.substring(0, fullCountry.length - 3);
+            if (country.length > 100) {
+                throw new Error("Country name can't exceed 100 chars!")
+            }
+            vacation.vacationCountry = country;
+            vacation.vacationCountryISO = selectedCountryISO;
             vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
+
+            console.log(vacation);
             const addedVacation = await vacationService.addVacation(vacation);
             noti.success("Vacation has been added successfully!");
             navigate("/vacations");
@@ -53,13 +67,13 @@ function AddVacation(): JSX.Element {
                     <img src={`https://flagcdn.com/w20/${selectedCountryISO}.png`} className="countryImage"></img>
                     <label>Vacation Country: </label>
                 </div>
-                <input type="text"
+                {/* <input type="text"
                     {...register("vacationCountry")}
                     required
-                    placeholder="Israel" minLength={2} maxLength={100} />
+                    placeholder="Israel" minLength={2} maxLength={100} /> */}
 
 
-                {/* <Autocomplete
+                <Autocomplete id="countriesAutocomplete"
                     {...register("vacationCountry")}
                     onChange={(event, value) => {
                         if (value) setSelectedCountryISO(value.substring(value.length - 2, value.length).toLowerCase())
@@ -68,7 +82,7 @@ function AddVacation(): JSX.Element {
                     disablePortal
                     options={countries}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Dates" />} /> */}
+                    renderInput={(params) => <TextField {...params} label="Dates" />} />
 
 
                 <label>Vacation City: </label>

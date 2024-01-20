@@ -9,29 +9,36 @@ import appConfig from "../../../../Utils/AppConfig";
 import { NavLink } from "react-router-dom";
 import { authStore } from "../../../../Redux/AuthState";
 import { HashLink } from "react-router-hash-link";
+import { Autocomplete, TextField } from '@mui/material';
+import { iso31661 } from "iso-3166";
+import UseIsAdmin from "../../../../Utils/UseIsAdmin";
 
 function Admin(): JSX.Element {
+    UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
+
     const params = useParams();
     const uuid = params.uuid;
     const [imgSrc, setImgSrc] = useState<string>("");
     const [iso, setISO] = useState<string>("");
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
+    const [countries, setCountries] = useState<string[]>([]);
+    const [country, setCountry] = useState<string>('');
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     const [v, setV] = useState<VacationModel>();
     const [minDate, setMinDate] = useState<string>('');
 
+    // const [imageName, setImageName] = useState<string>('');
+    // const [imageUrl, setImageUrl] = useState<string>('');
+
+
     useEffect(() => {
-        const token = authStore.getState().token;
-        if (!token) {
-            noti.error("Please login in to view this page");
-            navigate("/login");
-        }
-        if (authStore.getState().user?.userRoleId === 2) {
-            noti.error("You must be administrator to view this page")
-            navigate(appConfig.loginRoute)
-        }
+        const dummyCountries: string[] = [];
+        iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
+        setCountries(dummyCountries)
+
+
         vacationService.getOneVacation(uuid)
             .then(vacation => {
                 setV(vacation);
@@ -44,11 +51,17 @@ function Admin(): JSX.Element {
                 setValue("vacationEndDate", vacation.vacationEndDate);
                 setMinDate(vacation.vacationStartDate.toString());
                 setISO(vacation.vacationCountryISO);
+                setCountry(vacation.vacationCountry)
+                // setImageName(vacation.vacationImageName)
+                // setImageUrl("imageUrl", product.imageUrl);
+
+
                 // setImageName(vacation.vacationImageName)
                 // setValue("imageUrl", product.imageUrl);
             })
             .catch((err) => console.log(err));
     }, []);
+    // console.log(countries.find(c => c.includes(country)))
     function handleImageChange(e: any) {
         if (e) {
             const file = (e.target.files)[0];
@@ -62,10 +75,22 @@ function Admin(): JSX.Element {
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
-
+            vacation.vacationCountryISO = iso;
             vacation.vacationUUID = uuid;
             vacation.vacationImageName = v.vacationImageName;
             vacation.vacationImageUrl = v.vacationImageUrl;
+
+            const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
+            const fullCountry: string = countryInput.value;
+            if (fullCountry.length <= 2) {
+                throw new Error("Please select a country!")
+            }
+            const country = fullCountry.substring(0, fullCountry.length - 3);
+            if (country.length > 100) {
+                throw new Error("Country name can't exceed 100 chars!")
+            }
+            vacation.vacationCountry = country;
+
             if (vacation.vacationUploadedImage)
                 vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
 
@@ -107,10 +132,27 @@ function Admin(): JSX.Element {
                     <form onSubmit={handleSubmit(update)}>
                         <div className="country-container">
                             <h3 id="vacation-country">Vacation Country: </h3>
-                            <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>
+                            {iso && <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>}
                         </div>
-                        <input type="text" {...register("vacationCountry")}
-                            required minLength={2} maxLength={100} disabled={isDisabled} />
+                        {/* <input type="text" {...register("vacationCountry")}
+                            required minLength={2} maxLength={100} disabled={isDisabled} /> */}
+
+                        {country && iso && <Autocomplete id="countriesAutocomplete"
+                            disabled={isDisabled}
+                            // {...register("vacationCountry")}
+                            defaultValue={country + " " + iso.toUpperCase()}
+                            onChange={(event, value: string) => {
+                                const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
+                                countryInput.value = value;
+                                console.log(countryInput.value);
+
+                                if (value) setISO(value.substring(value.length - 2, value.length).toLowerCase())
+                                else setISO("il");
+                            }}
+                            disablePortal
+                            options={countries}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Dates" />} />}
 
                         <h3 id="vacation-city">Vacation City: </h3>
                         <input type="text" {...register("vacationCity")}
