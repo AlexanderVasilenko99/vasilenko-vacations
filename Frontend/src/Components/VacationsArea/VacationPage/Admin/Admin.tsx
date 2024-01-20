@@ -19,6 +19,7 @@ function Admin(): JSX.Element {
     const navigate = useNavigate();
 
     const [v, setV] = useState<VacationModel>();
+    const [minDate, setMinDate] = useState<string>('');
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -40,7 +41,7 @@ function Admin(): JSX.Element {
                 setImgSrc(vacation.vacationImageUrl);
                 setValue("vacationStartDate", vacation.vacationStartDate);
                 setValue("vacationEndDate", vacation.vacationEndDate);
-
+                setMinDate(vacation.vacationStartDate.toString())
                 // setImageName(vacation.vacationImageName)
                 // setValue("imageUrl", product.imageUrl);
             })
@@ -123,13 +124,14 @@ function Admin(): JSX.Element {
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input type="date"
                                     {...register("vacationStartDate")}
-                                    required disabled={isDisabled} />
+                                    required disabled={isDisabled}
+                                    onChange={(e) => { setMinDate(e.target.value) }} />
                             </div>
                             <div className="endDate">
                                 <h3>Vacation End Date: </h3>
                                 <input type="date"
                                     {...register("vacationEndDate")}
-                                    required disabled={isDisabled} />
+                                    required disabled={isDisabled} min={minDate}/>
                             </div>
                         </div>
                         <div className="image-section-container">
