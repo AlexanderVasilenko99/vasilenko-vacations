@@ -14,6 +14,7 @@ function Admin(): JSX.Element {
     const params = useParams();
     const uuid = params.uuid;
     const [imgSrc, setImgSrc] = useState<string>("");
+    const [iso, setISO] = useState<string>("");
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
@@ -41,7 +42,8 @@ function Admin(): JSX.Element {
                 setImgSrc(vacation.vacationImageUrl);
                 setValue("vacationStartDate", vacation.vacationStartDate);
                 setValue("vacationEndDate", vacation.vacationEndDate);
-                setMinDate(vacation.vacationStartDate.toString())
+                setMinDate(vacation.vacationStartDate.toString());
+                setISO(vacation.vacationCountryISO);
                 // setImageName(vacation.vacationImageName)
                 // setValue("imageUrl", product.imageUrl);
             })
@@ -103,7 +105,10 @@ function Admin(): JSX.Element {
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
-                        <h3 id="vacation-country">Vacation Country: </h3>
+                        <div className="country-container">
+                            <h3 id="vacation-country">Vacation Country: </h3>
+                            <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>
+                        </div>
                         <input type="text" {...register("vacationCountry")}
                             required minLength={2} maxLength={100} disabled={isDisabled} />
 
@@ -131,7 +136,7 @@ function Admin(): JSX.Element {
                                 <h3>Vacation End Date: </h3>
                                 <input type="date"
                                     {...register("vacationEndDate")}
-                                    required disabled={isDisabled} min={minDate}/>
+                                    required disabled={isDisabled} min={minDate} />
                             </div>
                         </div>
                         <div className="image-section-container">
