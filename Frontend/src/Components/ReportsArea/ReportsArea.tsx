@@ -9,17 +9,13 @@ import {
 } from 'chart.js';
 import { useEffect, useState } from "react";
 import { Bar } from 'react-chartjs-2';
-import { useNavigate } from "react-router-dom";
+import { CSVLink } from "react-csv";
 import VacationModel from "../../Models/VacationModel";
-import { authStore } from "../../Redux/AuthState";
-import noti from "../../Services/NotificationService";
+import { vacationsStore } from '../../Redux/VacationsState';
 import vacationService from "../../Services/VacationService";
+import UseIsAdmin from '../../Utils/UseIsAdmin';
 import UseTitle from "../../Utils/UseTitle";
 import "./ReportsArea.css";
-import { CSVLink, CSVDownload } from "react-csv";
-import Header from '../Common/header/header';
-import UseIsAdmin from '../../Utils/UseIsAdmin';
-import { vacationsStore } from '../../Redux/VacationsState';
 
 ChartJS.register(
     CategoryScale,
@@ -62,7 +58,10 @@ function ReportsArea(): JSX.Element {
 
     return (
         <div className="ReportsArea">
-            <Header {...{ title: "Browse Reports" }} />
+            <div className='headers-container'>
+                <h1>Browse Reports</h1>
+                <CSVLink data={csvData}>Download csv</CSVLink>
+            </div>
             <div className="canvas-container">
                 <Bar options={{
                     responsive: true,
@@ -73,14 +72,12 @@ function ReportsArea(): JSX.Element {
                     datasets: [{
                         label: 'Followers',
                         data: followersCount,
-                        // data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
                         backgroundColor: '#2e6ba0',
                     }],
                 }} />
             </div>
 
 
-            <CSVLink data={csvData}>Download csv</CSVLink>
         </div>
     );
 }
