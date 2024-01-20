@@ -39,6 +39,7 @@
     /* text-align: left; */
     display: flex;
     justify-content: space-between;
+    min-width: 595px;
     margin: 20px 175px 20px 175px;
 }
 
