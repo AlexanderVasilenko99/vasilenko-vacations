@@ -1,40 +1,36 @@
-import { useNavigate, useParams } from "react-router-dom";
-import "./Admin.css";
+import { Autocomplete, TextField } from '@mui/material';
+import { iso31661 } from "iso-3166";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import VacationModel from "../../../../Models/VacationModel";
 import noti from "../../../../Services/NotificationService";
 import vacationService from "../../../../Services/VacationService";
-import { useEffect, useState } from "react";
 import appConfig from "../../../../Utils/AppConfig";
-import { NavLink } from "react-router-dom";
-import { authStore } from "../../../../Redux/AuthState";
-import { HashLink } from "react-router-hash-link";
-import { Autocomplete, TextField } from '@mui/material';
-import { iso31661 } from "iso-3166";
 import UseIsAdmin from "../../../../Utils/UseIsAdmin";
+import "./Admin.css";
 
 function Admin(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
 
+    const navigate = useNavigate();
     const params = useParams();
     const uuid = params.uuid;
-    const [imgSrc, setImgSrc] = useState<string>("");
+
     const [iso, setISO] = useState<string>("");
-    const [isDisabled, setIsDisabled] = useState<boolean>(true);
-    const [countries, setCountries] = useState<string[]>([]);
-    const [country, setCountry] = useState<string>('');
-    const { register, handleSubmit, setValue } = useForm<VacationModel>();
-    const navigate = useNavigate();
-
     const [v, setV] = useState<VacationModel>();
+    const [imgSrc, setImgSrc] = useState<string>("");
     const [minDate, setMinDate] = useState<string>('');
-
-    // const [imageName, setImageName] = useState<string>('');
-    // const [imageUrl, setImageUrl] = useState<string>('');
+    const [countries, setCountries] = useState<string[]>([]);
+    const [countryName, setCountryName] = useState<string>('');
+    const [isFormDisabled, setIsFormDisabled] = useState<boolean>(true);
+    const { register, handleSubmit, setValue } = useForm<VacationModel>();
 
 
     useEffect(() => {
         const dummyCountries: string[] = [];
+        dummyCountries.push("OTHER");
         iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
         setCountries(dummyCountries)
 
@@ -51,27 +47,21 @@ function Admin(): JSX.Element {
                 setValue("vacationEndDate", vacation.vacationEndDate);
                 setMinDate(vacation.vacationStartDate.toString());
                 setISO(vacation.vacationCountryISO);
-                setCountry(vacation.vacationCountry)
-                // setImageName(vacation.vacationImageName)
-                // setImageUrl("imageUrl", product.imageUrl);
-
-
-                // setImageName(vacation.vacationImageName)
-                // setValue("imageUrl", product.imageUrl);
+                setCountryName(vacation.vacationCountry)
             })
             .catch((err) => console.log(err));
     }, []);
-    // console.log(countries.find(c => c.includes(country)))
-    function handleImageChange(e: any) {
+
+    function handleChange(e: any): void {
+        console.log("changing image");
         if (e) {
             const file = (e.target.files)[0];
             const url = URL.createObjectURL(file);
             setImgSrc(url);
         }
     }
-    function toggleEdit(): void {
-        setIsDisabled(!isDisabled);
-    }
+
+    function toggleEdit(): void { setIsFormDisabled(!isFormDisabled) }
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
@@ -108,7 +98,7 @@ function Admin(): JSX.Element {
             <h1>
                 <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
                 <button className="toggle-edit-button" onClick={toggleEdit}>
-                    {isDisabled ? "Enable" : "Disable"} Editing
+                    {isFormDisabled ? "Enable" : "Disable"} Editing
                 </button>
             </h1>
             <div className="grid-container">
@@ -117,12 +107,18 @@ function Admin(): JSX.Element {
                     <div>
                         <h3>Summary</h3>
                         <ul>
-                            <li><HashLink smooth to="#vacation-country">Vacation Country</HashLink></li>
-                            <li><HashLink smooth to="#vacation-city">Vacation City</HashLink></li>
-                            <li><HashLink smooth to="#vacation-description">Vacation Description</HashLink></li>
-                            <li><HashLink smooth to="#vacation-price">Vacation Price</HashLink></li>
-                            <li><HashLink smooth to="#vacation-start">Vacation Dates</HashLink></li>
-                            <li><HashLink smooth to="#vacation-image">Vacation Image</HashLink></li>
+                            <li><HashLink smooth to="#vacation-country">
+                                Vacation Country</HashLink></li>
+                            <li><HashLink smooth to="#vacation-city">
+                                Vacation City</HashLink></li>
+                            <li><HashLink smooth to="#vacation-description">
+                                Vacation Description</HashLink></li>
+                            <li><HashLink smooth to="#vacation-price">
+                                Vacation Price</HashLink></li>
+                            <li><HashLink smooth to="#vacation-start">
+                                Vacation Dates</HashLink></li>
+                            <li><HashLink smooth to="#vacation-image">
+                                Vacation Image</HashLink></li>
                         </ul>
                     </div>
                 </div>
@@ -135,16 +131,15 @@ function Admin(): JSX.Element {
                             {iso && <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>}
                         </div>
                         {/* <input type="text" {...register("vacationCountry")}
-                            required minLength={2} maxLength={100} disabled={isDisabled} /> */}
+                            required minLength={2} maxLength={100} disabled={isFormDisabled} /> */}
 
-                        {country && iso && <Autocomplete id="countriesAutocomplete"
-                            disabled={isDisabled}
+                        {countryName && iso && <Autocomplete id="countriesAutocomplete"
+                            disabled={isFormDisabled}
                             // {...register("vacationCountry")}
-                            defaultValue={country + " " + iso.toUpperCase()}
+                            defaultValue={countryName + " " + iso.toUpperCase()}
                             onChange={(event, value: string) => {
                                 const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
                                 countryInput.value = value;
-                                console.log(countryInput.value);
 
                                 if (value) setISO(value.substring(value.length - 2, value.length).toLowerCase())
                                 else setISO("il");
@@ -155,50 +150,77 @@ function Admin(): JSX.Element {
                             renderInput={(params) => <TextField {...params} label="Dates" />} />}
 
                         <h3 id="vacation-city">Vacation City: </h3>
-                        <input type="text" {...register("vacationCity")}
-                            required minLength={2} maxLength={100} disabled={isDisabled} />
+                        <input type="text"
+                            required
+                            minLength={2}
+                            maxLength={100}
+                            disabled={isFormDisabled}
+                            {...register("vacationCity")}
+                        />
 
                         <h3 id="vacation-description">Vacation Description: </h3>
-                        <textarea {...register("vacationDescription")} rows={3}
-                            required minLength={2} maxLength={100} disabled={isDisabled} />
+                        <textarea
+                            rows={3}
+                            required
+                            minLength={2}
+                            maxLength={100}
+                            disabled={isFormDisabled}
+                            {...register("vacationDescription")}
+                        />
 
                         <h3 id="vacation-price">Vacation Price: </h3>
-                        <input type="number"{...register("vacationPrice")}
-                            required min={0} max={9999} disabled={isDisabled} />
+                        <input
+                            type="number"
+                            min={0}
+                            required
+                            max={9999}
+                            disabled={isFormDisabled}
+                            {...register("vacationPrice")}
+                        />
 
                         <div className="dates-container">
                             <div className="startDate">
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
-                                <input type="date"
+                                <input
+                                    type="date"
+                                    required
+                                    disabled={isFormDisabled}
                                     {...register("vacationStartDate")}
-                                    required disabled={isDisabled}
                                     onChange={(e) => { setMinDate(e.target.value) }} />
                             </div>
                             <div className="endDate">
                                 <h3>Vacation End Date: </h3>
-                                <input type="date"
+                                <input
+                                    required
+                                    type="date"
+                                    min={minDate}
+                                    disabled={isFormDisabled}
                                     {...register("vacationEndDate")}
-                                    required disabled={isDisabled} min={minDate} />
+                                />
                             </div>
                         </div>
                         <div className="image-section-container">
                             <h3 id="vacation-image">Vacation image: </h3>
-                            <input type="file" accept="image/*"
-                                className="imageInput" disabled={isDisabled}
-                                onChange={handleImageChange}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                id="image-file-input"
+                                className="imageInput"
+                                disabled={isFormDisabled}
+                                onChangeCapture={handleChange}
                                 {...register("vacationUploadedImage")} />
                         </div>
                         <div className="imageContainer">
                             <img src={imgSrc} />
                         </div>
                         <div className="button-container">
-                            <button disabled={isDisabled}>Update Vacation</button>
+                            <button disabled={isFormDisabled}>Update Vacation</button>
                         </div>
                     </form>
                 </div>
-            </div>
+            </div >
             <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
-        </div>
+        </div >
     );
 }
 
