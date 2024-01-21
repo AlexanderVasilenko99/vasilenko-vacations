@@ -140,18 +140,19 @@ function Admin(): JSX.Element {
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
-                        <button
-                            type='button'
-                            disabled={isFormDisabled}
-                            onClick={() => setIsCountryInputCustom(!isCountryInputCustom)}>custom country & iso?
-                        </button>
                         <div className="country-container">
                             <h3 id="vacation-country">
                                 <span className='custom-country'>{isCountryInputCustom ? "Custom " : ""}</span>
                                 Vacation Country:
                             </h3>
-
                             {iso && <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>}
+                            <button
+                                type='button'
+                                disabled={isFormDisabled}
+                                className='toggle-default-country-button'
+                                onClick={() => setIsCountryInputCustom(!isCountryInputCustom)}>
+                                {isCountryInputCustom ? "Regular" : "Custom"} country?
+                            </button>
                         </div>
                         {isCountryInputCustom && <>
                             <input type="text"

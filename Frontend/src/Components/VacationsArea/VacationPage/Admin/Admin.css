@@ -262,3 +262,37 @@
 .Admin .custom-country {
     color: #2e6ba0;
 }
+
+
+.Admin .toggle-default-country-button[disabled] {
+    color: gray;
+    background-color: #F6F1F1;
+    border: 2px solid #2e6ba0;
+}
+
+.Admin .toggle-default-country-button[disabled]:hover {
+    color: gray;
+    background-color: #F6F1F1;
+    cursor: auto;
+}
+
+.Admin .toggle-default-country-button {
+    font-size: 18px;
+    padding: 4px 8px;
+    margin: 0;
+    margin: auto 0px 5px auto;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.Admin .toggle-default-country-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
+}
