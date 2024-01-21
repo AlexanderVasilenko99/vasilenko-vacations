@@ -30,26 +30,29 @@ function Admin(): JSX.Element {
     const [isCountryInputCustom, setIsCountryInputCustom] = useState<boolean>(false);
 
     useEffect(() => {
-        const dummyCountries: string[] = [];
-        iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
-        setCountries(dummyCountries)
-
-
         vacationService.getOneVacation(uuid)
             .then(vacation => {
                 setV(vacation);
                 setValue("vacationCity", vacation.vacationCity);
-                setValue("vacationCountry", vacation.vacationCountry);
-                setValue("vacationDescription", vacation.vacationDescription);
                 setValue("vacationPrice", vacation.vacationPrice);
-                setImgSrc(vacation.vacationImageUrl);
-                setValue("vacationStartDate", vacation.vacationStartDate);
+                setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationEndDate", vacation.vacationEndDate);
-                setMinDate(vacation.vacationStartDate.toString());
+                setValue("vacationStartDate", vacation.vacationStartDate);
+                setValue("vacationDescription", vacation.vacationDescription);
+
                 setISO(vacation.vacationCountryISO);
+                setImgSrc(vacation.vacationImageUrl);
                 setCountryName(vacation.vacationCountry)
+                setMinDate(vacation.vacationStartDate.toString());
             })
             .catch((err) => console.log(err));
+
+        const dummyCountries: string[] = [];
+        console.log(countryName + " " + iso.toUpperCase());
+        dummyCountries.push(countryName + " " + iso);
+        iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
+        setCountries(dummyCountries);
+
     }, []);
 
     function handleChange(e: any): void {
@@ -66,27 +69,31 @@ function Admin(): JSX.Element {
     async function update(vacation: VacationModel): Promise<void> {
         try {
             const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
-            const fullCountry: string = countryInput.value;
+            const fullCountry: string = countryInput?.value;
 
             vacation.vacationUUID = uuid;
-            vacation.vacationCountryISO = iso;
-            vacation.vacationCountry = fullCountry;
             vacation.vacationImageUrl = v.vacationImageUrl;
             vacation.vacationImageName = v.vacationImageName;
+            vacation.vacationCountryISO = iso;
 
-            // console.log("country doesnt exist");
+            if (fullCountry) {
+                vacation.vacationCountryISO = iso;
+                vacation.vacationCountry = fullCountry;
 
-            console.log(vacation);
-
-
-            if (fullCountry.length <= 2) {
-                throw new Error("Please select a country!")
+                if (fullCountry.length <= 2) {
+                    throw new Error("Please select a country!")
+                }
+                const country = fullCountry.substring(0, fullCountry.length - 3);
+                if (country.length > 100) {
+                    throw new Error("Country name can't exceed 100 chars!")
+                }
+                vacation.vacationCountry = country;
             }
-            const country = fullCountry.substring(0, fullCountry.length - 3);
-            if (country.length > 100) {
-                throw new Error("Country name can't exceed 100 chars!")
+            else if (countryInput) {
+                noti.error("Please select a country!");
+                countryInput.focus();
+                return;
             }
-            vacation.vacationCountry = country;
 
             if (vacation.vacationUploadedImage)
                 vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
@@ -133,14 +140,43 @@ function Admin(): JSX.Element {
 
                 <div className="right">
                     <form onSubmit={handleSubmit(update)}>
+                        <button
+                            type='button'
+                            disabled={isFormDisabled}
+                            onClick={() => setIsCountryInputCustom(!isCountryInputCustom)}>custom country & iso?
+                        </button>
                         <div className="country-container">
-                            <h3 id="vacation-country">Vacation Country: </h3>
+                            <h3 id="vacation-country">
+                                <span className='custom-country'>{isCountryInputCustom ? "Custom " : ""}</span>
+                                Vacation Country:
+                            </h3>
+
                             {iso && <img src={`https://flagcdn.com/w20/${iso}.png`} className="country-image"></img>}
                         </div>
-                        {/* <input type="text" {...register("vacationCountry")}
-                            required minLength={2} maxLength={100} disabled={isFormDisabled} /> */}
-
-                        {countryName && iso && <Autocomplete id="countriesAutocomplete"
+                        {isCountryInputCustom && <>
+                            <input type="text"
+                                required
+                                minLength={2}
+                                maxLength={100}
+                                disabled={isFormDisabled}
+                                {...register("vacationCountry")}
+                            />
+                            <h3 id="vacation-iso">
+                                <span className='custom-country'>{isCountryInputCustom ? "Custom " : ""}</span>
+                                Vacation Country ISO:
+                            </h3>
+                            <input type="text"
+                                required
+                                minLength={2}
+                                maxLength={2}
+                                disabled={isFormDisabled}
+                                onChangeCapture={(e: any) => {
+                                    if (e.target.value.length === 2) setISO(e.target.value);
+                                }}
+                                {...register("vacationCountryISO")}
+                            />
+                        </>}
+                        {countryName && !isCountryInputCustom && iso && <Autocomplete id="countriesAutocomplete"
                             disabled={isFormDisabled}
                             // {...register("vacationCountry")}
                             defaultValue={countryName + " " + iso.toUpperCase()}
@@ -159,17 +195,18 @@ function Admin(): JSX.Element {
                             options={countries}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />}
-                            filterOptions={(options, params) => {
-                                const filtered = filter(options, params);
-                                const { inputValue } = params;
-                                // Suggest the creation of a new value
-                                const isExisting = options.some((option) => inputValue === option);
-                                if (inputValue !== '' && !isExisting) {
-                                    filtered.push(`${inputValue}`);
-                                }
 
-                                return filtered;
-                            }}
+                        // filterOptions={(options, params) => {
+                        //     const filtered = filter(options, params);
+                        //     const { inputValue } = params;
+                        //     // Suggest the creation of a new value
+                        //     const isExisting = options.some((option) => inputValue === option);
+                        //     if (inputValue !== '' && !isExisting) {
+                        //         filtered.push(`${inputValue}`);
+                        //     }
+
+                        //     return filtered;
+                        // }}
                         />}
 
                         <h3 id="vacation-city">Vacation City: </h3>

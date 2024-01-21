@@ -258,3 +258,7 @@
 .Admin .MuiFormControl-root label {
     display: none;
 }
+
+.Admin .custom-country {
+    color: #2e6ba0;
+}
