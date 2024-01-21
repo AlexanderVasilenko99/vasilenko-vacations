@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, TextField, createFilterOptions } from '@mui/material';
 import { iso31661 } from "iso-3166";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,17 +20,17 @@ function Admin(): JSX.Element {
 
     const [iso, setISO] = useState<string>("");
     const [v, setV] = useState<VacationModel>();
+    const filter = createFilterOptions<string>();
     const [imgSrc, setImgSrc] = useState<string>("");
     const [minDate, setMinDate] = useState<string>('');
     const [countries, setCountries] = useState<string[]>([]);
     const [countryName, setCountryName] = useState<string>('');
     const [isFormDisabled, setIsFormDisabled] = useState<boolean>(true);
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
-
+    const [isCountryInputCustom, setIsCountryInputCustom] = useState<boolean>(false);
 
     useEffect(() => {
         const dummyCountries: string[] = [];
-        dummyCountries.push("OTHER");
         iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
         setCountries(dummyCountries)
 
@@ -65,13 +65,20 @@ function Admin(): JSX.Element {
 
     async function update(vacation: VacationModel): Promise<void> {
         try {
-            vacation.vacationCountryISO = iso;
-            vacation.vacationUUID = uuid;
-            vacation.vacationImageName = v.vacationImageName;
-            vacation.vacationImageUrl = v.vacationImageUrl;
-
             const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
             const fullCountry: string = countryInput.value;
+
+            vacation.vacationUUID = uuid;
+            vacation.vacationCountryISO = iso;
+            vacation.vacationCountry = fullCountry;
+            vacation.vacationImageUrl = v.vacationImageUrl;
+            vacation.vacationImageName = v.vacationImageName;
+
+            // console.log("country doesnt exist");
+
+            console.log(vacation);
+
+
             if (fullCountry.length <= 2) {
                 throw new Error("Please select a country!")
             }
@@ -138,6 +145,10 @@ function Admin(): JSX.Element {
                             // {...register("vacationCountry")}
                             defaultValue={countryName + " " + iso.toUpperCase()}
                             onChange={(event, value: string) => {
+                                if (value) {
+                                    console.log(value);
+                                }
+
                                 const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
                                 countryInput.value = value;
 
@@ -147,7 +158,19 @@ function Admin(): JSX.Element {
                             disablePortal
                             options={countries}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Dates" />} />}
+                            renderInput={(params) => <TextField {...params} label="Dates" />}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push(`${inputValue}`);
+                                }
+
+                                return filtered;
+                            }}
+                        />}
 
                         <h3 id="vacation-city">Vacation City: </h3>
                         <input type="text"
