@@ -1,21 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
+import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
+import { Autocomplete, TextField } from '@mui/material';
+import { useEffect, useState } from "react";
+import ReactPaginate from 'react-paginate';
+import { NavLink, useNavigate } from "react-router-dom";
+import MoonLoader from "react-spinners/MoonLoader";
 import VacationModel from "../../../Models/VacationModel";
+import { authStore } from "../../../Redux/AuthState";
+import { vacationsStore } from "../../../Redux/VacationsState";
 import vacationService from "../../../Services/VacationService";
+import appConfig from "../../../Utils/AppConfig";
+import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
+import UseTitle from "../../../Utils/UseTitle";
 import VacationCard from "../VacationCard/VacationCard";
 import "./VacationsList.css";
-import { authStore } from "../../../Redux/AuthState";
-import noti from "../../../Services/NotificationService";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import UseTitle from "../../../Utils/UseTitle";
-import { Autocomplete, Box, Slider, TextField } from '@mui/material';
-import { vacationsStore } from "../../../Redux/VacationsState";
-import { createStore } from "redux";
-import Header from "../../Common/header/header";
-import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
-import MoonLoader from "react-spinners/MoonLoader";
-import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
-import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
-import ReactPaginate from 'react-paginate';
 
 // this is for useSearchParams to be added on later
 // class SearchValues {
@@ -33,10 +31,10 @@ import ReactPaginate from 'react-paginate';
 
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
-    UseIsLoggedIn(true, "You must be logged in to view our vacations!🥴");
+    UseIsLoggedIn(true, "You must be logged in to view our vacations!🥴", "/login");
 
     const navigate = useNavigate();
-
+    const isAdmin = authStore.getState().user?.userRoleId === 1 ? true : false;
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
 
@@ -208,7 +206,10 @@ function VacationsList(): JSX.Element {
 
     return (
         <div className="VacationsList">
-            <Header {...{ title: "Browse Vacations" }} />
+            <div className="headers-container">
+                <h1>Browse Vacations</h1>
+                {isAdmin && <NavLink to={appConfig.addVacationRoute}>Add Vacation</NavLink>}
+            </div>
             <h2 className="general-info">
                 <span>Or search a vacation:</span>
                 <span className="results">Showing {displayedVacations?.length} results</span></h2>
@@ -265,22 +266,6 @@ function VacationsList(): JSX.Element {
                         loading />
                 }
                 <PaginatedItems itemsPerPage={9} />
-
-                {/* {displayedVacations?.map(v => <VacationCard key={v.vacationUUID}
-                    vacationUUID={v.vacationUUID}
-                    vacationCity={v.vacationCity}
-                    vacationCountry={v.vacationCountry}
-                    vacationDescription={v.vacationDescription}
-                    vacationId={v.vacationId}
-                    vacationStartDate={v.vacationStartDate}
-                    vacationEndDate={v.vacationEndDate}
-                    vacationPrice={v.vacationPrice}
-                    vacationImageName={v.vacationImageName}
-                    vacationImageUrl={v.vacationImageUrl}
-                    vacationUploadedImage={v.vacationUploadedImage}
-                    vacationIsFollowing={v.vacationIsFollowing}
-                    vacationFollowersCount={v.vacationFollowersCount}
-                />)} */}
             </div>
         </div >
     );
