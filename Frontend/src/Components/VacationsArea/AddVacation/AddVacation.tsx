@@ -184,7 +184,7 @@ function AddVacation(): JSX.Element {
                         />
 
                         <div className="dates-container">
-                            <div className="StartDate">
+                            <div className="startDate">
                                 <h3 id="vacation-start">Vacation Start Date: </h3>
                                 <input
                                     required
@@ -210,13 +210,14 @@ function AddVacation(): JSX.Element {
                                 required
                                 type="file"
                                 accept="image/*"
-                                onChange={handleChange}
+                                id="image-file-input"
+                                className="imageInput"
+                                onChangeCapture={handleChange}
                                 {...register("vacationUploadedImage")}
                             />
                         </div>
-
                         <div className="imageContainer">
-                            <img src={imageSrc} />
+                            {imageSrc && <img src={imageSrc} />}
                         </div>
                         <div className="button-container">
                             <button>Add Vacation</button>
