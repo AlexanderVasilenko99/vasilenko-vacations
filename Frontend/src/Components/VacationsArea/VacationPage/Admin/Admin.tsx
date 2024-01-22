@@ -10,6 +10,7 @@ import vacationService from "../../../../Services/VacationService";
 import appConfig from "../../../../Utils/AppConfig";
 import UseIsAdmin from "../../../../Utils/UseIsAdmin";
 import "./Admin.css";
+import UseDeleteVacation from '../../../../Utils/UseDeleteVacation';
 
 function Admin(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
@@ -112,7 +113,10 @@ function Admin(): JSX.Element {
                 <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
                 <div>
                     {!isFormDisabled && <button
-                        onClick={() => { console.log("click") }}
+                        onClick={async () => {
+                            await UseDeleteVacation(v);
+                            navigate(appConfig.vacationsRoute);
+                        }}
                         className="delete-vacation-button"
                     >
                         Delete Vacation
