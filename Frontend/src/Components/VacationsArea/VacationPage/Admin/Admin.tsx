@@ -114,8 +114,8 @@ function Admin(): JSX.Element {
                 <div>
                     {!isFormDisabled && <button
                         onClick={async () => {
-                            await UseDeleteVacation(v);
-                            navigate(appConfig.vacationsRoute);
+                            const isOk = await UseDeleteVacation(v);
+                            if (isOk) navigate(appConfig.vacationsRoute);
                         }}
                         className="delete-vacation-button"
                     >
