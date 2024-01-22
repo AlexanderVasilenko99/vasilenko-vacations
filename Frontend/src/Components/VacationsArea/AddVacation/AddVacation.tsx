@@ -14,12 +14,17 @@ import { HashLink } from "react-router-hash-link";
 
 function AddVacation(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
-    const { register, handleSubmit } = useForm<VacationModel>();
+
     const navigate = useNavigate();
+    const { register, handleSubmit } = useForm<VacationModel>();
+
     const [minDate, setMinDate] = useState<string>('');
     const [countries, setCountries] = useState<string[]>([]);
+    const [imageFile, setImageFile] = useState<File | null>();
     const [selectedCountryISO, setSelectedCountryISO] = useState<string>('il');
     const [isCountryInputCustom, setIsCountryInputCustom] = useState<boolean>(false);
+
+    const imageSrc = useImagePreview(imageFile);
 
     useEffect(() => {
         const dummyCountries: string[] = [];
@@ -61,8 +66,6 @@ function AddVacation(): JSX.Element {
         }
     }
 
-    const [imageFile, setImageFile] = useState<File | null>();
-    const imageSrc = useImagePreview(imageFile);
     function handleChange(event: any) {
         const files = event.target.files;
         if (!files || !files.item(0)) return;
@@ -106,7 +109,10 @@ function AddVacation(): JSX.Element {
                                 <span className='custom-country'>{isCountryInputCustom ? "Custom " : ""}</span>
                                 Vacation Country:
                             </h3>
-                            {selectedCountryISO && <img src={`https://flagcdn.com/w20/${selectedCountryISO}.png`} className="country-image"></img>}
+                            {selectedCountryISO && <img
+                                className="country-image"
+                                src={`https://flagcdn.com/w20/${selectedCountryISO}.png`}>
+                            </img>}
                             <button
                                 type='button'
                                 className='toggle-default-country-button'
