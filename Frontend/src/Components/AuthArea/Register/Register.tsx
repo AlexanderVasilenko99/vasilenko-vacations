@@ -9,11 +9,11 @@ import UseTitle from "../../../Utils/UseTitle";
 import "./Register.css";
 
 function Register(): JSX.Element {
-    UseIsLoggedIn(false, 'Why would you like to register if you are already logged in?🥴');
     UseTitle("Vasilenko Vacations | Register");
-    const { register, handleSubmit } = useForm<UserModel>();
-    const navigate = useNavigate();
+    UseIsLoggedIn(false, 'Why would you like to register if you are already logged in?🥴');
 
+    const navigate = useNavigate();
+    const { register, handleSubmit } = useForm<UserModel>();
 
     async function send(user: UserModel) {
         try {
@@ -30,26 +30,43 @@ function Register(): JSX.Element {
     return (
         <div className="Register">
             <div className="form-container">
-                <h2>
-                    Register
-                </h2>
+                <h2>Register</h2>
                 <form onSubmit={handleSubmit(send)}>
                     <label>First name:</label>
-                    <input type="text"{...register("userFirstName")} required />
+                    <input
+                        required
+                        type="text"
+                        minLength={2}
+                        maxLength={30}
+                        {...register("userFirstName")}
+                    />
 
                     <label>Last name:</label>
-                    <input type="text" {...register("userLastName")} required />
+                    <input
+                        required
+                        type="text"
+                        minLength={2}
+                        maxLength={30}
+                        {...register("userLastName")}
+                    />
 
                     <label>Email:</label>
-                    <input type="email" {...register("userEmail")} required />
+                    <input
+                        required
+                        type="email"
+                        maxLength={50}
+                        {...register("userEmail")}
+                    />
 
-                    {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */}
                     <label>Password:</label>
-                    <input type="password" {...register("userPassword")}
-                        required minLength={4} />
+                    <input
+                        required
+                        minLength={4}
+                        type="password"
+                        {...register("userPassword")}
+                    />
 
-                    <label>Already a member?
-                        <NavLink to={appConfig.loginRoute}>login</NavLink></label>
+                    <label>Already a member?<NavLink to={appConfig.loginRoute}>login</NavLink></label>
                     <button type="submit">Register</button>
                 </form>
             </div>
