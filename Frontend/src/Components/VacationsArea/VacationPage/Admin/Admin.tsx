@@ -78,7 +78,6 @@ function Admin(): JSX.Element {
 
             if (fullCountry) {
                 vacation.vacationCountryISO = iso;
-                vacation.vacationCountry = fullCountry;
 
                 if (fullCountry.length <= 2) {
                     throw new Error("Please select a country!")

@@ -1,4 +1,4 @@
-.AddVacation {
+/* .AddVacation {
     width: 274px;
     border: 1px solid;
     text-align: left;
@@ -28,4 +28,304 @@
 
 .AddVacation textarea {
     resize: none;
+} */
+
+
+/* .AddVacation .toggle-edit-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 32px;
+    font-weight: 600;
+    transition: 200ms;
+}
+.AddVacation .toggle-edit-button:hover {
+    cursor: pointer;
+    color: #2e6ba0;
+} */
+
+.AddVacation .toggle-edit-button {
+    padding: 4px 8px;
+    margin: 0;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.AddVacation .toggle-edit-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
+}
+
+.AddVacation form {
+    text-align: left;
+    border-radius: 10px;
+}
+
+.AddVacation h1 {
+    /* text-align: left; */
+    display: flex;
+    justify-content: space-between;
+    min-width: 595px;
+    margin: 20px 175px 20px 175px;
+}
+
+.AddVacation h3 {
+    scroll-margin-top: 80px;
+    margin-bottom: 5px;
+}
+
+.AddVacation input {
+    width: 100%;
+    height: 29px;
+    box-sizing: border-box;
+    border: 1px solid #1a5785;
+    border-radius: 4px;
+    font-size: 22px;
+}
+
+.AddVacation input:enabled {
+    background-color: white;
+}
+
+.AddVacation input[type="file"]:enabled {
+    background-color: #F6F1F1;
+}
+
+.AddVacation input:focus,
+.AddVacation textarea:focus {
+    background-color: #2e6ba0;
+    color: #F6F1F1;
+}
+
+.AddVacation .button-container {
+    margin: 40px 30px 25px 30px;
+    text-align: center;
+}
+
+.AddVacation form .button-container button {
+    max-width: 400px;
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border: 2px solid #1a5785;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: 200ms;
+}
+
+.AddVacation form .button-container button[disabled] {
+    color: gray;
+    background-color: #F6F1F1;
+    border: 2px solid #2e6ba0;
+}
+
+.AddVacation form .button-container button[disabled]:hover {
+    background-color: #F6F1F1;
+    cursor: auto;
+}
+
+.AddVacation form .button-container button:hover {
+    cursor: pointer;
+    background-color: #1a5785;
+}
+
+.AddVacation .imageInput {
+    width: 280px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 0;
+}
+
+.AddVacation .image-section-container h3 {
+    margin: 0;
+}
+
+.AddVacation .image-section-container {
+    margin-top: 20px;
+    /* text-align: center; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.AddVacation .imageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.AddVacation form img {
+    width: 50%;
+    margin-top: 20px;
+    border: 2px solid #1a5785;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.AddVacation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.AddVacation ul li {
+    text-align: left;
+}
+
+.AddVacation ul li a {
+    text-decoration: none;
+    color: #F6F1F1;
+    display: block;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.AddVacation ul li a:hover {
+    background-color: #2e6ba0;
+    transition: 200ms all;
+}
+
+.AddVacation h1 a {
+    font-size: 32px;
+    text-decoration: none;
+    color: black;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+}
+
+.AddVacation h1 a:hover {
+    color: #2e6ba0;
+}
+
+.AddVacation .grid-container {
+    box-sizing: border-box;
+    display: grid;
+    min-width: 595px;
+    grid-template-columns: 350px 1fr;
+    margin: 0px 175px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+    /* border: 1px solid gray; */
+}
+
+.AddVacation .right,
+.AddVacation .left {
+    padding: 10px 20px;
+}
+
+.AddVacation .right {
+    border: 1px solid gray;
+    min-width: 205px;
+}
+
+.AddVacation .left {
+    background-color: #1a5785;
+    color: #F6F1F1;
+}
+
+.AddVacation .left div {
+    position: sticky;
+    top: 85px;
+}
+
+.AddVacation textarea {
+    box-sizing: border-box;
+    resize: none;
+    width: 100%;
+    height: fit-content;
+    border-radius: 4px;
+}
+
+.AddVacation .dates-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.AddVacation .startDate,
+.AddVacation .endDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 30px;
+    width: 300px;
+}
+
+.AddVacation .country-image {
+    padding-left: 3px;
+    box-shadow: none;
+    width: 30px;
+    height: 20px;
+    border: 0;
+    border-radius: 0;
+}
+
+.AddVacation .country-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.AddVacation .MuiAutocomplete-root {
+    width: 100%;
+}
+
+.AddVacation .MuiInputBase-root {
+    padding: 0 !important;
+}
+
+.AddVacation #countriesAutocomplete {
+    height: 29px;
+    padding: 1px 2px;
+}
+
+.AddVacation .MuiFormControl-root label {
+    display: none;
+}
+
+.AddVacation .custom-country {
+    color: #2e6ba0;
+}
+
+
+.AddVacation .toggle-default-country-button[disabled] {
+    color: gray;
+    background-color: #F6F1F1;
+    border: 2px solid #2e6ba0;
+}
+
+.AddVacation .toggle-default-country-button[disabled]:hover {
+    color: gray;
+    background-color: #F6F1F1;
+    cursor: auto;
+}
+
+.AddVacation .toggle-default-country-button {
+    font-size: 18px;
+    padding: 4px 8px;
+    margin: 0;
+    margin: auto 0px 5px auto;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.AddVacation .toggle-default-country-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
 }
