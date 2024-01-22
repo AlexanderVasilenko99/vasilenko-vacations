@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import "./Sponsor.css";
 import SponsorModel from "../../../../Models/SponsorModel";
+import "./Sponsor.css";
 
 function Sponsor(sponsor: SponsorModel): JSX.Element {
     return (
