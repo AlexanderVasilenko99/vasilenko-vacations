@@ -110,9 +110,17 @@ function Admin(): JSX.Element {
         <div className="Admin">
             <h1>
                 <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
-                <button className="toggle-edit-button" onClick={toggleEdit}>
-                    {isFormDisabled ? "Enable" : "Disable"} Editing
-                </button>
+                <div>
+                    {!isFormDisabled && <button
+                        onClick={() => { console.log("click") }}
+                        className="delete-vacation-button"
+                    >
+                        Delete Vacation
+                    </button>}
+                    <button className="toggle-edit-button" onClick={toggleEdit}>
+                        {isFormDisabled ? "Enable" : "Disable"} Editing
+                    </button>
+                </div>
             </h1>
             <div className="grid-container">
 

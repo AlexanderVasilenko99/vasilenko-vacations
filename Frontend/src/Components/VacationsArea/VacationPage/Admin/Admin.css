@@ -30,6 +30,24 @@
     border: 2px solid #2e6ba0;
 }
 
+.Admin .delete-vacation-button {
+    padding: 4px 8px;
+    margin: 0 10px;
+    border: 2px solid #952323;
+    color: #F6F1F1;
+    background-color: #A73121;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.Admin .delete-vacation-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #A73121;
+}
+
 .Admin form {
     text-align: left;
     border-radius: 10px;
