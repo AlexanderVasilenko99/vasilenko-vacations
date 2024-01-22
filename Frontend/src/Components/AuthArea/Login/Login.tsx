@@ -7,23 +7,24 @@ import appConfig from "../../../Utils/AppConfig";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
 import "./Login.css";
+import { authStore } from "../../../Redux/AuthState";
 
 
 function Login(): JSX.Element {
-    UseIsLoggedIn(false, "You are already logged in!🥴");
     UseTitle("Vasilenko Vacations | Login");
-    const { register, handleSubmit } = useForm<CredentialsModel>();
+    UseIsLoggedIn(false, "You are already logged in!🥴");
+
     const navigate = useNavigate();
+    const { register, handleSubmit } = useForm<CredentialsModel>();
 
 
     async function send(credentials: CredentialsModel) {
         try {
             await authService.login(credentials);
-            console.log(credentials);
 
-            noti.success(`Welcome back`);
-            navigate(appConfig.vacationsRoute); //CHANGE THIS TO NAVIGATE TO ALL VACATIONS
-
+            const fname = authStore.getState().user?.userFirstName;
+            noti.success(`Welcome back ${fname}!`);
+            navigate(appConfig.vacationsRoute);
         } catch (err: any) {
             noti.error(err)
         }
@@ -37,8 +38,21 @@ function Login(): JSX.Element {
                     Login
                 </h2>
                 <form onSubmit={handleSubmit(send)}>
-                    <label>Email:</label><input type="email" {...register("email")} required />
-                    <label>Password:</label><input type="password" {...register("password")} required minLength={4} />
+                    <label>Email:</label>
+                    <input
+                        required
+                        type="email"
+                        maxLength={50}
+                        {...register("email")}
+                    />
+
+                    <label>Password:</label>
+                    <input type="password"
+                        required
+                        minLength={4}
+                        {...register("password")}
+                    />
+
                     <label>Not a member? <NavLink to={appConfig.registerRoute}>register</NavLink></label>
                     <button type="submit">Log in</button>
                 </form>
