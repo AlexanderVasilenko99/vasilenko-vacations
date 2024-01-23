@@ -22,6 +22,20 @@ class AuthService {
         return false;
     }
 
+    private async isEmailRegistered(uuid: string, email: string): Promise<boolean> {
+        const sql = `SELECT
+            userUUID,
+            userFirstName,
+            userLastName,
+            userEmail
+            FROM users
+            WHERE userEmail = ? AND userUUID != ?`
+        const info: OkPacket = await dal.execute(sql, [email, uuid]);
+
+        if (info[0]) return true;
+        return false;
+    }
+
     public async register(user: UserModel): Promise<string> {
 
         user.addUserValidate();
@@ -65,6 +79,25 @@ class AuthService {
 
         const token = cyber.getNewToken(user);
         return token;
+    }
+
+    public async update(user: UserModel): Promise<UserModel> {
+
+        const isEmailTaken = await this.isEmailRegistered(user.userUUID, user.userEmail);
+        if (isEmailTaken) throw new EmailTaken("Sorry but it seems like another user is registered with the same email🥴");
+
+        const sql = `UPDATE users SET
+                        userFirstName = ?,
+                        userLastName = ?,
+                        userEmail = ?
+                    WHERE userUUID = ?`;
+        const updatedUser = await dal.execute(sql, [
+            user.userFirstName,
+            user.userLastName,
+            user.userEmail,
+            user.userUUID,
+        ]);
+        return updatedUser;
     }
 }
 
