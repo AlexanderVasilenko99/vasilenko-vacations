@@ -39,6 +39,8 @@ class VacationService {
         }
         const response = await axios.post<VacationModel>(appConfig.vacationsUrl, vacation, options);
         const addedVacation = response.data;
+        addedVacation.vacationIsFollowing = 0;
+        addedVacation.vacationFollowersCount = 0;
         const action: VacationsActions = { type: VacationsActionTypes.AddVacation, payload: addedVacation }
         vacationsStore.dispatch(action);
         return addedVacation;

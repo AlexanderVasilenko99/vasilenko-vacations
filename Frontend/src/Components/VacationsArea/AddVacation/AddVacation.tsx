@@ -120,9 +120,11 @@ function AddVacation(): JSX.Element {
                                 {isCountryInputCustom ? "Regular" : "Custom"} country?
                             </button>
                         </div>
+
                         {isCountryInputCustom && <>
-                            <input type="text"
+                            <input
                                 required
+                                type="text"
                                 minLength={2}
                                 maxLength={100}
                                 {...register("vacationCountry")}
