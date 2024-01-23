@@ -1,3 +1,90 @@
 .UserArea {
-	
+    height: 100%;
+}
+
+.UserArea .edit-button-container{
+    width: 800px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.UserArea .toggle-edit-button {
+    font-size: 18px;
+    padding: 4px 8px;
+    margin: 0;
+    margin-left:  auto;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.UserArea .toggle-edit-button:hover {
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
+}
+
+.UserArea .grid-container {
+    box-sizing: border-box;
+    display: grid;
+    min-width: 595px;
+    width: 800px;
+    grid-template-columns: 310px 1fr;
+    margin: 5px auto 30px;
+    /* scale: 1.15; */
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, .35); */
+    /* border: 1px solid gray; */
+    /* border-radius: 50% 0px 0px 50%; */
+}
+
+.UserArea .left {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+    width: 280px;
+    height: 280px;
+    padding: 15px;
+    border-radius: 50% 0px 0px 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a5785;
+    color: #F6F1F1;
+}
+
+.UserArea .left img {
+    width: 95%;
+    border-radius: 50%;
+    border: 2px solid #2e6ba0;
+}
+
+.UserArea .right {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, .35);
+    border: 1px solid gray;
+    padding: 10px 20px;
+    min-width: 300px;
+    max-width: 1000px;
+}
+
+.UserArea .right form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.UserArea .right input {
+    width: 100%;
+    min-width: 300px;
+    height: 29px;
+    box-sizing: border-box;
+    border: 1px solid #1a5785;
+    border-radius: 4px;
+    font-size: 22px;
 }
