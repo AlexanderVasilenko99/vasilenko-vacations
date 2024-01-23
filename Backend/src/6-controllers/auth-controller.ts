@@ -3,6 +3,7 @@ import UserModel from "../3-models/user-model";
 import StatusCode from "../3-models/status-codes";
 import authService from "../5-services/auth-service";
 import CredentialsModel from "../3-models/credentials-model";
+import { fileSaver } from "uploaded-file-saver";
 const router = express.Router();
 
 
@@ -34,6 +35,20 @@ router.put("/update", async (request: Request, response: Response, next: NextFun
     } catch (err: any) {
         next(err);
     }
-})
+});
+
+router.get("/users-image/:imageName([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.(jpg|jpeg|png))",
+    async (request: Request, response: Response, next: NextFunction) => {
+        try {
+            const imageName = request.params.imageName;
+            console.log(imageName);
+            const absolutePath = fileSaver.getFilePath(imageName);
+            console.log(absolutePath);
+            
+            response.sendFile(absolutePath);
+        } catch (err: any) {
+            next(err);
+        }
+    });
 
 export default router;
