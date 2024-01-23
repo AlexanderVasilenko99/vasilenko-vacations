@@ -14,6 +14,7 @@ class AppConfig {
 
     public readonly vacationsUrl: string = 'http://localhost:4000/api/vacations/';
     public readonly loginUrl: string = 'http://localhost:4000/api/login/';
+    public readonly updateUrl: string = 'http://localhost:4000/api/update/';
     public readonly registerUrl: string = 'http://localhost:4000/api/register/';
     public readonly vacationsFollowUrl: string = this.vacationsUrl + 'follow/';
     public readonly vacationsUnfollowUrl: string = this.vacationsUrl + 'unfollow/';

@@ -28,10 +28,12 @@ class AuthService {
         const response = await axios.post(appConfig.loginUrl, credentials);
 
         const token = response.data;
+        console.log(token);
 
         const action: AuthAction = { type: AuthActionTypes.Login, payload: token }
         authStore.dispatch(action);
     }
+
     public logout(): void {
         const authAction: AuthAction = { type: AuthActionTypes.Logout }
         const vacationsAction: VacationsActions = { type: VacationsActionTypes.ClearAll }
@@ -39,6 +41,15 @@ class AuthService {
         vacationsStore.dispatch(vacationsAction);
     }
 
+    public async update(user: UserModel): Promise<UserModel> {
+        const response = await axios.put(appConfig.updateUrl, user);
+        const token = response.data;
+
+        const action: AuthAction = { type: AuthActionTypes.Update, payload: token }
+        authStore.dispatch(action);
+
+        return authStore.getState().user;
+    }
 
 }
 const authService = new AuthService();

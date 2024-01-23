@@ -46,6 +46,7 @@
 }
 
 .UserArea .left {
+    z-index: 9;
     box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
     width: 280px;
     height: 280px;

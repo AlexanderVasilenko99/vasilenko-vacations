@@ -3,7 +3,6 @@ import UserModel from "../3-models/user-model";
 import StatusCode from "../3-models/status-codes";
 import authService from "../5-services/auth-service";
 import CredentialsModel from "../3-models/credentials-model";
-import { OkPacket } from "mysql";
 const router = express.Router();
 
 
@@ -30,8 +29,8 @@ router.post("/login", async (request: Request, response: Response, next: NextFun
 router.put("/update", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const user = new UserModel(request.body);
-        await authService.update(user);
-        response.json(user);
+        const token = await authService.update(user);
+        response.json(token);
     } catch (err: any) {
         next(err);
     }

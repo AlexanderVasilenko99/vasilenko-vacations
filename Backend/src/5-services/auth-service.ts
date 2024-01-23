@@ -81,7 +81,7 @@ class AuthService {
         return token;
     }
 
-    public async update(user: UserModel): Promise<UserModel> {
+    public async update(user: UserModel): Promise<string> {
 
         const isEmailTaken = await this.isEmailRegistered(user.userUUID, user.userEmail);
         if (isEmailTaken) throw new EmailTaken("Sorry but it seems like another user is registered with the same email🥴");
@@ -91,13 +91,17 @@ class AuthService {
                         userLastName = ?,
                         userEmail = ?
                     WHERE userUUID = ?`;
-        const updatedUser = await dal.execute(sql, [
+        const info: OkPacket = await dal.execute(sql, [
             user.userFirstName,
             user.userLastName,
             user.userEmail,
             user.userUUID,
         ]);
-        return updatedUser;
+
+        const token = cyber.getNewToken(user);
+        console.log(token);
+
+        return token;
     }
 }
 

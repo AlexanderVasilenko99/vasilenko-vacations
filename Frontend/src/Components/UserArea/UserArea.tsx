@@ -5,14 +5,20 @@ import Header from "../Common/header/header";
 import "./UserArea.css";
 import profilePic from "../../Assets/Images/UtilityImages/me_square.jpeg"
 import { useForm } from "react-hook-form";
+import authService from "../../Services/AuthService";
+import noti from "../../Services/NotificationService";
+import UseTitle from "../../Utils/UseTitle";
 
 function UserArea(): JSX.Element {
+    UseTitle("Vasilenko Vacation | Profile")
     const [user, setUser] = useState<UserModel>();
     const [isFormEditDisabled, setIsFormEditDisabled] = useState<boolean>(true);
     const { register, handleSubmit, setValue } = useForm<UserModel>();
 
     useEffect(() => {
         const user: UserModel = authStore.getState().user;
+        console.log(user);
+        
         if (!user) throw new Error("Something went wrong, Please try agin later!");
         setUser(user);
         setValue("userFirstName", user.userFirstName);
@@ -20,9 +26,20 @@ function UserArea(): JSX.Element {
         setValue("userEmail", user.userEmail);
     }, []);
 
-    async function send(user: UserModel) {
-        console.log(user);
+    async function send(changedUser: UserModel) {
+        try {
 
+            changedUser.userUUID = user.userUUID;
+            changedUser.userRoleId = user.userRoleId;
+
+            await authService.update(changedUser);
+            
+            noti.success("The changes have been saved successfully!");
+            setUser(changedUser);
+            setIsFormEditDisabled(!isFormEditDisabled)
+        } catch (err: any) {
+            noti.error(err)
+        }
     }
 
     return (

@@ -16,7 +16,8 @@ export class AuthState {
 export enum AuthActionTypes {
     Register = "Register",
     Login = "Login",
-    Logout = "Logout"
+    Logout = "Logout",
+    Update = "Update",
 }
 export interface AuthAction {
     type: AuthActionTypes,
@@ -41,7 +42,13 @@ function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthSt
             newState.token = null;
             sessionStorage.removeItem("token");
             break;
+        case AuthActionTypes.Update:
+            newState.user = jwtDecode<{ user: UserModel }>(action.payload).user;
+            newState.token = action.payload;
+            sessionStorage.setItem(`token`, newState.token);
+            break;
     }
+    console.log(newState);
     return newState;
 }
 export const authStore = createStore(AuthReducer);
