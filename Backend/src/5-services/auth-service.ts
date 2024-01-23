@@ -97,6 +97,8 @@ class AuthService {
 
         delete user.userId;
         delete user.userPassword;
+        if (user.userImageName)
+            user.userImageUrl = appConfig.appHost + "/api/users-image/" + user.userImageName;
 
         const token = cyber.getNewToken(user);
         return token;
@@ -105,10 +107,20 @@ class AuthService {
     public async update(user: UserModel): Promise<string> {
         user.updateUserValidate();
 
+        let imageName;
         const existingImageName = await this.getExistingUserImageName(user.userUUID);
 
-        const imageName = user.userUploadedImage ? await fileSaver.update(
-            existingImageName, user.userUploadedImage) : existingImageName;
+        if (existingImageName) imageName = existingImageName;
+
+        if (existingImageName && user.userUploadedImage) {
+            imageName = await fileSaver.update(existingImageName, user.userUploadedImage);
+        }
+        else if (existingImageName && !user.userUploadedImage) {
+            imageName = existingImageName;
+        }
+        else if (!existingImageName && user.userUploadedImage) {
+            imageName = await fileSaver.add(user.userUploadedImage);
+        }
 
         const isEmailTaken = await this.isEmailRegistered(user.userUUID, user.userEmail);
         if (isEmailTaken) throw new EmailTaken("Sorry but it seems like another user is registered with the same email🥴");
@@ -116,7 +128,7 @@ class AuthService {
         const sql = `UPDATE users SET
                         userFirstName = ?,
                         userLastName = ?,
-                        userEmail = ?
+                        userEmail = ?,
                         userImageName = ?
                     WHERE userUUID = ?`;
         const info: OkPacket = await dal.execute(sql, [

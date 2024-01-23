@@ -43,15 +43,15 @@ class UserModel {
 
     private static updateValidationSchema = Joi.object({
         userId: Joi.number().forbidden(),
-        userUUID: Joi.string().forbidden(),
+        userUUID: Joi.string().required().min(2).max(300),
         userFirstName: Joi.string().required().min(2).max(30),
         userLastName: Joi.string().required().min(2).max(30),
         userEmail: Joi.string().required().min(2).max(50),
-        userPassword: Joi.string().required().min(2).max(260),
+        userPassword: Joi.string().forbidden(),
         userImageName: Joi.string().optional().min(2).max(255),
         userImageUrl: Joi.string().optional().min(2).max(255),
         userUploadedImage: Joi.optional(),
-        userRoleId: Joi.number().forbidden()
+        userRoleId: Joi.number().optional().min(1).max(5)
     });
 
     public addUserValidate(): void {

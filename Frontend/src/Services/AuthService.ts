@@ -42,7 +42,8 @@ class AuthService {
     }
 
     public async update(user: UserModel): Promise<UserModel> {
-        const response = await axios.put(appConfig.updateUrl, user);
+        const options = { headers: { "Content-Type": "multipart/form-data" } }
+        const response = await axios.put<UserModel>(appConfig.updateUrl, user, options);
         const token = response.data;
 
         const action: AuthAction = { type: AuthActionTypes.Update, payload: token }

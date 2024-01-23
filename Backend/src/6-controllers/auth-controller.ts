@@ -29,6 +29,7 @@ router.post("/login", async (request: Request, response: Response, next: NextFun
 
 router.put("/update", async (request: Request, response: Response, next: NextFunction) => {
     try {
+        request.body.userUploadedImage = request.files?.userUploadedImage;
         const user = new UserModel(request.body);
         const token = await authService.update(user);
         response.json(token);
@@ -41,10 +42,8 @@ router.get("/users-image/:imageName([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             const imageName = request.params.imageName;
-            console.log(imageName);
             const absolutePath = fileSaver.getFilePath(imageName);
-            console.log(absolutePath);
-            
+
             response.sendFile(absolutePath);
         } catch (err: any) {
             next(err);

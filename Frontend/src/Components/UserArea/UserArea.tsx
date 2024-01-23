@@ -13,42 +13,46 @@ import useImagePreview from "../../Utils/UseImagePreview";
 function UserArea(): JSX.Element {
     UseTitle("Vasilenko Vacation | Profile")
     const [user, setUser] = useState<UserModel>();
+    const [imgSrc, setImgSrc] = useState<string>("");
     const [imageFile, setImageFile] = useState<File | null>();
     const [isFormEditDisabled, setIsFormEditDisabled] = useState<boolean>(true);
-    const [doesUserPhotoExist, setDoesUserPhotoExist] = useState<boolean>(false);
+
     const { register, handleSubmit, setValue } = useForm<UserModel>();
 
     const imageSrc = useImagePreview(imageFile);
 
     useEffect(() => {
         const user: UserModel = authStore.getState().user;
-        console.log(user);
-
         if (!user) throw new Error("Something went wrong, Please try agin later!");
+
         setUser(user);
-        setValue("userFirstName", user.userFirstName);
-        setValue("userLastName", user.userLastName);
+        setImgSrc(user.userImageUrl);
         setValue("userEmail", user.userEmail);
+        setValue("userLastName", user.userLastName);
+        setValue("userFirstName", user.userFirstName);
+
     }, []);
 
-    function handleChange(event: any) {
-        const files = event.target.files;
+    function handleChange(e: any) {
+        const files = e.target.files;
         if (!files || !files.item(0)) return;
-        setDoesUserPhotoExist(true);
+
+        const url = URL.createObjectURL(files[0]);
         setImageFile(files.item(0));
+        setImgSrc(url);
     }
 
     async function send(changedUser: UserModel) {
         try {
-
             changedUser.userUUID = user.userUUID;
             changedUser.userRoleId = user.userRoleId;
+            changedUser.userUploadedImage = imageFile;
 
-            await authService.update(changedUser);
+            // await authService.update(changedUser);
 
-            noti.success("The changes have been saved successfully!");
             setUser(changedUser);
             setIsFormEditDisabled(!isFormEditDisabled)
+            noti.success("The changes have been saved successfully!");
         } catch (err: any) {
             noti.error(err)
         }
@@ -68,25 +72,23 @@ function UserArea(): JSX.Element {
                 <div className="grid-container">
                     <form onSubmit={handleSubmit(send)}>
                         <div className="left">
-                            {imageSrc && <img
-                                src={imageSrc}
+                            {imgSrc && <img
+                                src={imgSrc}
                                 title="Change photo"
                                 className={isFormEditDisabled ? "disabled" : ""}
                                 onClick={() => {
                                     const inp = document.getElementById("image-file-input") as HTMLInputElement;
-                                    setDoesUserPhotoExist(true);
                                     inp.click();
                                 }}
                             />}
                             <input
-                                required
                                 type="file"
                                 accept="image/*"
                                 title="Upload Photo"
                                 id="image-file-input"
-                                className={doesUserPhotoExist ? "invisible" : "imageInput"}
+                                className={imgSrc ? "invisible" : "imageInput"}
                                 onChangeCapture={handleChange}
-                                // {...register("userImage")}
+                                {...register("userUploadedImage")}
                                 disabled={isFormEditDisabled}
                             />
                         </div>
