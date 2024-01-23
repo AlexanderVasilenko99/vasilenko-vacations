@@ -82,7 +82,8 @@ class AuthService {
     }
 
     public async update(user: UserModel): Promise<string> {
-
+        user.updateUserValidate();
+        
         const isEmailTaken = await this.isEmailRegistered(user.userUUID, user.userEmail);
         if (isEmailTaken) throw new EmailTaken("Sorry but it seems like another user is registered with the same email🥴");
 

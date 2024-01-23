@@ -1,6 +1,7 @@
 import Joi from "joi";
 import RoleModel from "./role-model";
 import { Validation } from "./error-models";
+import { UploadedFile } from "express-fileupload";
 
 class UserModel {
     public userId: number;
@@ -9,6 +10,9 @@ class UserModel {
     public userLastName: string;
     public userEmail: string;
     public userPassword: string;
+    public userImageName: string;
+    public userImageUrl: string;
+    public userUploadedImage: UploadedFile;
     public userRoleId: RoleModel;
 
     constructor(user: UserModel) {
@@ -18,9 +22,12 @@ class UserModel {
         this.userLastName = user.userLastName;
         this.userEmail = user.userEmail;
         this.userPassword = user.userPassword;
+        this.userImageName = user.userImageName;
+        this.userImageUrl = user.userImageUrl;
+        this.userUploadedImage = user.userUploadedImage;
         this.userRoleId = user.userRoleId;
     }
-    // add validation schema and validate function
+
     private static registerValidationSchema = Joi.object({
         userId: Joi.number().forbidden(),
         userUUID: Joi.string().forbidden(),
@@ -28,20 +35,32 @@ class UserModel {
         userLastName: Joi.string().required().min(2).max(30),
         userEmail: Joi.string().required().min(2).max(50),
         userPassword: Joi.string().required().min(2).max(260),
+        userImageName: Joi.forbidden(),
+        userImageUrl: Joi.forbidden(),
+        userUploadedImage: Joi.optional(),
         userRoleId: Joi.number().forbidden()
-    })
+    });
 
-    // public static addVacationValidationSchema = Joi.object({
-    //     vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
-    //     vacationImageName: Joi.string().forbidden(),
-    //     vacationImageUrl: Joi.string().forbidden(),
-    //     vacationUploadedImage: Joi.object().required(),
-    //     vacationIsFollowing: Joi.number().forbidden(),
-    //     vacationFollowersCount: Joi.number().forbidden()
-    // });
+    private static updateValidationSchema = Joi.object({
+        userId: Joi.number().forbidden(),
+        userUUID: Joi.string().forbidden(),
+        userFirstName: Joi.string().required().min(2).max(30),
+        userLastName: Joi.string().required().min(2).max(30),
+        userEmail: Joi.string().required().min(2).max(50),
+        userPassword: Joi.string().required().min(2).max(260),
+        userImageName: Joi.string().optional().min(2).max(255),
+        userImageUrl: Joi.string().optional().min(2).max(255),
+        userUploadedImage: Joi.optional(),
+        userRoleId: Joi.number().forbidden()
+    });
 
     public addUserValidate(): void {
         const result = UserModel.registerValidationSchema.validate(this);
+        if (result?.error?.message) throw new Validation(result.error.message);
+    }
+
+    public updateUserValidate(): void {
+        const result = UserModel.updateValidationSchema.validate(this);
         if (result?.error?.message) throw new Validation(result.error.message);
     }
 }
