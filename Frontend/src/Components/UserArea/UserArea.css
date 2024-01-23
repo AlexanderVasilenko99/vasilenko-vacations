@@ -2,7 +2,7 @@
     height: 100%;
 }
 
-.UserArea .edit-button-container{
+.UserArea .edit-button-container {
     width: 800px;
     margin: auto;
     margin-top: 30px;
@@ -15,7 +15,7 @@
     font-size: 18px;
     padding: 4px 8px;
     margin: 0;
-    margin-left:  auto;
+    margin-left: auto;
     border: 2px solid #1a5785;
     color: #F6F1F1;
     background-color: #2e6ba0;
@@ -34,15 +34,15 @@
 
 .UserArea .grid-container {
     box-sizing: border-box;
-    display: grid;
     min-width: 595px;
     width: 800px;
-    grid-template-columns: 310px 1fr;
     margin: 5px auto 30px;
-    /* scale: 1.15; */
-    /* box-shadow: 0 5px 15px rgba(0, 0, 0, .35); */
-    /* border: 1px solid gray; */
-    /* border-radius: 50% 0px 0px 50%; */
+}
+
+.UserArea form {
+    width: 800px;
+    height: 100%;
+    display: flex;
 }
 
 .UserArea .left {
@@ -59,8 +59,32 @@
     color: #F6F1F1;
 }
 
+.UserArea .left .imageInput {
+    z-index: 9;
+}
+
+.UserArea .left img:hover,
+.UserArea .left .imageInput:hover {
+    cursor: pointer;
+}
+
+.UserArea .left .imageInput:hover[disabled],
+.UserArea img[class="disabled"]:hover {
+    cursor: auto;
+}
+
+.UserArea img[class="disabled"] {
+    filter: grayscale(80%);
+}
+
+.UserArea .invisible {
+    opacity: 0;
+}
+
 .UserArea .left img {
     width: 95%;
+    height: 266px;
+    width: 266px;
     border-radius: 50%;
     border: 2px solid #2e6ba0;
 }
@@ -69,12 +93,8 @@
     box-shadow: 0px 5px 15px rgba(0, 0, 0, .35);
     border: 1px solid gray;
     padding: 10px 20px;
-    min-width: 300px;
-    max-width: 1000px;
-}
+    width: 490px;
 
-.UserArea .right form {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -88,4 +108,35 @@
     border: 1px solid #1a5785;
     border-radius: 4px;
     font-size: 22px;
+}
+
+.UserArea .submit-edit-button[disabled] {
+
+    color: #F6F1F1;
+    background-color: #F6F1F1;
+    color: gray;
+}
+
+.UserArea .submit-edit-button[disabled]:hover {
+    color: gray;
+    cursor: auto;
+}
+
+.UserArea .submit-edit-button {
+    font-size: 18px;
+    padding: 4px 16px;
+    border: 2px solid #1a5785;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border-radius: 14px;
+    font-weight: 500;
+    transition: 200ms;
+}
+
+.UserArea .submit-edit-button:hover {
+    cursor: pointer;
+    padding: 4px 16px;
+    background-color: #F6F1F1;
+    color: #2e6ba0;
+    border: 2px solid #2e6ba0;
 }

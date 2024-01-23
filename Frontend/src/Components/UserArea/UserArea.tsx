@@ -8,23 +8,35 @@ import { useForm } from "react-hook-form";
 import authService from "../../Services/AuthService";
 import noti from "../../Services/NotificationService";
 import UseTitle from "../../Utils/UseTitle";
+import useImagePreview from "../../Utils/UseImagePreview";
 
 function UserArea(): JSX.Element {
     UseTitle("Vasilenko Vacation | Profile")
     const [user, setUser] = useState<UserModel>();
+    const [imageFile, setImageFile] = useState<File | null>();
     const [isFormEditDisabled, setIsFormEditDisabled] = useState<boolean>(true);
+    const [doesUserPhotoExist, setDoesUserPhotoExist] = useState<boolean>(false);
     const { register, handleSubmit, setValue } = useForm<UserModel>();
+
+    const imageSrc = useImagePreview(imageFile);
 
     useEffect(() => {
         const user: UserModel = authStore.getState().user;
         console.log(user);
-        
+
         if (!user) throw new Error("Something went wrong, Please try agin later!");
         setUser(user);
         setValue("userFirstName", user.userFirstName);
         setValue("userLastName", user.userLastName);
         setValue("userEmail", user.userEmail);
     }, []);
+
+    function handleChange(event: any) {
+        const files = event.target.files;
+        if (!files || !files.item(0)) return;
+        setDoesUserPhotoExist(true);
+        setImageFile(files.item(0));
+    }
 
     async function send(changedUser: UserModel) {
         try {
@@ -33,7 +45,7 @@ function UserArea(): JSX.Element {
             changedUser.userRoleId = user.userRoleId;
 
             await authService.update(changedUser);
-            
+
             noti.success("The changes have been saved successfully!");
             setUser(changedUser);
             setIsFormEditDisabled(!isFormEditDisabled)
@@ -54,13 +66,32 @@ function UserArea(): JSX.Element {
                     </button>
                 </div>
                 <div className="grid-container">
+                    <form onSubmit={handleSubmit(send)}>
+                        <div className="left">
+                            {imageSrc && <img
+                                src={imageSrc}
+                                title="Change photo"
+                                className={isFormEditDisabled ? "disabled" : ""}
+                                onClick={() => {
+                                    const inp = document.getElementById("image-file-input") as HTMLInputElement;
+                                    setDoesUserPhotoExist(true);
+                                    inp.click();
+                                }}
+                            />}
+                            <input
+                                required
+                                type="file"
+                                accept="image/*"
+                                title="Upload Photo"
+                                id="image-file-input"
+                                className={doesUserPhotoExist ? "invisible" : "imageInput"}
+                                onChangeCapture={handleChange}
+                                // {...register("userImage")}
+                                disabled={isFormEditDisabled}
+                            />
+                        </div>
 
-                    <div className="left">
-                        <img src={profilePic} />
-                    </div>
-
-                    <div className="right">
-                        <form onSubmit={handleSubmit(send)}>
+                        <div className="right">
                             <input
                                 required
                                 type="text"
@@ -85,10 +116,12 @@ function UserArea(): JSX.Element {
                                 disabled={isFormEditDisabled}
                             />
                             <div>
-                                <button disabled={isFormEditDisabled}>Update</button>
+                                <button
+                                    className="submit-edit-button"
+                                    disabled={isFormEditDisabled}>Update</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div >
