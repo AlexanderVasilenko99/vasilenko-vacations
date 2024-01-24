@@ -36,12 +36,18 @@ function VacationsList(): JSX.Element {
     const navigate = useNavigate();
     const isAdmin = authStore.getState().user?.userRoleId === 1 ? true : false;
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+    const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
     const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
 
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
 
-    const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
+    // const priceRangesOptions: string[] = [
+    //     "Under 2500$",
+    //     "2500$ - 5000$",
+    //     "5000$ - 7500$",
+    //     "Above 7500$"
+    // ]
     const datesOptions: string[] = authStore.getState().user?.userRoleId === 1 ?
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "All Vacations"] :
         ["Past Vacations", "Ongoing Vacations", "Future Vacations", "Followed Vacations", "All Vacations"];
@@ -123,7 +129,7 @@ function VacationsList(): JSX.Element {
     }
 
     function setVacationsAndVacationCountriesForDisplay(timeFrame: string, country: string): void {
-        console.log("recieved timeframe: " + timeFrame + ". country: " + country);
+        // console.log("recieved timeframe: " + timeFrame + ". country: " + country);
         let newVacations: VacationModel[] = [];
         let newVacationCountries: string[] = [];
 
@@ -175,6 +181,21 @@ function VacationsList(): JSX.Element {
             setDisplayedVacations(newVacations);
             setDisplayedVacationCountries(newVacationCountries)
         }
+    }
+
+    function setV(): void {
+        const countryInput = document.getElementById("countryAutocomplete") as HTMLInputElement;
+        const pricesInput = document.getElementById("priceAutocomplete") as HTMLInputElement;
+        const datesInput = document.getElementById("datesAutocomplete") as HTMLInputElement;
+        const country = countryInput?.value;
+        const prices = pricesInput?.value;
+        const dates = datesInput?.value;
+
+        // let newVacations: VacationModel[] = [];
+        console.log(country, dates, prices);
+
+
+        // setDisplayedVacations(newVacations);
     }
 
     function resetSearchForm(): void {
@@ -256,6 +277,26 @@ function VacationsList(): JSX.Element {
                             options={displayedVacationCountries}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Country" />} />
+
+                        {/* <Autocomplete id="priceAutocomplete"
+                            onChange={(event, value) => {
+                                const countryInput = document.getElementById("countryAutocomplete") as HTMLInputElement;
+                                const datesInput = document.getElementById("datesAutocomplete") as HTMLInputElement;
+
+                                const country = countryInput.value;
+                                const dates = datesInput.value;
+                                const priceRange: string = value;
+
+
+                                // if (dates && country) setVacationsAndVacationCountriesForDisplay(dates, country)
+                                // if (dates && !country) setVacationsAndVacationCountriesForDisplay(dates, "no country")
+                                // if (!dates && country) setVacationsAndVacationCountriesForDisplay("no timeframe", country)
+                                // if (!dates && !country) setVacationsAndVacationCountriesForDisplay("no timeframe", "no country")
+                            }}
+                            disablePortal
+                            options={priceRangesOptions}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Price Range" />} /> */}
                     </div>
                 </div>
             </div>}
