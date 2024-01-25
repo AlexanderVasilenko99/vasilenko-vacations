@@ -108,17 +108,22 @@ function AboutArea(): JSX.Element {
                 <div>
                     <h1>About This Project</h1><p>
 
-                        <span>Vasilenko Vacations</span> is my first full-scale full stack project and my third and final project as part
-                        of my studies at John Bryce to become a full stack web developer.<br />The project
+                        <span>Vasilenko Vacations</span> is my first full-scale full stack project, one of many overall over the past
+                        few years, and my third and final project as part of my studies at John Bryce to become a full stack web
+                        developer.
 
                         <br /><br /><span>Frontend - </span>
-                        the client side was written in <span>ReactTS</span> with great emphasis on self written code. One can very rarely
-                        see the use of external UI/UX libraries in this project. I have however used very popular frontend libraries such
-                        as <span> Redux, React-Router, and Axios</span> to achieve it's functionality.<br />In this project I put much
-                        effort into 'clean' coding aiming to avoid unnecessary repetition of code and put emphasis on object oriented
-                        programming, correct file structuring and responsiveness to name a few.
-                        <br /><br /><span>Backend - </span>the server side was written in <span>NodeJS</span> with the use of <span>express
-                        </span> and structured according to best practice
+                        the client side was written in <span>ReactTS</span> according to <span>OOP principals</span> while using
+                        well known libraries such as <span> Redux, React-Router, and Axios</span> just to name a few.<br />
+                        The front-end was thought-over, written and styled with great emphasis on self made content - Almost everything
+                        regarding structure, features, style and functionality was thought through, written and implemented by myself. <br />
+
+                        I also put much effort into 'clean' coding aiming to avoid unnecessary repetition of code, correct file structuring
+                        and page responsiveness to name a few.
+
+                        <br /><br /><span>Backend - </span>
+                        the server side was written in <span>NodeJS</span> with the use of <span>Express
+                        </span> and structured according to best practice <span>REST API principals.</span> mention sql injection
 
 
 
