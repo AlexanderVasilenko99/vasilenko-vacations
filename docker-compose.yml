@@ -9,29 +9,29 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_HOST: localhost
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD:
       # MYSQL_USER: root
-      MYSQL_PASSWORD: 
+      MYSQL_PASSWORD:
       MYSQL_DATABASE: vacatoins
     # volume for db files
     volumes:
       - vacations:/var/lib/mysql
   # -----------------------------------------------------------------------------
-  # api-service:
-  #   depends_on:
-  #     - mysql-service
-  #   image: northwind-api
-  #   build: ./Backend
-  #   container_name: northwind-api
-  #   ports:
-  #     - 80:4000
-  #   restart: unless-stopped
-  #   # overriding backend .env variables
-  #   environment:
-  #     # service name is the name of the virtual machine
-  #     MYSQL_HOST: mysql-service
-  #     MYSQL_USER: Alice
-  #     MYSQL_PASSWORD: Wonderland
+  api-service:
+    depends_on:
+      - mysql-service
+    image: vacations-api
+    build: ./Backend
+    container_name: vacations-api
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    # overriding backend .env variables
+    environment:
+      # service name is the name of the virtual machine
+      MYSQL_HOST: mysql-service
+      # MYSQL_USER: root
+      MYSQL_PASSWORD: 
   # -----------------------------------------------------------------------------
 
   # react-service:
