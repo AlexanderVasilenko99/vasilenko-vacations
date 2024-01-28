@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mysql-service:
+    image: vacations-mysql
+    build: ./Database
+    container_name: vacations-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: localhost
+      # MYSQL_USER: Alice
+      # MYSQL_PASSWORD: Wonderland
+      # MYSQL_DATABASE: northwind
+      # MYSQL_ROOT_PASSWORD: Wonderland
+    # volume for db files
+    volumes:
+      - vacations:/var/lib/mysql
+# -----------------------------------------------------------------------------
+  # api-service:
+  #   depends_on:
+  #     - mysql-service
+  #   image: northwind-api
+  #   build: ./Backend
+  #   container_name: northwind-api
+  #   ports:
+  #     - 80:4000
+  #   restart: unless-stopped
+  #   # overriding backend .env variables
+  #   environment:
+  #     # service name is the name of the virtual machine
+  #     MYSQL_HOST: mysql-service
+  #     MYSQL_USER: Alice
+  #     MYSQL_PASSWORD: Wonderland
+# -----------------------------------------------------------------------------
+
+  # react-service:
+  #   depends_on:
+  #     - api-service
+  #   image: northwind-react
+  #   build: ./Frontend
+  #   container_name: northwind-react
+  #   ports:
+  #     - 3000:3000
+  #   restart: unless-stopped
+
+# -----------------------------------------------------------------------------
+
+# listing all volumes we're using
+volumes:
+  vacations:
