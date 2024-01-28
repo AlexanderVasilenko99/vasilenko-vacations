@@ -7,15 +7,16 @@ services:
     container_name: vacations-mysql
     restart: unless-stopped
     environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_HOST: localhost
-      # MYSQL_USER: Alice
-      # MYSQL_PASSWORD: Wonderland
-      # MYSQL_DATABASE: northwind
-      # MYSQL_ROOT_PASSWORD: Wonderland
+      MYSQL_ROOT_PASSWORD: 
+      # MYSQL_USER: root
+      MYSQL_PASSWORD: 
+      MYSQL_DATABASE: vacatoins
     # volume for db files
     volumes:
       - vacations:/var/lib/mysql
-# -----------------------------------------------------------------------------
+  # -----------------------------------------------------------------------------
   # api-service:
   #   depends_on:
   #     - mysql-service
@@ -31,7 +32,7 @@ services:
   #     MYSQL_HOST: mysql-service
   #     MYSQL_USER: Alice
   #     MYSQL_PASSWORD: Wonderland
-# -----------------------------------------------------------------------------
+  # -----------------------------------------------------------------------------
 
   # react-service:
   #   depends_on:
@@ -43,8 +44,8 @@ services:
   #     - 3000:3000
   #   restart: unless-stopped
 
-# -----------------------------------------------------------------------------
+  # -----------------------------------------------------------------------------
 
-# listing all volumes we're using
+  # listing all volumes we're using
 volumes:
   vacations:
