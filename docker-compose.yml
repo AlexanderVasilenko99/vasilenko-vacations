@@ -34,15 +34,15 @@ services:
       MYSQL_PASSWORD: 
   # -----------------------------------------------------------------------------
 
-  # react-service:
-  #   depends_on:
-  #     - api-service
-  #   image: northwind-react
-  #   build: ./Frontend
-  #   container_name: northwind-react
-  #   ports:
-  #     - 3000:3000
-  #   restart: unless-stopped
+  react-service:
+    depends_on:
+      - api-service
+    image: vacations-react
+    build: ./Frontend
+    container_name: vacations-react
+    ports:
+      - 3000:3000
+    restart: unless-stopped
 
   # -----------------------------------------------------------------------------
 
