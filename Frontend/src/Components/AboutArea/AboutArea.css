@@ -68,7 +68,7 @@
 .AboutArea .about-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 100vh;
+    height: fit-content;
     scroll-margin-top: 70px;
 }
 .AboutArea .about-grid-container p{

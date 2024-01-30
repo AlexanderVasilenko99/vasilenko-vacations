@@ -108,29 +108,34 @@ function AboutArea(): JSX.Element {
                 <div>
                     <h1>About This Project</h1><p>
 
-                        <span>Vasilenko Vacations</span> is my first full-scale full stack project, one of many overall over the past
-                        few years, and my third and final project as part of my studies at John Bryce to become a full stack web
-                        developer.
+                        <span>Vasilenko Vacations</span> is my first full-scale full stack project, one of many web projects
+                        overall over the past few years, and my third and final project as part of my studies at John Bryce to
+                        become a full stack web developer.
 
                         <br /><br /><span>Frontend - </span>
-                        the client side was written in <span>ReactTS</span> according to <span>OOP principals</span> while using
-                        well known libraries such as <span> Redux, React-Router, and Axios</span> just to name a few.<br />
-                        The front-end was thought-over, written and styled with great emphasis on self made content - Almost everything
-                        regarding structure, features, style and functionality was thought through, written and implemented by myself. <br />
+                        the client side was written in <span>ReactTS</span> according to <span>OOP principals</span> while
+                        integrating popular programming libraries and technologies such as <span> Redux, React-Router, and Axios
+                        </span> just to name a few.<br /> The front-end was thought-over, written and styled with great emphasis
+                        on self made and coded content - Almost everything regarding structure, features, style and functionality
+                        was thought through, written and implemented by yours truly, me.😁 <br />
 
-                        I also put much effort into 'clean' coding aiming to avoid unnecessary repetition of code, correct file structuring
-                        and page responsiveness to name a few.
+                        I also put much effort into 'clean' coding aiming to avoid unnecessary repetition of code, correct file
+                        structuring and page responsiveness to mention a few.
 
                         <br /><br /><span>Backend - </span>
                         the server side was written in <span>NodeJS</span> with the use of <span>Express
-                        </span> and structured according to best practice <span>REST API principals.</span> mention sql injection
+                        </span> and structured according to best practice <span>REST API principals.</span>
 
-
-
-                        <br /><br /><span>Database - </span> the DB is relational and managed via <span>MySQL.</span> It contains multiple
+                        <br /><br /><span>Database - </span> the DB is relational. It contains multiple
                         tables that are interconnected in one-one, one-many, and many-many relationships.
 
-                        <br /><br />As of January 2024, the website is still work in progress🙂</p>
+                        <br /><br /><span>Security - </span>
+                        regarding <span>Security</span>, various steps were taken to implement various of secure coding and
+                        preventing various types of malicious safety exploitations. Namely, <span> preventing SQL injection,
+                            XXS attacks, IDOR attacks, using JWT, as well as hashing and salting sensitive information and
+                            much more.</span>
+
+                        <br /><br />As of January 2024, the website is still work in progress🙂</p><br />
                 </div>
             </div>
             {/* <a href="This is my CV" download={cvFile}>CV</a> */}
