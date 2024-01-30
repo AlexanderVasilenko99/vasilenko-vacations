@@ -58,7 +58,8 @@
     margin: 0px 100px;
     line-height: 1.5em;
 }
-.about-grid-container p::first-letter{
+
+.about-grid-container p::first-letter {
     font-size: 45px;
     font-weight: 400;
     vertical-align: bottom;
@@ -71,11 +72,13 @@
     height: fit-content;
     scroll-margin-top: 70px;
 }
-.AboutArea .about-grid-container p{
+
+.AboutArea .about-grid-container p {
     font-size: 20px;
     text-align: justify;
 }
-.about-grid-container span{
+
+.about-grid-container span {
     font-weight: 600;
 }
 
@@ -83,13 +86,14 @@
     margin-top: 35px;
     margin-bottom: 30px;
 }
-.chevron-holder a{
+
+.chevron-holder a {
     display: flex;
     align-items: center;
     height: 50px;
 }
 
-.icon{
+.icon {
     width: 40px;
     padding: 0px 6px;
 }
@@ -123,7 +127,12 @@
     animation: fade_move_down 4s ease-in-out infinite;
 }
 
-/*animated scroll arrow animation*/
+.thanks_for_reading {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: -4px;
+}
+
 @-webkit-keyframes fade_move_down {
     0% {
         -webkit-transform: translate(0, -10px) rotate(45deg);

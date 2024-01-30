@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import "./AboutArea.css";
+import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png"
 
 // function AboutArea(): JSX.Element {
 //     UseTitle("Vasilenko Vacations | About");
@@ -104,6 +105,9 @@ function AboutArea(): JSX.Element {
                         and an aspiring individual with vast interests fields and many dreams and milestones yet to be achieved. An
                         ambitious man with a unique personality constantly seeking to improve and better himself and his surrounding.
                     </p>
+                    <div>
+                        <img src={thanks_for_reading} className="thanks_for_reading"/>
+                    </div>
                 </div>
                 <div>
                     <h1>About This Project</h1><p>
