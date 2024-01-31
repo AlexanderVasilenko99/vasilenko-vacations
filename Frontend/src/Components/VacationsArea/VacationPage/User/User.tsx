@@ -39,8 +39,10 @@ function User(): JSX.Element {
                     <form>
                         <div>
                             <h3 id="vacation-destination">Destination:</h3>
-                            <label>{v?.vacationCity} - {v?.vacationCountry}</label>
-                            <img src={`https://flagcdn.com/w20/${v?.vacationCountryISO}.png`} className="country-image"></img>
+                            <div className="vacation-destination">
+                                <label>{v?.vacationCity} - {v?.vacationCountry}</label>
+                                <img src={`https://flagcdn.com/w20/${v?.vacationCountryISO}.png`} className="country-image"></img>
+                            </div>
                         </div>
                         <div>
                             <h3 id="vacation-description">Vacation Description: </h3>
@@ -48,7 +50,7 @@ function User(): JSX.Element {
                         </div>
                         <div>
                             <h3 id="vacation-price">Vacation Price: </h3>
-                            <label>{v?.vacationPrice}</label>
+                            <label>{v?.vacationPrice}$</label>
                         </div>
                         <div>
                             <h3 id="vacation-start">Vacation Dates: </h3>

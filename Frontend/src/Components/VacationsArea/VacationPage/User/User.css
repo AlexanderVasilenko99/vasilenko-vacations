@@ -30,7 +30,6 @@
 }
 
 .User form img {
-    width: 50%;
     border: 2px solid #1a5785;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -58,9 +57,8 @@
     box-sizing: border-box;
     display: grid;
     min-width: 595px;
-    grid-template-columns: 350px 1fr;
-    margin: 0px 175px;
-    /* box-shadow: 0 5px 15px rgba(0, 0, 0, .35); */
+    grid-template-columns: 350px 700px;
+    margin: auto;
     height: 350px;
 }
 
@@ -75,7 +73,10 @@
     min-width: 205px;
     background-color: #f6f1f1cc;
 }
-
+.User .vacation-destination{
+    display: flex;
+    align-items: center;
+}
 .User .left {
     z-index: 3;
     height: 350px;
