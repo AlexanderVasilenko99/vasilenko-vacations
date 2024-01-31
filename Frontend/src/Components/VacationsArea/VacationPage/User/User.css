@@ -9,8 +9,12 @@
 }
 
 .User form {
+    height: 100%;
     text-align: left;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .User h1 {
@@ -22,8 +26,7 @@
 }
 
 .User h3 {
-    scroll-margin-top: 80px;
-    margin-bottom: 5px;
+    margin: 0px 0px 5px 0px;
 }
 
 .User form img {
@@ -31,6 +34,11 @@
     border: 2px solid #1a5785;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.User form .description-label {
+    display: inline-block;
+    max-width: 600px;
 }
 
 .User h1 a {
@@ -52,67 +60,49 @@
     min-width: 595px;
     grid-template-columns: 350px 1fr;
     margin: 0px 175px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, .35); */
+    height: 350px;
 }
 
 .User .right,
 .User .left {
-    padding: 10px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
 }
 
 .User .right {
+    padding: 10px 20px;
     border: 1px solid gray;
     min-width: 205px;
     background-color: #f6f1f1cc;
-    display: flex;
-    justify-content: space-between;
 }
 
 .User .left {
+    z-index: 3;
+    height: 350px;
+    box-sizing: border-box;
+    overflow: hidden;
     background-color: #1a5785;
-    color: #F6F1F1;
-}
-
-.User .far {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    border-radius: 50% 0 0 50%;
 }
 
-.User img {
-    height: 100%;
-    /* max-height: 390px; */
-    width: auto;
-}
-
-.User ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.User ul li {
-    text-align: left;
-}
-
-.User ul li a {
-    text-decoration: none;
-    color: #F6F1F1;
-    display: block;
-    height: 35px;
+.User .image-background {
+    width: 205px;
+    height: 205px;
+    scale: 1.5;
     display: flex;
+    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #2e6ba0;
 }
 
-.User ul li a:hover {
-    background-color: #2e6ba0;
-    transition: 200ms all;
+.User .left img {
+    width: 310px;
 }
-
-.User .left div {
-    position: sticky;
-    top: 85px;
-}
-
 
 .User .country-image {
     padding-left: 3px;

@@ -29,50 +29,34 @@ function User(): JSX.Element {
             <div className="grid-container">
 
                 <div className="left">
-                    <div>
-                        <h3>Summary</h3>
-                        <ul>
-                            <li><HashLink smooth to="#vacation-destination">
-                                Vacation Country</HashLink></li>
-                            <li><HashLink smooth to="#vacation-description">
-                                Vacation Description</HashLink></li>
-                            <li><HashLink smooth to="#vacation-price">
-                                Vacation Price</HashLink></li>
-                            <li><HashLink smooth to="#vacation-start">
-                                Vacation Dates</HashLink></li>
-                            <li><HashLink smooth to="#vacation-image">
-                                Vacation Image</HashLink></li>
-                        </ul>
+                    <div className="image-background">
+                        <img src={v?.vacationImageUrl} />
                     </div>
                 </div>
 
-
                 <div className="right">
-                    <div>
-                        <form>
 
+                    <form>
+                        <div>
                             <h3 id="vacation-destination">Destination:</h3>
                             <label>{v?.vacationCity} - {v?.vacationCountry}</label>
                             <img src={`https://flagcdn.com/w20/${v?.vacationCountryISO}.png`} className="country-image"></img>
-
+                        </div>
+                        <div>
                             <h3 id="vacation-description">Vacation Description: </h3>
-                            <label>{v?.vacationDescription}</label>
-
+                            <label className="description-label">{v?.vacationDescription}</label>
+                        </div>
+                        <div>
                             <h3 id="vacation-price">Vacation Price: </h3>
                             <label>{v?.vacationPrice}</label>
-
+                        </div>
+                        <div>
                             <h3 id="vacation-start">Vacation Dates: </h3>
                             <label>{v?.vacationStartDate.toString()} - {v?.vacationEndDate.toString()}</label>
-
-                        </form>
-                    </div>
-
-                    {/* <div className="far">
-                        <img src={v?.vacationImageUrl} />
-                    </div> */}
+                        </div>
+                    </form>
 
                 </div>
-
             </div >
             <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
         </div >
