@@ -1,3 +1,124 @@
 .User {
-	
+    height: 77vh;
+    height: 69vh;
+    background-image: url("../../../../Assets/Images/UtilityImages/404.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.User form {
+    text-align: left;
+    border-radius: 10px;
+}
+
+.User h1 {
+    display: flex;
+    justify-content: space-between;
+    min-width: 595px;
+    margin: 0px 175px 20px 175px;
+    padding-top: 20px;
+}
+
+.User h3 {
+    scroll-margin-top: 80px;
+    margin-bottom: 5px;
+}
+
+.User form img {
+    width: 50%;
+    border: 2px solid #1a5785;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.User h1 a {
+    font-size: 32px;
+    text-decoration: none;
+    color: black;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+}
+
+.User h1 a:hover {
+    color: #2e6ba0;
+}
+
+.User .grid-container {
+    box-sizing: border-box;
+    display: grid;
+    min-width: 595px;
+    grid-template-columns: 350px 1fr;
+    margin: 0px 175px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+}
+
+.User .right,
+.User .left {
+    padding: 10px 20px;
+}
+
+.User .right {
+    border: 1px solid gray;
+    min-width: 205px;
+    background-color: #f6f1f1cc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.User .left {
+    background-color: #1a5785;
+    color: #F6F1F1;
+}
+
+.User .far {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.User img {
+    height: 100%;
+    /* max-height: 390px; */
+    width: auto;
+}
+
+.User ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.User ul li {
+    text-align: left;
+}
+
+.User ul li a {
+    text-decoration: none;
+    color: #F6F1F1;
+    display: block;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.User ul li a:hover {
+    background-color: #2e6ba0;
+    transition: 200ms all;
+}
+
+.User .left div {
+    position: sticky;
+    top: 85px;
+}
+
+
+.User .country-image {
+    padding-left: 3px;
+    box-shadow: none;
+    width: 30px;
+    height: 20px;
+    border: 0;
+    border-radius: 0;
 }
