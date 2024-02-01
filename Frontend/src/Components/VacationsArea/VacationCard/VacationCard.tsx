@@ -14,6 +14,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const navigate = useNavigate();
+    
     useEffect(() => {
         const startDate = new Date(vacation.vacationStartDate?.toString().substring(0, 10));
         const endDate = new Date(vacation.vacationEndDate?.toString().substring(0, 10));
