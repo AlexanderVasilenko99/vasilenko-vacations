@@ -1,28 +1,93 @@
 .Register {
-    box-sizing: border-box;
+    height: 77vh;
+    height: 69vh;
+    background-image: url("../../../Assets/Images/UtilityImages/404.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Register form {
     height: 100%;
+    text-align: left;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.Register form div:nth-of-type(5) {
+    margin: 0px auto;
+}
+
+.Register a {
+    color: #1a5785;
+    transition: 200ms;
+}
+
+.Register a:hover {
+    color: black;
+    transition: 200ms;
+}
+
+.Register .grid-container {
+    box-sizing: border-box;
+    display: grid;
+    min-width: 595px;
+    grid-template-columns: 260px 500px;
+    margin: auto;
+    height: 360px;
+}
+
+.Register .right,
+.Register .left {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+}
+
+.Register .right {
+    padding: 10px 20px;
+    border: 1px solid gray;
+    min-width: 205px;
+    background-color: #f6f1f1cc;
+}
+
+.Register .left {
+    z-index: 3;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #1a5785;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50% 0 0 50%;
 }
 
-.Register .form-container {
-    text-align: left;
-    width: 250px;
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 10px;
-    height: fit-content;
-    box-shadow: 3px 3px 3px black;
-}
-
-.Register input,
-.Register button {
+.Register form input {
+    display: block;
     width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 20px;
 }
 
-.Register h2 {
-    margin-top: 0;
+.Register .left img {
+    width: 150px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    scale: .95;
+}
+
+.Register button {
+    font-size: 20px;
+    margin: 0px auto;
+    color: #F6F1F1;
+    background-color: #2e6ba0;
+    border: 2px solid #1a5785;
+    padding: 4px 16px;
+    border-radius: 14px;
+    transition: 200ms;
+}
+
+.Register button:hover {
+    color: #1a5785;
+    background-color: #F6F1F1;
+    cursor: pointer;
 }

@@ -7,6 +7,7 @@ import appConfig from "../../../Utils/AppConfig";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
 import "./Register.css";
+import logo from "../../../Assets/Images/UtilityImages/project-logo.png"
 
 function Register(): JSX.Element {
     UseTitle("Vasilenko Vacations | Register");
@@ -29,46 +30,59 @@ function Register(): JSX.Element {
 
     return (
         <div className="Register">
-            <div className="form-container">
-                <h2>Register</h2>
-                <form onSubmit={handleSubmit(send)}>
-                    <label>First name:</label>
-                    <input
-                        required
-                        type="text"
-                        minLength={2}
-                        maxLength={30}
-                        {...register("userFirstName")}
-                    />
+            <div className="grid-container">
 
-                    <label>Last name:</label>
-                    <input
-                        required
-                        type="text"
-                        minLength={2}
-                        maxLength={30}
-                        {...register("userLastName")}
-                    />
+                <div className="left">
+                    <img src={logo} />
+                </div>
 
-                    <label>Email:</label>
-                    <input
-                        required
-                        type="email"
-                        maxLength={50}
-                        {...register("userEmail")}
-                    />
+                <div className="right">
+                    <form onSubmit={handleSubmit(send)}>
+                        <div>
+                            <label>First name:</label>
+                            <input
+                                required
+                                type="text"
+                                minLength={2}
+                                maxLength={30}
+                                {...register("userFirstName")}
+                            />
+                        </div>
+                        <div>
+                            <label>Last name:</label>
+                            <input
+                                required
+                                type="text"
+                                minLength={2}
+                                maxLength={30}
+                                {...register("userLastName")}
+                            />
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                required
+                                type="email"
+                                maxLength={50}
+                                {...register("userEmail")}
+                            />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input
+                                required
+                                minLength={4}
+                                type="password"
+                                {...register("userPassword")}
+                            />
+                        </div>
+                        <div>
+                            <label>Already a member? <NavLink to={appConfig.loginRoute}>Login Here!</NavLink></label>
+                        </div>
 
-                    <label>Password:</label>
-                    <input
-                        required
-                        minLength={4}
-                        type="password"
-                        {...register("userPassword")}
-                    />
-
-                    <label>Already a member?<NavLink to={appConfig.loginRoute}>login</NavLink></label>
-                    <button type="submit">Register</button>
-                </form>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
