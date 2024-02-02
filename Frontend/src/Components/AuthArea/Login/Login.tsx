@@ -8,6 +8,7 @@ import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
 import "./Login.css";
 import { authStore } from "../../../Redux/AuthState";
+import logo from "../../../Assets/Images/UtilityImages/project-logo.png"
 
 
 function Login(): JSX.Element {
@@ -33,29 +34,35 @@ function Login(): JSX.Element {
 
     return (
         <div className="Login">
-            <div className="form-container">
-                <h2>
-                    Login
-                </h2>
-                <form onSubmit={handleSubmit(send)}>
-                    <label>Email:</label>
-                    <input
-                        required
-                        type="email"
-                        maxLength={50}
-                        {...register("email")}
-                    />
-
-                    <label>Password:</label>
-                    <input type="password"
-                        required
-                        minLength={4}
-                        {...register("password")}
-                    />
-
-                    <label>Not a member? <NavLink to={appConfig.registerRoute}>register</NavLink></label>
-                    <button type="submit">Log in</button>
-                </form>
+            <div className="grid-container">
+                <div className="left">
+                    <img src={logo} />
+                </div>
+                <div className="right">
+                    <form onSubmit={handleSubmit(send)}>
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                required
+                                type="email"
+                                maxLength={50}
+                                {...register("email")}
+                            />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input type="password"
+                                required
+                                minLength={4}
+                                {...register("password")}
+                            />
+                        </div>
+                        <div>
+                            <label>Not a member yet? <NavLink to={appConfig.registerRoute}>Register Here!</NavLink></label>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
