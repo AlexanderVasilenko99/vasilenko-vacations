@@ -62,19 +62,19 @@ function VacationsList(): JSX.Element {
         "All Vacations"
     ];
 
-    const unsubscribe = vacationsStore.subscribe(() => {
-        let prevValue = [...vacations];
-        const curValue: VacationModel[] = vacationsStore.getState().vacations;
+    // const unsubscribe = vacationsStore.subscribe(() => {
+    //     let prevValue = [...vacations];
+    //     const curValue: VacationModel[] = vacationsStore.getState().vacations;
 
-        if (prevValue.length !== curValue.length) { // case admin deleted a vacation
-            setVacations(curValue);
-            setDisplayedVacations(curValue);
-            resetSearchForm();
-        }
-        else { // case user liked/disliked a vacation
-            setDisplayedVacations(filterDisplayedVacations(curValue));
-        }
-    });
+    //     if (prevValue.length !== curValue.length) { // case admin deleted a vacation
+    //         setVacations(curValue);
+    //         setDisplayedVacations(curValue);
+    //         resetSearchForm();
+    //     }
+    //     else { // case user liked/disliked a vacation
+    //         setDisplayedVacations(filterDisplayedVacations(curValue));
+    //     }
+    // });
 
     interface ItemsProps {
         currentItems: VacationModel[];
@@ -114,16 +114,20 @@ function VacationsList(): JSX.Element {
 
         const endOffset = itemOffset + itemsPerPage;
         // const currentItems = displayedVacations.slice(itemOffset, endOffset);
-        let currentItems = [...vacationsStore.getState().vacations];
+        let currentItems = vacationsStore.getState().vacations;
         currentItems = filterDisplayedVacations(currentItems);
         currentItems = currentItems.slice(itemOffset, endOffset);
 
-        const pageCount = Math.ceil(displayedVacations.length / itemsPerPage);
+        // console.log(displayedVacationCountries);
+
+        const pageCount = Math.ceil(displayedVacationCountries.length / itemsPerPage);
 
         const handlePageClick = (event: { selected: number }) => {
-            const newOffset = (event.selected * itemsPerPage) % displayedVacations.length;
+            // if(event.selected){
+            const newOffset = (event.selected * itemsPerPage) % displayedVacationCountries.length;
             setSelectedPage(event.selected);
             setItemOffset(newOffset);
+            // }
             // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
         };
 
@@ -251,6 +255,29 @@ function VacationsList(): JSX.Element {
                 setDisplayedVacationCountries(countries);
             })
             .catch(err => console.log(err));
+
+        const unsubscribe = vacationsStore.subscribe(() => {
+            // let prevValue = vacations;
+            const curValue: VacationModel[] = vacationsStore.getState().vacations;
+
+            // if (prevValue.length !== curValue.length) { // case admin deleted a vacation
+            console.log("here");
+            setVacations(curValue);
+            // setDisplayedVacations(curValue);
+            // resetSearchForm();
+            // }
+            // else { // case user liked/disliked a vacation
+            // console.log("no here");
+            setDisplayedVacations(filterDisplayedVacations(curValue));
+
+
+            let newVacationCountries: string[] = [];
+            curValue.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
+
+            setDisplayedVacationCountries(newVacationCountries);
+            // }
+        });
+
         return unsubscribe;
     }, []);
 
@@ -262,7 +289,7 @@ function VacationsList(): JSX.Element {
             </div>
             <h2 className="general-info">
                 <span>Or search a vacation:</span>
-                <span className="results">Showing {displayedVacations?.length} results</span></h2>
+                <span className="results">Showing {displayedVacationCountries?.length} results</span></h2>
 
             {vacations.length !== 0 && <div className={accordionOpen ? "filter-container accordion-open" : "filter-container accordion-close"}>
                 <div className="filter-headers">
