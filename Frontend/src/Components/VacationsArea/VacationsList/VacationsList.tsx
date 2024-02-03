@@ -62,23 +62,10 @@ function VacationsList(): JSX.Element {
         "All Vacations"
     ];
 
-    // const unsubscribe = vacationsStore.subscribe(() => {
-    //     let prevValue = [...vacations];
-    //     const curValue: VacationModel[] = vacationsStore.getState().vacations;
-
-    //     if (prevValue.length !== curValue.length) { // case admin deleted a vacation
-    //         setVacations(curValue);
-    //         setDisplayedVacations(curValue);
-    //         resetSearchForm();
-    //     }
-    //     else { // case user liked/disliked a vacation
-    //         setDisplayedVacations(filterDisplayedVacations(curValue));
-    //     }
-    // });
-
     interface ItemsProps {
         currentItems: VacationModel[];
     }
+
     interface PaginatedItemsProps {
         itemsPerPage: number;
     }
@@ -108,27 +95,19 @@ function VacationsList(): JSX.Element {
     }
 
     function PaginatedItems({ itemsPerPage }: PaginatedItemsProps): JSX.Element {
-
         const [itemOffset, setItemOffset] = useState(0);
         const [selectedPage, setSelectedPage] = useState(0);
 
         const endOffset = itemOffset + itemsPerPage;
-        // const currentItems = displayedVacations.slice(itemOffset, endOffset);
         let currentItems = vacationsStore.getState().vacations;
         currentItems = filterDisplayedVacations(currentItems);
         currentItems = currentItems.slice(itemOffset, endOffset);
-
-        // console.log(displayedVacationCountries);
-
         const pageCount = Math.ceil(displayedVacationCountries.length / itemsPerPage);
 
         const handlePageClick = (event: { selected: number }) => {
-            // if(event.selected){
             const newOffset = (event.selected * itemsPerPage) % displayedVacationCountries.length;
             setSelectedPage(event.selected);
             setItemOffset(newOffset);
-            // }
-            // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
         };
 
         return (
@@ -213,16 +192,9 @@ function VacationsList(): JSX.Element {
         let dates = datesInput?.value;
         let newVacations = [...arr];
 
-        // let newVacations: VacationModel[] = [...vacations];
-        // let newVacations: VacationModel[] = [...vacationsStore.getState().vacations];
-        // let newVacationCountries: string[] = [];
-
         newVacations = dates ? filterVacationsByDates(vacations, dates) : filterVacationsByDates(vacations, '');
         newVacations = country ? filterVacationsByCountry(newVacations, country) : filterVacationsByCountry(newVacations, '');
-        // newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
 
-        // setDisplayedVacations(newVacations);
-        // setDisplayedVacationCountries(newVacationCountries);
         return newVacations;
     }
 
@@ -257,25 +229,15 @@ function VacationsList(): JSX.Element {
             .catch(err => console.log(err));
 
         const unsubscribe = vacationsStore.subscribe(() => {
-            // let prevValue = vacations;
             const curValue: VacationModel[] = vacationsStore.getState().vacations;
 
-            // if (prevValue.length !== curValue.length) { // case admin deleted a vacation
-            console.log("here");
             setVacations(curValue);
-            // setDisplayedVacations(curValue);
-            // resetSearchForm();
-            // }
-            // else { // case user liked/disliked a vacation
-            // console.log("no here");
             setDisplayedVacations(filterDisplayedVacations(curValue));
-
 
             let newVacationCountries: string[] = [];
             curValue.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
 
             setDisplayedVacationCountries(newVacationCountries);
-            // }
         });
 
         return unsubscribe;
