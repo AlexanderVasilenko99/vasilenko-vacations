@@ -1,34 +1,19 @@
-import UseTitle from "../../Utils/UseTitle";
-import Header from "../Common/header/header";
 import Tooltip from '@mui/material/Tooltip';
-import React, { useEffect, useRef } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import React, { useRef } from "react";
+import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png";
+import UseTitle from "../../Utils/UseTitle";
 import "./AboutArea.css";
-import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png"
-
-// function AboutArea(): JSX.Element {
-//     UseTitle("Vasilenko Vacations | About");
-//     return (
-//         <div className="AboutArea">
-//             <Header {...{ title: "About Me & This Project" }} />
-//         </div>
-//     );
-// }
-
-// export default AboutArea;
-
-
 // import { default as cvFile, default as myCV } from "../../../../Assets/Files/Downloads/Alexander-Vasilenko-CV.pdf";
 
 function AboutArea(): JSX.Element {
     UseTitle("Vasilenko Vacations | About");
+
     const isFirstScroll = useRef(true);
     function handleScrollChange(): void {
-        console.log("eventlistener triggered");
         if (isFirstScroll.current) {
             isFirstScroll.current = false;
-            console.log("scrolling to section...");
             window.scrollTo({ top: 840, behavior: "smooth" })
             window.removeEventListener('scroll', handleScrollChange);
         }
@@ -39,25 +24,31 @@ function AboutArea(): JSX.Element {
     class myLinksModel {
         public imageName: string;
         public link: string;
-        constructor(imageName: string, link: string) {
+        public tooltip?: string;
+        constructor(imageName: string, link: string, tooltip?: string) {
             this.imageName = imageName;
             this.link = link;
+            this.tooltip = tooltip;
         }
     }
-    // require('../../Assets/Images/UtilityImages/')
+
     const myContacts: myLinksModel[] = [
         new myLinksModel("giticon.png", "https://github.com/AlexanderVasilenko99"),
         new myLinksModel("linkedinicon.png", "https://www.linkedin.com/in/alexander-vasilenko-323a21299/"),
         new myLinksModel("phoneicon.png", "050-814-5431"),
-        new myLinksModel("emailicon.png", "alexandervjr1@gmail.com"),
+        new myLinksModel("emailicon.png", "mailto:alexandervjr1@gmail.com", "alexandervjr1@gmail.com"),
     ];
     return (
         <div className="AboutArea">
             <div className="first-section">
                 <h1 className="h1">About Me & This Project</h1>
                 <div>
-                    <NavLink to="https://www.linkedin.com/in/alexander-vasilenko-323a21299/" target="_blank">
-                        <img className="profile-pic" src={require('../../Assets/Images/UtilityImages/me_square.jpeg')} />
+                    <NavLink
+                        target="_blank"
+                        to="https://www.linkedin.com/in/alexander-vasilenko-323a21299/">
+                        <img
+                            className="profile-pic"
+                            src={require('../../Assets/Images/UtilityImages/me_square.jpeg')} />
                     </NavLink>
                 </div>
                 <h2>👋🏻Hi There! I'm</h2>
@@ -68,7 +59,7 @@ function AboutArea(): JSX.Element {
                 <h4>Full Stack Developer</h4>
                 <h5>
                     {myContacts.map(c =>
-                        <Tooltip title={c.link} arrow>
+                        <Tooltip title={c.tooltip ? c.tooltip : c.link} arrow>
                             <NavLink to={c.link} target="_blank">
                                 <img className="icon" src={require(`../../Assets/Images/UtilityImages/${c.imageName}`)} />
                             </NavLink>
@@ -106,7 +97,7 @@ function AboutArea(): JSX.Element {
                         ambitious man with a unique personality constantly seeking to improve and better himself and his surrounding.
                     </p>
                     <div>
-                        <img src={thanks_for_reading} className="thanks_for_reading"/>
+                        <img src={thanks_for_reading} className="thanks_for_reading" />
                     </div>
                 </div>
                 <div>
@@ -142,7 +133,6 @@ function AboutArea(): JSX.Element {
                         <br /><br />As of January 2024, the website is still work in progress🙂</p><br />
                 </div>
             </div>
-            {/* <a href="This is my CV" download={cvFile}>CV</a> */}
         </div >
     );
 }
