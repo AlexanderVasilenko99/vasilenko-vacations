@@ -19,7 +19,7 @@ export class ResourceNotFound extends BaseError {
 export class FollowerNotFound extends BaseError {
     public constructor(userUUID: string, vacationUUID: string) {
         super(StatusCode.NotFound, `The combination of userUUID ${userUUID} and
-        vacationUUID ${vacationUUID} does not exist in this table.`);
+        vacationUUID ${vacationUUID} does not exist.`);
     }
 }
 

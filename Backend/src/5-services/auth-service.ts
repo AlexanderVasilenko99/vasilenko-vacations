@@ -13,8 +13,8 @@ class AuthService {
     public async getExistingUserImageName(userUUID: string): Promise<string> {
         const sql = 'SELECT userImageName from users WHERE userUUID = ?'
         const info = await dal.execute(sql, [userUUID]);
-        console.log(info);
         const imageName = info[0].userImageName;
+
         if (!imageName) return "";
         return imageName;
     }
@@ -22,8 +22,8 @@ class AuthService {
     public async getExistingUserImagePath(userUUID: string): Promise<string> {
         const sql = 'SELECT userImageName from users WHERE userUUID = ?'
         const info: OkPacket = await dal.execute(sql, [userUUID]);
-
         const user = info[0];
+
         if (!user) return "";
         const existingImagePath = appConfig.appHost + "/api/image/" + user.userImageName;
         return existingImagePath;
@@ -58,7 +58,6 @@ class AuthService {
     }
 
     public async register(user: UserModel): Promise<string> {
-
         user.addUserValidate();
 
         if (await this.isEmailTaken(user.userEmail))
@@ -70,7 +69,7 @@ class AuthService {
 
 
         const sql = `INSERT INTO users VALUES(?,?,?,?,?,?,?)`;
-        const info: OkPacket = await dal.execute(sql, ['DEFAULT',
+        await dal.execute(sql, ['DEFAULT',
             user.userUUID,
             user.userFirstName,
             user.userLastName,
@@ -107,7 +106,7 @@ class AuthService {
     public async update(user: UserModel): Promise<string> {
         user.updateUserValidate();
 
-        let imageName;
+        let imageName: string;
         const existingImageName = await this.getExistingUserImageName(user.userUUID);
 
         if (existingImageName) imageName = existingImageName;
@@ -144,11 +143,8 @@ class AuthService {
         delete user.userUploadedImage;
 
         const token = cyber.getNewToken(user);
-        console.log(token);
-
         return token;
     }
 }
-
 const authService = new AuthService();
 export default authService;
