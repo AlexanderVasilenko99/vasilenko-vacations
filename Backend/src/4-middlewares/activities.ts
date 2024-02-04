@@ -9,7 +9,6 @@ function activities(req: Request, res: Response, next: NextFunction): void {
                         Body: ${JSON.stringify(req.body)}`
 
     logger.logActivity(activity)
-
     next();
 }
 export default activities;
