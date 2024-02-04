@@ -18,10 +18,9 @@ function Register(): JSX.Element {
 
     async function send(user: UserModel) {
         try {
-            if (await authService.register(user)) {
-                noti.success("You have successfully registered");
-                navigate(appConfig.vacationsRoute);
-            }
+            await authService.register(user);
+            noti.success("You have successfully registered");
+            navigate(appConfig.vacationsRoute);
         } catch (err: any) {
             noti.error(err)
         }

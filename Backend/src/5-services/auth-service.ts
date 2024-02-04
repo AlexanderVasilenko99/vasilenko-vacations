@@ -67,14 +67,16 @@ class AuthService {
         user.userRoleId = RoleModel.User;
         user.userPassword = cyber.hashPassword(user.userPassword);
 
-
-        const sql = `INSERT INTO users VALUES(?,?,?,?,?,?,?)`;
-        await dal.execute(sql, ['DEFAULT',
+        const sql = `INSERT INTO users VALUES(DEFAULT,?,?,?,?,?,?,?)`;
+        await dal.execute(sql, [
             user.userUUID,
             user.userFirstName,
             user.userLastName,
             user.userEmail,
-            user.userPassword, user.userRoleId]);
+            user.userPassword,
+            '',
+            user.userRoleId
+        ]);
 
         delete user.userId;
         delete user.userPassword;
@@ -146,5 +148,6 @@ class AuthService {
         return token;
     }
 }
+
 const authService = new AuthService();
 export default authService;

@@ -2,33 +2,21 @@ import axios from "axios";
 import CredentialsModel from "../Models/CredentialsModel";
 import UserModel from "../Models/UserModel";
 import { AuthAction, AuthActionTypes, authStore } from "../Redux/AuthState";
-import appConfig from "../Utils/AppConfig";
-import noti from "./NotificationService";
 import { VacationsActionTypes, VacationsActions, vacationsStore } from "../Redux/VacationsState";
+import appConfig from "../Utils/AppConfig";
 
 class AuthService {
-    public async register(user: UserModel): Promise<boolean> {
-        try {
+    public async register(user: UserModel): Promise<void> {
+        const response = await axios.post(appConfig.registerUrl, user);
+        const token = response.data;
 
-            {/* ADD CHECK IF EMAIL IS ALREADY TAKEN! */ }
-
-            const response = await axios.post(appConfig.registerUrl, user);
-            if (response.status === 409) return false;
-
-            const token = response.data;
-
-            const action: AuthAction = { type: AuthActionTypes.Register, payload: token }
-            authStore.dispatch(action);
-            return true
-        } catch (err: any) { noti.error(err) }
-
+        const action: AuthAction = { type: AuthActionTypes.Register, payload: token }
+        authStore.dispatch(action);
     }
 
     public async login(credentials: CredentialsModel): Promise<void> {
         const response = await axios.post(appConfig.loginUrl, credentials);
-
         const token = response.data;
-        console.log(token);
 
         const action: AuthAction = { type: AuthActionTypes.Login, payload: token }
         authStore.dispatch(action);
@@ -37,6 +25,7 @@ class AuthService {
     public logout(): void {
         const authAction: AuthAction = { type: AuthActionTypes.Logout }
         const vacationsAction: VacationsActions = { type: VacationsActionTypes.ClearAll }
+
         authStore.dispatch(authAction);
         vacationsStore.dispatch(vacationsAction);
     }
