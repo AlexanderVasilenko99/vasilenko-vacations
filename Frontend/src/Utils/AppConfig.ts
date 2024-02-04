@@ -8,10 +8,6 @@ class AppConfig {
     public readonly reportsRoute: string = "/reports/";
     public readonly userRoute: string = "/users/";
 
-    // public readonly addVacationRoute: string = this.vacationsRoute + "new/"
-    // public readonly editVacationRoute: string = this.vacationsRoute + "edit/"
-    // public readonly editVacationDetails: string = this.vacationsRoute + "details/"
-
     public readonly vacationsUrl: string = 'http://localhost:4000/api/vacations/';
     public readonly loginUrl: string = 'http://localhost:4000/api/login/';
     public readonly updateUrl: string = 'http://localhost:4000/api/update/';

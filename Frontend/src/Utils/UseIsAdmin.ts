@@ -15,7 +15,6 @@ function UseIsAdmin(shouldHeBe: boolean, errMsg: string, redirectInCaseOfError?:
             navigate(redirectInCaseOfError ? redirectInCaseOfError : "/home");
             return;
         };
-
         if (shouldHeBe && roleId !== 1) {
             noti.error(errMsg);
             navigate(redirectInCaseOfError ? redirectInCaseOfError : "/home");
