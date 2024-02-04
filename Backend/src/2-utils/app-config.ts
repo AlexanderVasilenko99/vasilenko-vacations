@@ -14,9 +14,11 @@ class DevelopmentConfig extends AppConfig {
     isDevelopment = true;
     isProduction = false;
 }
+
 class ProductionConfig extends AppConfig {
     isDevelopment = true;
     isProduction = false;
 }
+
 const appConfig = (process.env.NODE_ENV === "development") ? new DevelopmentConfig() : new ProductionConfig();
 export default appConfig;

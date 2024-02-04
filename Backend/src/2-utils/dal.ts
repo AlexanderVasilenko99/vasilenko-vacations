@@ -8,7 +8,8 @@ const connection = mysql.createPool({
     password: appConfig.mysqlPassword,  // database password
     database: appConfig.mysqlDatabase   //database name
 });
-function execute(sql: string, values?: any[]): Promise<any> { //promisify
+
+function execute(sql: string, values?: any[]): Promise<any> {
     return new Promise<any>((resolve, reject) => {
         connection.query(sql, values, (err: MysqlError, result: any) => {
             if (err) {
@@ -19,6 +20,7 @@ function execute(sql: string, values?: any[]): Promise<any> { //promisify
         });
     });
 }
+
 export default {
     execute
 }
