@@ -1,12 +1,4 @@
-import {
-    BarElement,
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    Title,
-    Tooltip,
-} from 'chart.js';
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip, } from 'chart.js';
 import { useEffect, useState } from "react";
 import { Bar } from 'react-chartjs-2';
 import { CSVLink } from "react-csv";
@@ -28,7 +20,6 @@ ChartJS.register(
 
 let labels: string[] = [];
 let followersCount: string[] = [];
-let x: VacationModel[] = [];
 let csvData = [["vacation destination", "number of followers"]];
 
 function ReportsArea(): JSX.Element {
@@ -39,7 +30,7 @@ function ReportsArea(): JSX.Element {
     useEffect(() => {
         if (labels.length === 0 || vacationsStore.getState().vacations.length !== labels.length) {
             labels = [];
-            followersCount = []
+            followersCount = [];
             csvData = [["vacation destination", "number of followers"]];
 
             vacationService.getAllVacations()

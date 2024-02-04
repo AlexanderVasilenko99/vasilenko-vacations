@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import UserModel from "../../Models/UserModel";
 import { authStore } from "../../Redux/AuthState";
+import authService from "../../Services/AuthService";
+import notificationService from "../../Services/NotificationService";
+import UseTitle from "../../Utils/UseTitle";
 import Header from "../Common/header/header";
 import "./UserArea.css";
-import profilePic from "../../Assets/Images/UtilityImages/me_square.jpeg"
-import { useForm } from "react-hook-form";
-import authService from "../../Services/AuthService";
-import noti from "../../Services/NotificationService";
-import UseTitle from "../../Utils/UseTitle";
-import useImagePreview from "../../Utils/UseImagePreview";
 
 function UserArea(): JSX.Element {
     UseTitle("Vasilenko Vacation | Profile")
@@ -16,10 +14,7 @@ function UserArea(): JSX.Element {
     const [imgSrc, setImgSrc] = useState<string>("");
     const [imageFile, setImageFile] = useState<File | null>();
     const [isFormEditDisabled, setIsFormEditDisabled] = useState<boolean>(true);
-
     const { register, handleSubmit, setValue } = useForm<UserModel>();
-
-    const imageSrc = useImagePreview(imageFile);
 
     useEffect(() => {
         const user: UserModel = authStore.getState().user;
@@ -30,7 +25,6 @@ function UserArea(): JSX.Element {
         setValue("userEmail", user.userEmail);
         setValue("userLastName", user.userLastName);
         setValue("userFirstName", user.userFirstName);
-
     }, []);
 
     function handleChange(e: any) {
@@ -48,13 +42,13 @@ function UserArea(): JSX.Element {
             changedUser.userRoleId = user.userRoleId;
             changedUser.userUploadedImage = imageFile;
 
-            // await authService.update(changedUser);
+            await authService.update(changedUser);
 
             setUser(changedUser);
             setIsFormEditDisabled(!isFormEditDisabled)
-            noti.success("The changes have been saved successfully!");
+            notificationService.success("The changes have been saved successfully!");
         } catch (err: any) {
-            noti.error(err)
+            notificationService.error(err)
         }
     }
 
@@ -92,7 +86,6 @@ function UserArea(): JSX.Element {
                                 disabled={isFormEditDisabled}
                             />
                         </div>
-
                         <div className="right">
                             <input
                                 required
