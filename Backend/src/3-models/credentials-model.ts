@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { Validation } from "./error-models";
 
 class CredentialsModel {
 
@@ -8,16 +9,17 @@ class CredentialsModel {
     constructor(user: CredentialsModel) {
         this.email = user.email;
         this.password = user.password;
-
     }
-    // add validation schema and validate function
-    private static validationSchema = Joi.object({
 
-    })
+    public static validationSchema = Joi.object({
+        email: Joi.string().required().email(),
+        password: Joi.string().required().min(4).max(30),
+    });
 
+    public validateCredentials(): void {
+        const result = CredentialsModel.validationSchema.validate(this);
+        if (result?.error?.message) throw new Validation(result.error.message);
+    }
 
-
-
-    
 }
 export default CredentialsModel;

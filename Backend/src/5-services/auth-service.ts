@@ -85,7 +85,7 @@ class AuthService {
     }
 
     public async login(credentials: CredentialsModel): Promise<string> {
-
+        credentials.validateCredentials();
         credentials.password = cyber.hashPassword(credentials.password);
 
         const sql = `SELECT * FROM users WHERE userEmail = ? AND userPassword = ?`;
