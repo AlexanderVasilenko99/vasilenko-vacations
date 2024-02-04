@@ -5,13 +5,15 @@
     height: 140px;
     padding: 0 175px;
 }
-.Sponsors p{
+
+.Sponsors p {
     color: #faf6e9;
     font-size: 18px;
     font-weight: 600;
     text-align: left;
 }
-.Sponsors .sponsors-container{
+
+.Sponsors .sponsors-container {
     display: flex;
     justify-content: space-evenly;
 }

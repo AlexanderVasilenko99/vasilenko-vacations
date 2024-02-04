@@ -1,4 +1,3 @@
-import "./FooterArea.css";
 import Rights from "./Rights/Rights";
 import Sponsors from "./Sponsors/Sponsors";
 
