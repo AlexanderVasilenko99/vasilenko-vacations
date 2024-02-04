@@ -9,5 +9,4 @@ enum StatusCode {
     Conflict = 409,
     InternalServerError = 500
 }
-
 export default StatusCode;

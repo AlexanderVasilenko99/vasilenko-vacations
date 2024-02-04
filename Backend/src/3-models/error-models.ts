@@ -15,6 +15,7 @@ export class ResourceNotFound extends BaseError {
         super(StatusCode.NotFound, `id ${id} not found.`);
     }
 }
+
 export class FollowerNotFound extends BaseError {
     public constructor(userUUID: string, vacationUUID: string) {
         super(StatusCode.NotFound, `The combination of userUUID ${userUUID} and
@@ -33,11 +34,13 @@ export class EmailTaken extends BaseError {
         super(StatusCode.Conflict, message);
     }
 }
+
 export class Unauthorized extends BaseError {
     public constructor(message: string) {
         super(StatusCode.Unauthorized, message);
     }
 }
+
 export class Forbidden extends BaseError {
     public constructor(message: string) {
         super(StatusCode.Forbidden, message);

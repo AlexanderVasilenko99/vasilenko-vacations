@@ -33,6 +33,7 @@ class VacationModel {
         this.vacationIsFollowing = vacation.vacationIsFollowing;
         this.vacationFollowersCount = vacation.vacationFollowersCount;
     }
+
     public static addVacationValidationSchema = Joi.object({
         vacationId: Joi.number().forbidden(),
         vacationUUID: Joi.string().forbidden(),
@@ -49,6 +50,7 @@ class VacationModel {
         vacationIsFollowing: Joi.number().forbidden(),
         vacationFollowersCount: Joi.number().forbidden()
     });
+
     public static editVacationValidationSchema = Joi.object({
         vacationId: Joi.number().optional(),
         vacationUUID: Joi.string().required().min(10).max(300),
@@ -65,10 +67,12 @@ class VacationModel {
         vacationIsFollowing: Joi.number().forbidden(),
         vacationFollowersCount: Joi.number().forbidden()
     });
+
     public addVacationValidate(): void {
         const result = VacationModel.addVacationValidationSchema.validate(this);
         if (result?.error?.message) throw new Validation(result.error.message);
     }
+    
     public editVacationValidate(): void {
         const result = VacationModel.editVacationValidationSchema.validate(this);
         if (result?.error?.message) throw new Validation(result.error.message);
