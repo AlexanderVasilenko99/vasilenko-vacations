@@ -13,22 +13,24 @@ export class AuthState {
         }
     }
 }
+
 export enum AuthActionTypes {
     Register = "Register",
     Login = "Login",
     Logout = "Logout",
     Update = "Update",
 }
+
 export interface AuthAction {
     type: AuthActionTypes,
     payload?: any
 }
+
 function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthState {
     let newState = { ...currentState };
     if (newState.token) {
         sessionStorage.setItem(`token`, newState.token);
     }
-
     switch (action.type) {
         case AuthActionTypes.Register:
         case AuthActionTypes.Login:
@@ -36,7 +38,6 @@ function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthSt
             newState.token = action.payload;
             sessionStorage.setItem(`token`, newState.token);
             break;
-
         case AuthActionTypes.Logout:
             newState.user = null;
             newState.token = null;
@@ -48,7 +49,6 @@ function AuthReducer(currentState = new AuthState(), action: AuthAction): AuthSt
             sessionStorage.setItem(`token`, newState.token);
             break;
     }
-    console.log(newState);
     return newState;
 }
 export const authStore = createStore(AuthReducer);
