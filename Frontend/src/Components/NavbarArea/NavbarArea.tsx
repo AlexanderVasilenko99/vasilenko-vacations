@@ -1,7 +1,7 @@
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import BeachAccessOutlinedIcon from '@mui/icons-material/BeachAccessOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -14,12 +14,17 @@ import "./NavbarArea.css";
 import NavbarItem from "./NavbarItem/NavbarItem";
 function NavbarArea(): JSX.Element {
 
-    const userFullName = authStore.getState().user?.userFirstName + " " + authStore.getState().user?.userLastName;
-    const userProfileRoute = appConfig.userRoute + authStore.getState().user?.userUUID;
+    // navbar is dynamic and renders
+    // child components depending on:
+    // is user logged in and is user
+    // admin/regular user
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const navigate = useNavigate();
+
+    const userFullName = authStore.getState().user?.userFirstName + " " + authStore.getState().user?.userLastName;
+    const userProfileRoute = appConfig.userRoute + authStore.getState().user?.userUUID;
 
     const profileSubNavItems: SubNavItem[] = [
         new SubNavItem(userFullName, userProfileRoute),
@@ -28,8 +33,6 @@ function NavbarArea(): JSX.Element {
     const vacationsSubNavItems: SubNavItem[] = authStore.getState().user?.userRoleId === 1 ? [
         new SubNavItem('All Vacations', appConfig.vacationsRoute),
         new SubNavItem('Add Vacation', appConfig.addVacationRoute)] : [new SubNavItem('All Vacations', appConfig.vacationsRoute)];
-
-
 
     useEffect(() => {
         window.addEventListener('click', (event) => {
@@ -53,10 +56,8 @@ function NavbarArea(): JSX.Element {
             setIsLoggedIn(true);
             setIsAdmin(false)
         });
-
         return unsubscribe;
     }, [isLoggedIn]);
-
 
     return (
         <div className="NavbarArea">

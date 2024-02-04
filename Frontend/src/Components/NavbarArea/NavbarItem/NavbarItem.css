@@ -1,15 +1,13 @@
 .NavbarItem {
     box-sizing: border-box;
     height: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     line-height: 100%;
-
     border-radius: 4px;
-    background-color: #1a5785 ;
+    background-color: #1a5785;
     border: none;
     color: #fff;
     text-align: center;
@@ -26,14 +24,9 @@
     align-items: center;
 }
 
-
-
-
-
 .NavbarItemDropdownContent {
     box-sizing: border-box;
     display: none;
-
     position: absolute;
     top: 75px;
     background-color: #2e6ba0;
@@ -50,7 +43,6 @@
     align-items: center;
     height: fit-content;
     height: 40px;
-
     text-align: left;
     color: #F6F1F1;
 }
@@ -66,7 +58,6 @@
 .NavbarItemDropdownContent a:nth-last-of-type(1) {
     border-bottom: 1px solid #1a5785;
 }
-
 
 .NavbarItem:hover .NavbarItemDropdownContent {
     display: block;

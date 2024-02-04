@@ -24,7 +24,8 @@
     align-items: center;
     justify-content: center;
 }
-.NavbarArea ul > a:hover {
+
+.NavbarArea ul>a:hover {
     background-color: #2e6ba0;
 }
 
