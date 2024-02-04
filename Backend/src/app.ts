@@ -2,7 +2,6 @@ import express from "express";
 import appConfig from "./2-utils/app-config";
 import catchAll from "./4-middlewares/CatchAll";
 import routeNotFound from "./4-middlewares/RouteNotFound";
-
 import { fileSaver } from "uploaded-file-saver";
 import path from "path"
 import authController from "./6-controllers/auth-controller";

@@ -17,15 +17,7 @@ router.get("/vacations/:userUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}
             next(err);
         }
     });
-// router.get("/get-vacations/:userId", async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const userId = +request.params.userId;
-//         const vacations = await vacationServices.getAllVacations(userId);
-//         response.json(vacations);
-//     } catch (err: any) {
-//         next(err);
-//     }
-// });
+
 router.delete("/vacations/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})",
     verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
@@ -36,6 +28,7 @@ router.delete("/vacations/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9
             next(err);
         }
     });
+
 router.put("/vacations/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})",
     verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
@@ -44,14 +37,13 @@ router.put("/vacations/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f
 
             const vacation = new VacationModel(request.body);
             const updatedVacation: VacationModel = await vacationServices.editVacation(vacation);
-            console.log("updated vacation: " + updatedVacation);
 
             response.json(updatedVacation);
-
         } catch (err: any) {
             next(err);
         }
     });
+
 router.post("/vacations",
     verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
@@ -65,6 +57,7 @@ router.post("/vacations",
             next(err);
         }
     });
+
 router.get("/vacations-image/:imageName([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.(jpg|jpeg|png))",
     async (request: Request, response: Response, next: NextFunction) => {
         try {
@@ -75,6 +68,7 @@ router.get("/vacations-image/:imageName([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9
             next(err);
         }
     });
+
 router.post(`/vacations/follow/:userUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})`,
     verifyToken, async (request: Request, response: Response, next: NextFunction) => {
         try {
@@ -86,6 +80,7 @@ router.post(`/vacations/follow/:userUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-
             next(err);
         }
     });
+
 router.delete(`/vacations/unfollow/:userUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})`,
     verifyToken, async (request: Request, response: Response, next: NextFunction) => {
         try {

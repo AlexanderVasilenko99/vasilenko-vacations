@@ -6,7 +6,6 @@ import CredentialsModel from "../3-models/credentials-model";
 import { fileSaver } from "uploaded-file-saver";
 const router = express.Router();
 
-
 router.post("/register", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const user = new UserModel(request.body);
@@ -48,6 +47,7 @@ router.get("/users-image/:imageName([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]
         } catch (err: any) {
             next(err);
         }
-    });
+    }
+);
 
 export default router;
