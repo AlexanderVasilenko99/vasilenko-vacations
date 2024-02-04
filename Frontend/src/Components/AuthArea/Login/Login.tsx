@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import authService from "../../../Services/AuthService";
-import noti from "../../../Services/NotificationService";
+import notificationService from "../../../Services/NotificationService";
 import appConfig from "../../../Utils/AppConfig";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
@@ -18,16 +18,14 @@ function Login(): JSX.Element {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm<CredentialsModel>();
 
-
     async function send(credentials: CredentialsModel) {
         try {
             await authService.login(credentials);
-
             const fname = authStore.getState().user?.userFirstName;
-            noti.success(`Welcome back ${fname}!`);
+            notificationService.success(`Welcome back ${fname}!`);
             navigate(appConfig.vacationsRoute);
         } catch (err: any) {
-            noti.error(err)
+            notificationService.error(err)
         }
 
     }

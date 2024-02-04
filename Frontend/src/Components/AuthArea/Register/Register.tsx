@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserModel from "../../../Models/UserModel";
 import authService from "../../../Services/AuthService";
-import noti from "../../../Services/NotificationService";
+import notificationService from "../../../Services/NotificationService";
 import appConfig from "../../../Utils/AppConfig";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
@@ -19,10 +19,10 @@ function Register(): JSX.Element {
     async function send(user: UserModel) {
         try {
             await authService.register(user);
-            noti.success("You have successfully registered");
+            notificationService.success("You have successfully registered");
             navigate(appConfig.vacationsRoute);
         } catch (err: any) {
-            noti.error(err)
+            notificationService.error(err)
         }
 
     }
