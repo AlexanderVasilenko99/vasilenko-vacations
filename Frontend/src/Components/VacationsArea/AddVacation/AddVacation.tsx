@@ -1,16 +1,16 @@
+import { Autocomplete, TextField } from '@mui/material';
+import { iso31661 } from "iso-3166";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import VacationModel from "../../../Models/VacationModel";
-import noti from "../../../Services/NotificationService";
+import notificationService from "../../../Services/NotificationService";
 import vacationService from "../../../Services/VacationService";
+import appConfig from "../../../Utils/AppConfig";
 import useImagePreview from "../../../Utils/UseImagePreview";
 import UseIsAdmin from "../../../Utils/UseIsAdmin";
 import "./AddVacation.css";
-import { iso31661 } from "iso-3166";
-import { Autocomplete, TextField } from '@mui/material';
-import appConfig from "../../../Utils/AppConfig";
-import { HashLink } from "react-router-hash-link";
 
 function AddVacation(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
@@ -38,7 +38,6 @@ function AddVacation(): JSX.Element {
             const fullCountry: string = countryInput?.value;
 
             if (fullCountry) {
-
                 if (fullCountry.length <= 2) {
                     throw new Error("Please select a country!")
                 }
@@ -50,19 +49,17 @@ function AddVacation(): JSX.Element {
                 vacation.vacationCountryISO = selectedCountryISO;
             }
             else if (countryInput) {
-                noti.error("Please select a country!");
+                notificationService.error("Please select a country!");
                 countryInput.focus();
                 return;
             }
             vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
 
-            console.log(vacation);
-            const addedVacation = await vacationService.addVacation(vacation);
-            noti.success("Vacation has been added successfully!");
+            await vacationService.addVacation(vacation);
+            notificationService.success("Vacation has been added successfully!");
             navigate("/vacations");
-
         } catch (err: any) {
-            noti.error(err);
+            notificationService.error(err);
         }
     }
 
@@ -77,9 +74,7 @@ function AddVacation(): JSX.Element {
             <h1>
                 <NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink>
             </h1>
-
             <div className="grid-container">
-
                 <div className="left">
                     <div>
                         <h3>Summary</h3>
@@ -99,12 +94,9 @@ function AddVacation(): JSX.Element {
                         </ul>
                     </div>
                 </div>
-
                 <div className="right">
                     <form onSubmit={handleSubmit(send)}>
                         <div className="country-container">
-                            {/* <img src={`https://flagcdn.com/w20/${selectedCountryISO}.png`} className="countryImage"></img>
-                            <label>Vacation Country: </label> */}
                             <h3 id="vacation-country">
                                 <span className='custom-country'>{isCountryInputCustom ? "Custom " : ""}</span>
                                 Vacation Country:
@@ -143,15 +135,7 @@ function AddVacation(): JSX.Element {
                                 {...register("vacationCountryISO")}
                             />
                         </>}
-
-                        {/* <input type="text"
-                    {...register("vacationCountry")}
-                    required
-                    placeholder="Israel" minLength={2} maxLength={100} /> */}
-
-
                         {!isCountryInputCustom && <Autocomplete id="countriesAutocomplete"
-                            // {...register("vacationCountry")}
                             onChange={(event, value) => {
                                 if (value) setSelectedCountryISO(value.substring(value.length - 2, value.length).toLowerCase())
                                 else setSelectedCountryISO("il")
@@ -161,8 +145,6 @@ function AddVacation(): JSX.Element {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />}
                         />}
-
-
                         <h3 id="vacation-city">Vacation City: </h3>
                         <input
                             required
@@ -171,7 +153,6 @@ function AddVacation(): JSX.Element {
                             maxLength={100}
                             {...register("vacationCity")}
                         />
-
                         <h3 id="vacation-description">Vacation Description: </h3>
                         <textarea
                             required
@@ -181,7 +162,6 @@ function AddVacation(): JSX.Element {
                             maxLength={100}
                             {...register("vacationDescription")}
                         />
-
                         <h3 id="vacation-price">Vacation Price: </h3>
                         <input
                             min={0}
@@ -190,7 +170,6 @@ function AddVacation(): JSX.Element {
                             type="number"
                             {...register("vacationPrice")}
                         />
-
                         <div className="dates-container">
                             <div className="startDate">
                                 <h3 id="vacation-start">Vacation Start Date: </h3>

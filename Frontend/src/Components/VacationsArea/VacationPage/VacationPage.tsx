@@ -3,7 +3,6 @@ import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
 import Admin from "./Admin/Admin";
 import User from "./User/User";
-import "./VacationPage.css";
 
 function VacationPage(): JSX.Element {
     UseTitle(`Vasilenko Vacations | Vacations`);

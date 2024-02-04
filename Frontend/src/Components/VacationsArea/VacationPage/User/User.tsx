@@ -1,11 +1,10 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import "./User.css";
-import appConfig from "../../../../Utils/AppConfig";
-import { HashLink } from "react-router-hash-link";
 import { useEffect, useState } from "react";
-import UseIsLoggedIn from "../../../../Utils/UseIsLoggedIn";
-import vacationService from "../../../../Services/VacationService";
+import { NavLink, useParams } from "react-router-dom";
 import VacationModel from "../../../../Models/VacationModel";
+import vacationService from "../../../../Services/VacationService";
+import appConfig from "../../../../Utils/AppConfig";
+import UseIsLoggedIn from "../../../../Utils/UseIsLoggedIn";
+import "./User.css";
 
 function User(): JSX.Element {
     UseIsLoggedIn(true, "You must be logged in to vies this page!🥴", "/login");
@@ -27,21 +26,21 @@ function User(): JSX.Element {
         <div className="User">
             <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
             <div className="grid-container">
-
                 <div className="left">
                     <div className="image-background">
                         <img src={v?.vacationImageUrl} />
                     </div>
                 </div>
-
                 <div className="right">
-
                     <form>
                         <div>
                             <h3 id="vacation-destination">Destination:</h3>
                             <div className="vacation-destination">
                                 <label>{v?.vacationCity} - {v?.vacationCountry}</label>
-                                <img src={`https://flagcdn.com/w20/${v?.vacationCountryISO}.png`} className="country-image"></img>
+                                <img
+                                    className="country-image"
+                                    src={`https://flagcdn.com/w20/${v?.vacationCountryISO}.png`}>
+                                </img>
                             </div>
                         </div>
                         <div>
@@ -57,12 +56,10 @@ function User(): JSX.Element {
                             <label>{v?.vacationStartDate.toString()} - {v?.vacationEndDate.toString()}</label>
                         </div>
                     </form>
-
                 </div>
             </div >
             <h1><NavLink to={appConfig.vacationsRoute}>Back To All Vacations</NavLink></h1>
         </div >
-
     );
 }
 

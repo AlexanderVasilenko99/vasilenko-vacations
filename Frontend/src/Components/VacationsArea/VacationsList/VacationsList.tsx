@@ -15,25 +15,10 @@ import UseTitle from "../../../Utils/UseTitle";
 import VacationCard from "../VacationCard/VacationCard";
 import "./VacationsList.css";
 
-// this is for useSearchParams to be added on later
-// class SearchValues {
-//     public dates: string;
-//     public country: string;
-//     public minP: number;
-//     public maxP: number;
-//     public constructor(values: SearchValues) {
-//         this.dates = values.dates;
-//         this.country = values.country;
-//         this.minP = values.minP;
-//         this.maxP = values.maxP;
-//     }
-// }
-
 function VacationsList(): JSX.Element {
     UseTitle("Vasilenko Vacations | Vacations");
     UseIsLoggedIn(true, "You must be logged in to view our vacations!🥴", "/login");
 
-    const navigate = useNavigate();
     const isAdmin = authStore.getState().user?.userRoleId === 1 ? true : false;
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);

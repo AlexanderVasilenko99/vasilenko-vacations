@@ -73,10 +73,12 @@
     min-width: 205px;
     background-color: #f6f1f1cc;
 }
-.User .vacation-destination{
+
+.User .vacation-destination {
     display: flex;
     align-items: center;
 }
+
 .User .left {
     z-index: 3;
     height: 350px;

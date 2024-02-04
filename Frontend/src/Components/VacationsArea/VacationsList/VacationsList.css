@@ -71,7 +71,6 @@
 }
 
 .VacationsList .filter-hidden-content {
-    /* height: 80%; */
     padding: 0px 10px;
     margin-top: 12px;
 }
@@ -166,7 +165,6 @@
     color: #F6F1F1;
     background-color: #2e6ba0;
     border-radius: 14px;
-    /* font-size: 32px; */
     font-weight: 500;
     transition: 200ms;
 }
@@ -183,7 +181,6 @@
     0% {
         height: 55px;
     }
-
     100% {
         height: 175px;
     }
@@ -193,7 +190,6 @@
     0% {
         height: 175px;
     }
-
     100% {
         height: 55px;
     }

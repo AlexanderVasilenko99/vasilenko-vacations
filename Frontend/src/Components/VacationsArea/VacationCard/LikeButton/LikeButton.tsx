@@ -7,7 +7,6 @@ export class LikeButtonModel {
     public isFollowing: number;
     public userUUID: string;
     public vacationUUID: string;
-    // public onClickFunction?: (userUUID: string, vacatoinUUID: string) => {};
 }
 
 async function handleClick(props: LikeButtonModel): Promise<void> {

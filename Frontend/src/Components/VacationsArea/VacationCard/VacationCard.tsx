@@ -1,20 +1,19 @@
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from '../../../Redux/AuthState';
 import appConfig from '../../../Utils/AppConfig';
 import DeleteButton from './DeleteButton/DeleteButton';
 import EditButton from './EditButton/EditButton';
+import Followers from './Followers/Followers';
 import LikeButton from "./LikeButton/LikeButton";
 import "./VacationCard.css";
-import Followers from './Followers/Followers';
 
 function VacationCard(vacation: VacationModel): JSX.Element {
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
-    const navigate = useNavigate();
-    
+
     useEffect(() => {
         const startDate = new Date(vacation.vacationStartDate?.toString().substring(0, 10));
         const endDate = new Date(vacation.vacationEndDate?.toString().substring(0, 10));
@@ -23,9 +22,7 @@ function VacationCard(vacation: VacationModel): JSX.Element {
     }, []);
 
     return (
-        <div className="VacationCard" key={vacation.vacationId}
-        // onClick={() => navigate(appConfig.vacationsRoute + vacation.vacationUUID)}
-        >
+        <div className="VacationCard" key={vacation.vacationId}>
             <div className="follow-container">
                 {authStore.getState().user.userRoleId === 2 && <LikeButton
                     isFollowing={vacation.vacationIsFollowing}
@@ -49,9 +46,6 @@ function VacationCard(vacation: VacationModel): JSX.Element {
                         {startDate} - {endDate}
                     </div>
                 </div>
-                {/* <div className="city-container">
-                    <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}
-                </div> */}
                 <div className={vacation.vacationCity.length + vacation.vacationCountry.length >= 24 ?
                     "city-container small-text" : "city-container"}>
                     <PublicOutlinedIcon /> {vacation.vacationCity} - {vacation.vacationCountry}

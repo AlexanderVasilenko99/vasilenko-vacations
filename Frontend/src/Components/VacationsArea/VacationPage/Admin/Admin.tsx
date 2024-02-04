@@ -1,11 +1,11 @@
-import { Autocomplete, TextField, createFilterOptions } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 import { iso31661 } from "iso-3166";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import VacationModel from "../../../../Models/VacationModel";
-import noti from "../../../../Services/NotificationService";
+import notificationService from "../../../../Services/NotificationService";
 import vacationService from "../../../../Services/VacationService";
 import appConfig from "../../../../Utils/AppConfig";
 import UseIsAdmin from "../../../../Utils/UseIsAdmin";
@@ -21,7 +21,6 @@ function Admin(): JSX.Element {
 
     const [iso, setISO] = useState<string>("");
     const [v, setV] = useState<VacationModel>();
-    const filter = createFilterOptions<string>();
     const [imgSrc, setImgSrc] = useState<string>("");
     const [minDate, setMinDate] = useState<string>('');
     const [countries, setCountries] = useState<string[]>([]);
@@ -40,7 +39,6 @@ function Admin(): JSX.Element {
                 setValue("vacationEndDate", vacation.vacationEndDate);
                 setValue("vacationStartDate", vacation.vacationStartDate);
                 setValue("vacationDescription", vacation.vacationDescription);
-
                 setISO(vacation.vacationCountryISO);
                 setImgSrc(vacation.vacationImageUrl);
                 setCountryName(vacation.vacationCountry)
@@ -57,7 +55,6 @@ function Admin(): JSX.Element {
     }, []);
 
     function handleChange(e: any): void {
-        console.log("changing image");
         if (e) {
             const file = (e.target.files)[0];
             const url = URL.createObjectURL(file);
@@ -90,7 +87,7 @@ function Admin(): JSX.Element {
                 vacation.vacationCountry = country;
             }
             else if (countryInput) {
-                noti.error("Please select a country!");
+                notificationService.error("Please select a country!");
                 countryInput.focus();
                 return;
             }
@@ -99,11 +96,11 @@ function Admin(): JSX.Element {
                 vacation.vacationUploadedImage = (vacation.vacationUploadedImage as unknown as FileList)[0];
 
             await vacationService.updateVacation(vacation);
-            noti.success("The vacation has been updated successfully!");
+            notificationService.success("The vacation has been updated successfully!");
             navigate(appConfig.vacationsRoute);
 
         } catch (err: any) {
-            noti.error(err);
+            notificationService.error(err);
         }
     }
 
@@ -190,13 +187,8 @@ function Admin(): JSX.Element {
                         </>}
                         {countryName && !isCountryInputCustom && iso && <Autocomplete id="countriesAutocomplete"
                             disabled={isFormDisabled}
-                            // {...register("vacationCountry")}
                             defaultValue={countryName + " " + iso.toUpperCase()}
                             onChange={(event, value: string) => {
-                                if (value) {
-                                    console.log(value);
-                                }
-
                                 const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
                                 countryInput.value = value;
 
@@ -207,18 +199,6 @@ function Admin(): JSX.Element {
                             options={countries}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />}
-
-                        // filterOptions={(options, params) => {
-                        //     const filtered = filter(options, params);
-                        //     const { inputValue } = params;
-                        //     // Suggest the creation of a new value
-                        //     const isExisting = options.some((option) => inputValue === option);
-                        //     if (inputValue !== '' && !isExisting) {
-                        //         filtered.push(`${inputValue}`);
-                        //     }
-
-                        //     return filtered;
-                        // }}
                         />}
 
                         <h3 id="vacation-city">Vacation City: </h3>
