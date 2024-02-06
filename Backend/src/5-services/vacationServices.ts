@@ -24,7 +24,7 @@ class VacationServices {
                 COUNT(F.userUUID) AS vacationFollowersCount
             FROM vacations as V LEFT JOIN followers as F
             ON V.vacationUUID = F.vacationUUID
-            GROUP BY vacationUUID
+            GROUP BY vacationUUID,vacationId
             ORDER BY vacationStartDate;`;
 
         const vacations = await dal.execute(sql, [userUUID]);
