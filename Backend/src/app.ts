@@ -45,3 +45,6 @@ server.use(catchAll)
 server.listen(appConfig.port, () => {
     console.log("listening on port " + appConfig.port);
 });
+
+// export the express server for integration testing
+export default { server };
