@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d9cac99b.css",
-    "main.js": "/static/js/main.284794bc.js",
+    "main.js": "/static/js/main.3fd1c49f.js",
     "reactPlayerYouTube.js": "/static/js/reactPlayerYouTube.961b431b.chunk.js",
     "reactPlayerSoundCloud.js": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js",
     "reactPlayerVimeo.js": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js",
@@ -15,7 +15,7 @@
     "reactPlayerKaltura.js": "/static/js/reactPlayerKaltura.55ec5c3a.chunk.js",
     "reactPlayerFilePlayer.js": "/static/js/reactPlayerFilePlayer.e14b3a70.chunk.js",
     "reactPlayerPreview.js": "/static/js/reactPlayerPreview.d3baa399.chunk.js",
-    "static/media/intro-vid.mp4": "/static/media/intro-vid.fe0c34ce6c67ceefa123.mp4",
+    "static/media/intro-vid.mp4": "/static/media/intro-vid.1990aab33041a941bbf7.mp4",
     "static/media/404.png": "/static/media/404.c858cde029d30b4c87c7.png",
     "static/media/me_square.jpeg": "/static/media/me_square.ff012fd5df6eac78baaf.jpeg",
     "static/media/thanks-for-reading.png": "/static/media/thanks-for-reading.6173d0308726aa868880.png",
@@ -32,7 +32,7 @@
     "static/media/tevalogo.png": "/static/media/tevalogo.a0e18774b5ab4a03d173.png",
     "index.html": "/index.html",
     "main.d9cac99b.css.map": "/static/css/main.d9cac99b.css.map",
-    "main.284794bc.js.map": "/static/js/main.284794bc.js.map",
+    "main.3fd1c49f.js.map": "/static/js/main.3fd1c49f.js.map",
     "reactPlayerYouTube.961b431b.chunk.js.map": "/static/js/reactPlayerYouTube.961b431b.chunk.js.map",
     "reactPlayerSoundCloud.59b056f6.chunk.js.map": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js.map",
     "reactPlayerVimeo.e8172cf1.chunk.js.map": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js.map",
@@ -49,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.d9cac99b.css",
-    "static/js/main.284794bc.js"
+    "static/js/main.3fd1c49f.js"
   ]
 }
