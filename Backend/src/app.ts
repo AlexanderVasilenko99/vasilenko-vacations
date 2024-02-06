@@ -1,7 +1,7 @@
 import express from "express";
 import appConfig from "./2-utils/app-config";
 import catchAll from "./4-middlewares/CatchAll";
-import routeNotFound from "./4-middlewares/RouteNotFound";
+import { routeNotFound, pageNotFound } from "./4-middlewares/notFound";
 import { fileSaver } from "uploaded-file-saver";
 import path from "path"
 import authController from "./6-controllers/auth-controller";
@@ -22,6 +22,7 @@ fileSaver.config(path.join(__dirname, "1-assets", "images"));
 
 // creating a request body obj containing the request body data
 server.use(express.json());
+server.use("/", express.static(path.join(__dirname, "7-frontend")))
 
 // log every activity
 // server.use(activities);
@@ -32,11 +33,10 @@ server.use(sanitize);
 // create a request.files obj containing the request body data
 server.use(expressFileUpload());
 
-// connect our controllers
-server.use("/api", vacationsController, authController)
 
-// Route not found 
-server.use(routeNotFound)
+server.use("/api", vacationsController, authController);
+server.use("/api/*", routeNotFound);
+server.use("/*", pageNotFound);
 
 // catchall middleware 
 server.use(catchAll)

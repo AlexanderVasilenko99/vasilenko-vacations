@@ -8,17 +8,34 @@ class AppConfig {
     public readonly reportsRoute: string = "/reports/";
     public readonly userRoute: string = "/users/";
 
-    public readonly vacationsUrl: string = 'http://localhost:4000/api/vacations/';
-    public readonly loginUrl: string = 'http://localhost:4000/api/login/';
-    public readonly updateUrl: string = 'http://localhost:4000/api/update/';
-    public readonly registerUrl: string = 'http://localhost:4000/api/register/';
+    public readonly vacationsUrl: string = this.baseUrl + '/api/vacations/';
+    public readonly loginUrl: string = this.baseUrl + '/api/login/';
+    public readonly updateUrl: string = this.baseUrl + '/api/update/';
+    public readonly registerUrl: string = this.baseUrl + '/api/register/';
     public readonly vacationsFollowUrl: string = this.vacationsUrl + 'follow/';
     public readonly vacationsUnfollowUrl: string = this.vacationsUrl + 'unfollow/';
-    public readonly vacationsImageUrl: string = 'http://localhost:4000/api/vacations-image/';
+    public readonly vacationsImageUrl: string = this.baseUrl + '/api/vacations-image/';
 
     private readonly SITE_PRIMARY_COLOR: string = '#1a5785'
     private readonly SITE_SECONDARY_COLOR: string = '#2e6ba0'
     private readonly SITE_BACKGROUND_COLOR: string = '#F6F1F1'
+
+    public constructor(private baseUrl: string) { }
 }
-const appConfig = new AppConfig();
+
+class DevelopmentConfig extends AppConfig {
+    public constructor() {
+        super("http://localhost:4000");
+    }
+}
+
+class ProductionConfig extends AppConfig {
+    public constructor() {
+        super("");
+    }
+}
+
+// const appConfig = new DevelopmentConfig();
+const appConfig = new ProductionConfig();
+
 export default appConfig;
