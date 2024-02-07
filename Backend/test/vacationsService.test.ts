@@ -8,12 +8,15 @@ import path from "path"
 const expect = chai.expect;
 chai.use(chaiAsPromised);
 
+// set both token before running testing
 let adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJVVUlEIjoiMjdjMTk3NTMtNzk1NS00Mzg0LWE5MjEtNDAyNmI4Zjc1ZDM2IiwidXNlckZpcnN0TmFtZSI6IkFsZXhhbmRlciIsInVzZXJMYXN0TmFtZSI6IlZhc2lsZW5rbyIsInVzZXJFbWFpbCI6ImFsZXhhbmRlcnZqcjFAZ21haWwuY29tIiwidXNlckltYWdlTmFtZSI6IjhmYWY0MDJmLTAzNmUtNDk2Yi1hZGU1LTQ2OTIwZTcyZjMyMS5qcGVnIiwidXNlclJvbGVJZCI6MSwidXNlckltYWdlVXJsIjoiaHR0cDovLzQ1LjU1LjcwLjI0Mzo0MDAwL2FwaS91c2Vycy1pbWFnZS84ZmFmNDAyZi0wMzZlLTQ5NmItYWRlNS00NjkyMGU3MmYzMjEuanBlZyJ9LCJpYXQiOjE3MDczMDc4MDgsImV4cCI6MTcwNzMxODYwOH0.sSKWZP0RcshqrbotAedqFUzXwCecvn6nAvtIurlUXqI';
 let userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJVVUlEIjoiOWI1MWJkYzgtMmQ0YS00OTUwLWFmM2EtNWMxM2VmZDQ3NGFhIiwidXNlckZpcnN0TmFtZSI6IkJlbiIsInVzZXJMYXN0TmFtZSI6IkRvdmVyIiwidXNlckVtYWlsIjoiYmVuZG9AZ21haWwuY29tIiwidXNlckltYWdlTmFtZSI6ImVkYzAzYTY2LTA1NWItNGM2ZC1iNWIyLWMzZDRjN2U3MmQ3Ni5wbmciLCJ1c2VyUm9sZUlkIjoyLCJ1c2VySW1hZ2VVcmwiOiJodHRwOi8vNDUuNTUuNzAuMjQzOjQwMDAvYXBpL3VzZXJzLWltYWdlL2VkYzAzYTY2LTA1NWItNGM2ZC1iNWIyLWMzZDRjN2U3MmQ3Ni5wbmcifSwiaWF0IjoxNzA3MzExMjczLCJleHAiOjE3MDczMjIwNzN9.0nVS8f5Id9u9j2QQxMMejkjV17QzJtk4ctbGFwrqfMQ';
 let addedVacationUUID = '';
 let addedVacationImageName = '';
 
 describe("testing vacations-service", () => {
+    if (!adminToken || !userToken)
+        throw new Error('********* Provide valid user & admin tokens before running test! *********');
 
     it("getting vacations without being logged in should return an unauthorized error", async () => {
         const response = await supertest(app.server)
@@ -169,6 +172,5 @@ describe("testing vacations-service", () => {
             .field('vacationImageName', `${addedVacationImageName}`)
         expect(response.status).to.equal(403);
     });
-
 
 })
