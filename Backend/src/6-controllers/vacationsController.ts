@@ -38,7 +38,7 @@ router.put("/vacations/:vacationUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f
             const vacation = new VacationModel(request.body);
             const updatedVacation: VacationModel = await vacationServices.editVacation(vacation);
 
-            response.json(updatedVacation);
+            response.status(StatusCode.Created).json(updatedVacation);
         } catch (err: any) {
             next(err);
         }
@@ -51,7 +51,7 @@ router.post("/vacations",
             const vacation = new VacationModel(request.body);
 
             const addedVacation = await vacationServices.addVacation(vacation);
-            response.json(addedVacation);
+            response.status(StatusCode.Created).json(addedVacation);
 
         } catch (err: any) {
             next(err);
