@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.0f135509.css",
-    "main.js": "/static/js/main.1d06be32.js",
+    "main.js": "/static/js/main.5acc10ac.js",
     "reactPlayerYouTube.js": "/static/js/reactPlayerYouTube.961b431b.chunk.js",
     "reactPlayerSoundCloud.js": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js",
     "reactPlayerVimeo.js": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js",
@@ -32,7 +32,7 @@
     "static/media/tevalogo.png": "/static/media/tevalogo.a0e18774b5ab4a03d173.png",
     "index.html": "/index.html",
     "main.0f135509.css.map": "/static/css/main.0f135509.css.map",
-    "main.1d06be32.js.map": "/static/js/main.1d06be32.js.map",
+    "main.5acc10ac.js.map": "/static/js/main.5acc10ac.js.map",
     "reactPlayerYouTube.961b431b.chunk.js.map": "/static/js/reactPlayerYouTube.961b431b.chunk.js.map",
     "reactPlayerSoundCloud.59b056f6.chunk.js.map": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js.map",
     "reactPlayerVimeo.e8172cf1.chunk.js.map": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js.map",
@@ -49,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.0f135509.css",
-    "static/js/main.1d06be32.js"
+    "static/js/main.5acc10ac.js"
   ]
 }
