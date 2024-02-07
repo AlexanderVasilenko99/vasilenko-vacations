@@ -27,12 +27,12 @@ function VacationsList(): JSX.Element {
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
 
-    // const priceRangesOptions: string[] = [
-    //     "Under 2500$",
-    //     "2500$ - 5000$",
-    //     "5000$ - 7500$",
-    //     "Above 7500$"
-    // ]
+    const priceRangesOptions: string[] = [
+        "Under 2500$",
+        "2500$ - 5000$",
+        "5000$ - 7500$",
+        "Above 7500$"
+    ]
 
     const autocompleteDateOptions: string[] = authStore.getState().user?.userRoleId === 1 ? [
         "Past Vacations",
@@ -168,16 +168,41 @@ function VacationsList(): JSX.Element {
         return newVacations;
     }
 
+    function filterVacationsByPriceRange(vacationsArray: VacationModel[], priceRange: string): VacationModel[] {
+        let newVacations = [...vacationsArray];
+        priceRange = priceRange.toLowerCase()
+        switch (priceRange) {
+            case 'under 2500$':
+                newVacations = vacationsArray.filter(v => v.vacationPrice < 2500);
+                break;
+            case '2500$ - 5000$':
+                newVacations = vacationsArray.filter(v => v.vacationPrice >= 2500 && v.vacationPrice < 5000);
+                break;
+            case '5000$ - 7500$':
+                newVacations = vacationsArray.filter(v => v.vacationPrice >= 5000 && v.vacationPrice < 7500);
+                break;
+            case 'above 7500$':
+                newVacations = vacationsArray.filter(v => v.vacationPrice >= 7500);
+                break;
+            case 'no price range':
+            case '':
+            default:
+                break;
+        }
+        return newVacations;
+    }
+
     function filterDisplayedVacations(arr: VacationModel[]): VacationModel[] {
         const countryInput = document.getElementById("countryAutocomplete") as HTMLInputElement;
-        // const pricesInput = document.getElementById("priceAutocomplete") as HTMLInputElement;
+        const priceRangeInput = document.getElementById("priceAutocomplete") as HTMLInputElement;
         const datesInput = document.getElementById("datesAutocomplete") as HTMLInputElement;
         let country = countryInput?.value;
-        // let prices = pricesInput?.value;
+        let priceRange = priceRangeInput?.value;
         let dates = datesInput?.value;
         let newVacations = [...arr];
 
         newVacations = dates ? filterVacationsByDates(vacations, dates) : filterVacationsByDates(vacations, '');
+        newVacations = priceRange ? filterVacationsByPriceRange(newVacations, priceRange) : filterVacationsByPriceRange(newVacations, '');
         newVacations = country ? filterVacationsByCountry(newVacations, country) : filterVacationsByCountry(newVacations, '');
 
         return newVacations;
@@ -193,11 +218,15 @@ function VacationsList(): JSX.Element {
     }
 
     function resetSearchForm(): void {
+        setAccordionOpen(true);
         setDisplayedVacations(vacations);
         const datesInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[0] as HTMLButtonElement;
-        const countryInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[1] as HTMLButtonElement;
+        const priceRangeInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[1] as HTMLButtonElement;
+        const countryInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[2] as HTMLButtonElement;
+
         datesInput?.click();
         countryInput?.click();
+        priceRangeInput?.click();
     }
 
     useEffect(() => {
@@ -258,6 +287,15 @@ function VacationsList(): JSX.Element {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Dates" />}
                         />
+                        <Autocomplete id="priceAutocomplete"
+                            onChange={() => {
+                                setTimeout(() => handleAutocompleteChange(), 0)
+                            }}
+                            disablePortal
+                            options={priceRangesOptions}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Price Range" />}
+                        />
                         <Autocomplete id="countryAutocomplete"
                             onChange={() => {
                                 setTimeout(() => handleAutocompleteChange(), 0)
@@ -267,15 +305,6 @@ function VacationsList(): JSX.Element {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Country" />}
                         />
-                        {/* <Autocomplete id="priceAutocomplete"
-                            onChange={() => {
-                                setTimeout(() => filterDisplayedVacations(), 0)
-                            }}
-                            disablePortal
-                            options={priceRangesOptions}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="PriceRange" />}
-                        /> */}
                     </div>
                 </div>
             </div>}
