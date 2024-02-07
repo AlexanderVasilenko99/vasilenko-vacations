@@ -190,6 +190,7 @@
     0% {
         height: 55px;
     }
+
     100% {
         height: 175px;
     }
@@ -199,7 +200,52 @@
     0% {
         height: 175px;
     }
+
     100% {
         height: 55px;
+    }
+}
+
+@media only screen and (max-width: 983px) and (min-width: 787px) {
+    @keyframes accordionOpen {
+        0% {
+            height: 55px;
+        }
+
+        100% {
+            height: 250px;
+        }
+    }
+
+    @keyframes accordionClose {
+        0% {
+            height: 250px;
+        }
+
+        100% {
+            height: 55px;
+        }
+    }
+}
+
+@media only screen and (max-width: 786px) and (min-width: 100px) {
+    @keyframes accordionOpen {
+        0% {
+            height: 55px;
+        }
+
+        100% {
+            height: 318px;
+        }
+    }
+
+    @keyframes accordionClose {
+        0% {
+            height: 318px;
+        }
+
+        100% {
+            height: 55px;
+        }
     }
 }
