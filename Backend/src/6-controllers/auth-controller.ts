@@ -31,7 +31,7 @@ router.put("/update", async (request: Request, response: Response, next: NextFun
         request.body.userUploadedImage = request.files?.userUploadedImage;
         const user = new UserModel(request.body);
         const token = await authService.update(user);
-        response.json(token);
+        response.status(StatusCode.Created).json(token);
     } catch (err: any) {
         next(err);
     }
