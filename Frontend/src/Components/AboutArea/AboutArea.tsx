@@ -38,6 +38,7 @@ function AboutArea(): JSX.Element {
         new myLinksModel("phoneicon.png", "050-814-5431"),
         new myLinksModel("emailicon.png", "mailto:alexandervjr1@gmail.com", "alexandervjr1@gmail.com"),
     ];
+    
     return (
         <div className="AboutArea">
             <div className="first-section">
