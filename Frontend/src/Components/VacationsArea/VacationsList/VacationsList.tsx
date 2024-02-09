@@ -106,7 +106,6 @@ function VacationsList(): JSX.Element {
                     previousLabel="<"
                     onPageChange={handlePageClick}
                     renderOnZeroPageCount={null}
-                    forcePage={selectedPage}
                 />
                 <Items currentItems={currentItems} />
                 <ReactPaginate
@@ -118,7 +117,6 @@ function VacationsList(): JSX.Element {
                     previousLabel="<"
                     onPageChange={handlePageClick}
                     renderOnZeroPageCount={null}
-                    forcePage={selectedPage}
                 />
             </>
         );
