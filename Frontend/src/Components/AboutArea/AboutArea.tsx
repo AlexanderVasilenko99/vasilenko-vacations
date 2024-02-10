@@ -60,7 +60,7 @@ function AboutArea(): JSX.Element {
                 <h4>Full Stack Developer</h4>
                 <h5>
                     {myContacts.map(c =>
-                        <Tooltip title={c.tooltip ? c.tooltip : c.link} arrow>
+                        <Tooltip title={c.tooltip ? c.tooltip : c.link} arrow key={c.link}>
                             <NavLink to={c.link} target="_blank">
                                 <img className="icon" src={require(`../../Assets/Images/UtilityImages/${c.imageName}`)} />
                             </NavLink>
