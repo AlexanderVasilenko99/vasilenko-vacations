@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { NavbarItemModel } from "../../../Models/NavbarItemModel";
 import { SubNavItem } from "../../../Models/SubNavItem";
 import "./NavbarItem.css";
@@ -7,8 +7,14 @@ import "./NavbarItem.css";
 function NavbarItem(props: NavbarItemModel): JSX.Element {
     // console.log(props.subNavItems);
     let arr: SubNavItem[] = props.subNavItems;
+    const navigate = useNavigate();
     return (
-        <NavLink to={props.itemDestinationPagePath} className="NavbarItem">
+        // <NavLink to={props.itemDestinationPagePath} className="NavbarItem">
+        <ul className="NavbarItem"
+            onClick={() => {
+                if (!props.subNavItems) navigate(props.itemDestinationPagePath);
+            }}
+        >
             <li>{props.itemSvgComponent}|&nbsp;{props.itemText}</li>
             {props.isDropdown &&
                 <div className="NavbarItemDropdownContent" >
@@ -18,7 +24,7 @@ function NavbarItem(props: NavbarItemModel): JSX.Element {
                     )}
                 </div>
             }
-        </NavLink >
+        </ul >
     );
 }
 
