@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0f135509.css",
-    "main.js": "/static/js/main.5acc10ac.js",
+    "main.css": "/static/css/main.c8d35dda.css",
+    "main.js": "/static/js/main.02fdc885.js",
     "reactPlayerYouTube.js": "/static/js/reactPlayerYouTube.961b431b.chunk.js",
     "reactPlayerSoundCloud.js": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js",
     "reactPlayerVimeo.js": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js",
@@ -31,8 +31,8 @@
     "static/media/vasilenkocarrentallogo.png": "/static/media/vasilenkocarrentallogo.e90d987d8cfadbd6abf0.png",
     "static/media/tevalogo.png": "/static/media/tevalogo.a0e18774b5ab4a03d173.png",
     "index.html": "/index.html",
-    "main.0f135509.css.map": "/static/css/main.0f135509.css.map",
-    "main.5acc10ac.js.map": "/static/js/main.5acc10ac.js.map",
+    "main.c8d35dda.css.map": "/static/css/main.c8d35dda.css.map",
+    "main.02fdc885.js.map": "/static/js/main.02fdc885.js.map",
     "reactPlayerYouTube.961b431b.chunk.js.map": "/static/js/reactPlayerYouTube.961b431b.chunk.js.map",
     "reactPlayerSoundCloud.59b056f6.chunk.js.map": "/static/js/reactPlayerSoundCloud.59b056f6.chunk.js.map",
     "reactPlayerVimeo.e8172cf1.chunk.js.map": "/static/js/reactPlayerVimeo.e8172cf1.chunk.js.map",
@@ -48,7 +48,7 @@
     "reactPlayerPreview.d3baa399.chunk.js.map": "/static/js/reactPlayerPreview.d3baa399.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f135509.css",
-    "static/js/main.5acc10ac.js"
+    "static/css/main.c8d35dda.css",
+    "static/js/main.02fdc885.js"
   ]
 }
