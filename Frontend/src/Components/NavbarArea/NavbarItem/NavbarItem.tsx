@@ -18,7 +18,7 @@ function NavbarItem(props: NavbarItemModel): JSX.Element {
             <li>{props.itemSvgComponent}|&nbsp;{props.itemText}</li>
             {props.isDropdown &&
                 <div className="NavbarItemDropdownContent" >
-                    {arr?.map(i => <div>
+                    {arr?.map(i => <div key={i.subNavItemHeading}>
                         <NavLink to={i.subNavItemRedirectPath}>{i.subNavItemHeading}</NavLink>
                     </div>
                     )}
