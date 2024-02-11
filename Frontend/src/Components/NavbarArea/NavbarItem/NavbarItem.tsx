@@ -10,14 +10,14 @@ function NavbarItem(props: NavbarItemModel): JSX.Element {
     const navigate = useNavigate();
     return (
         // <NavLink to={props.itemDestinationPagePath} className="NavbarItem">
-        <ul className="NavbarItem"
+        <ul className={props.isDropdown ? "NavbarItem no-drop" : "NavbarItem"}
             onClick={() => {
                 if (!props.subNavItems) navigate(props.itemDestinationPagePath);
             }}
         >
             <li>{props.itemSvgComponent}|&nbsp;{props.itemText}</li>
             {props.isDropdown &&
-                <div className="NavbarItemDropdownContent" >
+                <div className="NavbarItemDropdownContent">
                     {arr?.map(i => <div key={i.subNavItemHeading}>
                         <NavLink to={i.subNavItemRedirectPath}>{i.subNavItemHeading}</NavLink>
                     </div>

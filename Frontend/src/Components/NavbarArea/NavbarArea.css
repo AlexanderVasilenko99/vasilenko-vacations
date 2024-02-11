@@ -17,6 +17,10 @@
     padding-left: 10px;
 }
 
+.NavbarArea .no-drop:hover {
+    cursor: default;
+}
+
 .NavbarArea .list-container>ul li {
     height: 75px;
     width: 100px;
