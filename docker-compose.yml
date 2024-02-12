@@ -10,13 +10,12 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_HOST: localhost
       MYSQL_ROOT_PASSWORD:
-      # MYSQL_USER: root
       MYSQL_PASSWORD:
       MYSQL_DATABASE: vacatoins
     # volume for db files
     volumes:
       - vacations:/var/lib/mysql
-  # -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
   api-service:
     depends_on:
       - mysql-service
@@ -28,24 +27,11 @@ services:
     restart: unless-stopped
     # overriding backend .env variables
     environment:
-      # service name is the name of the virtual machine
       MYSQL_HOST: mysql-service
-      # MYSQL_USER: root
-      MYSQL_PASSWORD: 
-  # -----------------------------------------------------------------------------
+      MYSQL_PASSWORD:
+# -----------------------------------------------------------------------------
+# frontend is embeded in backend folder
 
-  # react-service:
-  #   depends_on:
-  #     - api-service
-  #   image: vacations-react
-  #   build: ./Frontend
-  #   container_name: vacations-react
-  #   ports:
-  #     - 3000:3000
-  #   restart: unless-stopped
-
-  # -----------------------------------------------------------------------------
-
-  # listing all volumes we're using
+# listing all volumes we're using
 volumes:
   vacations:
