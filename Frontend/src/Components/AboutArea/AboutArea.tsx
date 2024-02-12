@@ -5,8 +5,8 @@ import { HashLink } from "react-router-hash-link";
 import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png";
 import UseTitle from "../../Utils/UseTitle";
 import "./AboutArea.css";
-// import { default as cvFile, default as myCV } from "../../../../Assets/Files/myCV.pdf";
-// import myCV from "../../../public/myCV.pdf";
+import ContactInfoModel from '../../Models/ContactInfoModel';
+
 
 function AboutArea(): JSX.Element {
     UseTitle("Vasilenko Vacations | About");
@@ -22,22 +22,11 @@ function AboutArea(): JSX.Element {
     window.addEventListener('scroll', handleScrollChange);
     let hashlink = React.useRef();
 
-    class myLinksModel {
-        public imageName: string;
-        public link: string;
-        public tooltip?: string;
-        constructor(imageName: string, link: string, tooltip?: string) {
-            this.imageName = imageName;
-            this.link = link;
-            this.tooltip = tooltip;
-        }
-    }
-
-    const myContacts: myLinksModel[] = [
-        new myLinksModel("giticon.png", "https://github.com/AlexanderVasilenko99"),
-        new myLinksModel("linkedinicon.png", "https://www.linkedin.com/in/alexander-vasilenko-323a21299/"),
-        new myLinksModel("phoneicon.png", "050-814-5431"),
-        new myLinksModel("emailicon.png", "mailto:alexandervjr1@gmail.com", "alexandervjr1@gmail.com"),
+    const myContacts: ContactInfoModel[] = [
+        new ContactInfoModel("giticon.png", "https://github.com/AlexanderVasilenko99"),
+        new ContactInfoModel("linkedinicon.png", "https://www.linkedin.com/in/alexander-vasilenko-323a21299/"),
+        new ContactInfoModel("phoneicon.png", "050-814-5431"),
+        new ContactInfoModel("emailicon.png", "mailto:alexandervjr1@gmail.com", "alexandervjr1@gmail.com"),
     ];
 
     return (
@@ -61,9 +50,11 @@ function AboutArea(): JSX.Element {
                 <h4>Full Stack Developer</h4>
                 <h5>
                     {myContacts.map(c =>
-                        <Tooltip title={c.tooltip ? c.tooltip : c.link} arrow key={c.link}>
+                        <Tooltip arrow key={c.link} title={c.tooltip ? c.tooltip : c.link}>
                             <NavLink to={c.link} target="_blank">
-                                <img className="icon" src={require(`../../Assets/Images/UtilityImages/${c.imageName}`)} />
+                                <img
+                                    className="icon"
+                                    src={require(`../../Assets/Images/UtilityImages/${c.imageName}`)} />
                             </NavLink>
                         </Tooltip>
                     )}
