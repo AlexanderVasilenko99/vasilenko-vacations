@@ -47,7 +47,6 @@ function Admin(): JSX.Element {
             .catch((err) => console.log(err));
 
         const dummyCountries: string[] = [];
-        console.log(countryName + " " + iso.toUpperCase());
         dummyCountries.push(countryName + " " + iso);
         iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
         setCountries(dummyCountries);
