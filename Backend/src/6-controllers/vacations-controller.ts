@@ -1,10 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
 import StatusCode from "../3-models/status-codes";
 import { fileSaver } from "uploaded-file-saver";
-import verifyToken from "../4-middlewares/verifyToken";
-import verifyAdmin from "../4-middlewares/verifyAdmin";
-import vacationServices from "../5-services/vacationServices";
-import VacationModel from "../3-models/vacationModel";
+import verifyToken from "../4-middlewares/verify-token";
+import verifyAdmin from "../4-middlewares/verify-admin";
+import vacationServices from "../5-services/vacation-services";
+import VacationModel from "../3-models/vacation-model";
 const router = express.Router();
 
 router.get("/vacations/:userUUID([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})",
@@ -51,6 +51,7 @@ router.post("/vacations",
             const vacation = new VacationModel(request.body);
 
             const addedVacation = await vacationServices.addVacation(vacation);
+            
             response.status(StatusCode.Created).json(addedVacation);
 
         } catch (err: any) {

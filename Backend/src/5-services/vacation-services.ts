@@ -3,7 +3,7 @@ import { fileSaver } from "uploaded-file-saver";
 import appConfig from "../2-utils/app-config";
 import dal from "../2-utils/dal";
 import { FollowerNotFound, ResourceNotFound } from "../3-models/error-models";
-import VacationModel from "../3-models/vacationModel";
+import VacationModel from "../3-models/vacation-model";
 import { UUID, randomUUID } from "crypto";
 
 class VacationServices {
