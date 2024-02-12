@@ -5,11 +5,9 @@ import "./NavbarItem.css";
 
 
 function NavbarItem(props: NavbarItemModel): JSX.Element {
-    // console.log(props.subNavItems);
     let arr: SubNavItem[] = props.subNavItems;
     const navigate = useNavigate();
     return (
-        // <NavLink to={props.itemDestinationPagePath} className="NavbarItem">
         <ul className={props.isDropdown ? "NavbarItem no-drop" : "NavbarItem"}
             onClick={() => {
                 if (!props.subNavItems) navigate(props.itemDestinationPagePath);
