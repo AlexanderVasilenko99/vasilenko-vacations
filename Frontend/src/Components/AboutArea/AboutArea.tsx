@@ -5,7 +5,8 @@ import { HashLink } from "react-router-hash-link";
 import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png";
 import UseTitle from "../../Utils/UseTitle";
 import "./AboutArea.css";
-// import { default as cvFile, default as myCV } from "../../../../Assets/Files/Downloads/Alexander-Vasilenko-CV.pdf";
+// import { default as cvFile, default as myCV } from "../../../../Assets/Files/myCV.pdf";
+// import myCV from "../../../public/myCV.pdf";
 
 function AboutArea(): JSX.Element {
     UseTitle("Vasilenko Vacations | About");
@@ -38,7 +39,7 @@ function AboutArea(): JSX.Element {
         new myLinksModel("phoneicon.png", "050-814-5431"),
         new myLinksModel("emailicon.png", "mailto:alexandervjr1@gmail.com", "alexandervjr1@gmail.com"),
     ];
-    
+
     return (
         <div className="AboutArea">
             <div className="first-section">
@@ -67,10 +68,9 @@ function AboutArea(): JSX.Element {
                         </Tooltip>
                     )}
                     <Tooltip title="My CV" arrow>
-                        <NavLink to="#"// download={myCV}
-                            target="_blank">
+                        <a href="/alexander-vasilenko-cv-feb24.pdf" download target="_blank">
                             <img className="icon" src={require(`../../Assets/Images/UtilityImages/cv.png`)} />
-                        </NavLink>
+                        </a>
                     </Tooltip>
                 </h5>
                 <div className="chevron-holder">
