@@ -5,7 +5,7 @@ import { authStore } from "../../Redux/AuthState";
 import authService from "../../Services/AuthService";
 import notificationService from "../../Services/NotificationService";
 import UseTitle from "../../Utils/UseTitle";
-import Header from "../Common/header/header";
+import Header from "../Common/Header/Header";
 import "./UserArea.css";
 
 function UserArea(): JSX.Element {
