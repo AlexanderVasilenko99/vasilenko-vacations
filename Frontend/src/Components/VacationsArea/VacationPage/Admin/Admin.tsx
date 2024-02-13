@@ -43,6 +43,7 @@ function Admin(): JSX.Element {
                 setImgSrc(vacation.vacationImageUrl);
                 setCountryName(vacation.vacationCountry)
                 setMinDate(vacation.vacationStartDate.toString());
+                
             })
             .catch((err) => console.log(err));
 
