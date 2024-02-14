@@ -278,9 +278,7 @@ function VacationsList(): JSX.Element {
             </div>}
             <div className="vacations-container">
                 {vacations.length === 0 && <MoonLoader color="#1a5785" loading />}
-                <PaginatedItems
-                    itemsPerPage={9}
-                    itemsToDisplay={filterDisplayedVacations(displayedVacations)} />
+                <PaginatedItems itemsPerPage={9} />
             </div>
         </div >
     );
