@@ -8,9 +8,9 @@ import VacationModel from "../../../../Models/VacationModel";
 import notificationService from "../../../../Services/NotificationService";
 import vacationService from "../../../../Services/VacationService";
 import appConfig from "../../../../Utils/AppConfig";
+import UseDeleteVacation from '../../../../Utils/UseDeleteVacation';
 import UseIsAdmin from "../../../../Utils/UseIsAdmin";
 import "./Admin.css";
-import UseDeleteVacation from '../../../../Utils/UseDeleteVacation';
 
 function Admin(): JSX.Element {
     UseIsAdmin(true, "Only administrators can access this page!", "/vacations");
@@ -30,6 +30,8 @@ function Admin(): JSX.Element {
     const [isCountryInputCustom, setIsCountryInputCustom] = useState<boolean>(false);
 
     useEffect(() => {
+        const dummyCountries: string[] = [];
+
         vacationService.getOneVacation(uuid)
             .then(vacation => {
                 setV(vacation);
@@ -43,12 +45,10 @@ function Admin(): JSX.Element {
                 setImgSrc(vacation.vacationImageUrl);
                 setCountryName(vacation.vacationCountry)
                 setMinDate(vacation.vacationStartDate.toString());
-                
+                dummyCountries.push(`${vacation.vacationCountry} ${vacation.vacationCountryISO.toUpperCase()}`);
             })
             .catch((err) => console.log(err));
 
-        const dummyCountries: string[] = [];
-        dummyCountries.push(countryName + " " + iso);
         iso31661.forEach(countryObj => dummyCountries.push(countryObj.name + " " + countryObj.alpha2));
         setCountries(dummyCountries);
 
