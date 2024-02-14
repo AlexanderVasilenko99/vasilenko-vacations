@@ -21,6 +21,7 @@ function Admin(): JSX.Element {
 
     const [iso, setISO] = useState<string>("");
     const [v, setV] = useState<VacationModel>();
+    const [val, setVal] = useState<string>('');
     const [imgSrc, setImgSrc] = useState<string>("");
     const [minDate, setMinDate] = useState<string>('');
     const [countries, setCountries] = useState<string[]>([]);
@@ -40,12 +41,22 @@ function Admin(): JSX.Element {
                 setValue("vacationCountry", vacation.vacationCountry);
                 setValue("vacationEndDate", vacation.vacationEndDate);
                 setValue("vacationStartDate", vacation.vacationStartDate);
+                setValue("vacationCountryISO", vacation.vacationCountryISO);
                 setValue("vacationDescription", vacation.vacationDescription);
                 setISO(vacation.vacationCountryISO);
                 setImgSrc(vacation.vacationImageUrl);
                 setCountryName(vacation.vacationCountry)
                 setMinDate(vacation.vacationStartDate.toString());
-                dummyCountries.push(`${vacation.vacationCountry} ${vacation.vacationCountryISO.toUpperCase()}`);
+
+                // check if if country name is custom and if so add it to autocomplete
+                let countryObj = iso31661.find(countryObj => countryObj.name === vacation.vacationCountry);
+                if (!countryObj) {
+                    dummyCountries.push(`${vacation.vacationCountry} ${vacation.vacationCountryISO.toUpperCase()}`);
+                    setVal(dummyCountries[dummyCountries.length - 1]);
+                }
+                else {
+                    setVal(`${countryObj.name} ${countryObj.alpha2.toUpperCase()}`);
+                }
             })
             .catch((err) => console.log(err));
 
