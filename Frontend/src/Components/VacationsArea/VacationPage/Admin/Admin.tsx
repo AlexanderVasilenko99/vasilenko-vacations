@@ -21,10 +21,10 @@ function Admin(): JSX.Element {
 
     const [iso, setISO] = useState<string>("");
     const [v, setV] = useState<VacationModel>();
-    const [val, setVal] = useState<string>('');
     const [imgSrc, setImgSrc] = useState<string>("");
     const [minDate, setMinDate] = useState<string>('');
     const [countries, setCountries] = useState<string[]>([]);
+    const [countryVal, setCountryVal] = useState<string>('');
     const [countryName, setCountryName] = useState<string>('');
     const [isFormDisabled, setIsFormDisabled] = useState<boolean>(true);
     const { register, handleSubmit, setValue } = useForm<VacationModel>();
@@ -52,10 +52,10 @@ function Admin(): JSX.Element {
                 let countryObj = iso31661.find(countryObj => countryObj.name === vacation.vacationCountry);
                 if (!countryObj) {
                     dummyCountries.push(`${vacation.vacationCountry} ${vacation.vacationCountryISO.toUpperCase()}`);
-                    setVal(dummyCountries[dummyCountries.length - 1]);
+                    setCountryVal(dummyCountries[dummyCountries.length - 1]);
                 }
                 else {
-                    setVal(`${countryObj.name} ${countryObj.alpha2.toUpperCase()}`);
+                    setCountryVal(`${countryObj.name} ${countryObj.alpha2.toUpperCase()}`);
                 }
             })
             .catch((err) => console.log(err));
@@ -198,11 +198,11 @@ function Admin(): JSX.Element {
                         </>}
                         {countryName && !isCountryInputCustom && iso && <Autocomplete id="countriesAutocomplete"
                             disabled={isFormDisabled}
-                            defaultValue={countryName + " " + iso.toUpperCase()}
+                            value={countryVal}
                             onChange={(event, value: string) => {
                                 const countryInput = document.getElementById("countriesAutocomplete") as HTMLInputElement;
                                 countryInput.value = value;
-
+                                setCountryVal(value);
                                 if (value) setISO(value.substring(value.length - 2, value.length).toLowerCase())
                                 else setISO("il");
                             }}
