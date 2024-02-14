@@ -21,7 +21,6 @@ function Items({ currentItems }: ItemsPropsModel): JSX.Element {
                     vacationIsFollowing={v.vacationIsFollowing}
                     vacationFollowersCount={v.vacationFollowersCount} />
                 )}
-            {currentItems.length === 0 && <span>No matching results</span>}
         </>
     );
 }

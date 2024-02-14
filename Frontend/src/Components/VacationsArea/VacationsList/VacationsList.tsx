@@ -65,6 +65,7 @@ function VacationsList(): JSX.Element {
 
         return (
             <>
+                {pageCount == 0 && "No matching results"}
                 {pageCount !== 0 && <ReactPaginate
                     pageCount={pageCount}
                     pageRangeDisplayed={0}
