@@ -2,8 +2,10 @@ import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import { Autocomplete, TextField } from '@mui/material';
 import { useEffect, useState } from "react";
+import ReactPaginate from 'react-paginate';
 import { NavLink } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
+import PaginatedItemsProps from '../../../Models/PaginatedItemsPropsModel';
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
 import { vacationsStore } from "../../../Redux/VacationsState";
@@ -11,7 +13,7 @@ import vacationService from "../../../Services/VacationService";
 import appConfig from "../../../Utils/AppConfig";
 import UseIsLoggedIn from "../../../Utils/UseIsLoggedIn";
 import UseTitle from "../../../Utils/UseTitle";
-import PaginatedItems from './PaginatedItems/PaginatedItems';
+import Items from './Items/Items';
 import "./VacationsList.css";
 
 function VacationsList(): JSX.Element {
@@ -45,6 +47,50 @@ function VacationsList(): JSX.Element {
         "All Vacations"
     ];
 
+    function PaginatedItems({ itemsPerPage }: PaginatedItemsProps): JSX.Element {
+        const [itemOffset, setItemOffset] = useState(0);
+        const [selectedPage, setSelectedPage] = useState(0);
+
+        const endOffset = itemOffset + itemsPerPage;
+        let currentItems: VacationModel[] = vacationsStore.getState().vacations;
+        currentItems = filterDisplayedVacations(currentItems);
+        currentItems = currentItems.slice(itemOffset, endOffset);
+        const pageCount = Math.ceil(displayedVacationCountries.length / itemsPerPage);
+
+        const handlePageClick = (event: { selected: number }) => {
+            const newOffset = (event.selected * itemsPerPage) % displayedVacationCountries.length;
+            setSelectedPage(event.selected);
+            setItemOffset(newOffset);
+        };
+
+        return (
+            <>
+                {pageCount && <ReactPaginate
+                    pageCount={pageCount}
+                    pageRangeDisplayed={0}
+                    marginPagesDisplayed={2}
+                    breakLabel="..."
+                    nextLabel=">"
+                    previousLabel="<"
+                    onPageChange={handlePageClick}
+                    renderOnZeroPageCount={null}
+                    forcePage={selectedPage}
+                />}
+                <Items currentItems={currentItems} />
+                {pageCount && <ReactPaginate
+                    pageCount={pageCount}
+                    pageRangeDisplayed={0}
+                    marginPagesDisplayed={2}
+                    breakLabel="..."
+                    nextLabel=">"
+                    previousLabel="<"
+                    onPageChange={handlePageClick}
+                    renderOnZeroPageCount={null}
+                    forcePage={selectedPage}
+                />}
+            </>
+        );
+    }
 
     function filterVacationsByDates(vacationsArray: VacationModel[], dates: string): VacationModel[] {
         let newVacations = [...vacationsArray];
