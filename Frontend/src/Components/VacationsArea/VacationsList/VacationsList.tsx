@@ -3,8 +3,10 @@ import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import { Autocomplete, TextField } from '@mui/material';
 import { useEffect, useState } from "react";
 import ReactPaginate from 'react-paginate';
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import MoonLoader from "react-spinners/MoonLoader";
+import ItemsPropsModel from '../../../Models/ItemsPropsModel';
+import PaginatedItemsPropsModel from '../../../Models/PaginatedItemsPropsModel';
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
 import { vacationsStore } from "../../../Redux/VacationsState";
@@ -47,15 +49,8 @@ function VacationsList(): JSX.Element {
         "All Vacations"
     ];
 
-    interface ItemsProps {
-        currentItems: VacationModel[];
-    }
 
-    interface PaginatedItemsProps {
-        itemsPerPage: number;
-    }
-
-    function Items({ currentItems }: ItemsProps): JSX.Element {
+    function Items({ currentItems }: ItemsPropsModel): JSX.Element {
         return (
             <>
                 {currentItems &&
@@ -79,7 +74,7 @@ function VacationsList(): JSX.Element {
         );
     }
 
-    function PaginatedItems({ itemsPerPage }: PaginatedItemsProps): JSX.Element {
+    function PaginatedItems({ itemsPerPage }: PaginatedItemsPropsModel): JSX.Element {
         const [itemOffset, setItemOffset] = useState(0);
         const [selectedPage, setSelectedPage] = useState(0);
 
