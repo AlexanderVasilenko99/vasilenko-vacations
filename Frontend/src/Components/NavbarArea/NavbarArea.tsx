@@ -100,7 +100,7 @@ function NavbarArea(): JSX.Element {
                     />}
                 </ul>
             </div>
-            <ContactIcons />
+            {window.location.pathname !== '/home/' && <ContactIcons />}
         </div >
     );
 }
