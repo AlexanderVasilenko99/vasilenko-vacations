@@ -1,10 +1,10 @@
+import { randomUUID } from "crypto";
 import { OkPacket } from "mysql";
 import { fileSaver } from "uploaded-file-saver";
 import appConfig from "../2-utils/app-config";
 import dal from "../2-utils/dal";
 import { FollowerNotFound, ResourceNotFound } from "../3-models/error-models";
 import VacationModel from "../3-models/vacation-model";
-import { UUID, randomUUID } from "crypto";
 
 class VacationServices {
     public async getAllVacations(userUUID: string): Promise<VacationModel[]> {
@@ -30,7 +30,7 @@ class VacationServices {
         const vacations = await dal.execute(sql, [userUUID]);
         return vacations;
     }
-
+    // func returns vacation's image name stored in db 
     public async getExistingVacationImageName(vacationUUID: string): Promise<string> {
         const sql = 'SELECT vacationImageName from vacations WHERE vacationUUID = ?'
         const info = await dal.execute(sql, [vacationUUID]);
@@ -39,7 +39,7 @@ class VacationServices {
         if (!imageName) return "";
         return imageName;
     }
-
+    // func returns path to vacations's image
     public async getExistingVacationImagePath(vacationUUID: string): Promise<string> {
         const sql = 'SELECT VacationImageName from vacations WHERE vacationUUID = ?'
         const info: OkPacket = await dal.execute(sql, [vacationUUID]);

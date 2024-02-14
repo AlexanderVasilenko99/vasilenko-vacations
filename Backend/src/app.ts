@@ -1,14 +1,14 @@
-import express from "express";
-import appConfig from "./2-utils/app-config";
-import catchAll from "./4-middlewares/catch-all";
-import { routeNotFound, pageNotFound } from "./4-middlewares/not-found";
-import { fileSaver } from "uploaded-file-saver";
-import path from "path"
-import authController from "./6-controllers/auth-controller";
-import expressFileUpload from "express-fileupload"
 import cors from "cors";
+import express from "express";
+import expressFileUpload from "express-fileupload";
+import path from "path";
+import { fileSaver } from "uploaded-file-saver";
+import appConfig from "./2-utils/app-config";
 import activities from "./4-middlewares/activities";
+import catchAll from "./4-middlewares/catch-all";
+import { pageNotFound, routeNotFound } from "./4-middlewares/not-found";
 import sanitize from "./4-middlewares/sanitize";
+import authController from "./6-controllers/auth-controller";
 import vacationsController from "./6-controllers/vacations-controller";
 
 
@@ -25,14 +25,13 @@ server.use(express.json());
 server.use("/", express.static(path.join(__dirname, "7-frontend")))
 
 // log every activity
-// server.use(activities);
+server.use(activities);
 
 // sanitize
 server.use(sanitize);
 
 // create a request.files obj containing the request body data
 server.use(expressFileUpload());
-
 
 server.use("/api", vacationsController, authController);
 server.use("/api/*", routeNotFound);

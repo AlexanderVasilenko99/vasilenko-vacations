@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import { RouteNotFound } from "../3-models/error-models";
+import { NextFunction, Request, Response } from "express";
 import path from "path";
+import { RouteNotFound } from "../3-models/error-models";
 
 export function routeNotFound(req: Request, res: Response, next: NextFunction): void {
     const err = new RouteNotFound(req.originalUrl)

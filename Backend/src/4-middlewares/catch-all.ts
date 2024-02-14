@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction, response } from "express";
-import StatusCode from "../3-models/status-codes";
-import logger from "../2-utils/logger";
+import { NextFunction, Request, Response } from "express";
 import appConfig from "../2-utils/app-config";
+import logger from "../2-utils/logger";
+import StatusCode from "../3-models/status-codes";
 
 function catchAll(err: any, req: Request, res: Response, next: NextFunction): void {
 

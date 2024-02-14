@@ -1,7 +1,7 @@
-import Joi from "joi";
-import RoleModel from "./role-model";
-import { Validation } from "./error-models";
 import { UploadedFile } from "express-fileupload";
+import Joi from "joi";
+import { Validation } from "./error-models";
+import RoleModel from "./role-model";
 
 class UserModel {
     public userId: number;

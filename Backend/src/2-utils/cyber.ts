@@ -1,8 +1,8 @@
+import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import { Forbidden, Unauthorized } from "../3-models/error-models";
-import UserModel from "../3-models/user-model";
-import jwt from "jsonwebtoken"
 import RoleModel from "../3-models/role-model";
-import crypto from "crypto"
+import UserModel from "../3-models/user-model";
 
 class Cyber {
     private secretKey = "myverysecretsecretkey"

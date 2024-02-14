@@ -1,5 +1,5 @@
+import { UploadedFile } from "express-fileupload";
 import Joi from "joi";
-import { UploadedFile } from "express-fileupload"
 import { Validation } from "./error-models";
 class VacationModel {
     public vacationId: number;
@@ -62,7 +62,7 @@ class VacationModel {
         vacationPrice: Joi.number().required().min(3).max(10000).integer().positive(),
         vacationCountryISO: Joi.string().required().min(2).max(2),
         vacationImageName: Joi.string().required().min(2).max(255),
-        vacationImageUrl: Joi.string().optional().max(260),// should i check vacationimageurl? - make sure later
+        vacationImageUrl: Joi.string().optional().max(260),
         vacationUploadedImage: Joi.object().optional(),
         vacationIsFollowing: Joi.number().forbidden(),
         vacationFollowersCount: Joi.number().forbidden()
@@ -72,7 +72,7 @@ class VacationModel {
         const result = VacationModel.addVacationValidationSchema.validate(this);
         if (result?.error?.message) throw new Validation(result.error.message);
     }
-    
+
     public editVacationValidate(): void {
         const result = VacationModel.editVacationValidationSchema.validate(this);
         if (result?.error?.message) throw new Validation(result.error.message);

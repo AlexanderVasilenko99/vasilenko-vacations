@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import stripTags from "striptags"
+import stripTags from "striptags";
 function sanitize(req: Request, res: Response, next: NextFunction): void {
 
     for (const prop in req.body) {

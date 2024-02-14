@@ -1,15 +1,16 @@
 import { randomUUID } from 'crypto';
 import { OkPacket } from 'mysql';
+import { fileSaver } from 'uploaded-file-saver';
+import appConfig from '../2-utils/app-config';
 import cyber from '../2-utils/cyber';
 import dal from '../2-utils/dal';
 import CredentialsModel from '../3-models/credentials-model';
 import { EmailTaken, ResourceNotFound, Unauthorized } from '../3-models/error-models';
 import RoleModel from '../3-models/role-model';
 import UserModel from '../3-models/user-model';
-import { fileSaver } from 'uploaded-file-saver';
-import appConfig from '../2-utils/app-config';
 
 class AuthService {
+    // func returns user's image name stored in db 
     public async getExistingUserImageName(userUUID: string): Promise<string> {
         const sql = 'SELECT userImageName from users WHERE userUUID = ?'
         const info = await dal.execute(sql, [userUUID]);
@@ -18,7 +19,7 @@ class AuthService {
         if (!imageName) return "";
         return imageName;
     }
-
+    // func returns path to user's image 
     public async getExistingUserImagePath(userUUID: string): Promise<string> {
         const sql = 'SELECT userImageName from users WHERE userUUID = ?'
         const info: OkPacket = await dal.execute(sql, [userUUID]);
@@ -28,7 +29,7 @@ class AuthService {
         const existingImagePath = appConfig.appHost + "/api/image/" + user.userImageName;
         return existingImagePath;
     }
-
+    // func returns whether given email exists in db
     private async isEmailTaken(email: string): Promise<boolean> {
         const sql = `SELECT
             userUUID,
@@ -42,7 +43,7 @@ class AuthService {
         if (info[0]) return true;
         return false;
     }
-
+    // func returns whether given combination of email&uuid exists in db
     private async isEmailRegistered(uuid: string, email: string): Promise<boolean> {
         const sql = `SELECT
             userUUID,
