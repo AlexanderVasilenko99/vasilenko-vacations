@@ -1,0 +1,16 @@
+.ContactIcons {
+    position: fixed;
+    mix-blend-mode: multiply;
+    bottom: 0;
+    right: 10px;
+}
+
+.ContactIcons h3 {
+    color: #1a5785;
+    margin: 0;
+    text-align: center;
+}
+
+.ContactIcons img {
+    width: 50px;
+}

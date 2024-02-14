@@ -12,6 +12,7 @@ import authService from "../../Services/AuthService";
 import appConfig from "../../Utils/AppConfig";
 import "./NavbarArea.css";
 import NavbarItem from "./NavbarItem/NavbarItem";
+import ContactIcons from './ContactIcons/ContactIcons';
 function NavbarArea(): JSX.Element {
 
     // navbar is dynamic and renders
@@ -99,6 +100,7 @@ function NavbarArea(): JSX.Element {
                     />}
                 </ul>
             </div>
+            <ContactIcons />
         </div >
     );
 }
