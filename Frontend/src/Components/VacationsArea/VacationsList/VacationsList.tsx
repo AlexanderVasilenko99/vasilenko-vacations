@@ -24,9 +24,8 @@ function VacationsList(): JSX.Element {
     const isAdmin = authStore.getState().user?.userRoleId === 1 ? true : false;
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
-    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
-
     const [vacationCountries, setVacationCountries] = useState<string[]>([]);
+    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
 
     const priceRangesOptions: string[] = [
@@ -77,9 +76,9 @@ function VacationsList(): JSX.Element {
     function PaginatedItems({ itemsPerPage }: PaginatedItemsPropsModel): JSX.Element {
         const [itemOffset, setItemOffset] = useState(0);
         const [selectedPage, setSelectedPage] = useState(0);
+        let currentItems: VacationModel[] = vacationsStore.getState().vacations;
 
         const endOffset = itemOffset + itemsPerPage;
-        let currentItems = vacationsStore.getState().vacations;
         currentItems = filterDisplayedVacations(currentItems);
         currentItems = currentItems.slice(itemOffset, endOffset);
         const pageCount = Math.ceil(displayedVacationCountries.length / itemsPerPage);
@@ -92,7 +91,7 @@ function VacationsList(): JSX.Element {
 
         return (
             <>
-                <ReactPaginate
+                {pageCount && <ReactPaginate
                     pageCount={pageCount}
                     pageRangeDisplayed={0}
                     marginPagesDisplayed={2}
@@ -101,9 +100,10 @@ function VacationsList(): JSX.Element {
                     previousLabel="<"
                     onPageChange={handlePageClick}
                     renderOnZeroPageCount={null}
-                />
+                    forcePage={selectedPage}
+                />}
                 <Items currentItems={currentItems} />
-                <ReactPaginate
+                {pageCount && <ReactPaginate
                     pageCount={pageCount}
                     pageRangeDisplayed={0}
                     marginPagesDisplayed={2}
@@ -112,7 +112,8 @@ function VacationsList(): JSX.Element {
                     previousLabel="<"
                     onPageChange={handlePageClick}
                     renderOnZeroPageCount={null}
-                />
+                    forcePage={selectedPage}
+                />}
             </>
         );
     }
