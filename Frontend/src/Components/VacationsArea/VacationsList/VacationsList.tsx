@@ -65,7 +65,7 @@ function VacationsList(): JSX.Element {
 
         return (
             <>
-                {pageCount && <ReactPaginate
+                {pageCount !== 0 && <ReactPaginate
                     pageCount={pageCount}
                     pageRangeDisplayed={0}
                     marginPagesDisplayed={2}
@@ -77,7 +77,7 @@ function VacationsList(): JSX.Element {
                     forcePage={selectedPage}
                 />}
                 <Items currentItems={currentItems} />
-                {pageCount && <ReactPaginate
+                {pageCount !== 0 && <ReactPaginate
                     pageCount={pageCount}
                     pageRangeDisplayed={0}
                     marginPagesDisplayed={2}
