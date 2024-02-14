@@ -23,8 +23,6 @@ function VacationsList(): JSX.Element {
     const isAdmin = authStore.getState().user?.userRoleId === 1 ? true : false;
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
-    const [vacationCountries, setVacationCountries] = useState<string[]>([]);
-    const [displayedVacations, setDisplayedVacations] = useState<VacationModel[]>([]);
     const [displayedVacationCountries, setDisplayedVacationCountries] = useState<string[]>([]);
 
     const priceRangesOptions: string[] = [
@@ -182,13 +180,12 @@ function VacationsList(): JSX.Element {
         let newVacationCountries: string[] = [];
         newVacations.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));
 
-        setDisplayedVacations(newVacations);
         setDisplayedVacationCountries(newVacationCountries);
     }
 
     function resetSearchForm(): void {
         setAccordionOpen(true);
-        setDisplayedVacations(vacations);
+
         const datesInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[0] as HTMLButtonElement;
         const priceRangeInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[1] as HTMLButtonElement;
         const countryInput = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[2] as HTMLButtonElement;
@@ -204,9 +201,7 @@ function VacationsList(): JSX.Element {
                 const countries: string[] = [];
 
                 setVacations(vacations);
-                setDisplayedVacations(vacations);
                 vacations.forEach(v => countries.push(v.vacationCountry));
-                setVacationCountries(countries);
                 setDisplayedVacationCountries(countries);
             })
             .catch(err => console.log(err));
@@ -215,7 +210,6 @@ function VacationsList(): JSX.Element {
             const curValue: VacationModel[] = vacationsStore.getState().vacations;
 
             setVacations(curValue);
-            setDisplayedVacations(filterDisplayedVacations(curValue));
 
             let newVacationCountries: string[] = [];
             curValue.forEach(vacation => newVacationCountries.push(vacation.vacationCountry));

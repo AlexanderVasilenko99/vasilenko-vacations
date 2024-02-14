@@ -1,7 +1,7 @@
-import "./PageNotFound.css";
-import UseTitle from "../../../Utils/UseTitle";
-import backgroundImage from "../../../Assets/Images/UtilityImages/404.png"
 import { NavLink } from "react-router-dom";
+import backgroundImage from "../../../Assets/Images/UtilityImages/404.png";
+import UseTitle from "../../../Utils/UseTitle";
+import "./PageNotFound.css";
 function PageNotFound(): JSX.Element {
     UseTitle("Vasilenko Vacations | 404");
     return (

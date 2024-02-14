@@ -10,9 +10,9 @@ import { SubNavItem } from "../../Models/SubNavItem";
 import { authStore } from "../../Redux/AuthState";
 import authService from "../../Services/AuthService";
 import appConfig from "../../Utils/AppConfig";
+import ContactIcons from './ContactIcons/ContactIcons';
 import "./NavbarArea.css";
 import NavbarItem from "./NavbarItem/NavbarItem";
-import ContactIcons from './ContactIcons/ContactIcons';
 function NavbarArea(): JSX.Element {
 
     // navbar is dynamic and renders
@@ -100,7 +100,7 @@ function NavbarArea(): JSX.Element {
                     />}
                 </ul>
             </div>
-            {window.location.pathname !== '/home/' && <ContactIcons />}
+            {window.location.pathname !== '/home' && window.location.pathname !== '/home/' && <ContactIcons />}
         </div >
     );
 }

@@ -3,9 +3,9 @@ import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import thanks_for_reading from "../../Assets/Images/UtilityImages/thanks-for-reading.png";
+import ContactInfoModel from '../../Models/ContactInfoModel';
 import UseTitle from "../../Utils/UseTitle";
 import "./AboutArea.css";
-import ContactInfoModel from '../../Models/ContactInfoModel';
 
 
 function AboutArea(): JSX.Element {

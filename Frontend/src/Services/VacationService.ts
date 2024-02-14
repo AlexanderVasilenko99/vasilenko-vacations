@@ -1,10 +1,10 @@
 import axios from "axios";
+import StatusCode from "../Models/StatusCodes";
 import VacationModel from "../Models/VacationModel";
+import { authStore } from "../Redux/AuthState";
 import { VacationsActionTypes, VacationsActions, vacationsStore } from "../Redux/VacationsState";
 import appConfig from "../Utils/AppConfig";
-import { authStore } from "../Redux/AuthState";
 import notificationService from "./NotificationService";
-import StatusCode from "../Models/StatusCodes";
 
 class VacationService {
     public async getAllVacations(): Promise<VacationModel[]> {
