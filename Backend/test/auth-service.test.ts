@@ -56,19 +56,19 @@ describe("testing auth-service", () => {
         expect(newToken).to.have.length.gte(100).and.lte(600);
     });
 
-    // it("attempting to register with unused email should return valid token", async () => {
-    //     const response = await supertest(app.server).post('/api/register').send({
-    //         userFirstName: 'TEST',
-    //         userLastName: 'TEST',
-    //         userEmail: 'TEST@TEST.COM',
-    //         userPassword: '1234'
-    //     });
-    //     const token = response.body;
-    //     expect(response.status).to.equal(201);
-    //     expect(token).to.have.length.gte(100).and.lte(600);
-    // });
+    it("attempting to register with unused email should return valid token", async () => {
+        const response = await supertest(app.server).post('/api/register').send({
+            userFirstName: 'TEST',
+            userLastName: 'TEST',
+            userEmail: 'TEST@TEST.COM',
+            userPassword: '1234'
+        });
+        const token = response.body;
+        expect(response.status).to.equal(201);
+        expect(token).to.have.length.gte(100).and.lte(600);
+    });
 
-    it("attempting to register with used email should be rejected", async () => { // a function should crash for this test to pass
+    it("attempting to register with used email should be rejected", async () => {
         const response = await supertest(app.server)
             .post('/api/register')
             .send({
