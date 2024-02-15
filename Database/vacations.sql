@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2024 at 08:49 PM
+-- Generation Time: Feb 15, 2024 at 01:44 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,7 +48,10 @@ INSERT INTO `followers` (`userUUID`, `vacationUUID`) VALUES
 ('56b86c37-3510-45cc-a80f-07f6606e3e35', '8b344dbe-c106-4d72-8212-8db10f3a288e'),
 ('56b86c37-3510-45cc-a80f-07f6606e3e35', 'ef202279-2964-468a-be90-233956552608'),
 ('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '012a88dd-b622-4b76-9cdd-7490ccd8c735'),
+('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '2e1e085a-f7d5-4d08-865a-75ceaf0e9c0d'),
+('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '2eeea6c2-36e4-45d8-ae14-f1b094dcab03'),
 ('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '54edf894-1670-45b6-9e77-d980139a1ce9'),
+('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '82d8a6a6-9353-4380-b0c4-2c02c175751f'),
 ('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', '8b344dbe-c106-4d72-8212-8db10f3a288e'),
 ('9b51bdc8-2d4a-4950-af3a-5c13efd474aa', 'b59028dd-884c-4b15-9814-6dd1e8afcf9a'),
 ('e55f1a39-e231-462f-b2d7-941099d48146', '012a88dd-b622-4b76-9cdd-7490ccd8c735'),
@@ -131,7 +134,7 @@ INSERT INTO `vacations` (`vacationId`, `vacationUUID`, `vacationCountry`, `vacat
 (2, '54edf894-1670-45b6-9e77-d980139a1ce9', 'Japan', 'Kyoto', 'Renowned for its rich history, traditional tea houses, stunning temples, and the iconic Arashiyama Bamboo Grove.', '2023-12-15', '2023-12-22', 8560, 'jp', '975286bc-440e-462d-8ed7-fe92f42f15c1.jpg'),
 (3, '8b344dbe-c106-4d72-8212-8db10f3a288e', 'South Korea', 'Seoul', 'A dynamic city blending modern skyscrapers with historic temples, bustling markets, and vibrant nightlife.', '2023-12-22', '2023-12-29', 9999, 'kr', '02bd0868-219b-4197-832d-c2c8f7fe50a0.jpg'),
 (4, '8a9e694e-e90f-451f-bfa8-240e397b3596', 'Croatia', 'Dubrovnik', 'Known for its well-preserved medieval walls, charming old town, and stunning Adriatic Sea views.', '2023-12-30', '2024-01-04', 5369, 'hr', '81124bfc-ee74-44ea-9697-f13942f94530.jpg'),
-(5, 'ef202279-2964-468a-be90-233956552608', 'Spain', 'Barcelona', 'Famous for its unique architecture, vibrant culture, and beautiful beaches along the Mediterranean coast.', '2023-12-18', '2024-01-24', 6599, 'es', '99ddb905-4697-456c-a70c-66ec3ce98d0a.jpg'),
+(5, 'ef202279-2964-468a-be90-233956552608', 'Spain', 'Barcelona', 'Famous for its unique architecture, vibrant culture, and beautiful beaches along the Mediterranean coast.', '2023-12-18', '2024-01-24', 6699, 'es', '99ddb905-4697-456c-a70c-66ec3ce98d0a.jpg'),
 (6, '2093ade8-e3d7-4103-a8f9-71daae2081e4', 'The UK', 'Scottish Highlands', 'Offers breathtaking landscapes, rugged mountains, serene lochs, and historic castles.', '2024-07-10', '2024-07-17', 8749, 'gb', '56ba98d1-cdf7-4af8-9f09-6dba3c7b3ae7.jpg'),
 (7, 'f359cdd8-ec19-4080-ac4a-f639038da0ff', 'Germany', 'Bavarian Alps', 'Known for picturesque villages, stunning alpine scenery, and opportunities for outdoor activities like hiking and skiing.', '2024-08-03', '2024-08-10', 7199, 'de', 'f32e14c8-118f-45a9-9998-1d456bac7598.jpg'),
 (8, '2e1e085a-f7d5-4d08-865a-75ceaf0e9c0d', 'The Netherlands', 'Amsterdam', 'Famous for picturesque canals, historic architecture, world-class museums, and vibrant culture.', '2024-11-01', '2024-11-07', 4699, 'nl', '995d2252-ddec-451c-b14c-3246ce884630.jpg'),
@@ -139,7 +142,6 @@ INSERT INTO `vacations` (`vacationId`, `vacationUUID`, `vacationCountry`, `vacat
 (10, 'e3013e9e-594e-4565-8c05-a2f1716916d9', 'The USA', 'Grand Canyon', 'One of the world\'s most famous natural wonders, offering awe-inspiring vistas, hiking trails, and geological history.', '2024-03-09', '2024-04-01', 6899, 'us', '641a092d-f1dd-440c-b57d-10c1936ed759.jpg'),
 (11, '823e9fd5-53e9-4bf9-b44c-54fcd6a7aba7', 'Iceland', 'The Blue Lagoon', 'A geothermal spa known for its milky-blue waters, surrounded by lava fields, offering a relaxing experience.', '2024-12-17', '2024-12-24', 9699, 'is', '853a0b00-7f41-4242-97de-960ee7b74062.jpg'),
 (12, '0174cbec-c899-491f-a407-8d94a13ea82e', 'Mexico', 'Guanajuato', 'Famous for its indigenous culture, delicious cuisine, vibrant markets, colorful streets, and rich artistic heritage.', '2024-05-23', '2024-05-27', 5799, 'mx', 'e29fa3df-cc30-46d7-a2ae-1a064644d614.jpg'),
-(103, '140bae4c-ad85-4f54-b934-c103bebe26a4', 'Chad', 'Chad City', 'cool vacation i promise', '2024-01-01', '2024-02-01', 6969, 'td', 'd817b6d4-d298-4e16-855b-d3c41c9faf0c.jpeg'),
 (140, '82d8a6a6-9353-4380-b0c4-2c02c175751f', 'Thailand', 'Phuket', 'Tropical haven with stunning beaches, vibrant culture, and lively nightlife.', '2024-01-31', '2024-02-20', 9449, 'th', '9d66d634-49ae-4e31-980d-93b567f0cb4f.png'),
 (141, 'b59028dd-884c-4b15-9814-6dd1e8afcf9a', 'Canada', 'Banff', 'Alpine charm, lakes and peaks. Nature\'s grandeur in the Canadian Rockies for an escape like no other', '2024-03-27', '2024-04-09', 9628, 'ca', 'b2cc76c7-824c-4753-8ea4-6754accdbf63.png'),
 (142, 'b53c05d7-8ca8-4d9e-ad07-7e608181dde4', 'Vietnam', 'Hanoi', 'Temples, markets, lakes; Vietnamese charm, historic sites, flavorful street food. Enriching escape!', '2024-02-15', '2024-02-28', 7777, 'vn', 'c85f2992-56a8-4564-bc16-dbc119f17e5f.png');
@@ -190,13 +192,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `vacations`
 --
 ALTER TABLE `vacations`
-  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- Constraints for dumped tables
